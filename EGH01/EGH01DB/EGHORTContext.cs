@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EGH01DB
 {
-    public class Class1
-    {
-    }
+//    public class Class1
+//    {
+//    }
 }

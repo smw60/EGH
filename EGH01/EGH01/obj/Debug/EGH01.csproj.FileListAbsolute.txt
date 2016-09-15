@@ -72,3 +72,5 @@ c:\users\teta\documents\visual studio 2013\Projects\EGH01\EGH01\bin\ru\Microsoft
 c:\users\teta\documents\visual studio 2013\Projects\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
 c:\users\teta\documents\visual studio 2013\Projects\EGH01\EGH01\obj\Debug\EGH01.dll
 c:\users\teta\documents\visual studio 2013\Projects\EGH01\EGH01\obj\Debug\EGH01.pdb
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01\bin\EGH01DB.dll
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01\bin\EGH01DB.pdb
