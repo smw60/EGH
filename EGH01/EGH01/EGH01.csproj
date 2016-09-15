@@ -159,7 +159,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EGHCAIController.cs" />
+    <Compile Include="Controllers\EGHCCOController.cs" />
+    <Compile Include="Controllers\EGHCEQController.cs" />
     <Compile Include="Controllers\EGHController.cs" />
+    <Compile Include="Controllers\EGHGEAController.cs" />
+    <Compile Include="Controllers\EGHORTController.cs" />
+    <Compile Include="Controllers\EGHRGEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -217,6 +223,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\EGH\Index.cshtml" />
+    <Content Include="Views\Shared\EGHLayout.cshtml" />
+    <Content Include="Views\EGHRGE\Index.cshtml" />
+    <Content Include="Views\EGHORT\Index.cshtml" />
+    <Content Include="Views\EGHGEA\Index.cshtml" />
+    <Content Include="Views\EGHCEQ\Index.cshtml" />
+    <Content Include="Views\EGHCCO\Index.cshtml" />
+    <Content Include="Views\EGHCAI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -227,6 +240,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EGH01DB\EGH01DB.csproj">
+      <Project>{ac60d94d-83cd-4882-8f07-d4b56aab8f75}</Project>
+      <Name>EGH01DB</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
