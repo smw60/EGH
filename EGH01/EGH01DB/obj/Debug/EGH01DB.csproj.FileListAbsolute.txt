@@ -1,0 +1,20 @@
+<<<<<<< HEAD
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+=======
+D:\EGH\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\EGH\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+D:\EGH\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\EGH\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+>>>>>>> 268bf68a81db7aa8f23fb2ffbddc890ae016d187
+D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
+D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+D:\Workspace\Git\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\Workspace\Git\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
