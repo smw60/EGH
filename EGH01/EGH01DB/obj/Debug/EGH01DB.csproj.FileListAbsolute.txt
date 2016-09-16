@@ -1,0 +1,8 @@
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+C:\Users\Teta\documents\visual studio 2013\Projects\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
