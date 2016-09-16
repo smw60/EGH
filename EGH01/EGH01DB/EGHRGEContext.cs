@@ -17,7 +17,12 @@ namespace EGH01DB
         public RGEContext()
         {
            
-        } 
+        }
+        public void Disconnect()
+        {
+            if (con != null) con.Close();
+            con = null;
+        }
 
     }
  }

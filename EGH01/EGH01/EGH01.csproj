@@ -231,6 +231,9 @@
     <Content Include="Views\EGHCCO\Index.cshtml" />
     <Content Include="Views\EGHCAI\Index.cshtml" />
     <Content Include="Views\EGHRGE\Report.cshtml" />
+    <Content Include="Views\EGHCEQ\Report.cshtml" />
+    <Content Include="Views\EGHGEA\Report.cshtml" />
+    <Content Include="Views\EGHORT\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

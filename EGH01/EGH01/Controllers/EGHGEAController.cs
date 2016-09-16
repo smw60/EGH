@@ -6,12 +6,21 @@ using System.Web.Mvc;
 
 namespace EGH01.Controllers
 {
+    
     public class EGHGEAController : Controller
     {
-        //
-        // GET: /EGHGEA/
+        EGH01DB.GEAContext db = new EGH01DB.GEAContext();
         public ActionResult Index()
         {
+           if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+           else ViewBag.msg = "соединение  c БД  не установлено";
+           return View();
+        }
+        public ActionResult Report()
+        {
+            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            else ViewBag.msg = "соединение  c БД  не установлено";
+
             return View();
         }
 	}

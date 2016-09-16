@@ -26,8 +26,10 @@ namespace EGH01.Controllers
 
             return View();
         }
-
-
-
+         ~EGHRGEController()
+        {
+             db.Disconnect();
+        }
+        
 	}
 }
