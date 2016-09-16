@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +13,4 @@ namespace EGH01DB
         SqlConnection con = DB.Connect();
     }
 }
-=======
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EGH01DB
-{
-    //public class Class1
-    //{
-    //}
-}
->>>>>>> 268bf68a81db7aa8f23fb2ffbddc890ae016d187

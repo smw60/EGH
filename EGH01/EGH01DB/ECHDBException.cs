@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Configuration;
+
 namespace EGH01DB
 {
     class ECHDBException:Exception
