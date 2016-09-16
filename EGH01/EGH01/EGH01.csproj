@@ -230,6 +230,7 @@
     <Content Include="Views\EGHCEQ\Index.cshtml" />
     <Content Include="Views\EGHCCO\Index.cshtml" />
     <Content Include="Views\EGHCAI\Index.cshtml" />
+    <Content Include="Views\EGHRGE\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
