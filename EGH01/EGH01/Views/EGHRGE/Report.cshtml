@@ -1,9 +1,25 @@
 ﻿
+@model EGH01DB.RGEContext.Report
 @{
-    ViewBag.Title = "Report";
+    ViewBag.Title = "RGE-Отчет";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 }
 
-<h2>RGE-Report</h2>
+<h2>RGE-Отчет</h2>
 
 @ViewBag.msg
+
+<p>
+        Придоохранные объекты  
+
+        @foreach (var s in Model.lines)
+        {
+
+            <p>
+                @String.Format(" Объект: {0}, широта: {1} долгота:  {2} ", s.Name, s.latitude, s.longitude)
+            </p>
+
+            @*@Html.ActionLink(, "Report")*@
+        }
+
+</p>

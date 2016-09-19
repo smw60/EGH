@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace EGH01.Controllers
 {
+   
     public class EGHRGEController : Controller
     {
         EGH01DB.RGEContext db = new EGH01DB.RGEContext(); 
@@ -15,7 +16,10 @@ namespace EGH01.Controllers
         {
             if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             else ViewBag.msg = "соединение  c БД  не установлено";
-                       
+
+           
+
+
             return View();
         }
         
@@ -23,13 +27,13 @@ namespace EGH01.Controllers
         {
             if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             else ViewBag.msg = "соединение  c БД  не установлено";
+           
+            EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
 
-            return View();
+
+            return View(report);
         }
-         ~EGHRGEController()
-        {
-             db.Disconnect();
-        }
+       
         
 	}
 }
