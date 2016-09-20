@@ -1,4 +1,5 @@
-﻿
+﻿@model EGH01.Controllers.EGHRGEController.InputDate
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -9,7 +10,6 @@
 
 
  @ViewBag.msg
-
 <section>
     <article>
         @Html.ActionLink("EGHRGE - Моделирование", "Report")
@@ -19,3 +19,114 @@
     </article>
 </section>
 
+  <section>
+    <article>
+        <h3>Входные данные</h3>
+        <h1>
+            Дата происшествия
+            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
+        </h1>
+    </article>
+
+      <article>
+          <h1>
+              Дата поступления сообщения
+              @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
+          </h1>
+      </article>
+
+      <article>
+          <h1>
+              Тип происшествия
+              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new [] { "Нефть", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
+          </h1>
+    </article>
+
+    <article>
+        <h1>
+            Координаты объекта
+            @*@Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })*@
+        </h1>
+      </article>
+
+      <article>
+          <h1>
+              Объем ННП(м3)
+              @Html.TextBox("Объем", @Model.volumeNNP)
+          </h1>
+      </article>
+
+      <article>
+          <h1>
+              Тип ННП
+              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефть", "Бензин", "Мазута" }))
+          </h1>
+      </article>
+
+      <article>
+          <h1>
+              Погодные условия. Температура
+              @Html.TextBox("Температура", @Model.Temp)
+          </h1>
+      </article>
+
+      <article>
+          <h1>
+              Погодные условия. Влажность
+              @Html.TextBox("Влажность", @Model.Humidity)
+          </h1>
+      </article>
+
+      </section>
+
+
+<section>
+    <article>
+        <h3>Выходные данные</h3>
+        <h1>
+            Дата составление отчета
+        </h1>
+            <hr>Здесь будет дата<hr>
+       
+    </article>
+
+    <article>
+        <h1>Площадь загрязненных земель
+        </h1>
+        <hr>Здесь будет значения площади<hr>
+ 
+    </article>
+
+    <article>
+        <h1>Характеристика происшествия: </h1>
+    </article>
+
+    @*<article>
+        <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+    </article>
+
+    <article>
+        <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+       
+    </article>*@
+
+    <article>
+        <h1> Загрязнение достигло грунтовых вод.</h1>
+       <h1>Площадь загрязнения с грунтовыми водами </h1>
+          <hr>Здесь будет значения площади<hr>
+    </article>
+
+    <article>
+        <h1>Список природоохранных объектов:</h1>
+        <h1>
+            Природоохранняемые объекты:
+            @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Река", "Лес", "Болото" }))
+        </h1>
+    </article>
+
+    <article>
+        <h1>Погодные условия. Влажность</h1>
+        @Html.TextBox("Влажность", @Model.Humidity)
+    </article>
+
+</section>

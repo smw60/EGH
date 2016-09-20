@@ -7,6 +7,7 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/EGHLayout.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <NameOfLastUsedPublishProfile>EGH01</NameOfLastUsedPublishProfile>
+    <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
