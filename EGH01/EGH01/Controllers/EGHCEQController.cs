@@ -20,7 +20,8 @@ namespace EGH01.Controllers
         {
             if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             else ViewBag.msg = "соединение  c БД  не установлено";
-           return View();
+            CEQData CEQ = new CEQData();
+            return View(CEQ);
         }
         public ActionResult Report()
         {

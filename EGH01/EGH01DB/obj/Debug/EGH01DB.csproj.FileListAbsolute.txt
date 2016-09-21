@@ -17,3 +17,7 @@ D:\Workspace\Git\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
 D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
 D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
 D:\Workspace\Git\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+E:\Workspace\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+E:\Workspace\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+E:\Workspace\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+E:\Workspace\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb

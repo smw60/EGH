@@ -8,7 +8,7 @@
 <h2>EGHCEQ -  Соответствие качества сред</h2>
 
 @ViewBag.msg
-@ViewBag.DropList = new Se
+
 <section>
   <article>
     @Html.ActionLink("EGHCEQ - Отчет", "Report")
@@ -17,10 +17,12 @@
 
 
 <section style="border: double; padding: 10px">
-    <h5>
-        Выбор отчета
-
-    </h5>
+<article>
+        <h5>
+            Отчет
+           @Html.DropDownList(Model => Model.RGEReport)
+        </h5>
+    </article>
 </section>
 
 
