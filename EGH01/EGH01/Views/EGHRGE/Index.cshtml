@@ -21,60 +21,61 @@
 
   <section>
     <article>
-        <h3>Входные данные</h3>
-        <h1>
+        <h1>Входные данные</h1>
+        <h5>
             Дата происшествия
             @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
-        </h1>
+        </h5>
     </article>
 
       <article>
-          <h1>
+          <h5>
               Дата поступления сообщения
               @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
-          </h1>
+          </h5>
       </article>
 
       <article>
-          <h1>
+          <h5>
               Тип происшествия
               @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new [] { "Нефть", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
-          </h1>
+          </h5>
     </article>
 
     <article>
-        <h1>
-            Координаты объекта
-            @*@Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })*@
-        </h1>
+        <h5>
+            Координаты объекта:
+        </h5>
+        <h5>Широна градусы @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° Широна минуты @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</h5>
+        <h5>Долгота градусы @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° Долгота минуты @Html.TextBox("Дата", @Model.Coordlongitudemin) ′</h5>
       </article>
 
       <article>
-          <h1>
+          <h5>
               Объем ННП(м3)
               @Html.TextBox("Объем", @Model.volumeNNP)
-          </h1>
+          </h5>
       </article>
 
       <article>
-          <h1>
+          <h5>
               Тип ННП
               @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефть", "Бензин", "Мазута" }))
-          </h1>
+          </h5>
       </article>
 
       <article>
-          <h1>
+          <h5>
               Погодные условия. Температура
               @Html.TextBox("Температура", @Model.Temp)
-          </h1>
+          </h5>
       </article>
 
       <article>
-          <h1>
+          <h5>
               Погодные условия. Влажность
               @Html.TextBox("Влажность", @Model.Humidity)
-          </h1>
+          </h5>
       </article>
 
       </section>
@@ -82,23 +83,35 @@
 
 <section>
     <article>
-        <h3>Выходные данные</h3>
-        <h1>
+        <h1>Выходные данные</h1>
+        <h5>
             Дата составление отчета
-        </h1>
+        </h5>
             <hr>Здесь будет дата<hr>
        
     </article>
 
     <article>
-        <h1>Площадь загрязненных земель
-        </h1>
+        <h5>Площадь загрязненных земель
+        </h5>
         <hr>Здесь будет значения площади<hr>
  
     </article>
-
     <article>
-        <h1>Характеристика происшествия: </h1>
+        <h2>
+            Координаты границ:
+        </h2>
+        <h5>Север: Широна</h5> <hr>Здесь будет значения широты<hr>
+        <h5>Долгота</h5> <hr>Здесь будет значения долготы<hr>
+        <h5>ЮГ: Широна</h5> <hr>Здесь будет значения широты<hr>
+        <h5>Долгота</h5> <hr>Здесь будет значения долготы<hr>
+        <h5>Запад: Широна</h5> <hr>Здесь будет значения широты<hr>
+        <h5>Долгота</h5> <hr>Здесь будет значения долготы<hr>
+        <h5>Восток: Широна</h5> <hr>Здесь будет значения широты<hr>
+        <h5>Долгота</h5> <hr>Здесь будет значения долготы<hr>
+    </article>
+    <article>
+        <h5>Характеристика происшествия: </h5>
     </article>
 
     @*<article>
@@ -111,22 +124,25 @@
     </article>*@
 
     <article>
-        <h1> Загрязнение достигло грунтовых вод.</h1>
-       <h1>Площадь загрязнения с грунтовыми водами </h1>
+        <h5> Загрязнение достигло грунтовых вод.</h5>
+       <h5>Площадь загрязнения с грунтовыми водами </h5>
           <hr>Здесь будет значения площади<hr>
     </article>
 
     <article>
-        <h1>Список природоохранных объектов:</h1>
-        <h1>
-            Природоохранняемые объекты:
-            @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Река", "Лес", "Болото" }))
-        </h1>
+        <h5>Список природоохранных объектов:</h5>
+        <h5>
+            Природоохранняемые объекты по поверхности:
+           
+            @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))
+        </h5>
     </article>
-
     <article>
-        <h1>Погодные условия. Влажность</h1>
-        @Html.TextBox("Влажность", @Model.Humidity)
-    </article>
+        <h5>Список природоохранных объектов:</h5>
+        <h5>
+            Природоохранняемые объекты по грунтовым водам:
 
+            @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))
+        </h5>
+    </article>
 </section>

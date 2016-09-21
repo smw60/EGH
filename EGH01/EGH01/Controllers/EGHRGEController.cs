@@ -19,7 +19,10 @@ namespace EGH01.Controllers
             public List<String> TypeInccident = new List<string> { "Нефть", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" };
             public List<String> TypeNNP2 = new List<string> {"Нефть", "Бензин", "Мазута" };
             public List<Object> TypeObj = new List<Object> { "Река", "Лес", "Болото" };
-
+            public int Coordlatitudedegr { get; set; }//градусов
+            public int Coordlatitudemin{ get; set; }//широта минут
+            public int Coordlongitudedegr { get; set; }//градсов
+            public int Coordlongitudemin { get; set; }//долготоа минут
             public DateTime DateRеportWriting { get; set; }
             public int AreaLand {get; set;}
         }
