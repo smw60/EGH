@@ -42,13 +42,14 @@
   <ItemGroup>
     <Compile Include="DB.cs" />
     <Compile Include="ECHDBException.cs" />
-    <Compile Include="EGHRGEContext.cs" />
-    <Compile Include="EGHORTContext.cs" />
-    <Compile Include="EGHGEAContext.cs" />
-    <Compile Include="EGHCEQContext.cs" />
-    <Compile Include="EGHCCOContext.cs" />
-    <Compile Include="EGHCAIContext.cs" />
+    <Compile Include="RGEContext.cs" />
+    <Compile Include="ORTContext.cs" />
+    <Compile Include="GEAContext.cs" />
+    <Compile Include="CEQContext.cs" />
+    <Compile Include="CCOContext.cs" />
+    <Compile Include="CAIContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RGEContextView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

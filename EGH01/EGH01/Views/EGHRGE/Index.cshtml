@@ -1,4 +1,5 @@
-﻿
+﻿@model EGH01.Controllers.EGHRGEController.InputDate
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -9,10 +10,167 @@
 
 
  @ViewBag.msg
-
 <section>
+    <article>
+        @Html.ActionLink("EGHRGE - Моделирование", "Report")
+    </article>
     <article>
         @Html.ActionLink("EGHRGE - Отчет", "Report")
     </article>
 </section>
 
+  <section>
+    <article>
+        <h1>Входные данные</h1>
+        <h5>
+            Дата происшествия
+            @Html.TextBoxFor(m => Model.DateIncident, String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
+        </h5>
+    </article>
+
+      <article>
+          <h5>
+              Дата поступления сообщения
+              @Html.TextBoxFor(m => Model.DateMessage, String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
+          </h5>
+      </article>
+
+      <article>
+          <h5>
+              Тип происшествия
+              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new [] { "Нефтепровод", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
+          </h5>
+    </article>
+
+    <article>
+        <h5>
+            Объект:
+            @Html.DropDownList("Объект", new SelectList(new[] { "", "АЗС 28", "Нефтебаза", "Хранилище 4" }))
+        </h5>
+        <h5>
+            Координаты объекта:
+        </h5>
+        <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</h5>
+        <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′</h5>
+      </article>
+
+      <article>
+          <h5>
+              Объем ННП
+              @Html.TextBoxFor(m => Model.volumeNNP) (м3)
+          </h5>
+      </article>
+
+      <article>
+          <h5>
+              Тип ННП
+              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефть", "Бензин", "Мазут" }))
+          </h5>
+      </article>
+
+      <article>
+          <h5>
+              Погодные условия.
+              Температура: @Html.TextBox("Температура", @Model.Temp) Влажность: @Html.TextBox("Влажность", @Model.Humidity)
+          </h5>
+      </article>
+
+      </section>
+
+
+<section style="border: double; padding: 10px">
+    <article>
+        <h1>Выходные данные</h1>
+        <h4>
+            Дата составление отчета: 
+        </h4>
+        20.09.2016 10:00
+
+    </article>
+
+    
+    <article>
+        <h4>
+            Координаты границ:
+        </h4>
+        <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
+        <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
+        <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
+        <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
+    </article>
+    <article>
+        <h4>
+            Площадь загрязненных земель:
+        </h4>
+        <h5>105 га </h5>
+
+    </article>
+    <article>
+        <h4>Характеристика происшествия: </h4>
+    </article>
+
+    @*<article>
+            <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+        </article>
+
+        <article>
+            <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+        </article>*@
+
+    <article>
+        <h5> Загрязнение достигло грунтовых вод.</h5>
+        <h4>Площадь загрязнения с грунтовыми водами </h4>
+        <h5>200 га</h5>
+    </article>
+
+    <article>
+        <h4>Список природоохранных объектов:</h4>
+        <h5>
+            Достигнуты по поверхности:
+        </h5>
+        @*@Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))*@
+        <table border="1">
+            <tr>
+                <th>Наименование</th>
+                <th>Время достижения</th>
+                <th>Концентрация</th>
+            </tr>
+
+            
+            @foreach (var item in Model.TypeObj)
+            { 
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 1 день</td>
+                    <td> 1000 мг/дм3</td>
+                </tr>
+            }
+</table>
+
+    </article>
+    <article>
+        <h5>
+            Достигнуты с грунтовым водам:
+        </h5>
+        @*@Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))*@
+        <table border="1">
+            <tr>
+                <th>Наименование</th>
+                <th>Время достижения</th>
+                <th>Концентрация</th>
+            </tr>
+
+
+            @foreach (var item in Model.TypeObj)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 15 дней</td>
+                    <td> 200 мг/дм3</td>
+                </tr>
+            }
+        </table>
+
+    </article>
+</section>
