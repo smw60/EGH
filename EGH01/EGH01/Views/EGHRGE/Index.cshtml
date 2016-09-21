@@ -19,27 +19,28 @@
     </article>
 </section>
 
-  <section>
+  <section style="border: double; padding: 10px">
     <article>
         <h1>Входные данные</h1>
         <h5>
             Дата происшествия
-            @Html.TextBoxFor(m => Model.DateIncident, String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
+            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
+            
         </h5>
     </article>
 
-      <article>
-          <h5>
-              Дата поступления сообщения
-              @Html.TextBoxFor(m => Model.DateMessage, String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
-          </h5>
-      </article>
+    <article>
+        <h5>
+            Дата поступления сообщения
+            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
+        </h5>
+    </article>
 
-      <article>
-          <h5>
-              Тип происшествия
-              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new [] { "Нефтепровод", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
-          </h5>
+    <article>
+        <h5>
+            Тип происшествия
+            @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефтепровод", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
+        </h5>
     </article>
 
     <article>
@@ -52,14 +53,7 @@
         </h5>
         <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</h5>
         <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′</h5>
-      </article>
-
-      <article>
-          <h5>
-              Объем ННП
-              @Html.TextBoxFor(m => Model.volumeNNP) (м3)
-          </h5>
-      </article>
+    </article>
 
       <article>
           <h5>
@@ -68,109 +62,171 @@
           </h5>
       </article>
 
-      <article>
-          <h5>
-              Погодные условия.
-              Температура: @Html.TextBox("Температура", @Model.Temp) Влажность: @Html.TextBox("Влажность", @Model.Humidity)
-          </h5>
-      </article>
-
-      </section>
-
-
-<section style="border: double; padding: 10px">
     <article>
-        <h1>Выходные данные</h1>
-        <h4>
-            Дата составление отчета: 
-        </h4>
-        20.09.2016 10:00
-
+        <h5>
+            Объем ННП
+            @Html.TextBoxFor(m => Model.volumeNNP) (м3)
+        </h5>
     </article>
 
     
-    <article>
-        <h4>
-            Координаты границ:
-        </h4>
-        <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
-        <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
-        <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
-        <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
-    </article>
-    <article>
-        <h4>
-            Площадь загрязненных земель:
-        </h4>
-        <h5>105 га </h5>
 
-    </article>
     <article>
-        <h4>Характеристика происшествия: </h4>
+        <h5>
+            Погодные условия.
+            Температура: @Html.TextBox("Температура", @Model.Temp) Влажность: @Html.TextBox("Влажность", @Model.Humidity)
+        </h5>
     </article>
+    <input type="button" value="Рассчитать" style="margin:10px"  />
+</section>
 
-    @*<article>
-            <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+<section class="infodb" style="border: double; padding: 10px">
+    <article>
+        <h1>Информация из Базы Данных</h1>
+    </article>
+   
+
+    <article>
+        <fieldset>
+            <legend>
+                Характеристики объекта
+            </legend>
+            Паспортные данные объекта
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Точки для рассчёта</legend>
+            Таблица для точек
+            <p>точка 1 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            <p>точка 2 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            <p>точка 3 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            <p>точка 4 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            <p>точка 5 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            
+        </fieldset>
+        <br />
+        <fieldset>
+            <legend>Характеристики ННП</legend>
+            <p>Название ННП</p>
+            Плотность при 20 °С, г/см3	Вязкость кинематическая при 20 (50)°С, мм2/с	Растворимость, мг/дм3
+            <br />
+            0,7-0,75	0,43-0,82	9,0-505
+
+
+        </fieldset>
+        <br />
+        <p>Климатические условия</p>
+        <p>Промерзание почв</p>
+
         </article>
+</section>
+
+
+    <section class="output" style="border: double; padding: 10px">
+        
+           
+            <h5 style="float:right">20.09.2016 10:00</h5>
+        <br />
+            <h1>Результаты прогнозирования</h1>
+            
+
+        
+
 
         <article>
-            <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+            <fieldset>
+                <legend>Характеристики пятна загрязнения:</legend>
+                <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                <h5>
+                    Площадь пятна загрязнения: 105 га
+                </h5>
+                <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+            </fieldset>
+            <h4>
+                
+            </h4>
+            
+        </article>
+        <article>
+           
+            
 
-        </article>*@
+        </article>
+        
+        <fieldset>
+            
 
-    <article>
-        <h5> Загрязнение достигло грунтовых вод.</h5>
-        <h4>Площадь загрязнения с грунтовыми водами </h4>
-        <h5>200 га</h5>
-    </article>
+                <legend>Характеристика происшествия: </legend>
+           
 
-    <article>
-        <h4>Список природоохранных объектов:</h4>
-        <h5>
-            Достигнуты по поверхности:
-        </h5>
-        @*@Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))*@
-        <table border="1">
-            <tr>
-                <th>Наименование</th>
-                <th>Время достижения</th>
-                <th>Концентрация</th>
-            </tr>
+            @*<article>
+                <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+            </article>
+
+            <article>
+                <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+            </article>*@
 
             
-            @foreach (var item in Model.TypeObj)
-            { 
+                <h5> Загрязнение достигло грунтовых вод.</h5>
+            <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+
+            
+        </fieldset>
+        <fieldset>
+            <legend>Природоохранные объекты</legend>
+            <h5>
+                Достигнуты по поверхности:
+            </h5>
+            <table border="1">
                 <tr>
-                    <td> @Html.ValueFor(m => item)</td>
-                    <td> 1 день</td>
-                    <td> 1000 мг/дм3</td>
+                    <th>Наименование</th>
+                    <th>Координаты</th>
+                    <th>Дата достижения</th>
+                    <th>Концентрация</th>
                 </tr>
-            }
-</table>
-
-    </article>
-    <article>
-        <h5>
-            Достигнуты с грунтовым водам:
-        </h5>
-        @*@Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Объект1", "Объект2", "Объект3" }))*@
-        <table border="1">
-            <tr>
-                <th>Наименование</th>
-                <th>Время достижения</th>
-                <th>Концентрация</th>
-            </tr>
 
 
-            @foreach (var item in Model.TypeObj)
-            {
+                @foreach (var item in Model.TypeObj)
+                {
+                    <tr>
+                        <td> @Html.ValueFor(m => item)</td>
+                        <td> 53° 53', 53° 53'</td>
+                        <td> 22.09.2016</td>
+                        <td> 1000 мг/дм3</td>
+                    </tr>
+                }
+            </table>
+
+
+
+            <h5>
+                Достигнуты с грунтовыми водами:
+            </h5>
+            <table border="1">
                 <tr>
-                    <td> @Html.ValueFor(m => item)</td>
-                    <td> 15 дней</td>
-                    <td> 200 мг/дм3</td>
+                    <th>Наименование</th>
+                    <th>Координаты</th>
+                    <th>Дата достижения</th>
+                    <th>Концентрация</th>
                 </tr>
-            }
-        </table>
 
-    </article>
-</section>
+
+                @foreach (var item in Model.TypeObj)
+                {
+                    <tr>
+                        <td> @Html.ValueFor(m => item)</td>
+                        <td> 53° 53', 53° 53'</td>
+                        <td> 29.09.2016</td>
+                        <td> 200 мг/дм3</td>
+                    </tr>
+                }
+            </table>
+
+        </fieldset>
+        <input type="button" value="Сохранить отчёт" style="margin:10px" />
+    </section>

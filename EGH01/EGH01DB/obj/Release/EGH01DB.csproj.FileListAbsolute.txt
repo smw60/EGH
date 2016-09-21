@@ -3,3 +3,8 @@ D:\EGH\EGH01\EGH01DB\bin\Release\EGH01DB.pdb
 D:\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.csprojResolveAssemblyReference.cache
 D:\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.dll
 D:\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.pdb
+D:\Work\EGH\EGH\EGH01\EGH01DB\bin\Release\EGH01DB.dll
+D:\Work\EGH\EGH\EGH01\EGH01DB\bin\Release\EGH01DB.pdb
+D:\Work\EGH\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.csprojResolveAssemblyReference.cache
+D:\Work\EGH\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.dll
+D:\Work\EGH\EGH\EGH01\EGH01DB\obj\Release\EGH01DB.pdb
