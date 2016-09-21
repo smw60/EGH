@@ -6,8 +6,15 @@ using System.Web.Mvc;
 
 namespace EGH01.Controllers
 {
+
     public class EGHCEQController : Controller
     {
+
+        public class CEQData 
+        {
+            public List<string> RGEReport = new List<string> { "АЗС 28 - 17.09.2016", "Нефтебаза - 19.09.2016", "Хранилище 4 - 21.09.2016" };
+        }
+
         EGH01DB.CEQContext db = new EGH01DB.CEQContext(); 
         public ActionResult Index()
         {
