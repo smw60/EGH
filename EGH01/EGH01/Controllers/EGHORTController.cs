@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace EGH01.Controllers
 {
+   
     public class EGHORTController : Controller
     {
         EGH01DB.RGEContext db = new EGH01DB.RGEContext(); 

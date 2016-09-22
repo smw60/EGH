@@ -31,10 +31,6 @@ namespace EGH01.Controllers
             public int AreaLand {get; set;}
         }
 
-        public class OutputDate
-        {
-
-        }
         EGH01DB.RGEContext db = new EGH01DB.RGEContext(); 
               //написать фильтр на открытие БД
         public ActionResult Index()
