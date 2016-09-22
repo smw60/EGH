@@ -24,7 +24,7 @@
         <h1>Входные данные</h1>
         <h5>
             Дата происшествия
-            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "date" })
+            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "datetime-local" })
             
         </h5>
     </article>
@@ -32,7 +32,7 @@
     <article>
         <h5>
             Дата поступления сообщения
-            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToShortDateString()), new { type = "date" })
+            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToString("dd/MM/yyyy HH:mm")), new { type = "datetime-local" })
         </h5>
     </article>
 
@@ -45,20 +45,28 @@
 
     <article>
         <h5>
-            Объект:
-            @Html.DropDownList("Объект", new SelectList(new[] { "", "АЗС 28", "Нефтебаза", "Хранилище 4" }))
+           Расположение объекта:
+            @Html.DropDownList("Область", new SelectList(new[] { "Область", "Минская", "Гомельская", "Витебская", "Могилевская", "Бреская","Гродненская" }))
+            @Html.DropDownList("Район", new SelectList(new[] { "Район", "Пуховический", "Минский", "Могилеский" }))
+            @Html.DropDownList("Объект", new SelectList(new[] { "Объект", "АЗС 28", "Нефтебаза", "Хранилище 4" }))
+            <input type="button" value="Найти на карте" style="margin:10px" />
+            <img src="~/Content/map.png" style="float:right"> 
+      
         </h5>
         <h5>
             Координаты объекта:
         </h5>
-        <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</h5>
-        <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′</h5>
+        <h5>Градусы, ° Минуты, ′ секунды, " </h5>
+
+        <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′ @Html.TextBox("Дата", @Model. Coordlatitudesec) " </h5>
+        <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
+
     </article>
 
       <article>
           <h5>
               Тип ННП
-              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефть", "Бензин", "Мазут" }))
+              @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] {"Тип", "Нефть", "Бензин", "Мазут" }))
           </h5>
       </article>
 
@@ -69,12 +77,12 @@
         </h5>
     </article>
 
-    
+
 
     <article>
         <h5>
             Погодные условия.
-            Температура: @Html.TextBox("Температура", @Model.Temp) Влажность: @Html.TextBox("Влажность", @Model.Humidity)
+            Температура: @Html.TextBox("Температура", @Model.Temp)
         </h5>
     </article>
     <input type="button" value="Рассчитать" style="margin:10px"  />
@@ -84,7 +92,7 @@
     <article>
         <h1>Информация из Базы Данных</h1>
     </article>
-   
+
 
     <article>
         <fieldset>
@@ -92,7 +100,11 @@
                 Характеристики объекта
             </legend>
             Паспортные данные объекта
-        </fieldset>
+          <h5> Тип объект: АЗС-28</h5>
+          <h5> Хранит: Бензин,газ</h5>
+          <h5> Расположениие: Минская область, г. Слуцк</h5>
+          <h5> Дата открытия: 20.07.2010</h5>
+</fieldset>
         <br />
         <fieldset>
             <legend>Точки для рассчёта</legend>
@@ -102,35 +114,37 @@
             <p>точка 3 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
             <p>точка 4 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
             <p>точка 5 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-            
+
         </fieldset>
         <br />
         <fieldset>
             <legend>Характеристики ННП</legend>
-            <p>Название ННП</p>
-            Плотность при 20 °С, г/см3	Вязкость кинематическая при 20 (50)°С, мм2/с	Растворимость, мг/дм3
-            <br />
-            0,7-0,75	0,43-0,82	9,0-505
-
-
-        </fieldset>
+            <h5>
+                Бензин</h5>
+    <h5> Плотность при 20 °С:  0,7-0,75 г/см3</h5>
+    <h5>Вязкость кинематическая при 20 (50)°С:  0,43-0,82 мм2/с </h5>
+    <h5>Растворимость: 9,0-505 мг/дм3 </h5>
+    <br />
+</fieldset>
         <br />
-        <p>Климатические условия</p>
-        <p>Промерзание почв</p>
-
-        </article>
+        <fieldset>
+            <legend>Климатические условия: </legend>
+            <h5> Средняя температура: 2°С</h5>
+            <h5> Почва промерзла при температуре 5°С</h5>
+        </fieldset>
+            </article>
 </section>
 
 
     <section class="output" style="border: double; padding: 10px">
-        
-           
+
+
             <h5 style="float:right">20.09.2016 10:00</h5>
         <br />
             <h1>Результаты прогнозирования</h1>
-            
 
-        
+
+
 
 
         <article>
@@ -146,21 +160,21 @@
                 <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
             </fieldset>
             <h4>
-                
+
             </h4>
-            
+
         </article>
         <article>
-           
-            
+
+
 
         </article>
-        
+
         <fieldset>
-            
+
 
                 <legend>Характеристика происшествия: </legend>
-           
+
 
             @*<article>
                 <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
@@ -174,6 +188,7 @@
             
                 <h5> Загрязнение достигло грунтовых вод.</h5>
             <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+            <h5> Концентрация: 100 мг/м3</h5>
 
             
         </fieldset>
