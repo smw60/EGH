@@ -14,7 +14,10 @@ namespace EGH01.Controllers
         {
             public List<string> RGEReport = new List<string> { "АЗС 28 - 17.09.2016", "Нефтебаза - 19.09.2016", "Хранилище 4 - 21.09.2016" };
             public List<string> TypeObj = new List<string> { "Река", "Лес", "Болото" };
+            public List<string> AccidentObj = new List<string> { "АЗС 28", "Нефтебаза", "Хранилище 4" };
         }
+
+
 
         EGH01DB.CEQContext db = new EGH01DB.CEQContext(); 
         public ActionResult Index()
@@ -35,4 +38,6 @@ namespace EGH01.Controllers
 
 
     }
+
+
 }

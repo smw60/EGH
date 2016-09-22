@@ -377,6 +377,7 @@ E:\Workspace\EGH\EGH01\EGH01\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.res
 E:\Workspace\EGH\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
 E:\Workspace\EGH\EGH01\EGH01\obj\Debug\EGH01.dll
 E:\Workspace\EGH\EGH01\EGH01\obj\Debug\EGH01.pdb
+<<<<<<< HEAD
 D:\EGH\EGH\EGH\EGH01\EGH01\bin\EGH01.dll.config
 D:\EGH\EGH\EGH\EGH01\EGH01\bin\EGH01.dll
 D:\EGH\EGH\EGH\EGH01\EGH01\bin\EGH01.pdb
@@ -453,3 +454,6 @@ D:\EGH\EGH\EGH\EGH01\EGH01\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resou
 D:\EGH\EGH\EGH\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
 D:\EGH\EGH\EGH\EGH01\EGH01\obj\Debug\EGH01.dll
 D:\EGH\EGH\EGH\EGH01\EGH01\obj\Debug\EGH01.pdb
+=======
+E:\Workspace\EGH\EGH01\EGH01\bin\EGH01.dll.config
+>>>>>>> 87a5b11ebc9122f5fc87a87821f72d4897163066
