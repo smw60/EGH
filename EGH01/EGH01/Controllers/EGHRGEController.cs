@@ -22,8 +22,10 @@ namespace EGH01.Controllers
             public List<string> AccidentObj = new List<string> { "АЗС 28", "Нефтебаза", "Хранилище 4" };
             public int Coordlatitudedegr { get; set; }//градусов
             public int Coordlatitudemin { get; set; }//широта минут
+            public int Coordlatitudesec { get; set; }//широта секунды
             public int Coordlongitudedegr { get; set; }//градсов
-            public int Coordlongitudemin { get; set; }//долготоа минут            
+            public int Coordlongitudemin { get; set; }//долготоа минут
+            public int Coordlongitudesec{ get; set; }//долготоа секунды
             
             //Выходные данные
             public List<Object> TypeObj = new List<Object> { "Река", "Лес", "Болото" };
