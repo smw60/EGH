@@ -19,12 +19,13 @@
     </article>
 </section>
 
+
   <section style="border: double; padding: 10px">
     <article>
         <h1>Входные данные</h1>
-        <h5>
+        <h5 >
             Дата происшествия
-            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "datetime-local" })
+            @Html.TextBoxFor(m => m.DateIncident, new { type = "datetime-local" })
             
         </h5>
     </article>
@@ -253,5 +254,7 @@
             </table>
 
         </fieldset>
-        <input type="button" value="Сохранить отчёт" style="margin:10px" />
+        <form action="RsvpForm" method="get">
+            <input type="submit" value="Сохранить отчёт" style="margin:10px">
+        </form> 
     </section>
