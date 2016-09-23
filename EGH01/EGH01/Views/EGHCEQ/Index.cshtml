@@ -81,7 +81,15 @@
                             <th>Концентрация</th>
                         </tr>
 
-
+                        @foreach (var item in Model.TypeObj)
+                        {
+                            <tr>
+                                <td> @Html.ValueFor(m => item)</td>
+                                <td> 53° 53', 53° 53'</td>
+                                <td> 22.09.2016</td>
+                                <td> 1000 мг/дм3</td>
+                            </tr>
+                        }
 
                     </table>
 
@@ -96,12 +104,19 @@
                             <th>Концентрация</th>
                         </tr>
 
-
+                        @foreach (var item in Model.TypeObj)
+                        {
+                            <tr>
+                                <td> @Html.ValueFor(m => item)</td>
+                                <td> 53° 53', 53° 53'</td>
+                                <td> 22.09.2016</td>
+                                <td> 200 мг/дм3</td>
+                            </tr>
+                        }
 
                     </table>
 
                 </fieldset>
-                123
             </div>
         <button type="button" class="btn btn-info">Рассчитать</button>
 

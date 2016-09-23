@@ -1,4 +1,5 @@
-﻿
+﻿@model EGH01.Controllers.EGHGEAController.GEOData
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
@@ -13,4 +14,111 @@
     <article>
         @Html.ActionLink("EGHGEA - Отчет", "Report")
     </article>
+</section>
+
+<section style="border: double; padding: 10px">
+
+    <fieldset>
+        <legend>Выбор отчёта</legend>
+        @Html.DropDownList("RGEReport")
+
+
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Посмотреть</button>
+
+
+        <div id="demo" class="collapse">
+            <h5 style="float:right">20.09.2016 10:00</h5>
+            <br />
+            <h1>Результаты прогнозирования</h1>
+
+            <article>
+                <fieldset>
+                    <legend>Характеристики пятна загрязнения:</legend>
+                    <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>
+                        Площадь пятна загрязнения: 105 га
+                    </h5>
+                    <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+                </fieldset>
+                <h4></h4>
+
+            </article>
+            <article></article>
+
+            <fieldset>
+
+                <legend>Характеристика происшествия: </legend>
+
+
+                @*<article>
+                        <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+                    </article>
+
+                    <article>
+                        <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+                    </article>*@
+
+
+                <h5> Загрязнение достигло грунтовых вод.</h5>
+                <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+
+
+            </fieldset>
+            <fieldset>
+                <legend>Природоохранные объекты</legend>
+                <h5>
+                    Достигнуты по поверхности:
+                </h5>
+                <table border="1">
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Координаты</th>
+                        <th>Дата достижения</th>
+                        <th>Концентрация</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> 53° 53', 53° 53'</td>
+                            <td> 22.09.2016</td>
+                            <td> 1000 мг/дм3</td>
+                        </tr>
+                    }
+
+                </table>
+
+                <h5>
+                    Достигнуты с грунтовыми водами:
+                </h5>
+                <table border="1">
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Координаты</th>
+                        <th>Дата достижения</th>
+                        <th>Концентрация</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> 53° 53', 53° 53'</td>
+                            <td> 22.09.2016</td>
+                            <td> 200 мг/дм3</td>
+                        </tr>
+                    }
+
+                </table>
+
+            </fieldset>
+        </div>
+        <button type="button" class="btn btn-info">Рассчитать</button>
+
+    </fieldset>
 </section>

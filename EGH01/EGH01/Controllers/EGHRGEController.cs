@@ -42,14 +42,15 @@ namespace EGH01.Controllers
         {
             if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             else ViewBag.msg = "соединение  c БД  не установлено";
-            InputDate InputDate = new InputDate();
+            InputDate inputDate = new InputDate();
          
-            return View(InputDate);
+            return View(inputDate);
         }
 
         [HttpGet]
-        public ActionResult RsvpForm()
+        public ActionResult EvXML()
         {
+            
             XmlDocument xDoc = new XmlDocument();
             XmlTextWriter textWritter = new XmlTextWriter("D:/RGE.xml", System.Text.Encoding.UTF8);
             textWritter.WriteStartDocument();
@@ -110,7 +111,8 @@ namespace EGH01.Controllers
             КлиматическиеУсловия.AppendChild(ПромерзаниеПочвы);
 
             document.Save("D:/RGE.xml");
-            return View();
+           
+            return RedirectToAction("Index");
         }
   
         public ActionResult Report()
@@ -119,6 +121,13 @@ namespace EGH01.Controllers
             else ViewBag.msg = "соединение  c БД  не установлено";
            
             EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
+
+            XmlDocument xDoc = new XmlDocument();
+            XmlTextWriter textWritter = new XmlTextWriter("D:/RGE.xml", System.Text.Encoding.UTF8);
+            textWritter.WriteStartDocument();
+            textWritter.WriteStartElement("head");
+            textWritter.WriteEndElement();
+            textWritter.Close();
 
             return View(report);
         }
