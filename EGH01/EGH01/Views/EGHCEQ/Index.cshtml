@@ -17,129 +17,175 @@
 
 
 <section style="border: double; padding: 10px">
-    <h4>Выбор отчёта</h4>
-    @Html.DropDownList("RGEReport")
+
+    <fieldset>
+        <legend>Выбор отчёта</legend>
+        @Html.DropDownList("RGEReport")
 
 
-    <div class="container">
-        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Посмотреть</button>
-        <div id="demo" class="collapse" hidden>
-            <h5 style="float:right">20.09.2016 10:00</h5>
-            <br />
-            <h1>Результаты прогнозирования</h1>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" >Посмотреть</button>
 
-            <article>
+
+            <div id="demo" class="collapse">
+                <h5 style="float:right">20.09.2016 10:00</h5>
+                <br />
+                <h1>Результаты прогнозирования</h1>
+
+                <article>
+                    <fieldset>
+                        <legend>Характеристики пятна загрязнения:</legend>
+                        <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                        <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                        <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                        <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                        <h5>
+                            Площадь пятна загрязнения: 105 га
+                        </h5>
+                        <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+                    </fieldset>
+                    <h4></h4>
+
+                </article>
+                <article></article>
+
                 <fieldset>
-                    <legend>Характеристики пятна загрязнения:</legend>
-                    <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                    <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                    <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                    <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                    <h5>
-                        Площадь пятна загрязнения: 105 га
-                    </h5>
-                    <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+
+                    <legend>Характеристика происшествия: </legend>
+
+
+                    @*<article>
+                            <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+                        </article>
+
+                        <article>
+                            <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+                        </article>*@
+
+
+                    <h5> Загрязнение достигло грунтовых вод.</h5>
+                    <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+
+
                 </fieldset>
-                <h4></h4>
-
-            </article>
-            <article></article>
-
-            <fieldset>
-
-                <legend>Характеристика происшествия: </legend>
-
-
-                @*<article>
-                        <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
-                    </article>
-
-                    <article>
-                        <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
-
-                    </article>*@
-
-
-                <h5> Загрязнение достигло грунтовых вод.</h5>
-                <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
-
-
-            </fieldset>
-            <fieldset>
-                <legend>Природоохранные объекты</legend>
-                <h5>
-                    Достигнуты по поверхности:
-                </h5>
-                <table border="1">
-                    <tr>
-                        <th>Наименование</th>
-                        <th>Координаты</th>
-                        <th>Дата достижения</th>
-                        <th>Концентрация</th>
-                    </tr>
+                <fieldset>
+                    <legend>Природоохранные объекты</legend>
+                    <h5>
+                        Достигнуты по поверхности:
+                    </h5>
+                    <table border="1">
+                        <tr>
+                            <th>Наименование</th>
+                            <th>Координаты</th>
+                            <th>Дата достижения</th>
+                            <th>Концентрация</th>
+                        </tr>
 
 
 
-                </table>
+                    </table>
 
-                <h5>
-                    Достигнуты с грунтовыми водами:
-                </h5>
-                <table border="1">
-                    <tr>
-                        <th>Наименование</th>
-                        <th>Координаты</th>
-                        <th>Дата достижения</th>
-                        <th>Концентрация</th>
-                    </tr>
+                    <h5>
+                        Достигнуты с грунтовыми водами:
+                    </h5>
+                    <table border="1">
+                        <tr>
+                            <th>Наименование</th>
+                            <th>Координаты</th>
+                            <th>Дата достижения</th>
+                            <th>Концентрация</th>
+                        </tr>
 
 
 
-                </table>
+                    </table>
 
-            </fieldset>
-            123
-        </div>
-    </div>
-    <button type="button" class="btn btn-info">Рассчитать</button>
+                </fieldset>
+                123
+            </div>
+        <button type="button" class="btn btn-info">Рассчитать</button>
+
+    </fieldset>
 </section>
-<section>
+
+
+
+<section style="border: double; padding: 10px">
     <h4>Сравнение с ПДК</h4>
     <fieldset>
         <legend>АЗС 28</legend>
-        <table>
+        <table border="1">
             <tr>
-                <td>точка 1</td>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация нефтепродукта</th>
+                <th>Превышение</th>
             </tr>
-            <tr>
-                <td>точка 2</td>
-            </tr>
-            <tr>
-                <td>точка 3</td>
-            </tr>
-            <tr>
-                <td>точка 4</td>
-            </tr>
-            <tr>
-                <td>точка 5</td>
-            </tr>
+
+            @foreach (var item in Model.ObjPoints)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> земля</td>
+                    <td> 100</td>
+                    <td> 1000</td>
+                    <td> 10 </td>
+                </tr>
+            }
         </table>
+
     </fieldset>
+
+
     <fieldset>
         <legend>Охранные объекты</legend>
-        <table>
-            
-                @foreach (var item in Model.TypeObj)
-                { 
-                    <tr>
-                        <td>
-                            @item
-                        </td>
-                    </tr>
-                }
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация</th>
+                <th>Превышение</th>
+            </tr>
+
+            @foreach (var item in Model.TypeObj)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> земля</td>
+                    <td> 50</td>
+                    <td> 200</td>
+                    <td> 4 </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Грунтовые воды</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация</th>
+                <th>Превышение</th>
+            </tr>
+
+           
+                <tr>
+                    <td> Грунтовые воды</td>
+                    <td> - </td>
+                    <td> 0,3</td>
+                    <td> 300</td>
+                    <td> 1000 </td>
+                </tr>
             
         </table>
     </fieldset>
 </section>
+
+
 
     

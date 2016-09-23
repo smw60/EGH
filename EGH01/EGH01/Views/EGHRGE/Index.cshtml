@@ -19,12 +19,13 @@
     </article>
 </section>
 
+
   <section style="border: double; padding: 10px">
     <article>
         <h1>Входные данные</h1>
-        <h5>
+        <h5 >
             Дата происшествия
-            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "datetime-local" })
+            @Html.TextBoxFor(m => m.DateIncident, new { type = "datetime-local" })
             
         </h5>
     </article>
@@ -57,12 +58,22 @@
             Координаты объекта:
         </h5>
         <h5>Градусы, ° Минуты, ′ секунды, " </h5>
+        <style>
+            #editors input[type='text'] {
+                width: 35px;
+            }
+        </style>
 
-        <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′ @Html.TextBox("Дата", @Model. Coordlatitudesec) " </h5>
-        <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
 
-    </article>
+        <h5 id="editors">Широта: @Html.TextBoxFor(m => m.Coordlatitudedegr, new { @placeholder = "form-control"}) ° @Html.TextBox("gtyht", @Model.Coordlatitudemin, new { @placeholder = "form-control" } ) ′ @Html.TextBox(" ", @Model.Coordlatitudesec) "</h5>
+        <h5 id ="editors">Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
 
+
+   
+</article>
+
+
+     
       <article>
           <h5>
               Тип ННП
@@ -188,7 +199,7 @@
             
                 <h5> Загрязнение достигло грунтовых вод.</h5>
             <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
-            <h5> Концентрация: 100 мг/м3</h5>
+            <h5> Концентрация: 300 мг/м3</h5>
 
             
         </fieldset>
@@ -243,5 +254,7 @@
             </table>
 
         </fieldset>
-        <input type="button" value="Сохранить отчёт" style="margin:10px" />
+        <form action="RsvpForm" method="get">
+            <input type="submit" value="Сохранить отчёт" style="margin:10px">
+        </form> 
     </section>
