@@ -57,16 +57,18 @@
         <h5>
             Координаты объекта:
         </h5>
-        <h5>Градусы, ° Минуты, ′ секунды, " </h5>
         <style>
             #editors input[type='text'] {
-                width: 35px;
+                width: 58px;
             }
         </style>
 
-
-        <h5 id="editors">Широта: @Html.TextBoxFor(m => m.Coordlatitudedegr, new { @placeholder = "form-control"}) ° @Html.TextBox("gtyht", @Model.Coordlatitudemin, new { @placeholder = "form-control" } ) ′ @Html.TextBox(" ", @Model.Coordlatitudesec) "</h5>
-        <h5 id ="editors">Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
+        <h5>Широта:</h5>
+        <h5>Градусы, °  Минуты, ′ секунды, " </h5>
+        <h6 id="editors"> @Html.TextBoxFor(m => m.Coordlatitudedegr) ° @Html.TextBoxFor(m => m.Coordlatitudemin ) ′ @Html.TextBoxFor(m => m.Coordlatitudesec) "</h6>
+        <h5>Долгота:</h5>
+        <h5>Градусы, °  Минуты, ′ секунды, " </h5>
+        <h6 id ="editors">@Html.TextBoxFor(m => m.Coordlongitudedegr) ° @Html.TextBoxFor(m => m.Coordlongitudemin) ′ @Html.TextBoxFor(m => m.Coordlongitudesec) "</h6>
 
 
    
@@ -254,7 +256,7 @@
             </table>
 
         </fieldset>
-        <form action="EvXML" method="get">
+        <form action="EvXML">
             <input type="submit" value="Сохранить отчёт" style="margin:10px">
         </form>
         
