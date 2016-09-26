@@ -122,3 +122,49 @@
 
     </fieldset>
 </section>
+
+<section style="border: double; padding: 10px">
+    <h4>Классификация загрязнения</h4>
+    <fieldset>
+        <legend>Критерии для оценки загрязнения почв</legend>
+        <table border="1">
+            <tr>
+                <th>Содержание в почве, мг/кг</th>
+                <td>от 1 до 2 ПДК</td>
+                <td>от 2 до 5 ПДК</td>
+                <td>&gt 5 ПДК</td>
+            </tr>
+            <tr>
+                <th>Категории загрязнения</th>
+                <td>допустимая</td>
+                <td>умеренно опасная</td>
+                <td>опасная</td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend>АЗС 28</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Объём</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
+
+            @foreach (var item in Model.ObjPoints)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 20 м3</td>
+                    <td> 10</td>
+                    <td> Опасная</td>
+                </tr>
+            }
+        </table>
+
+    </fieldset>
+
+
+   
+</section>
