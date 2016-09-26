@@ -23,11 +23,10 @@
         @Html.DropDownList("RGEReport")
 
 
-        <div class="container">
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Посмотреть</button>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" >Посмотреть</button>
 
 
-            <div id="demo" class="collapse" hidden>
+            <div id="demo" class="collapse">
                 <h5 style="float:right">20.09.2016 10:00</h5>
                 <br />
                 <h1>Результаты прогнозирования</h1>
@@ -82,7 +81,15 @@
                             <th>Концентрация</th>
                         </tr>
 
-
+                        @foreach (var item in Model.TypeObj)
+                        {
+                            <tr>
+                                <td> @Html.ValueFor(m => item)</td>
+                                <td> 53° 53', 53° 53'</td>
+                                <td> 22.09.2016</td>
+                                <td> 1000 мг/дм3</td>
+                            </tr>
+                        }
 
                     </table>
 
@@ -97,14 +104,20 @@
                             <th>Концентрация</th>
                         </tr>
 
-
+                        @foreach (var item in Model.TypeObj)
+                        {
+                            <tr>
+                                <td> @Html.ValueFor(m => item)</td>
+                                <td> 53° 53', 53° 53'</td>
+                                <td> 22.09.2016</td>
+                                <td> 200 мг/дм3</td>
+                            </tr>
+                        }
 
                     </table>
 
                 </fieldset>
-                123
             </div>
-        </div>
         <button type="button" class="btn btn-info">Рассчитать</button>
 
     </fieldset>
@@ -121,18 +134,18 @@
                 <th>Объект</th>
                 <th>Категория земель</th>
                 <th>Данные ПДК</th>
-                <th>Концентрация нефтепродукта</th>
+                <th>Концентрация</th>
                 <th>Превышение</th>
             </tr>
 
-            @foreach (var item in Model.AccidentObj)
+            @foreach (var item in Model.ObjPoints)
             {
                 <tr>
                     <td> @Html.ValueFor(m => item)</td>
                     <td> земля</td>
-                    <td> 12000</td>
                     <td> 100</td>
-                    <td> 2 </td>
+                    <td> 1000</td>
+                    <td> 10 </td>
                 </tr>
             }
         </table>
@@ -156,9 +169,9 @@
                 <tr>
                     <td> @Html.ValueFor(m => item)</td>
                     <td> земля</td>
-                    <td> 12000</td>
-                    <td> 100</td>
-                    <td> 2 </td>
+                    <td> 50</td>
+                    <td> 200</td>
+                    <td> 4 </td>
                 </tr>
             }
         </table>
@@ -179,9 +192,9 @@
                 <tr>
                     <td> Грунтовые воды</td>
                     <td> - </td>
-                    <td> 12000</td>
-                    <td> 100</td>
-                    <td> 2 </td>
+                    <td> 0,3</td>
+                    <td> 300</td>
+                    <td> 1000 </td>
                 </tr>
             
         </table>

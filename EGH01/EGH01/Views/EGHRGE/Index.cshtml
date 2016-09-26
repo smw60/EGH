@@ -19,12 +19,13 @@
     </article>
 </section>
 
+
   <section style="border: double; padding: 10px">
     <article>
         <h1>Входные данные</h1>
-        <h5>
+        <h5 >
             Дата происшествия
-            @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateIncident.ToShortDateString()), new { type = "datetime-local" })
+            @Html.TextBoxFor(m => m.DateIncident, new { type = "datetime-local" })
             
         </h5>
     </article>
@@ -56,16 +57,18 @@
         <h5>
             Координаты объекта:
         </h5>
-        <h5>Градусы, ° Минуты, ′ секунды, " </h5>
         <style>
             #editors input[type='text'] {
-                width: 35px;
+                width: 58px;
             }
         </style>
 
-
-        <h5 id="editors">Широта: @Html.TextBoxFor(m => m.Coordlatitudedegr, new { @placeholder = "form-control"}) ° @Html.TextBox("gtyht", @Model.Coordlatitudemin, new { @placeholder = "form-control" } ) ′ @Html.TextBox(" ", @Model.Coordlatitudesec) "</h5>
-        <h5 id ="editors">Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
+        <h5>Широта:</h5>
+        <h5>Градусы, °  Минуты, ′ секунды, " </h5>
+        <h6 id="editors"> @Html.TextBoxFor(m => m.Coordlatitudedegr) ° @Html.TextBoxFor(m => m.Coordlatitudemin ) ′ @Html.TextBoxFor(m => m.Coordlatitudesec) "</h6>
+        <h5>Долгота:</h5>
+        <h5>Градусы, °  Минуты, ′ секунды, " </h5>
+        <h6 id ="editors">@Html.TextBoxFor(m => m.Coordlongitudedegr) ° @Html.TextBoxFor(m => m.Coordlongitudemin) ′ @Html.TextBoxFor(m => m.Coordlongitudesec) "</h6>
 
 
    
@@ -118,22 +121,41 @@
         <br />
         <fieldset>
             <legend>Точки для рассчёта</legend>
-            Таблица для точек
-            <p>точка 1 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-            <p>точка 2 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-            <p>точка 3 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-            <p>точка 4 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-            <p>точка 5 - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
-
+            <table border="1">
+                <tr>
+                    <th>Объект</th>
+                    <th>Координаты</th>
+                    <th>Высота</th>
+                    <th>Мощность зоны аэрации</th>
+                </tr>
+                <tr>
+                    <td>АЗС 28</td>
+                    <td>55° 55'; 55° 55'</td>
+                    <td>105 м</td>
+                    <td>4 м</td>
+                </tr>
+                <tr>
+                    <td>Колодец</td>
+                    <td>55° 55'; 55° 55'</td>
+                    <td>105 м</td>
+                    <td>4 м</td>
+                </tr>
+                <tr>
+                    <td>Проходная</td>
+                    <td>55° 55'; 55° 55'</td>
+                    <td>105 м</td>
+                    <td>4 м</td>
+                </tr>
+            </table>
         </fieldset>
         <br />
         <fieldset>
             <legend>Характеристики ННП</legend>
-            <h5>
-                Бензин</h5>
-    <h5> Плотность при 20 °С:  0,7-0,75 г/см3</h5>
-    <h5>Вязкость кинематическая при 20 (50)°С:  0,43-0,82 мм2/с </h5>
-    <h5>Растворимость: 9,0-505 мг/дм3 </h5>
+            <h4>
+                Бензин</h4>
+    <h5> Плотность при 20 °С:  0,7 г/см3</h5>
+    <h5>Вязкость кинематическая при 20 °С:  0,5 мм2/с </h5>
+    <h5>Растворимость: 9,0 мг/дм3 </h5>
     <br />
 </fieldset>
         <br />
@@ -148,15 +170,9 @@
 
     <section class="output" style="border: double; padding: 10px">
 
-
             <h5 style="float:right">20.09.2016 10:00</h5>
         <br />
             <h1>Результаты прогнозирования</h1>
-
-
-
-
-
         <article>
             <fieldset>
                 <legend>Характеристики пятна загрязнения:</legend>
@@ -198,7 +214,7 @@
             
                 <h5> Загрязнение достигло грунтовых вод.</h5>
             <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
-            <h5> Концентрация: 100 мг/м3</h5>
+            <h5> Концентрация: 300 мг/м3</h5>
 
             
         </fieldset>
@@ -253,5 +269,9 @@
             </table>
 
         </fieldset>
-        <input type="button" value="Сохранить отчёт" style="margin:10px" />
+        <form action="EvXML">
+            <input type="submit" value="Сохранить отчёт" style="margin:10px">
+        </form>
+        
+        
     </section>
