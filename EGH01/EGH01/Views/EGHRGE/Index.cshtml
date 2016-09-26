@@ -56,11 +56,23 @@
         <h5>
             Координаты объекта:
         </h5>
-        <h5>Градусы, ° Минуты, ′ секунды, " </h5>
 
-        <h5>Широта: @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′ @Html.TextBox("Дата", @Model. Coordlatitudesec) " </h5>
-        <h5>Долгота: @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "</h5>
-
+        <h5>Ширина:</h5>
+        <article>
+       <h6>Градусы Минуты</h6>
+     <p> @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</p>
+       Секунды
+      @Html.TextBox("Дата", @Model.Coordlatitudesec) " 
+        </article>
+        <h5>Долгота:</h5>
+        <article>
+            Градусы
+            @Html.TextBox("Дата", @Model.Coordlongitudedegr) °
+            Минуты
+            @Html.TextBox("Дата", @Model.Coordlongitudemin) ′
+            Секунды
+            @Html.TextBox("Дата", @Model.Coordlongitudesec) "
+        </article>
     </article>
 
       <article>
