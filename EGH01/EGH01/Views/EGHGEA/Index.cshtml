@@ -125,8 +125,10 @@
 
 <section style="border: double; padding: 10px">
     <h4>Классификация загрязнения</h4>
+    <h1>Информация из Базы Данных</h1>
     <fieldset>
-        <legend>Критерии для оценки загрязнения почв</legend>
+        <legend>Критерии для оценки загрязнения почв из БД</legend>
+
         <table border="1">
             <tr>
                 <th>Содержание в почве, мг/кг</th>
@@ -141,6 +143,47 @@
                 <td>опасная</td>
             </tr>
         </table>
+        <br />
+        <table border="1">
+            <tr>
+                <th>Содержание в грунтовых водах , мг/кг</th>
+                <td>< 0,3 ПДК</td>
+                <td>от 0,3 до 0,9 ПДК</td>
+                <td>от 0,9 до 1,5 ПДК</td>
+                <td>от 1,5 до 3,0 ПДК</td>
+                <td>от 3,0 до 30,0 ПДК3</td>
+                <td>> 30,0 ПДК</td>
+            </tr>
+            <tr>
+                <th>Категории загрязнения</th>
+                <td>допустимая</td>
+                <td>очень слабая</td>
+                <td>слабая</td>
+                <td>средняя</td>
+                <td>сильная</td>
+                <td>очень сильная</td>
+
+            </tr>
+        </table>
+        <br />
+        <table border="1">
+            <tr>
+                <th>Превышение норматива ПДК</th>
+                <td>от 1 до 5</td>
+                <td>от 5 до 20</td>
+                <td>от 20 до 50</td>
+                <td>> 50</td>
+
+            </tr>
+            <tr>
+                <th>Степень деградации земель</th>
+                <td>низкая</td>
+                <td>средняя</td>
+                <td>высокая</td>
+                <td>очень высокая</td>
+            </tr>
+        </table>
+        <br />
     </fieldset>
     <fieldset>
         <legend>АЗС 28</legend>
@@ -158,13 +201,53 @@
                     <td> @Html.ValueFor(m => item)</td>
                     <td> 20 м3</td>
                     <td> 10</td>
-                    <td> Опасная</td>
+                    <td> опасная</td>
                 </tr>
             }
         </table>
-
     </fieldset>
+    <br />
+    <fieldset>
+        <legend>Охранные объекты</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Объём</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
+
+            @foreach (var item in Model.TypeObj)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 50 м3</td>
+                    <td> 15</td>
+                    <td> опасная </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Грунтовые воды</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Объём</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
 
 
-   
+            <tr>
+                <td> Грунтовые воды</td>
+                <td> 300</td>
+                <td> 15 </td>
+                <td> сильная </td>
+            </tr>
+
+        </table>
+    </fieldset>
+    <br />
 </section>
