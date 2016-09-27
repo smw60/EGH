@@ -18,8 +18,8 @@
 
 <section style="border: double; padding: 10px">
 
-    <fieldset>
-        <legend>Выбор отчёта</legend>
+    
+        <h1>Выбор отчёта</h1>
         @Html.DropDownList("RGEReport")
 
 
@@ -120,75 +120,124 @@
             </div>
         <button type="button" class="btn btn-info">Рассчитать</button>
 
-    </fieldset>
+    
 </section>
 
-
-
 <section style="border: double; padding: 10px">
-    <h4>Сравнение с ПДК</h4>
+    <h1>Нормы ПДК</h1>
     <fieldset>
-        <legend>АЗС 28</legend>
+        <legend>Нормы по категориям земель</legend>
         <table border="1">
             <tr>
-                <th>Объект</th>
-                <th>Категория земель</th>
-                <th>Данные ПДК</th>
-                <th>Концентрация</th>
-                <th>Превышение</th>
+                <th>Категории земель</th>
+                <th>ПДК (мг/кг)</th>
             </tr>
-
-            @foreach (var item in Model.ObjPoints)
-            {
-                <tr>
-                    <td> @Html.ValueFor(m => item)</td>
-                    <td> земля</td>
-                    <td> 100</td>
-                    <td> 1000</td>
-                    <td> 10 </td>
-                </tr>
-            }
-        </table>
-
-    </fieldset>
-
-
-    <fieldset>
-        <legend>Охранные объекты</legend>
-        <table border="1">
             <tr>
-                <th>Объект</th>
-                <th>Категория земель</th>
-                <th>Данные ПДК</th>
-                <th>Концентрация</th>
-                <th>Превышение</th>
+                <td>сельскохозяйственного назначения</td>
+                <td>50</td>
             </tr>
-
-            @foreach (var item in Model.TypeObj)
-            {
-                <tr>
-                    <td> @Html.ValueFor(m => item)</td>
-                    <td> земля</td>
-                    <td> 50</td>
-                    <td> 200</td>
-                    <td> 4 </td>
-                </tr>
-            }
+            <tr>
+                <td>населенных пунктов, садоводческих товариществ, дачных кооперативов</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>промышленности, транспорта, связи, энергетики, обороны и иного назначения</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>природоохранного, оздоровительного, рекреационного, историко-культурного назначения</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>лесного фонда</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>водного фонда</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>запаса</td>
+                <td>50</td>
+            </tr>
         </table>
     </fieldset>
-
     <fieldset>
-        <legend>Грунтовые воды</legend>
+        <legend>Нормы грунтовых вод</legend>
         <table border="1">
             <tr>
-                <th>Объект</th>
-                <th>Категория земель</th>
-                <th>Данные ПДК</th>
-                <th>Концентрация</th>
-                <th>Превышение</th>
+                <th width="70px">ПДК</th>
+                <td>0,3 мг/дм3</td>
             </tr>
+        </table>
+    </fieldset>
+    
+    </section>
 
-           
+    <section style="border: double; padding: 10px">
+        <h1>Сравнение с ПДК</h1>
+        <fieldset>
+            <legend>АЗС 28</legend>
+            <table border="1">
+                <tr>
+                    <th>Объект</th>
+                    <th>Категория земель</th>
+                    <th>Данные ПДК</th>
+                    <th>Концентрация</th>
+                    <th>Превышение</th>
+                </tr>
+
+                @foreach (var item in Model.ObjPoints)
+                {
+                    <tr>
+                        <td> @Html.ValueFor(m => item)</td>
+                        <td> земля</td>
+                        <td> 100</td>
+                        <td> 1000</td>
+                        <td> 10 </td>
+                    </tr>
+                }
+            </table>
+
+        </fieldset>
+
+
+        <fieldset>
+            <legend>Охранные объекты</legend>
+            <table border="1">
+                <tr>
+                    <th>Объект</th>
+                    <th>Категория земель</th>
+                    <th>Данные ПДК</th>
+                    <th>Концентрация</th>
+                    <th>Превышение</th>
+                </tr>
+
+                @foreach (var item in Model.TypeObj)
+                {
+                    <tr>
+                        <td> @Html.ValueFor(m => item)</td>
+                        <td> земля</td>
+                        <td> 50</td>
+                        <td> 200</td>
+                        <td> 4 </td>
+                    </tr>
+                }
+            </table>
+        </fieldset>
+
+        <fieldset>
+            <legend>Грунтовые воды</legend>
+            <table border="1">
+                <tr>
+                    <th>Объект</th>
+                    <th>Категория земель</th>
+                    <th>Данные ПДК</th>
+                    <th>Концентрация</th>
+                    <th>Превышение</th>
+                </tr>
+
+
                 <tr>
                     <td> Грунтовые воды</td>
                     <td> - </td>
@@ -196,11 +245,11 @@
                     <td> 300</td>
                     <td> 1000 </td>
                 </tr>
-            
-        </table>
-    </fieldset>
-</section>
+
+            </table>
+        </fieldset>
+    </section>
 
 
 
-    
+

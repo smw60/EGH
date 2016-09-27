@@ -18,8 +18,8 @@
 
 <section style="border: double; padding: 10px">
 
-    <fieldset>
-        <legend>Выбор отчёта</legend>
+    
+        <h1>Выбор отчёта</h1>
         @Html.DropDownList("RGEReport")
 
 
@@ -120,14 +120,13 @@
         </div>
         <button type="button" class="btn btn-info">Рассчитать</button>
 
-    </fieldset>
+    
 </section>
 
 <section style="border: double; padding: 10px">
-    <h4>Классификация загрязнения</h4>
     <h1>Информация из Базы Данных</h1>
     <fieldset>
-        <legend>Критерии для оценки загрязнения почв из БД</legend>
+        <legend>Оценка степени загрязнения почв</legend>
 
         <table border="1">
             <tr>
@@ -143,7 +142,11 @@
                 <td>опасная</td>
             </tr>
         </table>
-        <br />
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Оценка степени загрязнения подземных вод</legend>
+
         <table border="1">
             <tr>
                 <th>Содержание в грунтовых водах , мг/кг</th>
@@ -162,10 +165,13 @@
                 <td>средняя</td>
                 <td>сильная</td>
                 <td>очень сильная</td>
-
             </tr>
         </table>
-        <br />
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Показатель деградации земель</legend>
+
         <table border="1">
             <tr>
                 <th>Превышение норматива ПДК</th>
@@ -183,10 +189,13 @@
                 <td>очень высокая</td>
             </tr>
         </table>
-        <br />
     </fieldset>
+    <br />
+</section>
+
+<section style="border: double; padding: 10px">
     <fieldset>
-        <legend>АЗС 28</legend>
+        <legend>Загрязнение АЗС 28</legend>
         <table border="1">
             <tr>
                 <th>Объект</th>
@@ -201,14 +210,14 @@
                     <td> @Html.ValueFor(m => item)</td>
                     <td> 20 м3</td>
                     <td> 10</td>
-                    <td> опасная</td>
+                    <td> высокое</td>
                 </tr>
             }
         </table>
     </fieldset>
     <br />
     <fieldset>
-        <legend>Охранные объекты</legend>
+        <legend>Степень загрязнения охранных объектов</legend>
         <table border="1">
             <tr>
                 <th>Объект</th>
@@ -222,19 +231,18 @@
                 <tr>
                     <td> @Html.ValueFor(m => item)</td>
                     <td> 50 м3</td>
-                    <td> 15</td>
-                    <td> опасная </td>
+                    <td> 4</td>
+                    <td> умеренно опасная </td>
                 </tr>
             }
         </table>
     </fieldset>
     <br />
     <fieldset>
-        <legend>Грунтовые воды</legend>
+        <legend>Загрязнение грунтовых вод</legend>
         <table border="1">
             <tr>
                 <th>Объект</th>
-                <th>Объём</th>
                 <th>Превышение ПДК</th>
                 <th>Классификация</th>
             </tr>
@@ -242,9 +250,8 @@
 
             <tr>
                 <td> Грунтовые воды</td>
-                <td> 300</td>
-                <td> 15 </td>
-                <td> сильная </td>
+                <td> 1000 </td>
+                <td> очень сильное</td>
             </tr>
 
         </table>
