@@ -97,50 +97,7 @@ namespace EGH01.Controllers
             //    textWritter.WriteEndElement();
             //    textWritter.Close();
 
-
-            //    XmlNode ДанныеИзБД = document.CreateElement("ДанныеИзБД");
-            //    document.DocumentElement.AppendChild(ДанныеИзБД);
-
-            //    XmlNode Характеристики = document.CreateElement("Характеристики");
-            //    ДанныеИзБД.AppendChild(Характеристики);
-
-            //    XmlAttribute АтрибутыБД = document.CreateAttribute("Объект");
-            //    АтрибутыБД.Value = xmlex.TypeInccident;
-            //    Характеристики.Attributes.Append(АтрибутыБД);
-
-
-            //    XmlNode Хранит = document.CreateElement("Хранит");
-            //    Хранит.InnerText = xmlex.TypeNNP2;
-            //    Характеристики.AppendChild(Хранит);
-
-            //    //XmlAttribute АтрибутыБдхранит = document.CreateAttribute("Хранит"); 
-            //    //АтрибутыБдхранит.Value = xmlex.TypeNNP2; 
-            //    //Характеристики.Attributes.Append(АтрибутыБдхранит); 
-
-
-            //    XmlNode РасположениеБД = document.CreateElement("Расположение");
-            //    РасположениеБД.InnerText = xmlex.location;
-            //    Характеристики.AppendChild(РасположениеБД);
-
-
-            //    XmlNode ХарактеристикиННП = document.CreateElement("ХарактеристикиННП");
-            //    ДанныеИзБД.AppendChild(ХарактеристикиННП);
-
-            //    XmlAttribute ТипННПБД = document.CreateAttribute("ТИП");
-            //    ТипННПБД.Value = xmlex.TypeNNP2;
-            //    ХарактеристикиННП.Attributes.Append(ТипННПБД);
-
-            //    XmlNode Плотность = document.CreateElement("Плотность");
-            //    Плотность.InnerText = xmlex.density;
-            //    ХарактеристикиННП.AppendChild(Плотность);
-
-            //   XmlNode Вязкость = document.CreateElement("Вязкость");
-            //    Вязкость.InnerText = xmlex.viscosity;
-            //    ХарактеристикиННП.AppendChild(Вязкость);
-
-            //    XmlNode Растворимость = document.CreateElement("Растворимость");
-            //    Растворимость.InnerText = xmlex.solubility;
-            //    ХарактеристикиННП.AppendChild(Растворимость);
+            
 
             //    XmlNode КлиматическиеУсловия = document.CreateElement("КлиматическиеУсловия");
             //    ДанныеИзБД.AppendChild(КлиматическиеУсловия);
@@ -175,10 +132,6 @@ namespace EGH01.Controllers
             //    //ПромерзаниеПочвы.InnerText = "5°С";
             //    //КлиматическиеУсловия.AppendChild(ПромерзаниеПочвы);
 
-            //    //document.Save("D:/RGE.xml");
-            //    //String dasha = document.ToString();
-            //    //document.LoadXml(dasha);
-            ////    document.Save("RGE.xml");
             XDocument xdoc = new XDocument();
             XElement Модель = new XElement("Модель");
 
@@ -199,8 +152,6 @@ namespace EGH01.Controllers
             XElement Сообщения = new XElement("Сообщения", xmlex.DateMessage.ToString());
             Даты.Add(Сообщения);
 
-            //XElement Тип = new XElement("Тип");
-            //ИсходныеДанные.Add(Тип);
             XElement Происшествия = new XElement("Происшествия", xmlex.TypeNNP);
             ИсходныеДанные.Add(Происшествия);
 
@@ -220,7 +171,28 @@ namespace EGH01.Controllers
             XElement Температура = new XElement("Температура", xmlex.Temp.ToString());
             ИсходныеДанные.Add(Температура);
 
+            XElement ДанныеИзБД = new XElement("ДанныеИзБД");
+            Модель.Add(ДанныеИзБД);
 
+            XElement Характеристики = new XElement("Характеристики");
+            ДанныеИзБД.Add(Характеристики);
+            XAttribute ОбъектБД = new XAttribute("Объект", xmlex.TypeInccident);
+            Характеристики.Add(ОбъектБД);
+            XElement Хранит = new XElement("Хранит",xmlex.TypeNNP2);
+            Характеристики.Add(Хранит);
+            XElement РасположениеБД = new XElement("Расположение", xmlex.location);
+            Характеристики.Add(РасположениеБД);
+
+            XElement ХарактеристикиННП = new XElement("ХарактеристикиННП");
+            ДанныеИзБД.Add(ХарактеристикиННП);
+            XAttribute ТипННПБД = new XAttribute("ТипННПБД", xmlex.TypeNNP2);
+            ХарактеристикиННП.Add(ТипННПБД);
+            XElement Плотность = new XElement("Плотность", xmlex.density);
+            ХарактеристикиННП.Add(Плотность);
+            XElement Вязкость = new XElement("Вязкость",xmlex.viscosity);
+            ХарактеристикиННП.Add(Вязкость);
+            XElement Растворимость = new XElement("Растворимость", xmlex.solubility);
+            ХарактеристикиННП.Add(Растворимость);
 
             xdoc.Add(Модель);
             String xmlstr = xdoc.ToString();
