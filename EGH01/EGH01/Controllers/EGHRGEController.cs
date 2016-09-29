@@ -96,42 +96,6 @@ namespace EGH01.Controllers
             //    textWritter.WriteAttributeString("Имя", "Дарья");
             //    textWritter.WriteEndElement();
             //    textWritter.Close();
-
-            
-
-            //    XmlNode КлиматическиеУсловия = document.CreateElement("КлиматическиеУсловия");
-            //    ДанныеИзБД.AppendChild(КлиматическиеУсловия);
-
-            //    XmlNode СрТемпература = document.CreateElement("СрТемпература");
-            //    СрТемпература.InnerText = xmlex.Temp.ToString();
-            //    КлиматическиеУсловия.AppendChild(СрТемпература);
-            //    //XmlAttribute АтрибутыБдрасположение = document.CreateAttribute("Расположение"); 
-            //    //АтрибутыБдрасположение.Value = xmlex.location; 
-            //    //Характеристики.Attributes.Append(АтрибутыБдрасположение); 
-
-            //    //XmlNode ПлотностьПри20С = document.CreateElement("ПлотностьПри20С");
-            //    //ПлотностьПри20С.InnerText = "0,7-0,75 г/см3";
-            //    //ХарактеристикиННП.AppendChild(ПлотностьПри20С);
-
-            //    //XmlNode ВязкостьКинематическая = document.CreateElement("ВязкостьКинематическая");
-            //    //ВязкостьКинематическая.InnerText = "0,43-0,82 мм2/с";
-            //    //ХарактеристикиННП.AppendChild(ВязкостьКинематическая);
-
-            //    //XmlNode Растворимость = document.CreateElement("Растворимость");
-            //    //Растворимость.InnerText = "9,0-505 мг/дм3";
-            //    //ХарактеристикиННП.AppendChild(Растворимость);
-
-            //    //XmlNode КлиматическиеУсловия = document.CreateElement("КлиматическиеУсловия");
-            //    //ИнформацияИзБД.AppendChild(КлиматическиеУсловия);
-
-            //    //XmlNode СредняяТемпература = document.CreateElement("СредняяТемпература");
-            //    //СредняяТемпература.InnerText = "2°С";
-            //    //КлиматическиеУсловия.AppendChild(СредняяТемпература);
-
-            //    //XmlNode ПромерзаниеПочвы = document.CreateElement("ПромерзаниеПочвы");
-            //    //ПромерзаниеПочвы.InnerText = "5°С";
-            //    //КлиматическиеУсловия.AppendChild(ПромерзаниеПочвы);
-
             XDocument xdoc = new XDocument();
             XElement Модель = new XElement("Модель");
 
@@ -193,6 +157,13 @@ namespace EGH01.Controllers
             ХарактеристикиННП.Add(Вязкость);
             XElement Растворимость = new XElement("Растворимость", xmlex.solubility);
             ХарактеристикиННП.Add(Растворимость);
+            XElement КлиматическиеУсловия = new XElement("КлиматическиеУсловия");
+            ДанныеИзБД.Add(КлиматическиеУсловия);
+
+            XElement СредняяТемпература = new XElement("СредняяТемпература", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(СредняяТемпература);
+            XElement ПромерзаниеПочвы = new XElement("ПромерзаниеПочвы", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(ПромерзаниеПочвы);
 
             xdoc.Add(Модель);
             String xmlstr = xdoc.ToString();
@@ -241,8 +212,6 @@ namespace EGH01.Controllers
             XElement Сообщения = new XElement("Сообщения", xmlex.DateMessage.ToString());
             Даты.Add(Сообщения);
 
-            //XElement Тип = new XElement("Тип");
-            //ИсходныеДанные.Add(Тип);
             XElement Происшествия = new XElement("Происшествия", xmlex.TypeNNP);
             ИсходныеДанные.Add(Происшествия);
 
@@ -262,11 +231,38 @@ namespace EGH01.Controllers
             XElement Температура = new XElement("Температура", xmlex.Temp.ToString());
             ИсходныеДанные.Add(Температура);
 
+            XElement ДанныеИзБД = new XElement("ДанныеИзБД");
+            Модель.Add(ДанныеИзБД);
 
+            XElement Характеристики = new XElement("Характеристики");
+            ДанныеИзБД.Add(Характеристики);
+            XAttribute ОбъектБД = new XAttribute("Объект", xmlex.TypeInccident);
+            Характеристики.Add(ОбъектБД);
+            XElement Хранит = new XElement("Хранит", xmlex.TypeNNP2);
+            Характеристики.Add(Хранит);
+            XElement РасположениеБД = new XElement("Расположение", xmlex.location);
+            Характеристики.Add(РасположениеБД);
+
+            XElement ХарактеристикиННП = new XElement("ХарактеристикиННП");
+            ДанныеИзБД.Add(ХарактеристикиННП);
+            XAttribute ТипННПБД = new XAttribute("ТипННПБД", xmlex.TypeNNP2);
+            ХарактеристикиННП.Add(ТипННПБД);
+            XElement Плотность = new XElement("Плотность", xmlex.density);
+            ХарактеристикиННП.Add(Плотность);
+            XElement Вязкость = new XElement("Вязкость", xmlex.viscosity);
+            ХарактеристикиННП.Add(Вязкость);
+            XElement Растворимость = new XElement("Растворимость", xmlex.solubility);
+            ХарактеристикиННП.Add(Растворимость);
+            XElement КлиматическиеУсловия = new XElement("КлиматическиеУсловия");
+            ДанныеИзБД.Add(КлиматическиеУсловия);
+
+            XElement СредняяТемпература = new XElement("СредняяТемпература", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(СредняяТемпература);
+            XElement ПромерзаниеПочвы = new XElement("ПромерзаниеПочвы", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(ПромерзаниеПочвы);
 
             xdoc.Add(Модель);
             String xmlstr = xdoc.ToString();
-
             return RedirectToAction("Index");
         }
 
