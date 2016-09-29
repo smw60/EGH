@@ -20,31 +20,32 @@ namespace EGH01.Controllers
             public int volumeNNP { get; set; }
             public string TypeNNP { get; set; }
             public int Temp { get; set; }
-                  public List<string> TypeInccident = new List<string> { "Нефтепровод", "Резервуар Наземный", "Резервуар подземный", "Транспорт автомобильный", "Транспорт железнодорожный" };
-            public List<string> TypeNNP2 = new List<string> {"Нефть", "Бензин", "Мазут" };
+            public List<string> TypeInccident = new List<string> { "Нефтепровод", "Резервуар Наземный", "Резервуар подземный", "Транспорт автомобильный", "Транспорт железнодорожный" };
+            public List<string> TypeNNP2 = new List<string> { "Нефть", "Бензин", "Мазут" };
             public List<string> AccidentObj = new List<string> { "АЗС 28", "Нефтебаза", "Хранилище 4" };
             public int Coordlatitudedegr { get; set; }//градусов
             public int Coordlatitudemin { get; set; }//широта минут
             public int Coordlatitudesec { get; set; }//широта секунды
             public int Coordlongitudedegr { get; set; }//градсов
             public int Coordlongitudemin { get; set; }//долготоа минут
-            public int Coordlongitudesec{ get; set; }//долготоа секунды
-            
+            public int Coordlongitudesec { get; set; }//долготоа секунды
+
             //Выходные данные
             public List<Object> TypeObj = new List<Object> { "Река", "Лес", "Болото" };
             public DateTime DateRеportWriting { get; set; }
-            public int AreaLand {get; set;}
-            
+            public int AreaLand { get; set; }
+
         }
-        public class XMLEX {
+        public class XMLEX
+        {
 
             //Входные данные
-            public DateTime DateIncident { get; set;}
+            public DateTime DateIncident { get; set; }
             public DateTime DateMessage { get; set; }
             public int volumeNNP { get; set; }
             public string TypeNNP { get; set; }
             public int Temp { get; set; }
-            public string TypeInccident =  "Резервуар подземный";
+            public string TypeInccident = "Резервуар подземный";
             public string TypeNNP2 = "Бензин";
             public string AccidentObj = "АЗС 28";
             public int Coordlatitudedegr { get; set; }//градусов
@@ -56,7 +57,14 @@ namespace EGH01.Controllers
             public string location { get; set; }
             public string area { get; set; }
             public string region { get; set; }
+
+            public string density { get; set; }
+
+            public string viscosity { get; set; }
+
+            public string solubility { get; set; }
         }
+<<<<<<< HEAD
         
               //написать фильтр на открытие БД
         public ActionResult Index()
@@ -83,6 +91,15 @@ namespace EGH01.Controllers
      
        public ActionResult EvXML()
        {
+=======
+        EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+        //написать фильтр на открытие БД
+        public ActionResult Index()
+        {
+            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            else ViewBag.msg = "соединение  c БД  не установлено";
+            InputDate inputDate = new InputDate();
+>>>>>>> 6fe8cd0489467f58403e73f86e89b117058b9dc9
             XMLEX xmlex = new XMLEX();
             xmlex.DateIncident = new DateTime(2012, 10, 3, 8, 12, 0);
             xmlex.DateMessage = new DateTime(2012, 12, 8, 12, 17, 0);
@@ -98,168 +115,203 @@ namespace EGH01.Controllers
             xmlex.Coordlongitudedegr = 53;
             xmlex.Coordlongitudemin = 25;
             xmlex.Coordlongitudesec = 5;
+            xmlex.density = "0.7-0.75 г/cм3";
+            xmlex.solubility = "9.0-505 мг/дм3";
+            xmlex.viscosity = "0.43-0.82 мм2/с";
+
+            //    XmlTextWriter textWritter = new XmlTextWriter("RGE.xml", System.Text.Encoding.UTF8);
+            //    textWritter.WriteStartDocument();
+            //    textWritter.WriteStartElement("Модель");
+            //    textWritter.WriteAttributeString("Дата", "25.09.2016");
+            //    textWritter.WriteAttributeString("Имя", "Дарья");
+            //    textWritter.WriteEndElement();
+            //    textWritter.Close();
+            XDocument xdoc = new XDocument();
+            XElement Модель = new XElement("Модель");
+
+            XAttribute МодельИмя = new XAttribute("Имя", "Дарья");
+            XAttribute МодельДата = new XAttribute("Дата", "23.09.2016");
+
+            XElement ИсходныеДанные = new XElement("ИсходныеДанные");
+
+            XElement Даты = new XElement("Даты");
+            XAttribute происшествия = new XAttribute("происшествия", xmlex.DateIncident.ToString());
+
+            Модель.Add(МодельДата);
+            Модель.Add(МодельИмя);
+            Модель.Add(ИсходныеДанные);
+            ИсходныеДанные.Add(Даты);
+            Даты.Add(происшествия);
+
+            XElement Сообщения = new XElement("Сообщения", xmlex.DateMessage.ToString());
+            Даты.Add(Сообщения);
+
+            XElement Происшествия = new XElement("Происшествия", xmlex.TypeNNP);
+            ИсходныеДанные.Add(Происшествия);
+
+            XElement Расположение = new XElement("Расположение");
+            ИсходныеДанные.Add(Расположение);
+            XAttribute Объект = new XAttribute("Объект", xmlex.AccidentObj);
+            Расположение.Add(Объект);
+            XElement Область = new XElement("Область", xmlex.region);
+            Расположение.Add(Область);
+            XElement Район = new XElement("Район", xmlex.area);
+            Расположение.Add(Район);
+
+            XElement ТипННП = new XElement("ТипННП", xmlex.TypeNNP2);
+            ИсходныеДанные.Add(ТипННП);
+            XElement Объем = new XElement("Объем", xmlex.volumeNNP.ToString());
+            ИсходныеДанные.Add(Объем);
+            XElement Температура = new XElement("Температура", xmlex.Temp.ToString());
+            ИсходныеДанные.Add(Температура);
+
+            XElement ДанныеИзБД = new XElement("ДанныеИзБД");
+            Модель.Add(ДанныеИзБД);
+
+            XElement Характеристики = new XElement("Характеристики");
+            ДанныеИзБД.Add(Характеристики);
+            XAttribute ОбъектБД = new XAttribute("Объект", xmlex.TypeInccident);
+            Характеристики.Add(ОбъектБД);
+            XElement Хранит = new XElement("Хранит",xmlex.TypeNNP2);
+            Характеристики.Add(Хранит);
+            XElement РасположениеБД = new XElement("Расположение", xmlex.location);
+            Характеристики.Add(РасположениеБД);
+
+            XElement ХарактеристикиННП = new XElement("ХарактеристикиННП");
+            ДанныеИзБД.Add(ХарактеристикиННП);
+            XAttribute ТипННПБД = new XAttribute("ТипННПБД", xmlex.TypeNNP2);
+            ХарактеристикиННП.Add(ТипННПБД);
+            XElement Плотность = new XElement("Плотность", xmlex.density);
+            ХарактеристикиННП.Add(Плотность);
+            XElement Вязкость = new XElement("Вязкость",xmlex.viscosity);
+            ХарактеристикиННП.Add(Вязкость);
+            XElement Растворимость = new XElement("Растворимость", xmlex.solubility);
+            ХарактеристикиННП.Add(Растворимость);
+            XElement КлиматическиеУсловия = new XElement("КлиматическиеУсловия");
+            ДанныеИзБД.Add(КлиматическиеУсловия);
+
+            XElement СредняяТемпература = new XElement("СредняяТемпература", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(СредняяТемпература);
+            XElement ПромерзаниеПочвы = new XElement("ПромерзаниеПочвы", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(ПромерзаниеПочвы);
+
+            xdoc.Add(Модель);
+            String xmlstr = xdoc.ToString();
+            return View(inputDate);
+        }
 
 
-            XmlTextWriter textWritter = new XmlTextWriter("D:/RGE.xml", System.Text.Encoding.UTF8);
-            textWritter.WriteStartDocument();
-            textWritter.WriteStartElement("Модель");
-            textWritter.WriteAttributeString("Дата", "25.09.2016");
-            textWritter.WriteAttributeString("Имя", "Дарья");
-            textWritter.WriteEndElement();
-            textWritter.Close();
+        public ActionResult EvXML()
+        {
+            XMLEX xmlex = new XMLEX();
+            xmlex.DateIncident = new DateTime(2012, 10, 3, 8, 12, 0);
+            xmlex.DateMessage = new DateTime(2012, 12, 8, 12, 17, 0);
+            xmlex.volumeNNP = 30;
+            xmlex.TypeNNP = "Подземный резервуар";
+            xmlex.Temp = 2;
+            xmlex.location = "Минская область, Минский район, г.Слуцк";
+            xmlex.area = "Минский";
+            xmlex.region = "Минская";
+            xmlex.Coordlatitudedegr = 46;
+            xmlex.Coordlatitudemin = 5;
+            xmlex.Coordlatitudesec = 2;
+            xmlex.Coordlongitudedegr = 53;
+            xmlex.Coordlongitudemin = 25;
+            xmlex.Coordlongitudesec = 5;
+            xmlex.density = "0.7-0.75 г/cм3";
+            xmlex.solubility = "9.0-505 мг/дм3";
+            xmlex.viscosity = "0.43-0.82 мм2/с";
 
-            XmlDocument document = new XmlDocument();
-            document.Load("D:/RGE.xml");
+            XDocument xdoc = new XDocument();
+            XElement Модель = new XElement("Модель");
 
-            XmlNode ИсходныеДанные = document.CreateElement("ИсходныеДанные");
-            document.DocumentElement.AppendChild(ИсходныеДанные);
+            XAttribute МодельИмя = new XAttribute("Имя", "Дарья");
+            XAttribute МодельДата = new XAttribute("Дата", "23.09.2016");
 
-            XmlNode Даты = document.CreateElement("Даты");
-            ИсходныеДанные.AppendChild(Даты);
+            XElement ИсходныеДанные = new XElement("ИсходныеДанные");
 
-            XmlAttribute ДатаПроисшествия = document.CreateAttribute("происшествия");
-            ДатаПроисшествия.Value = xmlex.DateIncident.ToString();
-            Даты.Attributes.Append(ДатаПроисшествия);
+            XElement Даты = new XElement("Даты");
+            XAttribute происшествия = new XAttribute("происшествия", xmlex.DateIncident.ToString());
 
-            XmlNode ДатаСообщения = document.CreateElement("сообщения");
-            ДатаСообщения.InnerText = xmlex.DateMessage.ToString();
-            Даты.AppendChild(ДатаСообщения);
+            Модель.Add(МодельДата);
+            Модель.Add(МодельИмя);
+            Модель.Add(ИсходныеДанные);
+            ИсходныеДанные.Add(Даты);
+            Даты.Add(происшествия);
 
-            //XmlAttribute ДатаСообщения = document.CreateAttribute("сообщения");
-            //ДатаСообщения.Value = xmlex.DateMessage.ToString();
-            //Даты.Attributes.Append(ДатаСообщения);
+            XElement Сообщения = new XElement("Сообщения", xmlex.DateMessage.ToString());
+            Даты.Add(Сообщения);
 
-            XmlNode Тип = document.CreateElement("Тип");
-            ИсходныеДанные.AppendChild(Тип);
+            XElement Происшествия = new XElement("Происшествия", xmlex.TypeNNP);
+            ИсходныеДанные.Add(Происшествия);
 
-            XmlNode ТипПроисшествия = document.CreateElement("Происшествия");
-            ТипПроисшествия.InnerText = xmlex.TypeNNP;
-            Тип.AppendChild(ТипПроисшествия);
+            XElement Расположение = new XElement("Расположение");
+            ИсходныеДанные.Add(Расположение);
+            XAttribute Объект = new XAttribute("Объект", xmlex.AccidentObj);
+            Расположение.Add(Объект);
+            XElement Область = new XElement("Область", xmlex.region);
+            Расположение.Add(Область);
+            XElement Район = new XElement("Район", xmlex.area);
+            Расположение.Add(Район);
 
-            XmlNode Расположение = document.CreateElement("Расположение");
-            ИсходныеДанные.AppendChild(Расположение);
+            XElement ТипННП = new XElement("ТипННП", xmlex.TypeNNP2);
+            ИсходныеДанные.Add(ТипННП);
+            XElement Объем = new XElement("Объем", xmlex.volumeNNP.ToString());
+            ИсходныеДанные.Add(Объем);
+            XElement Температура = new XElement("Температура", xmlex.Temp.ToString());
+            ИсходныеДанные.Add(Температура);
 
-            XmlAttribute Объект = document.CreateAttribute("Объект");
-            Объект.Value = xmlex.AccidentObj;
-            Расположение.Attributes.Append(Объект);
+            XElement ДанныеИзБД = new XElement("ДанныеИзБД");
+            Модель.Add(ДанныеИзБД);
 
-            XmlNode Область = document.CreateElement("Область");
-            Область.InnerText = xmlex.region;
-            Расположение.AppendChild(Область);
+            XElement Характеристики = new XElement("Характеристики");
+            ДанныеИзБД.Add(Характеристики);
+            XAttribute ОбъектБД = new XAttribute("Объект", xmlex.TypeInccident);
+            Характеристики.Add(ОбъектБД);
+            XElement Хранит = new XElement("Хранит", xmlex.TypeNNP2);
+            Характеристики.Add(Хранит);
+            XElement РасположениеБД = new XElement("Расположение", xmlex.location);
+            Характеристики.Add(РасположениеБД);
 
-            //XmlAttribute Область= document.CreateAttribute("Область");
-            //Область.Value = xmlex.region;
-            //Расположение.Attributes.Append(Область);
+            XElement ХарактеристикиННП = new XElement("ХарактеристикиННП");
+            ДанныеИзБД.Add(ХарактеристикиННП);
+            XAttribute ТипННПБД = new XAttribute("ТипННПБД", xmlex.TypeNNP2);
+            ХарактеристикиННП.Add(ТипННПБД);
+            XElement Плотность = new XElement("Плотность", xmlex.density);
+            ХарактеристикиННП.Add(Плотность);
+            XElement Вязкость = new XElement("Вязкость", xmlex.viscosity);
+            ХарактеристикиННП.Add(Вязкость);
+            XElement Растворимость = new XElement("Растворимость", xmlex.solubility);
+            ХарактеристикиННП.Add(Растворимость);
+            XElement КлиматическиеУсловия = new XElement("КлиматическиеУсловия");
+            ДанныеИзБД.Add(КлиматическиеУсловия);
 
-            XmlNode Район = document.CreateElement("Район");
-            Район.InnerText = xmlex.area;
-            Расположение.AppendChild(Район);
+            XElement СредняяТемпература = new XElement("СредняяТемпература", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(СредняяТемпература);
+            XElement ПромерзаниеПочвы = new XElement("ПромерзаниеПочвы", xmlex.Temp.ToString());
+            КлиматическиеУсловия.Add(ПромерзаниеПочвы);
 
-            //XmlAttribute Район = document.CreateAttribute("Район");
-            //Район.Value = xmlex.area;
-            //Расположение.Attributes.Append(Район);
-
-            XmlNode ННП = document.CreateElement("ННП");
-            ИсходныеДанные.AppendChild(ННП);
-
-
-            XmlNode ТипННП = document.CreateElement("Тип");
-            ТипННП.InnerText = xmlex.TypeNNP2;
-            ННП.AppendChild(ТипННП);
-
-            //XmlAttribute ТипННП = document.CreateAttribute("Тип");
-            //ТипННП.Value = xmlex.TypeNNP2;
-            //ННП.Attributes.Append(ТипННП);
-
-            XmlNode Объем = document.CreateElement("Объем");
-            ИсходныеДанные.AppendChild(Объем);
-
-
-            XmlNode ОбъемННП = document.CreateElement("ОбъемННП");
-            ОбъемННП.InnerText = xmlex.volumeNNP.ToString();
-            Объем.AppendChild(ОбъемННП);
-
-            XmlNode Погода = document.CreateElement("Погода");
-            ИсходныеДанные.AppendChild(Погода);
-
-
-            XmlNode Температура = document.CreateElement("Температура");
-            Температура.InnerText = xmlex.Temp.ToString();
-            Погода.AppendChild(Температура);
-
-            XmlNode ДанныеИзБД = document.CreateElement("ДанныеИзБД");
-            document.DocumentElement.AppendChild(ДанныеИзБД);
-
-            XmlNode Характеристики = document.CreateElement("Характеристики");
-            ДанныеИзБД.AppendChild(Характеристики);
-
-            XmlAttribute АтрибутыБД = document.CreateAttribute("Тип");
-            АтрибутыБД.Value = xmlex.TypeInccident;
-            Характеристики.Attributes.Append(АтрибутыБД);
-
-
-            XmlNode Хранит = document.CreateElement("Хранит");
-            Хранит.InnerText = xmlex.TypeNNP2;
-            Характеристики.AppendChild(Хранит);
-
-            //XmlAttribute АтрибутыБдхранит = document.CreateAttribute("Хранит"); 
-            //АтрибутыБдхранит.Value = xmlex.TypeNNP2; 
-            //Характеристики.Attributes.Append(АтрибутыБдхранит); 
-
-
-            XmlNode РасположениеБД = document.CreateElement("Расположение");
-            РасположениеБД.InnerText = xmlex.location;
-            Характеристики.AppendChild(РасположениеБД);
-
-            //XmlAttribute АтрибутыБдрасположение = document.CreateAttribute("Расположение"); 
-            //АтрибутыБдрасположение.Value = xmlex.location; 
-            //Характеристики.Attributes.Append(АтрибутыБдрасположение); 
-
-            //XmlNode ПлотностьПри20С = document.CreateElement("ПлотностьПри20С");
-            //ПлотностьПри20С.InnerText = "0,7-0,75 г/см3";
-            //ХарактеристикиННП.AppendChild(ПлотностьПри20С);
-
-            //XmlNode ВязкостьКинематическая = document.CreateElement("ВязкостьКинематическая");
-            //ВязкостьКинематическая.InnerText = "0,43-0,82 мм2/с";
-            //ХарактеристикиННП.AppendChild(ВязкостьКинематическая);
-
-            //XmlNode Растворимость = document.CreateElement("Растворимость");
-            //Растворимость.InnerText = "9,0-505 мг/дм3";
-            //ХарактеристикиННП.AppendChild(Растворимость);
-
-            //XmlNode КлиматическиеУсловия = document.CreateElement("КлиматическиеУсловия");
-            //ИнформацияИзБД.AppendChild(КлиматическиеУсловия);
-
-            //XmlNode СредняяТемпература = document.CreateElement("СредняяТемпература");
-            //СредняяТемпература.InnerText = "2°С";
-            //КлиматическиеУсловия.AppendChild(СредняяТемпература);
-
-            //XmlNode ПромерзаниеПочвы = document.CreateElement("ПромерзаниеПочвы");
-            //ПромерзаниеПочвы.InnerText = "5°С";
-            //КлиматическиеУсловия.AppendChild(ПромерзаниеПочвы);
-
-            //document.Save("D:/RGE.xml");
-            //String dasha = document.ToString();
-            //document.LoadXml(dasha);
-            document.Save("D:/RGE.xml");
-
-
-            var xmlstr = document.OuterXml;
-
-
+            xdoc.Add(Модель);
+            String xmlstr = xdoc.ToString();
             return RedirectToAction("Index");
-     }
-  
+        }
+
         public ActionResult Report()
         {
+<<<<<<< HEAD
             //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             //else ViewBag.msg = "соединение  c БД  не установлено";
            
+=======
+            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            else ViewBag.msg = "соединение  c БД  не установлено";
+
+>>>>>>> 6fe8cd0489467f58403e73f86e89b117058b9dc9
             EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
 
-                      return View(report);
+            return View(report);
         }
-       
-        
-	}
+
+
+    }
 }
