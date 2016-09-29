@@ -11,7 +11,11 @@ namespace EGH01DB
     internal  class DB
     {
         static SqlConnection con = null;
-        static public  SqlConnection Connect()
+        static public SqlConnection Connect()
+        {
+            return Connect("EGH");
+        }
+        static public  SqlConnection Connect(string connectname)
         {
             var s = ConfigurationManager.ConnectionStrings["EGH"];
             if (s != null)
@@ -28,10 +32,9 @@ namespace EGH01DB
             }
             return con;
         }
-        //static public  void Diconnect()
-        //{
-        //    if (con != null) con.Close();  
-        //}
+       
 
+               
+        
     }
 }

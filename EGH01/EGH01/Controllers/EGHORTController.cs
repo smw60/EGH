@@ -13,15 +13,15 @@ namespace EGH01.Controllers
         
         public ActionResult Index()
         {
-            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            else ViewBag.msg = "соединение  c БД  не установлено";
+            //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            //else ViewBag.msg = "соединение  c БД  не установлено";
             return View();
         }
         
         public ActionResult Report()
         {
-            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            else ViewBag.msg = "соединение  c БД  не установлено";
+            //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            //else ViewBag.msg = "соединение  c БД  не установлено";
 
             return View();
         }
