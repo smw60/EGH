@@ -29,12 +29,12 @@ namespace EGH01.Controllers
             public int Coordlongitudedegr { get; set; }//градсов
             public int Coordlongitudemin { get; set; }//долготоа минут
             public int Coordlongitudesec { get; set; }//долготоа секунды
+            public int Depth { get; set; } //глубина протечки
 
             //Выходные данные
             public List<Object> TypeObj = new List<Object> { "Река", "Лес", "Болото" };
             public DateTime DateRеportWriting { get; set; }
             public int AreaLand { get; set; }
-
         }
         public class XMLEX
         {
@@ -64,7 +64,7 @@ namespace EGH01.Controllers
 
             public string solubility { get; set; }
         }
-<<<<<<< HEAD
+
         
               //написать фильтр на открытие БД
         public ActionResult Index()
@@ -91,15 +91,12 @@ namespace EGH01.Controllers
      
        public ActionResult EvXML()
        {
-=======
+
         EGH01DB.RGEContext db = new EGH01DB.RGEContext();
-        //написать фильтр на открытие БД
-        public ActionResult Index()
-        {
-            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            else ViewBag.msg = "соединение  c БД  не установлено";
+       
+            
             InputDate inputDate = new InputDate();
->>>>>>> 6fe8cd0489467f58403e73f86e89b117058b9dc9
+
             XMLEX xmlex = new XMLEX();
             xmlex.DateIncident = new DateTime(2012, 10, 3, 8, 12, 0);
             xmlex.DateMessage = new DateTime(2012, 12, 8, 12, 17, 0);
@@ -201,7 +198,7 @@ namespace EGH01.Controllers
         }
 
 
-        public ActionResult EvXML()
+        /*public ActionResult EvXML()
         {
             XMLEX xmlex = new XMLEX();
             xmlex.DateIncident = new DateTime(2012, 10, 3, 8, 12, 0);
@@ -294,19 +291,15 @@ namespace EGH01.Controllers
             xdoc.Add(Модель);
             String xmlstr = xdoc.ToString();
             return RedirectToAction("Index");
-        }
+        }*/
 
         public ActionResult Report()
         {
-<<<<<<< HEAD
+
             //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
             //else ViewBag.msg = "соединение  c БД  не установлено";
            
-=======
-            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            else ViewBag.msg = "соединение  c БД  не установлено";
 
->>>>>>> 6fe8cd0489467f58403e73f86e89b117058b9dc9
             EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
 
             return View(report);

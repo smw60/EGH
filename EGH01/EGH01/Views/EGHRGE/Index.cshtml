@@ -24,7 +24,7 @@
     <article>
         <h1>Входные данные</h1>
         <h5 >
-            Дата происшествия
+            Дата и время происшествия
             @Html.TextBoxFor(m => m.DateIncident, new { type = "datetime-local" })
             
         </h5>
@@ -32,7 +32,7 @@
 
     <article>
         <h5>
-            Дата поступления сообщения
+            Дата и время поступления сообщения
             @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToString("dd/MM/yyyy HH:mm")), new { type = "datetime-local" })
         </h5>
     </article>
@@ -51,32 +51,15 @@
             @Html.DropDownList("Район", new SelectList(new[] { "Район", "Пуховический", "Минский", "Могилеский" }))
             @Html.DropDownList("Объект", new SelectList(new[] { "Объект", "АЗС 28", "Нефтебаза", "Хранилище 4" }))
             <input type="button" value="Найти на карте" style="margin:10px" />
-            <img src="~/Content/map.png" style="float:right"> 
-      
+            <img src="~/Content/map.png" style="float: right; border: 2px solid green;" alt="Объект на карте" width="250" height="250"> 
+             <p/>Разлив ниже уровня земли <input type="checkbox" />
+            Глубина протечки: 
+            @Html.TextBoxFor(m => Model.Depth)
         </h5>
         <h5>
             Координаты объекта:
         </h5>
-<<<<<<< HEAD
 
-        <h5>Ширина:</h5>
-        <article>
-       <h6>Градусы Минуты</h6>
-     <p> @Html.TextBox("Дата", @Model.Coordlatitudedegr) ° @Html.TextBox("Дата", @Model.Coordlatitudemin) ′</p>
-       Секунды
-      @Html.TextBox("Дата", @Model.Coordlatitudesec) " 
-        </article>
-        <h5>Долгота:</h5>
-        <article>
-            Градусы
-            @Html.TextBox("Дата", @Model.Coordlongitudedegr) °
-            Минуты
-            @Html.TextBox("Дата", @Model.Coordlongitudemin) ′
-            Секунды
-            @Html.TextBox("Дата", @Model.Coordlongitudesec) "
-        </article>
-    </article>
-=======
         <style>
             #editors input[type='text'] {
                 width: 58px;
@@ -90,7 +73,7 @@
         <h5>Градусы, °  Минуты, ′ секунды, " </h5>
         <h6 id ="editors">@Html.TextBoxFor(m => m.Coordlongitudedegr) ° @Html.TextBoxFor(m => m.Coordlongitudemin) ′ @Html.TextBoxFor(m => m.Coordlongitudesec) "</h6>
 
->>>>>>> f3ded389fa984a76a78a065bd8bb9651052d2831
+
 
    
 </article>
