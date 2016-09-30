@@ -117,6 +117,79 @@
                 </table>
 
             </fieldset>
+            <h1>Сравнение с ПДК</h1>
+            <fieldset>
+                <legend>АЗС 28</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+                    @foreach (var item in Model.ObjPoints)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> земля</td>
+                            <td> 100</td>
+                            <td> 1000</td>
+                            <td> 10 </td>
+                        </tr>
+                    }
+                </table>
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Охранные объекты</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> земля</td>
+                            <td> 50</td>
+                            <td> 200</td>
+                            <td> 4 </td>
+                        </tr>
+                    }
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Грунтовые воды</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+
+                    <tr>
+                        <td> Грунтовые воды</td>
+                        <td> - </td>
+                        <td> 0,3</td>
+                        <td> 300</td>
+                        <td> 1000 </td>
+                    </tr>
+
+                </table>
+            </fieldset>
         </div>
         <button type="button" class="btn btn-info">Рассчитать</button>
 
@@ -194,6 +267,7 @@
 </section>
 
 <section style="border: double; padding: 10px">
+    <h1>Классификация состояния среды</h1>
     <fieldset>
         <legend>Загрязнение АЗС 28</legend>
         <table border="1">
