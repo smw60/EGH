@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="DB.cs" />
     <Compile Include="ECHDBException.cs" />
+    <Compile Include="Objects\Incident.cs" />
+    <Compile Include="RGEContext_Exception.cs" />
     <Compile Include="RGEContext.cs" />
     <Compile Include="ORTContext.cs" />
     <Compile Include="GEAContext.cs" />
