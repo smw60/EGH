@@ -11,7 +11,7 @@ using EGH01DB.Objects;
 
 namespace EGH01DB
 {
-    internal  interface DBContext
+    public interface DBContext
     {
         SqlConnection connection { get; } 
     }

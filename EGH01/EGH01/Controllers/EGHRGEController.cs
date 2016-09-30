@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Linq;
 using EGH01DB;
-
+using DBOBJ = EGH01DB.Objects;
 namespace EGH01.Controllers
 {
     public class EGHRGEController : Controller
@@ -72,12 +72,26 @@ namespace EGH01.Controllers
             try
             {
                 RGEContext db = new RGEContext();
-                ViewBag.msg = "Соединение с базой данных установлено" ; 
+                ViewBag.msg = "Соединение с базой данных установлено" ;
+                DBOBJ.Incident inc = new DBOBJ.Incident(DateTime.Now, DateTime.Now, 1);
+                if (DBOBJ.Incident.Create(db, ref inc)) 
+                {
+                     bool b = DBOBJ.Incident.Delete(db, inc.id);
+                };
+                DBOBJ.Incident incident = new DBOBJ.Incident(); 
+                if (DBOBJ.Incident.GetByID (db, 50, ref incident))
+                {
+                    int k = 1;
+
+
+                };
+
+                
 
 
 
 
-                db.Disconnect();
+                //db.Disconnect();
             }
             catch (RGEContext.Exception e)
             {
