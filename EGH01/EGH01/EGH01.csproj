@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -197,6 +198,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Timplet.xml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -231,6 +233,9 @@
     <Content Include="Views\EGHCCO\Index.cshtml" />
     <Content Include="Views\EGHCAI\Index.cshtml" />
     <Content Include="Views\EGHRGE\Report.cshtml" />
+    <Content Include="Views\EGHCEQ\Report.cshtml" />
+    <Content Include="Views\EGHGEA\Report.cshtml" />
+    <Content Include="Views\EGHORT\Report.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

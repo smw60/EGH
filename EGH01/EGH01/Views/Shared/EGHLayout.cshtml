@@ -5,11 +5,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>"Экспертная система [EGH] </title>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>*@
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <h1> EGH - Экспертная система</h1>
-    <div> 
-      
+    <div style="border:solid"> 
         <section>
             <article>
                 @Html.ActionLink("EGHRGE - Реабилитация геологической среды", "Index", "EGHRGE")
@@ -23,18 +24,20 @@
             <article>
                 @Html.ActionLink("EGHORT - Оптимальне технологии реабилитации", "Index", "EGHORT")
             </article>
-     </section>
+        </section>
 
-     <section>
-        <article>
-            @Html.ActionLink("EGHCCO - Химический состав нефтей", "Index", "EGHCCO")
-       </article>
-        <article>
-            @Html.ActionLink("EGHCAI - Условия техногенной нагрузки", "Index", "EGHCAI")
-        </article> 
-    </section>
-        @RenderBody()
-    </div>
-
+        <section>
+           <article>
+                @Html.ActionLink("EGHCCO - Химический состав нефтей", "Index", "EGHCCO")
+           </article>
+           <article>
+                @Html.ActionLink("EGHCAI - Условия техногенной нагрузки", "Index", "EGHCAI")
+           </article> 
+        </section>
+   </div>
+   @RenderBody()
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

@@ -8,14 +8,19 @@ namespace EGH01.Controllers
 {
     public class EGHCAIController : Controller
     {
-        //
-        // GET: /EGHCAI/
-       
+        EGH01DB.CAIContext db = new EGH01DB.CAIContext(); 
 
         public ActionResult Index()
         {
+
+            if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
+            else ViewBag.msg = "соединение  c БД  не установлено";
+
             return View();
         }
 
 	}
 }
+
+
+;
