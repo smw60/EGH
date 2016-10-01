@@ -25,7 +25,7 @@ namespace EGH01DB
         public SqlConnection connection { get { return con; } }
         public RGEContext()
         {
-            if (con == null) throw new RGEContext.Exception(1);
+    //        if (con == null) throw new RGEContext.Exception(1);
 
         }
 
