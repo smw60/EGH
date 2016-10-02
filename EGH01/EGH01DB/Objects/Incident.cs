@@ -11,11 +11,11 @@ namespace EGH01DB.Objects
     public class Incident
     {
 
-        public int      id           { get; private set; }   // шдентификатор 
-        public DateTime date         { get; private set; }   // дата и время проишествия 
+        public int      id           { get; private set; }   // идентификатор 
+        public DateTime date         { get; private set; }   // дата и время происшествия 
         public DateTime date_message { get; private set; }   // дата и время  получения сообщения 
-        public int type_code         { get; private set; }   // код  типа проишествия    
-        public string type_name      { get { return "тип проишествия"; } }  //   тип проишествия   
+        public int type_code         { get; private set; }   // код  типа происшествия    
+        public string type_name      { get { return "тип происшествия"; } }  //   тип происшествия   
 
         public Incident()
         { 

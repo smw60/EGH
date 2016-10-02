@@ -83,10 +83,20 @@ namespace EGH01.Controllers
                 {
                     int k = 1;
 
-
                 };
 
-                
+                DBOBJ.IncidentType inc_type = new DBOBJ.IncidentType(7, "Отладка");
+                if (DBOBJ.IncidentType.Create(db, inc_type))
+                {
+                    int k = 1;
+                }
+                List<DBOBJ.IncidentType> list = new List<DBOBJ.IncidentType>();
+
+                if (DBOBJ.Helper.GetList(db, ref list))
+                {
+                    int k = 1;
+                }
+                int r = 1;
 
 
 
