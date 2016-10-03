@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DB.cs" />
     <Compile Include="ECHDBException.cs" />
+    <Compile Include="Objects\Coordinates.cs" />
     <Compile Include="Objects\Helper.cs" />
     <Compile Include="Objects\Incident.cs" />
     <Compile Include="Objects\IncidentType.cs" />

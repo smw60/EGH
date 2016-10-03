@@ -92,7 +92,7 @@ namespace EGH01.Controllers
                 }
                 List<DBOBJ.IncidentType> list = new List<DBOBJ.IncidentType>();
 
-                if (DBOBJ.Helper.GetList(db, ref list))
+                if (DBOBJ.Helper.GetListIncidentType(db, ref list))
                 {
                     int k = 1;
                 }
