@@ -47,6 +47,8 @@
     <Compile Include="Objects\Helper.cs" />
     <Compile Include="Objects\Incident.cs" />
     <Compile Include="Objects\IncidentType.cs" />
+    <Compile Include="Objects\Point.cs" />
+    <Compile Include="Objects\RiskObject.cs" />
     <Compile Include="RGEContext_Exception.cs" />
     <Compile Include="RGEContext.cs" />
     <Compile Include="ORTContext.cs" />

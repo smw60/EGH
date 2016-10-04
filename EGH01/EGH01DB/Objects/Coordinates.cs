@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EGH01DB.Objects
 {
-    class Coordinates
+    public class Coordinates
     {
         // широта:   0 - 90   - северная широта, -90 - 0 - южная широта 
         // долгота:  0 - 180  - восточная долгота, -180 - 0 - западная долгота 
@@ -75,6 +75,9 @@ namespace EGH01DB.Objects
         static bool validLat(int d, int m, float s) { return validLat(dms_to_d(d,m,s));}
         static bool validLng(float lngitude) { return lngitude >= -180.0f && lngitude <= 180.0f;}
         static bool validLng(int d, int m, float s) { return validLng(dms_to_d(d, m, s));}
-   
+       }
+
+    public class CoordinatesList
+    {
     }
 }
