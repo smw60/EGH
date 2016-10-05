@@ -36,23 +36,20 @@ namespace EGH01DB.Objects
         public static bool Delete() { return true; }
         public static bool GetByCoordinates() {return true; }
 
-
-
-
     }
     
     public class GroundPollution : Point   //загрязнение  в точке 
     {
-        public float watertime { get; private set; }    // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
-        public float concentration { get; private set; }    // концентрация нефтепрдуктов в грутне    (мл/кг)
+        public float watertime      {get; private set; }      // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
+        public float concentration  {get; private set; }      // концентрация нефтепрдуктов в грунте    (мл/кг)
+        Petrochemical petrochemical {get; private set; }      // нефтепрдукт
     }
-
-
+    
     public class WaterPollution : Point   //загрязнение в точке
     {
         public GroundPollution nearpoint { get; private set; }     // ближайшая точка загрязненной  поверхности       
-        public float pointtime { get; private set; }     // время достижения точки грунтовыми водами (сутки) 
-        public float concentration { get; private set; }     // концентрация нефтепрдуктов в воде   (мл/дм3)
+        public float pointtime { get; private set; }               // время достижения точки грунтовыми водами (сутки) 
+        public float concentration { get; private set; }           // концентрация нефтепрдуктов в воде   (мл/дм3)
     }
     
     
@@ -74,6 +71,19 @@ namespace EGH01DB.Objects
             };
         
         }
+
+        public static PointList CreateNear(Coordinates center, float radius1, float radius2)
+        {
+
+            // отладка 
+            return new PointList()
+            {
+
+
+            };
+
+        }
+
         //  найти  список точек в заданном полигоне 
         public static PointList CreateNear(Coordinates center, CoordinatesList border)
         {
@@ -87,8 +97,6 @@ namespace EGH01DB.Objects
 
         }
        
-       
-
 
     }
 
@@ -96,10 +104,50 @@ namespace EGH01DB.Objects
     public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках   в наземном радиусе
     {
 
+        public static GroundPollutionList CreateGroundPollutionList(Point center, Petrochemical petrochemical, float radius, float volume)
+        {
+            PointList pointlist = PointList.CreateNear(center.coordinates, radius);   // все точки в радиусе  radius
+            GroundPollutionList rc = new GroundPollutionList();
+
+            // ???вычислить высоту слоя пятна (volume/pi* radius^2 ) - это осядет в грунт 
+            // вычислить объем грунта goundvolume = (глубина до воды * площадь) 
+            // концентрация к* volume/ groundvolume
+            foreach (Point p in pointlist)
+            { 
+               // заполнение, вычисляем время достижения довы  и концнтрацию в каждой точке  
+               // rc.Add(new GroundPollution());
+            }
+            // максим думает 
+            return rc;
+        }
+
     }
   
-    public class WaterPollutionList : List<WaterPollution>    //  загрязнение в о всех точках  в  водном радиусе 
+    public class WaterPollutionList : List<WaterPollution>    //  загрязнение во всех точках  в  водном радиусе 
     {
+        // WaterPollutionList  строится на основе:
+        //  - списка GroundPollutionList
+        //  - списка PointList - список точек, вошедших в 
+           
+
+        public static WaterPollutionList CreateWaterPollutionList(Point  center,  GroundPollutionList pollutionlist,  float  groundradius,   float waterradius)
+        {
+
+            foreach (GroundPollution gp in pollutionlist)
+            {
+                // найти все точки между радиусами 
+                PointList pl = PointList.CreateNear(center.coordinates, groundradius, waterradius);
+            }
+            
+            
+            return new WaterPollutionList()
+            {
+                 // строится для точек между радиусами  
+
+            };
+        }
+
+
 
     }
 

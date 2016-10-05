@@ -11,6 +11,8 @@ namespace EGH01DB.Objects
         // широта:   0 - 90   - северная широта, -90 - 0 - южная широта 
         // долгота:  0 - 180  - восточная долгота, -180 - 0 - западная долгота 
         //comment
+        public static const float EquatorLat1DegreeLength_m = 111321.377778f;
+        public static const float Lng1DegreeLength_m        = 111134.861111f;
 
         public float latitude  {get; private set;}     // широта   12,1234567.. градусы 
         public float lngitude {get; private set;}     // долгота  123,123456.. градусы 
@@ -27,6 +29,13 @@ namespace EGH01DB.Objects
             this.lngitude = validLng(lngitude)? lngitude: 0.0f;
             this.Lat  = new DMS(latitude);
             this.Lng  = new DMS(lngitude);
+        }
+        public float Distance(Coordinates to)
+        {
+            // проверить 
+            double lat_2 = Math.Pow(EquatorLat1DegreeLength_m * Math.Cos(this.latitude) * (this.lngitude - to.lngitude), 2);
+            double lng_2 =  Math.Pow(Lng1DegreeLength_m * (this.latitude - to.latitude), 2);
+            return (float)Math.Sqrt(lat_2 + lng_2);
         }
         public Coordinates(int latd, int latm, float lats, int lngd, int lngm, float lngs)
         {
