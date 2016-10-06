@@ -9,7 +9,7 @@ namespace EGH01DB.Objects
 
     public class EcoObject : Point  // природоохранные объекты 
     {
-        public int ID       { get; private set;}    // идентификатор  
+        public int id       {get; private set;}    // идентификатор  
         public int codetype {get; private set; }    // код типа объекта (река, колодец, ...)
         public string type  {get { return "тип из справочника по codetype"; } }        // типа объекта (река, колодец, ...)
         public string name  {get { return "имя  из справочника по codetype"; } }
