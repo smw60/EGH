@@ -9,32 +9,32 @@ namespace EGH01DB.Objects
     public class Point  // точка  на карте  
     {
         public Coordinates coordinates { get; private set; }   // координаты точки 
-        public int codeground { get; private set; }   // грунт 
-        public string ground { get { return "грунт из справочника по codeground"; } }  // типа объекта (река, колодец,
-        public float waterdeep { get; private set; }   // глубина грунтовых вод    (м)
-        public float height { get; private set; }   // высота над уровнем моря  (м) 
-        public int codetype { get; private set; }   // кадастровый тип земли 
-        public string type { get { return "тип из справочника по codetype"; } }
+        public int    codegroundtype { get; private set; }   // грунт 
+        public string groundtype { get { return "грунт из справочника по codeground"; } }  // типа объекта (река, колодец,
+        public float  waterdeep { get; private set; }   // глубина грунтовых вод    (м)
+        public float  height { get; private set; }   // высота над уровнем моря  (м) 
+        public int    codecadastretype { get; private set; }   // кадастровый тип земли 
+        public string cadastretype { get { return "тип из справочника по codetype"; } }
         public Point() 
         {
             this.coordinates = new Coordinates();
-            this.codeground = 0;
+            this.codegroundtype = 0;
             this.waterdeep = 0;
             this.height = 0;
-            this.codetype = 0;
+            this.codecadastretype = 0;
         }
-        public Point(Coordinates coordinates, int codeground, int waterdeep, float height, int codetype)
+        public Point(Coordinates coordinates, int codegroundtype, int waterdeep, float height, int codecadastretype)
         {
             this.coordinates = coordinates;
-            this.codeground = codeground;
+            this.codegroundtype = codegroundtype;
             this.waterdeep = waterdeep;
             this.height = height;
-            this.codetype = codetype;
+            this.codecadastretype = codecadastretype;
         }
         
-        public static bool Create() { return true; }
-        public static bool Delete() { return true; }
-        public static bool GetByCoordinates() {return true; }
+        //public static bool Create() { return true; }
+        //public static bool Delete() { return true; }
+        //public static bool GetByCoordinates() {return true; }
 
     }
     

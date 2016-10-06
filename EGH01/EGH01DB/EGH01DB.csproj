@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DB.cs" />
     <Compile Include="ECHDBException.cs" />
+    <Compile Include="IDBContext.cs" />
     <Compile Include="Objects\Blur.cs" />
     <Compile Include="Objects\Coordinates.cs" />
     <Compile Include="Objects\Helper.cs" />
@@ -49,8 +50,10 @@
     <Compile Include="Objects\IncidentType.cs" />
     <Compile Include="Objects\Petrochemical.cs" />
     <Compile Include="Objects\Point.cs" />
+    <Compile Include="Objects\EcoObject.cs" />
     <Compile Include="Objects\RiskObject.cs" />
     <Compile Include="Objects\SpreadingCoefficient.cs" />
+    <Compile Include="RGEContextModel.cs" />
     <Compile Include="RGEContext_Exception.cs" />
     <Compile Include="RGEContext.cs" />
     <Compile Include="ORTContext.cs" />

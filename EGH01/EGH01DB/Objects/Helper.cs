@@ -10,7 +10,7 @@ namespace EGH01DB.Objects
 {
     public class Helper
     {
-        static public bool GetListIncidentType(EGH01DB.DBContext dbcontext, ref List<IncidentType> list_type)
+        static public bool GetListIncidentType(EGH01DB.IDBContext dbcontext, ref List<IncidentType> list_type)
         {
 
             bool rc = false;

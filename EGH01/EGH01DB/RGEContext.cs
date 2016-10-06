@@ -11,12 +11,9 @@ using EGH01DB.Objects;
 
 namespace EGH01DB
 {
-    public interface DBContext
-    {
-        SqlConnection connection { get; } 
-    }
+  
 
-    public partial class RGEContext:DBContext
+    public partial class RGEContext:IDBContext
     {
 
         

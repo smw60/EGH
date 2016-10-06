@@ -17,17 +17,17 @@ namespace EGH01DB.Objects
         // радиус для первоначального расчета из предположения
         // что поверхность ровная 
         public float radius      {get {return (float)Math.Sqrt(square/ 3.14);}}     // радиус наземного пятна (м)   считаем из площади (sqrt(square/3.14))  
-        public float square      {get{return SpreadingCoefficient.get(center.codeground, volume, 0.0f)* volume;}}   // площадь наземного пятна (м)  считаем  F * volume (F = 
+        public float square      {get{return SpreadingCoefficient.get(center.codegroundtype, volume, 0.0f)* volume;}}   // площадь наземного пятна (м)  считаем  F * volume (F = 
         // riskobjecstlist - из БД    pollutionlist - из БД по PointList
-        public RiskObjectsList riskobjecstlist { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
-        public GroundPollutionList pollutionlist { get; private set; }   // загрязнение в точках: время движения (дни) до грунтовых вод и концентрация (мл/кг) 
+        public EcoObjectsList riskobjecstlist { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
+        public GroundPollutionList pollutionlist {get; private set;}   // загрязнение в точках: время движения (дни) до грунтовых вод и концентрация (мл/кг) 
         
         public GroundBlur(Point center, Petrochemical petrochemical, float volume)
         {
             this.center = center;
             this.petrochemical = petrochemical;
             this.volume = volume;
-            this.riskobjecstlist = RiskObjectsList.CreateRiskObjectsList(center, radius);
+            this.riskobjecstlist = EcoObjectsList.CreateRiskObjectsList(center, radius);
             this.pollutionlist   = GroundPollutionList.CreateGroundPollutionList(center, petrochemical, radius, volume);               
         }
      }
@@ -41,14 +41,14 @@ namespace EGH01DB.Objects
        
         
         // Объекты и точки вышедшие за пределы GroundBlur.radius, но в пределах radius 
-        public RiskObjectsList riskobjecstlist { get; private set; }  // список  доп. объектов входящих в водяное пятно      
+        public EcoObjectsList ecoobjecstlist { get; private set; }  // список  доп. объектов входящих в водяное пятно      
         public WaterPollutionList pollutionlist { get; private set; }   // загрязнение в доп точках: время движения (дни)  грунтовых вод  до точек  
 
         public WaterBlur(GroundBlur groundblur)
         {
             this.groudblur = groundblur;
 
-            this.riskobjecstlist = RiskObjectsList.CreateRiskObjectsList(groudblur.center, groudblur.radius, radius);
+            this.ecoobjecstlist = EcoObjectsList.CreateRiskObjectsList(groudblur.center, groudblur.radius, radius);
             this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.center, groudblur.pollutionlist, groudblur.radius, this.radius);
 
         }
