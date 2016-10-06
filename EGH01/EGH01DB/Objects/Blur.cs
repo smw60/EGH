@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace EGH01DB.Objects
 {
 
-
-    
+     
     public class GroundBlur              //  пятно  наземное нефтеродукта  
     {
         public Point            center        {get; private set;}   // координаты центра 
