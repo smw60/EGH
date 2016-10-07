@@ -29,7 +29,7 @@ namespace EGH01DB
                 this.incident = incident;
                 this.riskobject = riskobject;
                 this.petrochemical = petrochemical;
-                this.groundblur = new GroundBlur(riskobject, petrochemical, )
+               // this.groundblur = new GroundBlur(riskobject, petrochemical, )
                                       
             }
         
