@@ -10,6 +10,8 @@ namespace EGH01DB
 {
     internal  class DB
     {
+
+        // test 
         static SqlConnection con = null;
         static public SqlConnection Connect()
         {
