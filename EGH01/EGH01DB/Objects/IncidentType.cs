@@ -26,7 +26,7 @@ namespace EGH01DB.Objects
             this.name = name;
         }
 
-        static public bool Create(EGH01DB.DBContext dbcontext, IncidentType incident_type)
+        static public bool Create(EGH01DB.IDBContext dbcontext, IncidentType incident_type)
         {
 
             bool rc = false;

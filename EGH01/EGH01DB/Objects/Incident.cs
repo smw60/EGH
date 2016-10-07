@@ -34,7 +34,7 @@ namespace EGH01DB.Objects
  
         }
 
-        static public bool Create(EGH01DB.DBContext dbcontext, ref Incident incident)
+        static public bool Create(EGH01DB.IDBContext dbcontext, ref Incident incident)
         {
 
             bool rc = false; 
@@ -76,7 +76,7 @@ namespace EGH01DB.Objects
 
             return rc;
         }
-        static public bool Delete(EGH01DB.DBContext dbcontext, int ID)
+        static public bool Delete(EGH01DB.IDBContext dbcontext, int ID)
         {
             bool rc = false; 
             using (SqlCommand cmd = new SqlCommand("EGH.DeleteIncident", dbcontext.connection))
@@ -104,8 +104,7 @@ namespace EGH01DB.Objects
             }
             return rc;
         }
-
-        static public bool GetByID(EGH01DB.DBContext dbcontext, int ID, ref Incident incident)
+        static public bool GetByID(EGH01DB.IDBContext dbcontext, int ID, ref Incident incident)
         {
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.EGH.GetIncidentByID", dbcontext.connection))

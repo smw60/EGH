@@ -35,7 +35,7 @@ namespace EGH01DB
              };
 
          }
-         static public bool GetList(EGH01DB.DBContext dbcontext, ref List<IncidentType> list_type)
+         static public bool GetList(EGH01DB.IDBContext dbcontext, ref List<IncidentType> list_type)
          {
 
              bool rc = false;
