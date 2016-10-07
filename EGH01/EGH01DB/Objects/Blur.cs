@@ -20,7 +20,7 @@ namespace EGH01DB.Objects
         public float radius      {get {return (float)Math.Sqrt(square/ 3.14);}}     // радиус наземного пятна (м)   считаем из площади (sqrt(square/3.14))  
         public float square      {get{return SpreadingCoefficient.get(center.codegroundtype, volume, 0.0f)* volume;}}   // площадь наземного пятна (м)  считаем  F * volume (F = 
         // riskobjecstlist - из БД    pollutionlist - из БД по PointList
-        public EcoObjectsList riskobjecstlist { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
+        public EcoObjectsList ecoobjecstlist { get; private set; }   // список объектов в т.ч. заглавный которые попали в наземное пятно    
         public GroundPollutionList pollutionlist {get; private set;}   // загрязнение в точках: время движения (дни) до грунтовых вод и концентрация (мл/кг) 
         
         public GroundBlur(Point center, Petrochemical petrochemical, float volume)
@@ -28,7 +28,7 @@ namespace EGH01DB.Objects
             this.center = center;
             this.petrochemical = petrochemical;
             this.volume = volume;
-            this.riskobjecstlist = EcoObjectsList.CreateRiskObjectsList(center, radius);
+            this.ecoobjecstlist  = EcoObjectsList.CreateEcoObjectsList(center, radius);
             this.pollutionlist   = GroundPollutionList.CreateGroundPollutionList(center, petrochemical, radius, volume);               
         }
      }
@@ -38,19 +38,28 @@ namespace EGH01DB.Objects
         public GroundBlur groudblur { get; private set; }  // пятно по поверхности 
         public CoordinatesList border { get; private set; }  // координаты граничных точек водного пятна
         
-        public float radius { get; private set; }  // радиус водного пятна (м)    - не зннаем как считать !!!!!!!!!!!  
+        public float radius {get; private set; }  // радиус водного пятна (м)    - не зннаем как считать !!!!!!!!!!!  
        
         
         // Объекты и точки вышедшие за пределы GroundBlur.radius, но в пределах radius 
-        public EcoObjectsList ecoobjecstlist { get; private set; }  // список  доп. объектов входящих в водяное пятно      
-        public WaterPollutionList pollutionlist { get; private set; }   // загрязнение в доп точках: время движения (дни)  грунтовых вод  до точек  
+        public EcoObjectsList     ecoobjecstlist { get; private set; }  // список  доп. объектов входящих в водяное пятно      
+        public WaterPollutionList pollutionlist  { get; private set; }  // загрязнение в доп точках: время движения (дни)  грунтовых вод  до точек  
 
         public WaterBlur(GroundBlur groundblur)
         {
             this.groudblur = groundblur;
+            this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(groudblur.center, groudblur.radius, radius);
+            this.pollutionlist  = WaterPollutionList.CreateWaterPollutionList(groudblur.center, groudblur.pollutionlist,  groundblur.petrochemical, groudblur.radius, this.radius);
 
-            this.ecoobjecstlist = EcoObjectsList.CreateRiskObjectsList(groudblur.center, groudblur.radius, radius);
-            this.pollutionlist = WaterPollutionList.CreateWaterPollutionList(groudblur.center, groudblur.pollutionlist, groudblur.radius, this.radius);
+            this.radius = 0; //  sqrt(объем нефтепродукта поступившее в грунтовые воды/ (пористость грунта * водоносный горизонт* pi)) +  groundblur.radius
+
+            // водоносный горизонт = 1м  предполагаем 
+            // объем нефтепродукта поступившее в грунтовые воды =  (1 - пористость грунта)* volume 
+
+
+
+
+
 
         }
     }  

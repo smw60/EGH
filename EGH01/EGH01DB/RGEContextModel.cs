@@ -30,6 +30,9 @@ namespace EGH01DB
                 this.riskobject = riskobject;
                 this.petrochemical = petrochemical;
                 this.groundblur = new GroundBlur(riskobject, petrochemical, volume);
+                this.waterblur  = new WaterBlur(this.groundblur);
+
+
                                       
             }
         

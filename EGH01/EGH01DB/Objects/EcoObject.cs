@@ -17,7 +17,7 @@ namespace EGH01DB.Objects
 
     public class EcoObjectsList : List<EcoObject>      // список объектов  с координами 
     {
-        public static EcoObjectsList CreateRiskObjectsList(Point center, float distance)
+        public static EcoObjectsList CreateEcoObjectsList(Point center, float distance)
         {
 
             return new EcoObjectsList()
@@ -27,7 +27,7 @@ namespace EGH01DB.Objects
 
             };
         }
-        public static EcoObjectsList CreateRiskObjectsList(Point center, float distance1, float distance2 )
+        public static EcoObjectsList CreateEcoObjectsList(Point center, float distance1, float distance2 )
         {
 
             return new EcoObjectsList()

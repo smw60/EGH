@@ -36,5 +36,7 @@ namespace EGH01DB.Objects
 
             }
         }
+        static public bool GetListGroundType { get { return true; } }
+        
     }
 }

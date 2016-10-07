@@ -50,6 +50,16 @@ namespace EGH01DB.Objects
         public GroundPollution nearpoint { get; private set; }     // ближайшая точка загрязненной  поверхности       
         public float pointtime { get; private set; }               // время достижения точки грунтовыми водами (сутки) 
         public float concentration { get; private set; }           // концентрация нефтепрдуктов в воде   (мл/дм3)
+
+        // pointtime =  (пористость * расстояние) / (коэффициент фильтрации воды * гидравлический уклон)
+        // пористость и коэффициент фильтрации воды берем из GroundType
+
+        // concentration = зависит от коэффициентов диффузии, распределения, сорбции, пористости (из GroundType) и pointtime
+
+        // ГИДРАВЛИЧЕСКИЙ УКЛОН - под вопросом!!!!!
+        
+
+
     }
     
     
@@ -130,7 +140,7 @@ namespace EGH01DB.Objects
         //  - списка PointList - список точек, вошедших в 
            
 
-        public static WaterPollutionList CreateWaterPollutionList(Point  center,  GroundPollutionList pollutionlist,  float  groundradius,   float waterradius)
+        public static WaterPollutionList CreateWaterPollutionList(Point  center,  GroundPollutionList pollutionlist,  Petrochemical  petrochemical,  float  groundradius,   float waterradius)
         {
 
             foreach (GroundPollution gp in pollutionlist)
