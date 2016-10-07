@@ -42,7 +42,7 @@ namespace EGH01DB.Objects
     {
         public float watertime      {get; private set; }      // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
         public float concentration  {get; private set; }      // концентрация нефтепрдуктов в грунте    (мл/кг)
-        Petrochemical petrochemical {get; private set; }      // нефтепрдукт
+        public Petrochemical petrochemical {get; private set; }      // нефтепрдукт
     }
     
     public class WaterPollution : Point   //загрязнение в точке

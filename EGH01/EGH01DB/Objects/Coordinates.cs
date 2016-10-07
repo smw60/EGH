@@ -11,8 +11,8 @@ namespace EGH01DB.Objects
         // широта:   0 - 90   - северная широта, -90 - 0 - южная широта 
         // долгота:  0 - 180  - восточная долгота, -180 - 0 - западная долгота 
         //comment
-        public static const float EquatorLat1DegreeLength_m = 111321.377778f;
-        public static const float Lng1DegreeLength_m        = 111134.861111f;
+        public /*static*/ const float EquatorLat1DegreeLength_m = 111321.377778f;
+        public /*static*/ const float Lng1DegreeLength_m        = 111134.861111f;
 
         public float latitude  {get; private set;}     // широта   12,1234567.. градусы 
         public float lngitude {get; private set;}     // долгота  123,123456.. градусы 
