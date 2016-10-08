@@ -7,7 +7,8 @@ using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Linq;
 using EGH01DB;
-using DBOBJ = EGH01DB.Objects;
+using EGH01DB.Primitives;
+using EGH01DB.Types;
 namespace EGH01.Controllers
 {
     public class EGHRGEController : Controller
@@ -73,26 +74,26 @@ namespace EGH01.Controllers
             {
                 RGEContext db = new RGEContext();
                 ViewBag.msg = "Соединение с базой данных установлено" ;
-                DBOBJ.Incident inc = new DBOBJ.Incident(DateTime.Now, DateTime.Now, 1);
-                if (DBOBJ.Incident.Create(db, ref inc)) 
+                Incident inc = new Incident(DateTime.Now, DateTime.Now, 1);
+                if (Incident.Create(db, ref inc)) 
                 {
-                     bool b = DBOBJ.Incident.Delete(db, inc.id);
+                     bool b = Incident.Delete(db, inc.id);
                 };
-                DBOBJ.Incident incident = new DBOBJ.Incident(); 
-                if (DBOBJ.Incident.GetByID (db, 50, ref incident))
+                Incident incident = new Incident(); 
+                if (Incident.GetByID (db, 50, ref incident))
                 {
                     int k = 1;
 
                 };
 
-                DBOBJ.IncidentType inc_type = new DBOBJ.IncidentType(7, "Отладка");
-                if (DBOBJ.IncidentType.Create(db, inc_type))
+                IncidentType inc_type = new IncidentType(7, "Отладка");
+                if (IncidentType.Create(db, inc_type))
                 {
                     int k = 1;
                 }
-                List<DBOBJ.IncidentType> list = new List<DBOBJ.IncidentType>();
+                List<IncidentType> list = new List<IncidentType>();
 
-                if (DBOBJ.Helper.GetListIncidentType(db, ref list))
+                if (Helper.GetListIncidentType(db, ref list))
                 {
                     int k = 1;
                 }

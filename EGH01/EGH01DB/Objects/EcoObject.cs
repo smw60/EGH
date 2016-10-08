@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using EGH01DB.Points;
+using EGH01DB.Types;
 namespace EGH01DB.Objects
 {
 
     public class EcoObject : Point  // природоохранные объекты 
     {
-        public int id       {get; private set;}    // идентификатор  
-        public int codetype {get; private set; }    // код типа объекта (река, колодец, ...)
-        public string type  {get { return "тип из справочника по codetype"; } }        // типа объекта (река, колодец, ...)
-        public string name  {get { return "имя  из справочника по codetype"; } }
+        public int          id           {get; private set;}    // идентификатор 
+        public CadastreType cadastretype {get; private set; }   // кадастровый тип земли
+        public string name  {get { return "имя  собственное";}}      
     }
 
     public class EcoObjectsList : List<EcoObject>      // список объектов  с координами 

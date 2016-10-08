@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using EGH01DB.Objects;
+using EGH01DB.Types;
+
 namespace EGH01DB
 {
      partial class  RGEContext {
