@@ -1,17 +1,22 @@
--- Создание процедур на вставку, удаление и получение ИД типа инцидента
--- Типа инцидентов:
--- 1	Нефтепровод
--- 2	Резервуар наземный
--- 3	Подземный резервуар
--- 4	Автотранспорт
--- 5	Жележнодорожный транспорт
+----------------- Создание процедур --------- -------------------------------
+---- Типы инцидентов
+-----------------------------------------------------------------------------
+---- Добавление типа инцидента
+---- Удаление типа инцидента
+---- Получение ID типа инцидента
+---- Получение списка типов инцидентов
+---- Обновление типа инцидента
+-----------------------------------------------------------------------------
+drop procedure EGH.CreateIncidentType;
+drop procedure EGH.DeleteIncidentType; 
+drop procedure EGH.GetIncidentTypeByID;
+drop procedure EGH.GetIncidentTypeList;
+drop procedure EGH.UpdateIncidentType;
+go;
+------------------------------------
 
 -- Добавление типа инцидента
-drop procedure EGH.CreateIncidentType
-go
-
-
-create procedure EGH.CreateIncidentType (@КодТипа int ,  @Наименование nvarchar(50))
+create procedure EGH.CreateIncidentType (@КодТипа int,  @Наименование nvarchar(50))
 as begin 
 declare @rc int  = @КодТипа;
 	begin try
@@ -22,7 +27,7 @@ declare @rc int  = @КодТипа;
 	end catch 
   return @rc;  
 end;
-go
+go;
 
 -- Удаление типа инцидента
 create procedure EGH.DeleteIncidentType (@КодТипа int)
@@ -35,12 +40,10 @@ as begin
 	    set @rc = -1;
 	end catch   
 	return @rc;
-end 
+end; 
 go;
--- Получение типа инцидента по ID
-drop  procedure EGH.GetIncidentTypeByID
-go
 
+-- Получение типа инцидента по ID
 create  procedure EGH.GetIncidentTypeByID(@КодТипа int, @Наименование nvarchar(50) output) 
 as begin 
     declare @rc int = -1;
@@ -48,10 +51,9 @@ as begin
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
+go;
 
-go
-
---
+-- Получение списка типов инцидентов
 create procedure EGH.GetIncidentTypeList
  as begin
 	declare @rc int = -1;
@@ -59,9 +61,7 @@ create procedure EGH.GetIncidentTypeList
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
+go;
 
+---- Обновление типа инцидента
 
-select * from [dbo].[ТипыИнцидентов]
-declare @ttt int = -1;
-exec @ttt=EGH.GetIncidentTypeList
-select @ttt;
