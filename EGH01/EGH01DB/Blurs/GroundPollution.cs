@@ -29,7 +29,7 @@ namespace EGH01DB.Blurs
             // концентрация к* volume/ groundvolume
             foreach (AnchorPoint p in anchorpointlist)
             {
-                // заполнение, вычисляем время достижения довы  и концнтрацию в каждой точке  
+                // заполнение, вычисляем время достижения воды  и концентрацию в каждой точке  
                 // rc.Add(new GroundPollution());
             }
             // максим думает 
