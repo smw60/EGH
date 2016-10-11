@@ -10,9 +10,10 @@ namespace EGH01DB.Objects
 
     public class EcoObject : Point  // природоохранные объекты 
     {
-        public int          id           {get; private set;}    // идентификатор 
-        public CadastreType cadastretype {get; private set; }   // кадастровый тип земли
-        public string name  {get { return "имя  собственное";}}      
+        public int           id             {get; private set;}    // идентификатор 
+        public EcoObjectType ecoobjecttype  {get; private set;}    // тип природохранного объекта 
+        public CadastreType  cadastretype   {get; private set; }   // кадастровый тип земли
+        public string name   {get { return "имя  собственное";}}      
     }
 
     public class EcoObjectsList : List<EcoObject>      // список объектов  с координами 

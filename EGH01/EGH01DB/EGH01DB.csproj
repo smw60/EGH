@@ -50,6 +50,7 @@
     <Compile Include="Points\SpreadPoint.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="Types\CadastreType.cs" />
+    <Compile Include="Types\EcoObjectType.cs" />
     <Compile Include="Types\GroundType.cs" />
     <Compile Include="Primitives\Helper.cs" />
     <Compile Include="Primitives\Incident.cs" />
