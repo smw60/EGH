@@ -9,10 +9,10 @@ namespace EGH01DB.Types
     public class PetrochemicalType   // нефтепродукт 
     {
         public int code_type      { get; set; }   // код   
-        public string Name        { get; set; }   //название нефтепродукта
-        public float  BoilingTemp { get; set; }   //температура кипения (С)
-        public float  Density     { get; set; }   //плотность (г/см3)
-        public float  Viscosity   { get; set; }   //кинематическая вязкость (мм2/с)
-        public float  Solubility  { get; set; }   //растворимость (мг/дм3)
+        public string name        { get; set; }   //название нефтепродукта
+        public float  boilingtemp { get; set; }   //температура кипения (С)
+        public float  density     { get; set; }   //плотность (г/см3)
+        public float  viscosity   { get; set; }   //кинематическая вязкость (мм2/с)
+        public float  solubility  { get; set; }   //растворимость (мг/дм3)
     }
 }
