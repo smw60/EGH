@@ -1,5 +1,0 @@
-C:\EGH\SMW60\egh\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
-C:\EGH\SMW60\egh\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
-C:\EGH\SMW60\egh\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
-C:\EGH\SMW60\egh\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
-C:\EGH\SMW60\egh\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
