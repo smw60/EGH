@@ -17,4 +17,30 @@ namespace EGH01DB.Objects
        
         // дополнительная инфомация из паспорта объекта 
     }
+
+    public class RiskObjectsList : List<EcoObject>      // список объектов  с координами 
+    {
+        public static RiskObjectsList CreateRiskObjectsList(Point center, float distance)
+        {
+
+            return new RiskObjectsList()
+            {
+                // найти все объекты на расстоянии < distance
+
+
+            };
+        }
+        public static RiskObjectsList CreateRiskObjectsList(Point center, float distance1, float distance2)
+        {
+
+            return new RiskObjectsList()
+            {
+                // найти все объекты на расстоянии > distance1 и <  distance2
+
+            };
+        }
+
+
+    }
+
 }

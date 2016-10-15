@@ -7,7 +7,7 @@ using EGH01DB.Primitives;
 using EGH01DB.Types;
 namespace EGH01DB.Points
 {
-    public class Point  // точка  на карте  
+    public class Point  // геологическая точка  
     {
         public Coordinates coordinates { get; private set; }   // координаты точки 
         public GroundType groundtype   { get; private set; }   // грунт 
