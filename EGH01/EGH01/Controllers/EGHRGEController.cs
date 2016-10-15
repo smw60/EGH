@@ -97,11 +97,29 @@ namespace EGH01.Controllers
                 {
                     int k = 1;
                 }
-                int r = 1;
 
+                int k1;
+                if (IncidentType.GetNextCode(db, out k1))
+                {
+                    int r = 1;
 
+                }
+                //if (IncidentType.Update(db, new IncidentType(7, "yyy")))
+                //{
+                //    int r = 1;
 
+                //}
+                //if (IncidentType.Delete(db, new IncidentType(5)))
+                //{
+                //    int r = 1;
 
+                //}
+                IncidentType t = new IncidentType();
+                if (IncidentType.GetByCode(db, 2,  out t))
+                {
+                    int r = 1;
+
+                }
                 //db.Disconnect();
             }
             catch (RGEContext.Exception e)

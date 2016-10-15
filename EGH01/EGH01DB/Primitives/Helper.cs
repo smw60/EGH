@@ -28,6 +28,7 @@ namespace EGH01DB.Primitives
                         list_type.Add(new IncidentType((int)reader["КодТипа"], (string)reader["Наименование"]));
                     }
                     rc = list_type.Count > 0;
+                    reader.Close();
                 }
                 catch (Exception e)
                 {
