@@ -11,9 +11,10 @@ namespace EGH01DB.Types
 {
     public class IncidentType
     {
-        public int type_code { get; private set; }   // код типа инцидента
-        public string name { get; private set; }   // наименование типа инцидента
-
+        public int                 type_code   {get; private set; }   // код типа инцидента
+        public string              name        {get; private set; }   // наименование типа инцидента
+        static public IncidentType defaulttype {get { return new IncidentType(0, "Не определен");}}  // выдавать при ошибке  
+      
         public IncidentType()
         {
             this.type_code = -1;
@@ -63,8 +64,10 @@ namespace EGH01DB.Types
 
             return rc;
         }
+        static public bool GetByCode(int type_code, out IncidentType type) { type = new IncidentType(0, "Отладка"); return true;}
+        
 
-      
+        
     }
 }
 

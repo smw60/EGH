@@ -53,7 +53,7 @@
     <Compile Include="Types\EcoObjectType.cs" />
     <Compile Include="Types\GroundType.cs" />
     <Compile Include="Primitives\Helper.cs" />
-    <Compile Include="Primitives\Incident.cs" />
+    <Compile Include="Points\Incident.cs" />
     <Compile Include="Types\IncidentType.cs" />
     <Compile Include="Types\PetrochemicalType.cs" />
     <Compile Include="Points\Point.cs" />

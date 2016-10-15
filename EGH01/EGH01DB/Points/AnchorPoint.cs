@@ -8,9 +8,10 @@ using EGH01DB.Types;
 
 namespace EGH01DB.Points
 {
-    public class AnchorPoint:Point   // точки-засечки  
+    public class AnchorPoint:Point   // опорная геологическая точка   
     {
-        public CadastreType cadastretype { get; private set;}   // кадастровый тип земли
+        public int          id           {get; private set;}       
+        public CadastreType cadastretype {get; private set;}   // кадастровый тип земли
     }
     public class AnchorPointList : List<AnchorPoint>   // список точек  с  с координатами и характеристика 
     {

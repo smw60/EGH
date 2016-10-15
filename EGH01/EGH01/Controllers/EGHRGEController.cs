@@ -74,17 +74,17 @@ namespace EGH01.Controllers
             {
                 RGEContext db = new RGEContext();
                 ViewBag.msg = "Соединение с базой данных установлено" ;
-                Incident inc = new Incident(DateTime.Now, DateTime.Now, 1);
-                if (Incident.Create(db, ref inc)) 
-                {
-                     bool b = Incident.Delete(db, inc.id);
-                };
-                Incident incident = new Incident(); 
-                if (Incident.GetByID (db, 50, ref incident))
-                {
-                    int k = 1;
+                //Incident inc = new Incident(DateTime.Now, DateTime.Now, IncidentType.defaulttype);
+                //if (Incident.Create(db, ref inc)) 
+                //{
+                //     bool b = Incident.Delete(db, inc.id);
+                //};
+                //Incident incident = new Incident(); 
+                //if (Incident.GetByID (db, 50, ref incident))
+                //{
+                //    int k = 1;
 
-                };
+                //};
 
                 IncidentType inc_type = new IncidentType(7, "Отладка");
                 if (IncidentType.Create(db, inc_type))
