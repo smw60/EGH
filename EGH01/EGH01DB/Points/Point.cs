@@ -13,8 +13,6 @@ namespace EGH01DB.Points
         public GroundType groundtype   { get; private set; }   // грунт 
         public float      waterdeep    { get; private set; }   // глубина грунтовых вод    (м)
         public float      height      { get; private set; }   // высота над уровнем моря  (м) 
-        // public int    codecadastretype { get; private set; }   // кадастровый тип земли 
-        // public string cadastretype { get { return "тип из справочника по codetype"; } }
         public Point() 
         {
             this.coordinates = new Coordinates();
@@ -31,13 +29,13 @@ namespace EGH01DB.Points
             this.height      = point.height;
         
         }
-        public Point(Coordinates coordinates, GroundType groundtype, int waterdeep, float height, int codecadastretype)
+        public Point(Coordinates coordinates, GroundType groundtype, int waterdeep, float height)
         {
             this.coordinates = coordinates;
             this.groundtype = groundtype;
             this.waterdeep = waterdeep;
             this.height = height;
-            //this.codecadastretype = codecadastretype;
+           // this.codecadastretype = codecadastretype;
         }
         
         //public static bool Create() { return true; }

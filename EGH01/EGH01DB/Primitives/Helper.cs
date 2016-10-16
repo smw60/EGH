@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
 using EGH01DB.Types;
 
 namespace EGH01DB.Primitives
@@ -39,6 +40,26 @@ namespace EGH01DB.Primitives
             }
         }
         static public bool GetListGroundType { get { return true; } }
+        static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
+        {
+            float rc = errorvalue;
+            if (n.Attributes[name] != null)  if (!float.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
+            return rc;
+        }
+        static public int GetIntAttribute(XmlNode n, string name, int errorvalue = -1)
+        {
+            int rc = errorvalue;
+            if (n.Attributes[name] != null) if (!int.TryParse(n.Attributes[name].Value, out rc)) rc = errorvalue;
+            return rc;
+        }
+        static public string  GetStringAttribute(XmlNode n, string name, string  errorvalue = "")
+        {
+            string rc = errorvalue;
+            if (n.Attributes[name] != null) rc = n.Attributes[name].Value;
+            return rc;
+        }
+
+
         
     }
 }

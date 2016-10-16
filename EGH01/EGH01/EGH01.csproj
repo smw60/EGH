@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DebugController.cs" />
     <Compile Include="Controllers\EGHCAIController.cs" />
     <Compile Include="Controllers\EGHCCOController.cs" />
     <Compile Include="Controllers\EGHCEQController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="Views\EGHCEQ\Report.cshtml" />
     <Content Include="Views\EGHGEA\Report.cshtml" />
     <Content Include="Views\EGHORT\Report.cshtml" />
+    <Content Include="Views\Debug\XML.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
