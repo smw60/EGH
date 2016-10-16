@@ -6,6 +6,7 @@
 ---- Получение типа нефтепродукта по ID
 ---- Получение списка типов нефтепродукта
 ---- Обновление типа нефтепродукта
+---- Получение следующего ID типа нефтепродукта
 -----------------------------------------------------------------------------
 use egh;
 drop procedure EGH.CreatePetrochemicalType;
@@ -13,6 +14,7 @@ drop procedure EGH.DeletePetrochemicalType;
 drop procedure EGH.GetPetrochemicalTypeByID;
 drop procedure EGH.GetPetrochemicalTypeList;
 drop procedure EGH.UpdatePetrochemicalType;
+drop procedure EGH.GetNextPetrochemicalTypeCode;
 go;
 ------------------------------------
 
@@ -46,7 +48,7 @@ declare @rc int  = @КодТипаНефтепродукта;
 	end catch 
   return @rc;  
 end;
-
+go
 
 -- Удаление типа нефтепродукта
 create procedure EGH.DeletePetrochemicalType (@КодТипаНефтепродукта int)
@@ -60,7 +62,7 @@ as begin
 	end catch   
 	return @rc;
 end; 
-
+go
 
 -- Получение типа нефтепродукта по ID
 create  procedure EGH.GetPetrochemicalTypeByID(
@@ -81,7 +83,7 @@ as begin
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go
 
 -- Получение списка типов нефтепродукта
 create procedure EGH.GetPetrochemicalTypeList
@@ -97,18 +99,19 @@ create procedure EGH.GetPetrochemicalTypeList
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
+go
 
----- Получение следующего значения типа нефтепродукта
+-- Получение следующего значения типа нефтепродукта
 create procedure EGH.GetNextPetrochemicalTypeCode
  as begin
 	declare @rc int = -1;
-	select	max(КодТипаНефтепродукта)+1 rc from dbo.ТипНефтепродукта;
+	select	max(КодТипаНефтепродукта)+1 from dbo.ТипНефтепродукта;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go
 ---- Обновление типа нефтепродукта
-create  procedure EGH.GetPetrochemicalTypeByID(
+create  procedure EGH.UpdatePetrochemicalTypeByID(
 						@КодТипаНефтепродукта int, 
 						@НаименованиеТипаНефтепродукта nvarchar(50) output,
 						@ТемператураКипения float output,
@@ -117,12 +120,15 @@ create  procedure EGH.GetPetrochemicalTypeByID(
 						@Растворимость float output) 
 as begin 
     declare @rc int = -1;
-	select  @НаименованиеТипаНефтепродукта = НаименованиеТипаНефтепродукта,
-			@ТемператураКипения = ТемператураКипения,
-			@Плотность = Плотность,
-			@КинематическаяВязкость = КинематическаяВязкость,
-			@Растворимость = Растворимость
+	update  dbo.ТипНефтепродукта set
+			НаименованиеТипаНефтепродукта = @НаименованиеТипаНефтепродукта,
+			ТемператураКипения = @ТемператураКипения,
+			Плотность = @Плотность,
+			КинематическаяВязкость = @КинематическаяВязкость,
+			Растворимость = @Растворимость
 	from dbo.ТипНефтепродукта where КодТипаНефтепродукта = @КодТипаНефтепродукта;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
+go
+

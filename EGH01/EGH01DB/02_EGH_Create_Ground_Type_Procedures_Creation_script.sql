@@ -1,24 +1,26 @@
 ----------------- Создание процедур --------- -------------------------------
----- Типы почв 
+---- Тип грунта
 -----------------------------------------------------------------------------
----- Добавление типа почв 
----- Удаление типа почв 
----- Получение типа почв по ID  
----- Получение списка типов почв 
----- Обновление типа почв
+---- Добавление типа грунта 
+---- Удаление типа грунта 
+---- Получение типа грунта по ID  
+---- Получение списка типов грунта 
+---- Обновление типа грунта
+---- Получение следующего ID типа грунта 
 -----------------------------------------------------------------------------
 drop procedure EGH.CreateGroundType;
 drop procedure EGH.DeleteGroundType;
 drop procedure EGH.GetGroundTypeByID;
 drop procedure EGH.GetGroundTypeList;
 drop procedure EGH.UpdateGroundType;
-GO;
+drop procedure EGH.GetNextGroundTypeCode;
+GO
 ------------------------------------
 
--- Добавление типа почв 
+-- Добавление типа грунта  
 create procedure EGH.CreateGroundType(
-		    @КодВидаПочвы int,  
-			@НаименованиеВидаПочвы nvarchar(50), 
+		    @КодТипаГрунта int,  
+			@НаименованиеТипаГрунта nvarchar(50), 
 			@КоэфПористости float,
 			@КоэфЗадержкиМиграции float,
 			@КоэфФильтрацииВоды float,
@@ -26,19 +28,19 @@ create procedure EGH.CreateGroundType(
 			@КоэфРаспределения float,
 			@КоэфСорбции float)
 as begin 
-declare @rc int  = @КодВидаПочвы;
+declare @rc int  = @КодТипаГрунта;
 	begin try
-		insert into dbo.ТипыПочв(
-					[КодВидаПочвы],
-					[НаименованиеВидаПочвы],
+		insert into dbo.ТипГрунта(
+					[КодТипаГрунта],
+					[НаименованиеТипаГрунта],
 					[КоэфПористости],
 					[КоэфЗадержкиМиграции],
 					[КоэфФильтрацииВоды],
 					[КоэфДиффузии],
 					[КоэфРаспределения],
 					[КоэфСорбции]) 
-			values (@КодВидаПочвы,  
-					@НаименованиеВидаПочвы, 
+			values (@КодТипаГрунта,  
+					@НаименованиеТипаГрунта, 
 					@КоэфПористости,
 					@КоэфЗадержкиМиграции,
 					@КоэфФильтрацииВоды,
@@ -51,48 +53,77 @@ declare @rc int  = @КодВидаПочвы;
 	end catch 
   return @rc;  
 end;
-go;
+go
 
--- Удаление типа почв
-create procedure EGH.DeleteGroundType (@КодВидаПочвы int)
+-- Удаление типа грунта 
+create procedure EGH.DeleteGroundType (@КодТипаГрунта int)
 as begin 
-    declare @rc int  = @КодВидаПочвы;
+    declare @rc int  = @КодТипаГрунта;
     begin try 
-	 delete ТипыПочв where КодВидаПочвы = @КодВидаПочвы;
+	 delete ТипГрунта where КодТипаГрунта = @КодТипаГрунта;
 	end try
 	begin catch
 	    set @rc = -1;
 	end catch   
 	return @rc;
 end;
-go;
+go
 
--- Получение типа почв по ID 
-create  procedure EGH.GetGroundTypeByID(@КодВидаПочвы int, @НаименованиеВидаПочвы nvarchar(30) output) 
+-- Получение типа грунта  по ID 
+create  procedure EGH.GetGroundTypeByID(@КодТипаГрунта int, 
+										@НаименованиеТипаГрунта nvarchar(30) output, 
+										@КоэфПористости float output,  
+										@КоэфЗадержкиМиграции float output,
+										@КоэфФильтрацииВоды float output,
+										@КоэфДиффузии float output,  
+										@КоэфРаспределения float output,
+										@КоэфСорбции float output) 
 as begin 
     declare @rc int = -1;
-	select  @НаименованиеВидаПочвы = НаименованиеВидаПочвы from dbo.ТипыПочв where КодВидаПочвы = @КодВидаПочвы;  
+	select	@НаименованиеТипаГрунта = НаименованиеТипаГрунта,  
+			@КоэфПористости = КоэфПористости,
+			@КоэфЗадержкиМиграции = КоэфПористости,
+			@КоэфФильтрацииВоды = КоэфФильтрацииВоды,
+			@КоэфДиффузии = КоэфДиффузии,
+			@КоэфРаспределения = КоэфРаспределения,
+			@КоэфСорбции = КоэфСорбции
+	from dbo.ТипГрунта where КодТипаГрунта = @КодТипаГрунта;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-go;
+go
 
--- Получение списка типов почв 
+-- Получение списка типов грунта  
 create procedure EGH.GetGroundTypeList
  as begin
 	declare @rc int = -1;
-	select	КодВидаПочвы, 
-			НаименованиеВидаПочвы,
+	select	КодТипаГрунта, 
+			НаименованиеТипаГрунта,
 			КоэфПористости,
 			КоэфЗадержкиМиграции,
 			КоэфФильтрацииВоды,
 			КоэфДиффузии,
 			КоэфРаспределения,
 			КоэфСорбции
-		from dbo.ТипыПочв;
+		from dbo.ТипГрунта;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-go;
-
----- Обновление типа почв
+go
+-- Обновление типа грунта 
+create  procedure EGH.UpdateGroundType(@КодТипаГрунта int, @НовоеНаименованиеТипаГрунта nvarchar(30)) 
+as begin 
+    declare @rc int = -1;
+	update  dbo.ТипГрунта set НаименованиеТипаГрунта = @НовоеНаименованиеТипаГрунта where КодТипаГрунта = @КодТипаГрунта;  
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
+go
+-- Получение следующего ID типа грунта 
+create procedure EGH.GetNextGroundTypeCode
+ as begin
+	declare @rc int = -1;
+	select max(КодТипаГрунта)+1 from [dbo].[ТипГрунта];
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;

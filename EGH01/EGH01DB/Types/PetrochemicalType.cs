@@ -64,6 +64,100 @@ namespace EGH01DB.Types
             this.density = 0.0f;
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
+        }        
+        
+        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out PetrochemicalType petrochemical_type)
+        {
+            bool rc = false;
+            petrochemical_type = new PetrochemicalType();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPetrochemicalTypeByID", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипа", SqlDbType.Int);
+                    parm.Value = type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Наименование", SqlDbType.NVarChar);
+                    parm.Size = 50;
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    string name = (string)cmd.Parameters["@Наименование"].Value;
+                    float boilingtemp = (float)cmd.Parameters["@ТемператураКипения"].Value;
+                    float density = (float)cmd.Parameters["@Плотность"].Value;
+                    float viscosity = (float)cmd.Parameters["@КинематическаяВязкость"].Value;
+                    float solubility = (float)cmd.Parameters["@Растворимость"].Value;
+
+                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) petrochemical_type = new PetrochemicalType(type_code, name, boilingtemp, density, viscosity, solubility);
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
+
+        static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
+        {
+            bool rc = false;
+            code = -1;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextPetrochemicalType", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипа", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    code = (int)cmd.Parameters["@КодТипа"].Value;
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
         }
 
         static public bool Create(EGH01DB.IDBContext dbcontext, PetrochemicalType petrochemical_type)
@@ -122,38 +216,7 @@ namespace EGH01DB.Types
 
             return rc;
         }
-
-        static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
-        {
-            bool rc = false;
-            code = -1;
-            using (SqlCommand cmd = new SqlCommand("EGH.GetNextPetrochemicalTypeCode", dbcontext.connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипа", SqlDbType.Int);
-                    parm.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
-                    parm.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(parm);
-                }
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    code = (int)cmd.Parameters["@КодТипа"].Value;
-                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
-                }
-                catch (Exception e)
-                {
-                    rc = false;
-                };
-                return rc;
-            }
-        }
-
+        
         static public bool Update(EGH01DB.IDBContext dbcontext, PetrochemicalType petrochemical_type)
         {
                 // обновление только наименования????
@@ -222,64 +285,6 @@ namespace EGH01DB.Types
 
             }
 
-            return rc;
-        }
-
-        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out PetrochemicalType petrochemical_type)
-        {
-            bool rc = false;
-            petrochemical_type = new PetrochemicalType();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetPetrochemicalTypeByID", dbcontext.connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипа", SqlDbType.Int);
-                    parm.Value = type_code;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@Наименование", SqlDbType.NVarChar);
-                    parm.Size = 50;
-                    parm.Direction = ParameterDirection.Output;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@ТемператураКипения", SqlDbType.Float);
-                    parm.Value = petrochemical_type.boilingtemp;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@Плотность", SqlDbType.Float);
-                    parm.Value = petrochemical_type.density;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КинематическаяВязкость", SqlDbType.Float);
-                    parm.Value = petrochemical_type.viscosity;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@Растворимость", SqlDbType.Float);
-                    parm.Value = petrochemical_type.solubility;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
-                    parm.Direction = ParameterDirection.ReturnValue;
-                    cmd.Parameters.Add(parm);
-                }
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                    string name = (string)cmd.Parameters["@Наименование"].Value;
-                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) petrochemical_type = new PetrochemicalType(type_code, name);
-                }
-                catch (Exception e)
-                {
-                    rc = false;
-                };
-
-            }
             return rc;
         }
     }
