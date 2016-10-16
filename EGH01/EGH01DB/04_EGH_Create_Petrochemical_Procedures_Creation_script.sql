@@ -7,6 +7,7 @@
 ---- Получение списка типов нефтепродукта
 ---- Обновление типа нефтепродукта
 -----------------------------------------------------------------------------
+use egh;
 drop procedure EGH.CreatePetrochemicalType;
 drop procedure EGH.DeletePetrochemicalType;
 drop procedure EGH.GetPetrochemicalTypeByID;
@@ -17,24 +18,24 @@ go;
 
 -- Добавление типа нефтепродукта
 create procedure EGH.CreatePetrochemicalType(
-						@КодТипаНефтепродуктов int,  
-						@НаименованиеТипаНефтепродуктов nvarchar(30),
+						@КодТипаНефтепродукта int,  
+						@НаименованиеТипаНефтепродукта nvarchar(30),
 						@ТемператураКипения float,
 						@Плотность float,
 						@КинематическаяВязкость float,
 						@Растворимость float)
 as begin 
-declare @rc int  = @КодТипаНефтепродуктов;
+declare @rc int  = @КодТипаНефтепродукта;
 	begin try
-		insert into dbo.ТипыНефтепродуктов(
-							КодТипаНефтепродуктов,
-							НаименованиеТипаНефтепродуктов,
+		insert into dbo.ТипНефтепродукта(
+							КодТипаНефтепродукта,
+							НаименованиеТипаНефтепродукта,
 							ТемператураКипения,
 							Плотность,
 							КинематическаяВязкость,
 							Растворимость) 
-				values(@КодТипаНефтепродуктов,
-					   @НаименованиеТипаНефтепродуктов,
+				values(@КодТипаНефтепродукта,
+					   @НаименованиеТипаНефтепродукта,
 					   @ТемператураКипения,
 					   @Плотность,
 					   @КинематическаяВязкость,
@@ -45,57 +46,83 @@ declare @rc int  = @КодТипаНефтепродуктов;
 	end catch 
   return @rc;  
 end;
-go
+
 
 -- Удаление типа нефтепродукта
-create procedure EGH.DeletePetrochemicalType (@КодТипаНефтепродуктов int)
+create procedure EGH.DeletePetrochemicalType (@КодТипаНефтепродукта int)
 as begin 
-    declare @rc int  = @КодТипаНефтепродуктов;
+    declare @rc int  = @КодТипаНефтепродукта;
     begin try 
-	 delete dbo.ТипыНефтепродуктов where КодТипаНефтепродуктов = @КодТипаНефтепродуктов;
+	 delete dbo.ТипНефтепродукта where КодТипаНефтепродукта = @КодТипаНефтепродукта;
 	end try
 	begin catch
 	    set @rc = -1;
 	end catch   
 	return @rc;
 end; 
-go;
+
 
 -- Получение типа нефтепродукта по ID
-create  procedure GetPetrochemicalTypeByID(
-						@КодТипаНефтепродуктов int, 
-						@НаименованиеТипаНефтепродуктов nvarchar(50) output,
+create  procedure EGH.GetPetrochemicalTypeByID(
+						@КодТипаНефтепродукта int, 
+						@НаименованиеТипаНефтепродукта nvarchar(50) output,
 						@ТемператураКипения float output,
 						@Плотность float output,
 						@КинематическаяВязкость float output,
 						@Растворимость float output) 
 as begin 
     declare @rc int = -1;
-	select  @НаименованиеТипаНефтепродуктов = НаименованиеТипаНефтепродуктов,
+	select  @НаименованиеТипаНефтепродукта = НаименованиеТипаНефтепродукта,
 			@ТемператураКипения = ТемператураКипения,
 			@Плотность = Плотность,
 			@КинематическаяВязкость = КинематическаяВязкость,
 			@Растворимость = Растворимость
-	from dbo.ТипыНефтепродуктов where КодТипаНефтепродуктов = @КодТипаНефтепродуктов;  
+	from dbo.ТипНефтепродукта where КодТипаНефтепродукта = @КодТипаНефтепродукта;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-go;
+
 
 -- Получение списка типов нефтепродукта
 create procedure EGH.GetPetrochemicalTypeList
  as begin
 	declare @rc int = -1;
-	select	КодТипаНефтепродуктов,
-			НаименованиеТипаНефтепродуктов,
+	select	КодТипаНефтепродукта,
+			НаименованиеТипаНефтепродукта,
 			ТемператураКипения,
 			Плотность,
 			КинематическаяВязкость,
 			Растворимость
-	from dbo.ТипыНефтепродуктов;
+	from dbo.ТипНефтепродукта;
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-go;
+
+---- Получение следующего значения типа нефтепродукта
+create procedure EGH.GetNextPetrochemicalTypeCode
+ as begin
+	declare @rc int = -1;
+	select	max(КодТипаНефтепродукта)+1 rc from dbo.ТипНефтепродукта;
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;
 
 ---- Обновление типа нефтепродукта
+create  procedure EGH.GetPetrochemicalTypeByID(
+						@КодТипаНефтепродукта int, 
+						@НаименованиеТипаНефтепродукта nvarchar(50) output,
+						@ТемператураКипения float output,
+						@Плотность float output,
+						@КинематическаяВязкость float output,
+						@Растворимость float output) 
+as begin 
+    declare @rc int = -1;
+	select  @НаименованиеТипаНефтепродукта = НаименованиеТипаНефтепродукта,
+			@ТемператураКипения = ТемператураКипения,
+			@Плотность = Плотность,
+			@КинематическаяВязкость = КинематическаяВязкость,
+			@Растворимость = Растворимость
+	from dbo.ТипНефтепродукта where КодТипаНефтепродукта = @КодТипаНефтепродукта;  
+	set @rc = @@ROWCOUNT;
+	return @rc;    
+end;

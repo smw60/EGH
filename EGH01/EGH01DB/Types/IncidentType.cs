@@ -76,7 +76,6 @@ namespace EGH01DB.Types
             return rc;
         }
 
-
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
         {
             bool rc= false;
@@ -181,8 +180,7 @@ namespace EGH01DB.Types
 
             return rc;
         }
-       
-        
+               
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out IncidentType type)
         {
             bool rc = false;
@@ -221,9 +219,6 @@ namespace EGH01DB.Types
             }
             return rc;
         }
-        
-
-        
     }
 }
 

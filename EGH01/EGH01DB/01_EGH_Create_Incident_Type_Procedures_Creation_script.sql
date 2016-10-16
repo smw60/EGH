@@ -7,6 +7,8 @@
 ---- Получение списка типов инцидентов
 ---- Обновление типа инцидента
 -----------------------------------------------------------------------------
+use egh;
+
 drop procedure EGH.CreateIncidentType;
 drop procedure EGH.DeleteIncidentType; 
 drop procedure EGH.GetIncidentTypeByID;
@@ -20,7 +22,7 @@ create procedure EGH.CreateIncidentType (@КодТипа int,  @Наименование nvarchar(5
 as begin 
 declare @rc int  = @КодТипа;
 	begin try
-		insert into dbo.ТипыИнцидентов(КодТипа, Наименование) values(@КодТипа, @Наименование); 
+		insert into dbo.ТипИнцидента(КодТипа, Наименование) values(@КодТипа, @Наименование); 
 	end try
 	begin catch
 	    set @rc = -1;
@@ -34,7 +36,7 @@ create procedure EGH.DeleteIncidentType (@КодТипа int)
 as begin 
     declare @rc int  = @КодТипа;
     begin try 
-	 delete ТипыИнцидентов where КодТипа = @КодТипа;
+	 delete ТипИнцидента where КодТипа = @КодТипа;
 	end try
 	begin catch
 	    set @rc = -1;
@@ -47,7 +49,7 @@ go;
 create  procedure EGH.GetIncidentTypeByID(@КодТипа int, @Наименование nvarchar(50) output) 
 as begin 
     declare @rc int = -1;
-	select  @Наименование = Наименование from dbo.ТипыИнцидентов where КодТипа = @КодТипа;  
+	select  @Наименование = Наименование from dbo.ТипИнцидента where КодТипа = @КодТипа;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
@@ -57,7 +59,7 @@ go;
 create procedure EGH.GetIncidentTypeList
  as begin
 	declare @rc int = -1;
-	select КодТипа, Наименование from [dbo].[ТипыИнцидентов];
+	select КодТипа, Наименование from [dbo].[ТипИнцидента];
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
