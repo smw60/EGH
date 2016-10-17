@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EGH01DB.Primitives;
+using System.Xml;
 using EGH01DB.Types;
+
 namespace EGH01DB.Points
 {
     public class Point  // геологическая точка  
@@ -35,8 +37,22 @@ namespace EGH01DB.Points
             this.groundtype = groundtype;
             this.waterdeep = waterdeep;
             this.height = height;
-           // this.codecadastretype = codecadastretype;
         }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("Point");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("height", this.height.ToString());
+            rc.SetAttribute("waterdeep", this.waterdeep.ToString());
+           
+            rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+                       
+            return (XmlNode)rc;
+        }
+
+
         
         //public static bool Create() { return true; }
         //public static bool Delete() { return true; }

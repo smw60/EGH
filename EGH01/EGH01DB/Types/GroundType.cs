@@ -139,13 +139,13 @@ namespace EGH01DB.Types
              XmlDocument doc = new XmlDocument();
              XmlElement rc = doc.CreateElement("GroundType");
              if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-             rc.SetAttribute("type_code", this.type_code.ToString());
-             rc.SetAttribute("name",      this.name);
-             rc.SetAttribute("porosity",  this.porosity.ToString());
-             rc.SetAttribute("holdmigration", this.holdmigration.ToString());
+             rc.SetAttribute("type_code",      this.type_code.ToString());
+             rc.SetAttribute("name",           this.name);
+             rc.SetAttribute("porosity",       this.porosity.ToString());
+             rc.SetAttribute("holdmigration",  this.holdmigration.ToString());
              rc.SetAttribute("waterfilter",    this.waterfilter.ToString());
              rc.SetAttribute("diffusion",      this.diffusion.ToString());
-             rc.SetAttribute("distribution",  this.distribution.ToString());
+             rc.SetAttribute("distribution",   this.distribution.ToString());
              rc.SetAttribute("sorption",       this.sorption.ToString());
              return (XmlNode)rc;
         }
