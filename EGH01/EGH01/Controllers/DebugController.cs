@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using System.Xml;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
+using EGH01DB.Points;
+
 
 namespace EGH01.Controllers
 {
@@ -33,16 +35,23 @@ namespace EGH01.Controllers
                     new Coordinates(53.871781f, 27.547893f),
                 };
                 XmlNode xmllist = clist.toXmlNode();
-                CoordinatesList clist1 =  CoordinatesList.CreateCoordinatesList(xmllist);
-                
+                CoordinatesList clist1 = CoordinatesList.CreateCoordinatesList(xmllist);
+
             }
 
             {
                 GroundType gt = new GroundType(1, "песок", 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f);
                 XmlNode xml = gt.toXmlNode("Тип грунта");
                 GroundType gt1 = new GroundType(xml);
-               
+
             }
+            {
+                Point p = new Point(new Coordinates(53.1000f, 27.2345f),  new GroundType(2, "ground",1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f),  4, 200.0f);
+               XmlNode xml = p.toXmlNode("test"); 
+            
+            
+            }
+
 
 
 
