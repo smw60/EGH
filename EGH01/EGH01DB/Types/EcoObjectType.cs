@@ -12,7 +12,7 @@ namespace EGH01DB.Types
     public class EcoObjectType
     {
         public int type_code { get; private set; }   // код типа природоохрнного объекта объекта 
-        public string name { get; private set; }     // наименование типа природоохрнного  объекта
+        public string name { get; private set; }     // наименование типа природоохранного  объекта
         static public EcoObjectType defaulttype { get { return new EcoObjectType(0, "Не определен"); } }  // выдавать при ошибке  
       
         public EcoObjectType()
