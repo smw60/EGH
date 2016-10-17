@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using EGH01DB.Primitives;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace EGH01DB.Types
 {
@@ -57,19 +59,282 @@ namespace EGH01DB.Types
             this.sorption =      Helper.GetFloatAttribute(node, "sorption");
         }
 
-        
+        static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out GroundType ground_type)
+        {
+            bool rc = false;
+            ground_type = new GroundType();
+            using (SqlCommand cmd = new SqlCommand("EGH.GetGroundTypeByID", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    parm.Value = type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаГрунта", SqlDbType.NVarChar);
+                    parm.Size = 50;
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
+                    parm.Value = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    string name = (string)cmd.Parameters["@НаименованиеТипаГрунта"].Value;
+                    float porosity = (float)cmd.Parameters["@КоэфПористости"].Value;
+                    float holmigration = (float)cmd.Parameters["@КоэфФильтрацииВоды"].Value;
+                    float waterfilter = (float)cmd.Parameters["@КоэфФильтрацииВоды"].Value;
+                    float diffusion = (float)cmd.Parameters["@КоэфДиффузии"].Value;
+                    float distribution = (float)cmd.Parameters["@КоэфРаспределения"].Value;
+                    float sorption = (float)cmd.Parameters["@КоэфСорбции"].Value;
+                    
+                    if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) 
+                        ground_type = new GroundType(type_code, name, porosity, holmigration, waterfilter, diffusion, distribution, sorption);
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+            return rc;
+        }
+        static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
+        {
+            bool rc = false;
+            code = -1;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextGroundTypeCode", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    code = (int)cmd.Parameters["@КодТипаГрунта"].Value;
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+        static public bool Create(EGH01DB.IDBContext dbcontext, GroundType ground_type)
+        {
+
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.CreateGroundType", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    parm.Value = ground_type.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаГрунта", SqlDbType.NVarChar);
+                    parm.Value = ground_type.name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Float);
+                    parm.Value = ground_type.porosity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Float);
+                    parm.Value = ground_type.holdmigration;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Float);
+                    parm.Value = ground_type.waterfilter;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    parm.Value = ground_type.diffusion;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Float);
+                    parm.Value = ground_type.distribution;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
+                    parm.Value = ground_type.sorption;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    rc = (int)cmd.Parameters["@exitrc"].Value == ground_type.type_code;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+
+            return rc;
+        }
+        static public bool Update(EGH01DB.IDBContext dbcontext, GroundType ground_type)
+        {
+            // обновление ???
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.UpdateGroundType", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    parm.Value = ground_type.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НаименованиеТипаГрунта", SqlDbType.VarChar);
+                    parm.Value = ground_type.name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфПористости", SqlDbType.Float);
+                    parm.Value = ground_type.porosity;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфЗадержкиМиграции", SqlDbType.Float);
+                    parm.Value = ground_type.holdmigration;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфФильтрацииВоды", SqlDbType.Float);
+                    parm.Value = ground_type.waterfilter;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфДиффузии", SqlDbType.Float);
+                    parm.Value = ground_type.diffusion;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфРаспределения", SqlDbType.Float);
+                    parm.Value = ground_type.distribution;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КоэфСорбции", SqlDbType.Float);
+                    parm.Value = ground_type.sorption;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Float);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+            }
+            return rc;
+        }
+        static public bool Delete(EGH01DB.IDBContext dbcontext, GroundType ground_type)
+        {
+
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.DeleteGroundType", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    parm.Value = ground_type.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+            }
+            return rc;
+        }
         public XmlNode toXmlNode(string comment = "")
         {
              XmlDocument doc = new XmlDocument();
              XmlElement rc = doc.CreateElement("GroundType");
              if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
-             rc.SetAttribute("type_code", this.type_code.ToString());
-             rc.SetAttribute("name",      this.name);
-             rc.SetAttribute("porosity",  this.porosity.ToString());
-             rc.SetAttribute("holdmigration", this.holdmigration.ToString());
+             rc.SetAttribute("type_code",      this.type_code.ToString());
+             rc.SetAttribute("name",           this.name);
+             rc.SetAttribute("porosity",       this.porosity.ToString());
+             rc.SetAttribute("holdmigration",  this.holdmigration.ToString());
              rc.SetAttribute("waterfilter",    this.waterfilter.ToString());
              rc.SetAttribute("diffusion",      this.diffusion.ToString());
-             rc.SetAttribute("distribution",  this.distribution.ToString());
+             rc.SetAttribute("distribution",   this.distribution.ToString());
              rc.SetAttribute("sorption",       this.sorption.ToString());
              return (XmlNode)rc;
         }
