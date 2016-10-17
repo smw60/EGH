@@ -14,7 +14,6 @@ namespace EGH01DB.Primitives
     {
         static public bool GetListIncidentType(EGH01DB.IDBContext dbcontext, ref List<IncidentType> list_type)
         {
-
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.GetIncidentTypeList", dbcontext.connection))
             {
@@ -40,6 +39,39 @@ namespace EGH01DB.Primitives
             }
         }
         static public bool GetListGroundType { get { return true; } }
+
+        static public bool GetListCadastreType { get { return true; } }
+
+        static public bool GetListEcoObjectType { get { return true; } }
+
+        static public bool GetListPetrochemicalType (EGH01DB.IDBContext dbcontext, ref List<PetrochemicalType> list_type) 
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetPetrochemicalTypeList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_type = new List<PetrochemicalType>();
+                    while (reader.Read())
+                    {
+                        list_type.Add(new PetrochemicalType((int)reader["КодТипа"], (string)reader["Наименование"], (float)reader["ТемператураКипения"], (float)reader["Плотность"], (float)reader["КинематическаяВязкость"], (float)reader["Растворимость"]));
+                    }
+                    rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+    
+        static public bool GetListRiskObjectType { get { return true; } }
+
         static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
             float rc = errorvalue;
