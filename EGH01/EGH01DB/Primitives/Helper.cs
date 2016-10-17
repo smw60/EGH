@@ -38,13 +38,97 @@ namespace EGH01DB.Primitives
 
             }
         }
-        static public bool GetListGroundType { get { return true; } }
+        static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetGroundTypeList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-        static public bool GetListCadastreType { get { return true; } }
+                    list_type = new List<GroundType>();
+                    while (reader.Read())
+                    {
+                        list_type.Add(new GroundType((int)reader["КодТипаГрунта"], 
+                            (string)reader["НаименованиеТипаГрунта"], 
+                            (float)reader["КоэфПористости"], 
+                            (float)reader["КоэфЗадержкиМиграции"], 
+                            (float)reader["КоэфФильтрацииВоды"], 
+                            (float)reader["КоэфДиффузии"],
+                            (float)reader["КоэфРаспределения"],
+                            (float)reader["КоэфСорбции"]));
+                    }
+                    rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        
+        }
 
-        static public bool GetListEcoObjectType { get { return true; } }
+        static public bool GetListCadastreType(EGH01DB.IDBContext dbcontext, ref List<CadastreType> list_type) 
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetLandRegistryTypeList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
-        static public bool GetListPetrochemicalType (EGH01DB.IDBContext dbcontext, ref List<PetrochemicalType> list_type) 
+                    list_type = new List<CadastreType>();
+                    while (reader.Read())
+                    {
+                        list_type.Add(new CadastreType((int)reader["КодНазначенияЗемель"], 
+                                                        (string)reader["НаименованиеНазначенияЗемель"], 
+                                                        (int)reader["ПДК"]));
+                    }
+                    rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
+
+        static public bool GetListEcoObjectType(EGH01DB.IDBContext dbcontext, ref List<EcoObjectType> list_type)
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetEcoObjectTypeList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_type = new List<EcoObjectType>();
+                    while (reader.Read())
+                    {
+                        list_type.Add(new EcoObjectType((int)reader["КодТипаПриродоохранногоОбъекта"], 
+                                                        (string)reader["Наименование"]));
+                    }
+                    rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
+        static public bool GetListPetrochemicalType(EGH01DB.IDBContext dbcontext, ref List<PetrochemicalType> list_type) 
         { 
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.GetPetrochemicalTypeList", dbcontext.connection))
@@ -57,7 +141,12 @@ namespace EGH01DB.Primitives
                     list_type = new List<PetrochemicalType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new PetrochemicalType((int)reader["КодТипа"], (string)reader["Наименование"], (float)reader["ТемператураКипения"], (float)reader["Плотность"], (float)reader["КинематическаяВязкость"], (float)reader["Растворимость"]));
+                        list_type.Add(new PetrochemicalType((int)reader["КодТипа"],
+                                                            (string)reader["НаименованиеТипаНефтепродукта"], 
+                                                            (float)reader["ТемператураКипения"], 
+                                                            (float)reader["Плотность"], 
+                                                            (float)reader["КинематическаяВязкость"], 
+                                                            (float)reader["Растворимость"]));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -69,8 +158,33 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
-    
-        static public bool GetListRiskObjectType { get { return true; } }
+
+        static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EEGH.GetRiskObjectTypeList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    list_type = new List<RiskObjectType>();
+                    while (reader.Read())
+                    {
+                        list_type.Add(new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"],
+                                                         (string)reader["НаименованиеТипаТехногенногоОбъекта"]));
+                    }
+                    rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
 
         static public float GetFloatAttribute(XmlNode n, string name, float errorvalue = 0.0f)
         {
