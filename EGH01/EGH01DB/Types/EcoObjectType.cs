@@ -64,7 +64,7 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = (int)cmd.Parameters["@exitrc"].Value == incident_type.type_code;
+                    rc = (int)cmd.Parameters["@exitrc"].Value == ecoobject_type.type_code;
                 }
                 catch (Exception e)
                 {
