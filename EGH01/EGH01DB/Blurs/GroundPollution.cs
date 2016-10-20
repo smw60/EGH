@@ -11,10 +11,34 @@ namespace EGH01DB.Blurs
 {
     public class GroundPollution : Point   //загрязнение  в точке 
     {
-        public float watertime { get; private set; }      // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
-        public float concentration { get; private set; }      // концентрация нефтепрдуктов в грунте    (мл/кг)
-        public PetrochemicalType petrochemical { get; private set; }      // нефтепрдукт
+       public float watertime                    { get; private set; }          // время достижения грунтовых вод (сутки) от грунта и нефтепродукта 
+       public float concentration                { get; private set; }          // концентрация нефтепрдуктов в грунте    (мл/кг)
+       public PetrochemicalType petrochemicatype { get; private set; }          // нефтепрдукт
+       public CadastreType cadastretype          { get; private set; }          // кадастровый тип земли
+
+       public GroundPollution(AnchorPoint anchorpoint,  PetrochemicalType petrochemicatype, float concentration, float watertime)
+           : base(anchorpoint) 
+       { 
+       }
+       
+        
+        public GroundPollution(Incident incident, float concentration, float watertime)
+           : base(incident)   
+       {
+       }
+       public GroundPollution(Point point, CadastreType cadastretype,  PetrochemicalType petrochemicatype, float concentration, float watertime)
+           : base(point)
+       {
+       }  
+
+    
     }
+
+
+
+
+
+
     public class GroundPollutionList : List<GroundPollution>    //  загрязнение во всех точках   в наземном радиусе
     {
 

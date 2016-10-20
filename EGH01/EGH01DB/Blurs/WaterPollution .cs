@@ -9,7 +9,8 @@ namespace EGH01DB.Blurs
 {
     public class WaterPollution : Point   //загрязнение в точке
     {
-        public GroundPollution nearpoint { get; private set; }     // ближайшая точка загрязненной  поверхности       
+        public GroundPollution groundpollution { get; private set; }     // ближайшая точка загрязненной  поверхности   
+        public CadastreType cadastretype { get; private set; }          // кадастровый тип земли
         public float pointtime { get; private set; }               // время достижения точки грунтовыми водами (сутки) 
         public float concentration { get; private set; }           // концентрация нефтепрдуктов в воде   (мл/дм3)
 

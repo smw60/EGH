@@ -15,7 +15,7 @@ namespace EGH01DB.Blurs
     public class GroundBlur              //  пятно  наземное нефтеродукта  
     {
         public SpreadPoint spreadpoint {get;  private set;}   //разлив нефтеродута 
-        public CoordinatesList border { get; private set; }   // координаты граничных точек  пятна
+        public CoordinatesList bordercoordinateslist { get; private set; }   // координаты граничных точек  пятна
         // радиус для первоначального расчета из предположения
         // что поверхность ровная 
         public float radius { get { return (float)Math.Sqrt(square / Math.PI); } }     // радиус наземного пятна (м)   считаем из площади (sqrt(square/3.14))  
@@ -31,5 +31,27 @@ namespace EGH01DB.Blurs
             this.ecoobjecstlist = EcoObjectsList.CreateEcoObjectsList(spreadpoint,  radius);
             this.pollutionlist = GroundPollutionList.CreateGroundPollutionList(spreadpoint, radius);
         }
+        private CoordinatesList createbordercoordinateslist() // построение граничных точек пятна загрязнения 
+        {
+
+            return new CoordinatesList();
+        }
+        private float calcradius()  // вычисление радиуса
+        {
+            return 0.0f;
+        }
+        private float calcsquare()   // вычисление площади загрязнения 
+        {
+            return 0.0f;
+        }
+        private EcoObjectsList createecoobjectslist()  // формирование списка природоохранных объектов
+        {
+            return new EcoObjectsList();
+        }
+        private GroundPollutionList creategroundpolutionlist() // формирование списка наземных точек загрязнения объектов
+        {
+            return new GroundPollutionList();
+        }
+
     }
 }
