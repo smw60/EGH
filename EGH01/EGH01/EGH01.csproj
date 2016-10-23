@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DebugController.cs" />
     <Compile Include="Controllers\EGHCAIController.cs" />
     <Compile Include="Controllers\EGHCCOController.cs" />
     <Compile Include="Controllers\EGHCEQController.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Controllers\EGHORTController.cs" />
     <Compile Include="Controllers\EGHRGEController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\Menu.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,7 +228,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\EGH\Index.cshtml" />
     <Content Include="Views\Shared\EGHLayout.cshtml" />
-    <Content Include="Views\EGHRGE\Index.cshtml" />
+    <Content Include="Views\EGHRGE\Index_old.cshtml" />
     <Content Include="Views\EGHORT\Index.cshtml" />
     <Content Include="Views\EGHGEA\Index.cshtml" />
     <Content Include="Views\EGHCEQ\Index.cshtml" />
@@ -236,6 +238,9 @@
     <Content Include="Views\EGHCEQ\Report.cshtml" />
     <Content Include="Views\EGHGEA\Report.cshtml" />
     <Content Include="Views\EGHORT\Report.cshtml" />
+    <Content Include="Views\Debug\XML.cshtml" />
+    <Content Include="Views\EGHRGE\Index.cshtml" />
+    <Content Include="Views\EGHRGE\IncidentType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

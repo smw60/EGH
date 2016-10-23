@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using System.Xml;
 
 namespace EGH01DB.Primitives
 {
@@ -16,8 +18,8 @@ namespace EGH01DB.Primitives
 
         public float latitude  {get; private set;}     // широта   12,1234567.. градусы 
         public float lngitude {get; private set;}     // долгота  123,123456.. градусы 
-        public DMS Lat { get; private set;}
-        public DMS Lng { get; private set;}
+        public DMS   lat { get{return new DMS(this.latitude);}}
+        public DMS   lng { get{return new DMS(this.lngitude);}}
         
         public Coordinates()
         {
@@ -27,8 +29,8 @@ namespace EGH01DB.Primitives
         {
             this.latitude = validLat(latitude)? latitude: 0.0f;
             this.lngitude = validLng(lngitude)? lngitude: 0.0f;
-            this.Lat  = new DMS(latitude);
-            this.Lng  = new DMS(lngitude);
+            //this.Lat  = new DMS(latitude);
+            //this.Lng  = new DMS(lngitude);
         }
         public float Distance(Coordinates to)
         {
@@ -39,18 +41,26 @@ namespace EGH01DB.Primitives
         }
         public Coordinates(int latd, int latm, float lats, int lngd, int lngm, float lngs)
         {
-            this.Lat  = new DMS(latd, latm, lats);
-            this.Lng =  new DMS(lngd, lngm, lngs);
+            // this.Lat  = new DMS(latd, latm, lats);
+            // this.Lng =  new DMS(lngd, lngm, lngs);
             this.latitude = dms_to_d(latd, latm, lats);
-            this.latitude = dms_to_d(lngd, lngm, lngs); 
+            this.lngitude = dms_to_d(lngd, lngm, lngs); 
         }
         public Coordinates(DMS lat, DMS lng)
         {
-            this.Lat = lat;
-            this.Lng = lng;
+            // this.Lat = lat;
+            //this.Lng = lng;
             this.latitude = dms_to_d(lat.d, lat.m, lat.s);
-            this.latitude = dms_to_d(lng.d, lng.m, lng.s);
+            this.lngitude = dms_to_d(lng.d, lng.m, lng.s);
         }
+        public Coordinates(XmlNode node)
+        {
+            this.latitude = Helper.GetFloatAttribute(node, "latitude", 0.0f);
+            this.lngitude = Helper.GetFloatAttribute(node, "lngitude", 0.0f);        
+        }
+
+
+
 
         public struct DMS
         {
@@ -71,12 +81,29 @@ namespace EGH01DB.Primitives
             }
              
         }
+
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("Coordinates");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("latitude",   this.latitude.ToString());
+            rc.SetAttribute("latitude_d", this.lat.d.ToString());
+            rc.SetAttribute("latitude_m", this.lat.m.ToString());
+            rc.SetAttribute("latitude_s", this.lat.s.ToString());
+            rc.SetAttribute("lngitude",   this.lngitude.ToString());
+            rc.SetAttribute("lngitude_d", this.lng.d.ToString());
+            rc.SetAttribute("lngitude_m", this.lng.m.ToString());
+            rc.SetAttribute("lngitude_s", this.lng.s.ToString());
+            return (XmlNode)rc;
+        }
+        
         static public float dms_to_d(int d, int m, float s) { return (float)d + (float)m / 60.0f + s / 3600.0f;}
         static public void  d_to_dms( float itude, ref int  d, ref int m, ref float s) 
         {
-            d = (int)itude;
-            m = (int)((itude - (float)d) * 60.0f);
-            s = (itude - (float)d - (float)m) * 3600.0f;  
+            d = (int)Math.Floor(itude);
+            m = (int)Math.Floor((itude - (float)d) * 60.0f);
+            s = (itude - (float)d - (float)m/60.0f) * 3600.0f;  
         } 
 
 
@@ -84,19 +111,42 @@ namespace EGH01DB.Primitives
         static bool validLat(int d, int m, float s) { return validLat(dms_to_d(d,m,s));}
         static bool validLng(float lngitude) { return lngitude >= -180.0f && lngitude <= 180.0f;}
         static bool validLng(int d, int m, float s) { return validLng(dms_to_d(d, m, s));}
+
+
        }
 
     public class CoordinatesList:List<Coordinates>
     {
+        
 
         public static CoordinatesList CreateCoordinatesList()
         { 
-         return new CoordinatesList()
-                    {
-            
-                    };
-        
+         return new CoordinatesList();
         }
-    
+        public static CoordinatesList CreateCoordinatesList(XmlNode node)
+        {
+            CoordinatesList cl = new CoordinatesList();
+            foreach (XmlElement x in node)
+            {
+                if (x.Name.Equals("Coordinates")) cl.Add(new Coordinates(x));  // if на всякий случай        
+            }
+            return cl;
+        }
+        
+        
+        
+        
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("CoordinatesList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            foreach (Coordinates c in this)
+            {
+                rc.AppendChild(doc.ImportNode(c.toXmlNode(), true));
+            }
+            return (XmlNode)rc;
+        }
+            
     }
 }
