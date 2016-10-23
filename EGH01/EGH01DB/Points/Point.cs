@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using EGH01DB.Primitives;
 using System.Xml;
 using EGH01DB.Types;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace EGH01DB.Points
 {
@@ -53,8 +55,7 @@ namespace EGH01DB.Points
             this.height =   Helper.GetFloatAttribute(node, "height", 0.0f); ;
               
         }
-
-
+        
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
@@ -68,19 +69,129 @@ namespace EGH01DB.Points
                        
             return (XmlNode)rc;
         }
-
-
         
-        //public static bool Create() { return true; }
-        //public static bool Delete() { return true; }
-        //public static bool GetByCoordinates() {return true; }
+        public static bool Create(EGH01DB.IDBContext dbcontext, Point new_point) //??????????????????
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.CreatePoint", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодГеологическойТочки", SqlDbType.Int);
+                    parm.Value = new_point.groundtype;//!!!!!!!!!!!!!!!!!!!
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = new_point.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = new_point.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                 {
+                    SqlParameter parm = new SqlParameter("@ТипГрунта", SqlDbType.Int);
+                    parm.Value = new_point.groundtype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    parm.Value = new_point.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    parm.Value = new_point.height;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    rc = (int)cmd.Parameters["@exitrc"].Value == new_point.groundtype.type_code;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+            }
+        }
 
-    }
+        public static bool Delete(EGH01DB.IDBContext dbcontext, Point point) 
+        { 
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.DeletePoint", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодГеологическойТочки", SqlDbType.Int);
+                    parm.Value = point.groundtype.type_code;//!!!!!!!!!!!!!!!!!!!
+                    cmd.Parameters.Add(parm);
+                }
+
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+
+            }
+
+            return rc;
+        }
+        
+        public static bool GetByCoordinates() 
+        {
+            return true; 
+        }
+        
+        static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
+        {
+            bool rc = false;
+            code = -1;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextPointCode", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@КодГеологическойТочки", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                    code = (int)cmd.Parameters["@КодГеологическойТочки"].Value;
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
     
-   
-    
-   
-    
+        
     //public class PointList : List<Point>   // список точек  с  с координатами и характеристика 
     //{
     //    public PointList() :base()
