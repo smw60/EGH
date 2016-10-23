@@ -45,11 +45,21 @@ namespace EGH01DB.Types
             using (SqlCommand cmd = new SqlCommand("EGH.CreateIncidentType", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
+                
                 {
                     SqlParameter parm = new SqlParameter("@КодТипа", SqlDbType.Int);
+                    if (incident_type.type_code <= 0)
+                    {
+                         int t = 0;
+                         UInt64 xint =  (UInt64) DateTime.Now.ToBinary() % 1000000;
+                         if (GetNextCode(dbcontext, out t)) incident_type.type_code = t;
+                         else incident_type.type_code =(int)xint;
+                    }
+
                     parm.Value = incident_type.type_code;
                     cmd.Parameters.Add(parm);
                 }
+                
                 {
                     SqlParameter parm = new SqlParameter("@Наименование", SqlDbType.VarChar);
                     parm.Value = incident_type.name;
@@ -121,7 +131,7 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@Наименование", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НовоеНаименование", SqlDbType.VarChar); // smw60
                     parm.Value = incident_type.name;
                     cmd.Parameters.Add(parm);
                 }
@@ -144,6 +154,10 @@ namespace EGH01DB.Types
             }
 
             return rc;
+        }
+        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int type_code)
+        {
+            return Delete(dbcontext, new IncidentType(type_code, ""));
         }
         static public bool Delete(EGH01DB.IDBContext dbcontext, IncidentType incident_type)
         {

@@ -57,6 +57,15 @@ namespace EGH01.Core
                 this.Add(item);
             }
         }
+        
+        public void Disable()
+        {
+            this.ForEach(m => m.Disable()); 
+        }
+        public void Enable()
+        {
+            this.ForEach(m => m.Enable());
+        }
     
     }
 

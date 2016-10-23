@@ -11,7 +11,7 @@ using EGH01DB.Primitives;
 using EGH01DB.Types;
 namespace EGH01.Controllers
 {
-    public class EGHRGEController : Controller
+    public partial class EGHRGEController : Controller
     {
         public class InputDate
         {
@@ -99,28 +99,7 @@ namespace EGH01.Controllers
 
 
 
-        public ActionResult IncidentType()
-        {
-            RGEContext db = null; 
-            ViewBag.EGHLayout = "RGE";
-            try
-            {
-                db = new RGEContext();
-                ViewBag.msg = "Соединение с базой данных установлено";
-
-
-
-
-            }
-            catch (RGEContext.Exception e)
-            {
-                ViewBag.msg = e.message;
-            }
-
-            // InputDate inputDate = new InputDate();
-            // return View(inputDate);
-            return View(db);
-        }
+       
 
 
 
