@@ -105,9 +105,6 @@ namespace EGH01DB.Types
                 };
                 return rc;
             }
-
-
-
         }
 
         static public bool Update(EGH01DB.IDBContext dbcontext, EcoObjectType ecoobject_type)
