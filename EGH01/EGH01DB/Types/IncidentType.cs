@@ -79,7 +79,7 @@ namespace EGH01DB.Types
         {
             bool rc= false;
             code = -1;
-            using (SqlCommand cmd = new SqlCommand("EGH.GetNextCode", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextIncidentTypeCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
