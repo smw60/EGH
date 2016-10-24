@@ -1,0 +1,5 @@
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
