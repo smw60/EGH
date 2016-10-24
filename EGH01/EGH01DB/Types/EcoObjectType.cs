@@ -47,6 +47,11 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаПриродоохранногоОбъекта", SqlDbType.Int);
+                    if (ecoobject_type.type_code <= 0)
+                    {
+                        int new_ecoobject_type_code = 0;
+                        if (GetNextCode(dbcontext, out new_ecoobject_type_code)) ecoobject_type.type_code = new_ecoobject_type_code;
+                    }
                     parm.Value = ecoobject_type.type_code;
                     cmd.Parameters.Add(parm);
                 }

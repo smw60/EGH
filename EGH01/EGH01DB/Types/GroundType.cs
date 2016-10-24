@@ -68,6 +68,11 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаГрунта", SqlDbType.Int);
+                    if (ground_type.type_code <= 0)
+                    {
+                        int new_ground_type_code = 0;
+                        if (GetNextCode(dbcontext, out new_ground_type_code)) ground_type.type_code = new_ground_type_code;
+                    }
                     parm.Value = type_code;
                     cmd.Parameters.Add(parm);
                 }
