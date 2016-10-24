@@ -1,0 +1,37 @@
+﻿@using EGH01.Core; 
+@using EGH01.Models.EGH;
+@model EGH01DB.Types.IncidentType
+@{
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu head = new Menu(
+                          new Menu.MenuItem("Создать",      "IncidentType.Create", false),
+                          new Menu.MenuItem("Excel-формат", "IncidentType.Excel",  false)
+                        );
+   
+    Menu delete = new Menu(
+                          new Menu.MenuItem("Изменить",    "IncidentType.Update.Update", true),
+                          new Menu.MenuItem("Отказаться", "IncidentType.Update.Cancel", true)
+                        );
+    
+}
+ @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "IncidentType", Menu = head})
+
+ @using(Html.BeginForm("IncidentTypeUpdate", "EGHRGE"))
+ {
+
+   <div class="box">
+            <div class="boxdata">
+
+                <p><label class="boxdata-label-30">Код типа инцидента</label>@Model.type_code.ToString()</p>
+                <p>
+                   <label class="boxdata-label-30">Наименование типа инцидента</label>
+                   <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+                </p>
+                <input type="hidden" value="@Model.type_code.ToString()" name="type_code">
+
+            </div>
+            
+            @Html.Partial("_TypeLineMenu",delete)
+            
+        </div>
+  }

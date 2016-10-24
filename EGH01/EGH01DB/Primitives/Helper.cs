@@ -12,6 +12,7 @@ namespace EGH01DB.Primitives
 {
     public class Helper
     {
+
         static public bool GetListIncidentType(EGH01DB.IDBContext dbcontext, ref List<IncidentType> list_type)
         {
             bool rc = false;
@@ -38,6 +39,18 @@ namespace EGH01DB.Primitives
 
             }
         }
+        static public IncidentTypeList GetListIncidentType(EGH01DB.IDBContext dbcontext)
+        {
+            List<IncidentType> list = new List<IncidentType>();
+            IncidentTypeList rc = new IncidentTypeList(list);
+            if (Helper.GetListIncidentType(dbcontext, ref list)) 
+            {
+                rc = new IncidentTypeList(list);
+            }
+            return rc;
+        }
+
+        
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
