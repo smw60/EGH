@@ -12,7 +12,7 @@ using System.Data;
 
 namespace EGH01DB.Objects
 {
-    public class RiskObject: Point    // техногенные объекты связанные с нефтепродуктами
+    public class RiskObject: Point    // техногенные объекты, связанные с нефтепродуктами
     {
         public int              id              {get; private set; }  // идентификатор 
         public RiskObjectType   type            {get; private set; }     // код типа 
@@ -21,7 +21,7 @@ namespace EGH01DB.Objects
         public string           address         { get ; private set;}  // весь адрес в одно поле?
        
         // дополнительная инфомация из паспорта объекта 
-        // связь с координатами????
+      
         static public RiskObject defaulttype { get { return new RiskObject(0); } }  // выдавать при ошибке  
         public RiskObject()
         {
@@ -29,10 +29,8 @@ namespace EGH01DB.Objects
             this.type = new RiskObjectType();
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
-
+            this.address = string.Empty;
         }
-
-
         public RiskObject(int id, Point point, RiskObjectType type, CadastreType cadastertype, string name, string address) : base(point)
         {
             this.id = id;
@@ -44,7 +42,10 @@ namespace EGH01DB.Objects
         public RiskObject(int id)
         {
             this.id = id;
-            //this.name = name;
+            this.type = new RiskObjectType();
+            this.cadastretype = new CadastreType();
+            this.name = string.Empty;
+            this.address = string.Empty;
         }
     
     static public bool Create(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
@@ -58,12 +59,9 @@ namespace EGH01DB.Objects
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодТехногенногоОбъекта", SqlDbType.Int);
-                    if (risk_object.id <=0)
-                    {
-                        int new_risk_object_code = 0;
-                        if (GetNextCode(dbcontext, out new_risk_object_code)) risk_object.id = new_risk_object_code;
-                    }
+                    SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
+                    int new_risk_object_id = 0;
+                    if (GetNextId(dbcontext, out new_risk_object_id)) risk_object.id = new_risk_object_id;
                     parm.Value = risk_object.id;
                     cmd.Parameters.Add(parm);
                 }
@@ -138,7 +136,7 @@ namespace EGH01DB.Objects
         {
             cmd.CommandType = CommandType.StoredProcedure;
             {
-                SqlParameter parm = new SqlParameter("@КодТехногенногоОбъекта", SqlDbType.Int);
+                SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
                 parm.Value = risk_object.id;
                 cmd.Parameters.Add(parm);
             }
@@ -169,7 +167,7 @@ namespace EGH01DB.Objects
         {
             cmd.CommandType = CommandType.StoredProcedure;
             {
-                SqlParameter parm = new SqlParameter("@КодТехногенногоОбъекта", SqlDbType.Int);
+                SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
                 parm.Value = risk_object.id;
                 cmd.Parameters.Add(parm);
             }
@@ -178,11 +176,7 @@ namespace EGH01DB.Objects
                 parm.Value = risk_object.type;
                 cmd.Parameters.Add(parm);
             }
-            {
-                SqlParameter parm = new SqlParameter("@КодОпорнойТочки", SqlDbType.Int);
-                parm.Value = 1;         // координаты опорной точки
-                cmd.Parameters.Add(parm);
-            }
+            
             {
                 SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
                 parm.Value = risk_object.groundtype;
@@ -217,15 +211,15 @@ namespace EGH01DB.Objects
 
         return rc;
     }
-    static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
+    static public bool GetNextId(EGH01DB.IDBContext dbcontext, out int next_id)
     {
         bool rc = false;
-            code = -1;
-            using (SqlCommand cmd = new SqlCommand("EGH.GetNextRiskObjectCode", dbcontext.connection))
+        next_id = -1;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetNextRiskObjectId", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
-                    SqlParameter parm = new SqlParameter("@КодТехногенногоОбъекта", SqlDbType.Int);
+                    SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }
@@ -237,7 +231,7 @@ namespace EGH01DB.Objects
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    code = (int)cmd.Parameters["@КодТехногенногоОбъекта"].Value;
+                    next_id = (int)cmd.Parameters["@IdТехногенногоОбъекта"].Value;
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0;
                 }
                 catch (Exception e)
@@ -247,7 +241,7 @@ namespace EGH01DB.Objects
                 return rc;
             }
     }
-    static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out RiskObject risk_object) // конструкторы!!!!
+    static public bool GetById(EGH01DB.IDBContext dbcontext, int id, out RiskObject risk_object) // конструкторы!!!!
     {
         bool rc = false;
         risk_object = new RiskObject();
@@ -255,8 +249,8 @@ namespace EGH01DB.Objects
         {
             cmd.CommandType = CommandType.StoredProcedure;
             {
-                SqlParameter parm = new SqlParameter("@КодТехногенногоОбъекта", SqlDbType.Int);
-                parm.Value = code;
+                SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
+                parm.Value = id;
                 cmd.Parameters.Add(parm);
             }
             {
@@ -275,7 +269,7 @@ namespace EGH01DB.Objects
             {
                 cmd.ExecuteNonQuery();
                 string name = (string)cmd.Parameters["@НаименованиеТехногенногоОбъекта"].Value;
-                if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) type = new RiskObject(code);
+                if (rc = (int)cmd.Parameters["@exitrc"].Value > 0) risk_object = new RiskObject(id);
             }
             catch (Exception e)
             {
