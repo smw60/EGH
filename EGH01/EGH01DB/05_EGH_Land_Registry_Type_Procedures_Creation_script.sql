@@ -89,10 +89,10 @@ as begin
 end;
 
 -- Получение следующего ID типа кадастрового назначения земель
-create procedure EGH.GetNextLandRegistrytTypeCode
+create procedure EGH.GetNextLandRegistrytTypeCode(@КодНазначенияЗемель int output)
  as begin
 	declare @rc int = -1;
-	select (max(КодНазначенияЗемель)+1) from [dbo].НазначениеЗемель;
+	set @КодНазначенияЗемель =(select (max(КодНазначенияЗемель)+1) from [dbo].НазначениеЗемель);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

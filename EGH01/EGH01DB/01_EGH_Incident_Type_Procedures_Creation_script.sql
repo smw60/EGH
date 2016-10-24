@@ -78,10 +78,10 @@ as begin
 end;
 
 ---- ѕолучение следующего ID типа инцидента 
-create procedure EGH.GetNextIncidentTypeCode
+create procedure EGH.GetNextIncidentTypeCode(@ од“ипа int output)
  as begin
 	declare @rc int = -1;
-	select max( од“ипа)+1 from [dbo].[“ип»нцидента];
+	set @ од“ипа= (select max( од“ипа)+1 from [dbo].[“ип»нцидента]);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

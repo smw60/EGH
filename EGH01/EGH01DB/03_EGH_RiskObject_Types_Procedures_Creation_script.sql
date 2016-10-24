@@ -71,10 +71,10 @@ as begin
 end;
 go
 -- Получение следующего ID типа техногенных объектов 
-create procedure EGH.GetNextRiskObjectTypeCode
+create procedure EGH.GetNextRiskObjectTypeCode(@КодТипаТехногенногоОбъекта int output)
  as begin
 	declare @rc int = -1;
-	select max(КодТипаТехногенногоОбъекта)+1 from [dbo].[ТипТехногенногоОбъекта];
+	set @КодТипаТехногенногоОбъекта = (select max(КодТипаТехногенногоОбъекта)+1 from [dbo].[ТипТехногенногоОбъекта]);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

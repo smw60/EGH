@@ -120,10 +120,10 @@ as begin
 end;
 go
 -- ѕолучение следующего ID типа грунта 
-create procedure EGH.GetNextGroundTypeCode
+create procedure EGH.GetNextGroundTypeCode(@ од“ипа√рунта int output)
  as begin
 	declare @rc int = -1;
-	select max( од“ипа√рунта)+1 from [dbo].[“ип√рунта];
+	set @ од“ипа√рунта = (select max( од“ипа√рунта)+1 from [dbo].[“ип√рунта]);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
