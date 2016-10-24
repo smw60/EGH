@@ -70,6 +70,7 @@ namespace EGH01DB.Points
             return (XmlNode)rc;
         }
 
+        
         public static bool Create(EGH01DB.IDBContext dbcontext, Point new_point) //??????????????????
         {
             bool rc = false;
@@ -78,6 +79,7 @@ namespace EGH01DB.Points
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодГеологическойТочки", SqlDbType.Int);
+
                     parm.Value = new_point.groundtype;//!!!!!!!!!!!!!!!!!!!
                     cmd.Parameters.Add(parm);
                 }
