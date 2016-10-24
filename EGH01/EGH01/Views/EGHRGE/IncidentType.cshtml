@@ -9,12 +9,12 @@
     ViewBag.Title = "IncidentType";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head =  new Menu( 
-                          new Menu.MenuItem("Создать", "IncidentType.Create",  true),
-                          new Menu.MenuItem("Фильтр",  "IncidentType.Filter",  true)
+                          new Menu.MenuItem("Создать",        "IncidentType.Create",  true),
+                          new Menu.MenuItem("Excel-формат",   "IncidentType.Excel",   true)
                         );   
                
     List<IncidentType> list = new List<IncidentType>();
-    if (@Model != null) { Helper.GetListIncidentType(@Model, ref list); };                                  
+    if (@Model != null) {Helper.GetListIncidentType(@Model, ref list); };                                  
              
 }
 

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
+using EGH01DB.Primitives;
 
 
 namespace EGH01DB.Types
@@ -36,6 +38,15 @@ namespace EGH01DB.Types
         {
             this.type_code = 0;
             this.name = name;
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("IncidentType");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("type_code", this.type_code.ToString());
+            rc.SetAttribute("name", this.name);
+            return (XmlNode)rc;
         }
 
         static public bool Create(EGH01DB.IDBContext dbcontext, IncidentType incident_type)
@@ -230,5 +241,38 @@ namespace EGH01DB.Types
             return rc;
         }
     }
+
+    public class IncidentTypeList : List<IncidentType>
+    {
+        public IncidentTypeList()
+        { 
+         
+        }
+        public IncidentTypeList(List<IncidentType> list):base(list)
+        {
+
+        }
+        public IncidentTypeList(EGH01DB.IDBContext dbcontext): base(Helper.GetListIncidentType(dbcontext))
+        { 
+             
+        }
+        public XmlNode toXmlNode(string comment = "")
+        {
+                      
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("IncidentTypeList");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+            this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(),true)));
+            
+            //rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+            //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+            return (XmlNode)rc;
+        } 
+
+
+    }
+
+
 }
 

@@ -64,7 +64,19 @@ namespace EGH01.Controllers
                             }
                         }
                     } 
-
+                 }
+                else if (menuitem.Equals("IncidentType.Excel"))
+                { 
+                    EGH01DB.Types.IncidentTypeList list = new IncidentTypeList(db);
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode=  doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/IncidentType.xml"));
+                    view =  View("Index");
+                                        
+                    view = File(Server.MapPath("~/App_Data/IncidentType.xml"), "text/plain", "Типы инцидентов.xml");
+                   
 
                 }
 
@@ -98,7 +110,7 @@ namespace EGH01.Controllers
                    { 
                     view =   View("IncidentType",db); 
                    }
-                   else if (menuitem.Equals("IncidentType.Update.Cancel")) view = View("IncidentType", db);
+                   else if (menuitem.Equals("IncidentType.Create.Cancel")) view = View("IncidentType", db);
                 }
             }
             catch (RGEContext.Exception e)
@@ -128,7 +140,7 @@ namespace EGH01.Controllers
                 {
                     if (EGH01DB.Types.IncidentType.DeleteByCode(db, type_code)) view = View("IncidentType", db);
                 }
-                else if (menuitem.Equals("IncidentType.Update.Cancel")) view = View("IncidentType", db);
+                else if (menuitem.Equals("IncidentType.Delete.Cancel")) view = View("IncidentType", db);
 
             }
             catch (RGEContext.Exception e)
@@ -171,7 +183,7 @@ namespace EGH01.Controllers
             return view;
         }
 
-
+       
      
      
     }

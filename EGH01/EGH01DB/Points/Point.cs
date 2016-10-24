@@ -14,24 +14,24 @@ namespace EGH01DB.Points
     public class Point  // геологическая точка  
     {
         public Coordinates coordinates { get; private set; }   // координаты точки 
-        public GroundType groundtype   { get; private set; }   // грунт 
-        public float      waterdeep    { get; private set; }   // глубина грунтовых вод    (м)
-        public float      height      { get; private set; }    // высота над уровнем моря  (м) 
-        public Point() 
+        public GroundType groundtype { get; private set; }   // грунт 
+        public float waterdeep { get; private set; }   // глубина грунтовых вод    (м)
+        public float height { get; private set; }    // высота над уровнем моря  (м) 
+        public Point()
         {
             this.coordinates = new Coordinates();
             this.groundtype = null;
             this.waterdeep = 0;
             this.height = 0;
-          
+
         }
-        public Point(Point point) 
+        public Point(Point point)
         {
             this.coordinates = point.coordinates;
-            this.groundtype  = point.groundtype;
-            this.waterdeep   = point.waterdeep;
-            this.height      = point.height;
-        
+            this.groundtype = point.groundtype;
+            this.waterdeep = point.waterdeep;
+            this.height = point.height;
+
         }
         public Point(Coordinates coordinates, GroundType groundtype, float waterdeep, float height)
         {
@@ -42,7 +42,7 @@ namespace EGH01DB.Points
         }
         public Point(XmlNode node)
         {
-          
+
             XmlNode c = node.SelectSingleNode(".//Coordinates");
             if (c != null) this.coordinates = new Coordinates(c);
             else this.coordinates = null;
@@ -52,10 +52,10 @@ namespace EGH01DB.Points
             else this.groundtype = null;
 
             this.waterdeep = Helper.GetFloatAttribute(node, "waterdeep", 0.0f);
-            this.height =   Helper.GetFloatAttribute(node, "height", 0.0f); ;
-              
+            this.height = Helper.GetFloatAttribute(node, "height", 0.0f); ;
+
         }
-        
+
         public XmlNode toXmlNode(string comment = "")
         {
             XmlDocument doc = new XmlDocument();
@@ -63,15 +63,15 @@ namespace EGH01DB.Points
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.SetAttribute("height", this.height.ToString());
             rc.SetAttribute("waterdeep", this.waterdeep.ToString());
-           
+
             rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
-                       
+
             return (XmlNode)rc;
         }
-        
+
         public static bool Create(EGH01DB.IDBContext dbcontext, Point new_point) //??????????????????
-        { 
+        {
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.CreatePoint", dbcontext.connection))
             {
@@ -91,7 +91,7 @@ namespace EGH01DB.Points
                     parm.Value = new_point.coordinates.lngitude;
                     cmd.Parameters.Add(parm);
                 }
-                 {
+                {
                     SqlParameter parm = new SqlParameter("@ТипГрунта", SqlDbType.Int);
                     parm.Value = new_point.groundtype.type_code;
                     cmd.Parameters.Add(parm);
@@ -120,11 +120,12 @@ namespace EGH01DB.Points
                 {
                     rc = false;
                 };
+                return rc;
             }
         }
 
-        public static bool Delete(EGH01DB.IDBContext dbcontext, Point point) 
-        { 
+        public static bool Delete(EGH01DB.IDBContext dbcontext, Point point)
+        {
             bool rc = false;
             using (SqlCommand cmd = new SqlCommand("EGH.DeletePoint", dbcontext.connection))
             {
@@ -154,12 +155,12 @@ namespace EGH01DB.Points
 
             return rc;
         }
-        
-        public static bool GetByCoordinates() 
+
+        public static bool GetByCoordinates()
         {
-            return true; 
+            return true;
         }
-        
+
         static public bool GetNextCode(EGH01DB.IDBContext dbcontext, out int code)
         {
             bool rc = false;
@@ -190,8 +191,8 @@ namespace EGH01DB.Points
                 return rc;
             }
         }
-    
-        
+
+    }
     //public class PointList : List<Point>   // список точек  с  с координатами и характеристика 
     //{
     //    public PointList() :base()
