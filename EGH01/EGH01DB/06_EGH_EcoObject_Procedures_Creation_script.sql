@@ -72,10 +72,10 @@ as begin
 end;
 go
 -- ѕолучение следующего ID типа природоохранных объектов 
-create procedure EGH.GetNextEcoObjectTypeCode
+create procedure EGH.GetNextEcoObjectTypeCode(@ од“ипаѕриродоохранногоќбъекта int output)
  as begin
 	declare @rc int = -1;
-	select max( од“ипаѕриродоохранногоќбъекта)+1 from [dbo].[“ипѕриродоохранногоќбъекта];
+	set @ од“ипаѕриродоохранногоќбъекта = (select max( од“ипаѕриродоохранногоќбъекта)+1 from [dbo].[“ипѕриродоохранногоќбъекта]);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

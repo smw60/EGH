@@ -62,9 +62,9 @@ namespace EGH01DB.Types
                     if (incident_type.type_code <= 0)
                     {
                          int t = 0;
-                         UInt64 xint =  (UInt64) DateTime.Now.ToBinary() % 1000000;
+                         // UInt64 xint =  (UInt64) DateTime.Now.ToBinary() % 1000000;
                          if (GetNextCode(dbcontext, out t)) incident_type.type_code = t;
-                         else incident_type.type_code =(int)xint;
+                         //else incident_type.type_code =(int)xint;
                     }
 
                     parm.Value = incident_type.type_code;
