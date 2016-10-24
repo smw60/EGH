@@ -1,8 +1,9 @@
 <IncidentTypeList>
-  <IncidentType type_code="1" name="Нефтепровод" />
+  <IncidentType type_code="1" name="Нефтепровод2" />
   <IncidentType type_code="2" name="Резервуар наземный" />
-  <IncidentType type_code="3" name="Подземный резервуар " />
+  <IncidentType type_code="3" name="Подземный резервуар дддд" />
   <IncidentType type_code="4" name="Автотранспорт" />
   <IncidentType type_code="5" name="Железнодорожный транспорт" />
-  <IncidentType type_code="7" name="Отладка" />
+  <IncidentType type_code="6" name=" Новый тип инцидента" />
+  <IncidentType type_code="7" name=" самый новый тип инцидента" />
 </IncidentTypeList>

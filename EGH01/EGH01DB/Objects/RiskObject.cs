@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EGH01DB.Points;
 using EGH01DB.Types;
+using EGH01DB.Primitives;
 using System.Data.SqlClient;
 using System.Data;
 
@@ -13,11 +14,11 @@ namespace EGH01DB.Objects
 {
     public class RiskObject: Point    // техногенные объекты связанные с нефтепродуктами
     {
-        public int              id           {get; private set; }  // идентификатор 
-        public RiskObjectType   type         {get; private set; }     // код типа 
-        public CadastreType     cadastretype {get; private set; }   // кадастровый тип земли
-        public string           name { get { return "имя  собственное"; } }
-        public string           address { get { return "адрес размещения"; } } // весь адрес в одно поле?
+        public int              id              {get; private set; }  // идентификатор 
+        public RiskObjectType   type            {get; private set; }     // код типа 
+        public CadastreType     cadastretype    {get; private set; }   // кадастровый тип земли
+        public string           name            { get ; private set; }
+        public string           address         { get ; private set;}  // весь адрес в одно поле?
        
         // дополнительная инфомация из паспорта объекта 
         // связь с координатами????
@@ -25,9 +26,20 @@ namespace EGH01DB.Objects
         public RiskObject()
         {
             this.id = -1;
-            //this.type.type_code = -1;
-            //this.cadastretype.type_code = -1;
-            //this.name = string.Empty;
+            this.type = new RiskObjectType();
+            this.cadastretype = new CadastreType();
+            this.name = string.Empty;
+
+        }
+
+
+        public RiskObject(int id, Point point, RiskObjectType type, CadastreType cadastertype, string name, string address) : base(point)
+        {
+            this.id = id;
+            this.type = type;
+            this.cadastretype = cadastertype;
+            this.name = name;
+            this.address = address;
         }
         public RiskObject(int id)
         {
@@ -38,6 +50,10 @@ namespace EGH01DB.Objects
     static public bool Create(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
     { 
            bool rc = false;
+          //Point point = new Point (new Coordinates (53.53f, 27.27f), new GroundType ()
+           //RiskObject r = new RiskObject (
+           //                              1, new Point (new Coordinates (53.53f, 27.27f), new GroundType ()
+
             using (SqlCommand cmd = new SqlCommand("EGH.CreateRiskObject", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -52,8 +68,28 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@КодОпорнойТочки", SqlDbType.Int);
-                    parm.Value = 1;  // координаты опорной точки
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = risk_object.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = risk_object.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ТипГрунта", SqlDbType.Int);
+                    parm.Value = risk_object.groundtype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    parm.Value = risk_object.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -63,7 +99,7 @@ namespace EGH01DB.Objects
                 }
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = risk_object.groundtype;
+                    parm.Value = risk_object.cadastretype;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -211,10 +247,10 @@ namespace EGH01DB.Objects
                 return rc;
             }
     }
-    static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out RiskObject type) // конструкторы!!!!
+    static public bool GetByCode(EGH01DB.IDBContext dbcontext, int code, out RiskObject risk_object) // конструкторы!!!!
     {
         bool rc = false;
-        type = new RiskObject();
+        risk_object = new RiskObject();
         using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectByID", dbcontext.connection))
         {
             cmd.CommandType = CommandType.StoredProcedure;
