@@ -80,7 +80,7 @@ input[type="checkbox"].input-validation-error {
 	color:#493F0B;
 	padding-top:15px;
 }
-.proverka1 a{
+.proverka1 a,.proverka1 div{
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     border: none;
     color: #444444;
@@ -103,6 +103,33 @@ input[type="checkbox"].input-validation-error {
     -moz-user-select: none;
     -ms-user-select: none;
 }
+.proverka1,.proverka1 a,.proverka1 div{
+    vertical-align:top;
+}
 .panel-success > .panel-heading {
     background:#85DB18;
+}
+.proverka2{
+   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    border: none;
+    color: #444444;
+    background-color: #ffffff;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    white-space: nowrap;
+    padding: 6px 16px;
+    font-size: 13px;
+    line-height: 1.846;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+   
 }

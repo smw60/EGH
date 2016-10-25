@@ -13,7 +13,7 @@
     <div class="navbar navbar-default  navbar-fixed-top">
         <div class="container">
             <div class="navbar-brand ">
-                <img src="content/Layout_Mobile_Whiteframe.png" alt="EGH">
+                <img src="/content/Layout_Mobile_Whiteframe.png" alt="EGH1">
             </div>
             <ul class="navbar-nav nav navbar-right">
                 <li class="dropdown">
@@ -21,7 +21,7 @@
                     <ul class="dropdown-menu" role="menu">
                         <li>@Html.ActionLink("Прогноз", "Index", "EGHRGE")<!--EGHRGE - --></li>
                         <li>@Html.ActionLink("Соответствие качества сред", "Index", "EGHCEQ")<!--EGHCEQ - --></li>
-                        <li>@Html.ActionLink("Оптимальне технологии реабилитации", "Index", "EGHORT")<!--EGHORT - --></li>
+                        <li>@Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHORT")<!--EGHORT - --></li>
                         <li>@Html.ActionLink("Химический состав нефтей", "Index", "EGHCCO")<!--EGHCCO - --></li>
                         <li>@Html.ActionLink("Условия техногенной нагрузки", "Index", "EGHCAI")<!--EGHCAI - --></li>
                     </ul>
@@ -34,25 +34,7 @@
             @RenderBody()
         </div>
     </div>
-    <section>
-
-        @if (ViewBag.EGHLayout == "RGE")
-        {
-            @Html.ActionLink("Прогноз", "Index", "EGHRGE")
-            @Html.ActionLink("Опорные точки", "Index", "EGHRGE")
-            @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
-            <article>
-                @Html.ActionLink("Справочники", "Index", "EGHGRE")
-                @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-            </article>
-
-
-        }
-
-
-    </section>
-
-    <footer class="top-space">
+       <footer class="top-space">
         <div class="footer1">
             <div class="container">
                 <div class="row">
