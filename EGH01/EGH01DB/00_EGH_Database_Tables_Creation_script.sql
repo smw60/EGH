@@ -139,3 +139,44 @@ GO
 INSERT INTO [dbo].[»нцидент]([ од“ипа],[ƒата],[ƒата—ообщени€]) VALUES ();
 GO
 
+
+---------------------------------------------------------------------------------------------------------
+CREATE TABLE [dbo].[“ехногенныйќбъект](
+	[Id“ехногенногоќбъекта] [int] NOT NULL,
+	[ од“ипа“ехногенногоќбъекта] [int] NOT NULL,
+	[ од“ипаЌазначени€«емель] [int] NOT NULL,
+	[Ќаименование“ехногенногоќбъекта] [nvarchar](max) NOT NULL,
+	[јдрес“ехногенногоќбъекта] [nvarchar](max) NULL,
+	[Ўирота√рад] [float] NOT NULL,
+	[ƒолгота√рад] [float] NOT NULL,
+	[“ип√рунта] [int] NOT NULL,
+	[√лубина√рунтовых¬од] [float] NULL,
+	[¬ысота”ровнемћор€] [float] NULL,
+ CONSTRAINT [PK_“ехногенныйќбъект] PRIMARY KEY CLUSTERED 
+(
+	[Id“ехногенногоќбъекта] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект]  WITH CHECK ADD  CONSTRAINT [FK_“ехногенныйќбъект_Ќазначение«емель] FOREIGN KEY([ од“ипаЌазначени€«емель])
+REFERENCES [dbo].[Ќазначение«емель] ([ одЌазначени€«емель])
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект] CHECK CONSTRAINT [FK_“ехногенныйќбъект_Ќазначение«емель]
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект]  WITH CHECK ADD  CONSTRAINT [FK_“ехногенныйќбъект_“ип√рунта] FOREIGN KEY([“ип√рунта])
+REFERENCES [dbo].[“ип√рунта] ([ од“ипа√рунта])
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект] CHECK CONSTRAINT [FK_“ехногенныйќбъект_“ип√рунта]
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект]  WITH CHECK ADD  CONSTRAINT [FK_“ехногенныйќбъект_“ип“ехногенногоќбъекта] FOREIGN KEY([ од“ипа“ехногенногоќбъекта])
+REFERENCES [dbo].[“ип“ехногенногоќбъекта] ([ од“ипа“ехногенногоќбъекта])
+GO
+
+ALTER TABLE [dbo].[“ехногенныйќбъект] CHECK CONSTRAINT [FK_“ехногенныйќбъект_“ип“ехногенногоќбъекта]
+GO

@@ -14,7 +14,7 @@ namespace EGH01.Controllers
         {
 
             if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            else ViewBag.msg = "соединение  c БД  не установлено";
+            else ViewBag.msg = "соединение 5 c БД  не установлено";
 
             return View();
         }

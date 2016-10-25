@@ -10,7 +10,6 @@
     <projectUrl>http://katanaproject.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Provides a set of helper types and abstractions for simplifying the creation of OWIN components.</description>
-    <summary />
     <tags>Microsoft OWIN</tags>
     <dependencies>
       <dependency id="Owin" version="1.0" />

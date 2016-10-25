@@ -1,8 +1,239 @@
-﻿
+﻿@model EGH01.Controllers.EGHRGEController.InputDate
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h3>Прогноз(EGHRGE)</h3>
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>@ViewBag.msg</p>
+</div> 
+<div class="proverka1" style="margin-bottom:25px">
+    @Html.ActionLink("Моделирование(EGHRGE)", "Report", new { @class = "btn-default" })
+    @Html.ActionLink("Отчет(EGHRGE)", "Report", new { @class = "btn btn-warning" })
+</div>
+<div class="col-md-7">  
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Входные данные</h3>
+        </div>
+        <div class="panel-body ">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="form-group dsblock">
+                        <label class="control-label" for="focusedInput">Дата происшествия</label>
+                        @Html.TextBoxFor(m => m.DateIncident, new { type = "datetime-local" })
+                    </div>
 
+                    <div class="form-group dsblock">
+                        <label class="control-label" for="focusedInput">Дата поступления сообщения</label>
+                        @Html.TextBox("Дата", String.Format("{0:d}", @Model.DateMessage.ToString("dd/MM/yyyy HH:mm")), new { type = "datetime-local" })
+                    </div>
+
+                    <div class="form-group dsblock">
+                        <label class="control-label" for="focusedInput">Тип происшествия</label>
+                        @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Нефтепровод", "Резервуар Наземный", "Подземный резервуар", "Авто Транспорт", "Железнодорожный Транспорт" }))
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="focusedInput">Расположение объекта:</label><br>
+                        @Html.DropDownList("Область", new SelectList(new[] { "Область", "Минская", "Гомельская", "Витебская", "Могилевская", "Бреская", "Гродненская" }))
+                        @Html.DropDownList("Район", new SelectList(new[] { "Район", "Пуховический", "Минский", "Могилеский" }))
+                        @Html.DropDownList("Объект", new SelectList(new[] { "Объект", "АЗС 28", "Нефтебаза", "Хранилище 4" }))
+                    </div>
+
+                    <input type="button" value="Найти на карте" class="btn btn-default btn-lg btn-block" style="margin-bottom:25px" />
+
+                    <div class="form-group mesto">
+                        <p>Координаты объекта:</p>
+                        <p> Градусы, ° Минуты, ′ секунды, " <p>
+                            <label class="control-label" for="focusedInput">Широта:</label>
+                            @Html.TextBoxFor(m => m.Coordlatitudedegr, new { @placeholder = "form-control" }) ° @Html.TextBox("gtyht", @Model.Coordlatitudemin, new { @placeholder = "form-control" }) ′ @Html.TextBox(" ", @Model.Coordlatitudesec) "
+                            <br>
+                            <label class="control-label" for="focusedInput">Долгота:</label>
+                            @Html.TextBox("Дата", @Model.Coordlongitudedegr) ° @Html.TextBox("Дата", @Model.Coordlongitudemin) ′ @Html.TextBox("Дата", @Model.Coordlongitudesec) "
+                    </div>
+
+                    <div class="form-group dsblock">
+                        <label class="control-label" for="focusedInput">Тип ННП</label>
+                        @Html.DropDownList(@Model.TypeNNP2.ToString(), new SelectList(new[] { "Тип", "Нефть", "Бензин", "Мазут" }))
+                    </div>
+
+                    <div class="form-group dsblock">
+                        <label class="control-label" for="focusedInput">Объем ННП</label>
+                        @Html.TextBoxFor(m => Model.volumeNNP) (м3)
+                    </div>
+
+                    <div class="form-group dsblock">
+                        <p>Погодные условия</p>
+                        <label class="control-label" for="focusedInput">Температура</label>
+                        @Html.TextBox("Температура", @Model.Temp)
+                    </div>
+                    <input type="button" class="btn btn-success btn-lg btn-block" value="Рассчитать" />
+                    `
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-5">
+    <div class=" carta panel panel-default">
+        сдесь будет карта
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="panel panel-success" >
+        <div class="panel-heading">
+            <h3 class="panel-title">Информация из Базы Данных</h3>
+        </div>
+        <div class="panel-body">
+            <div class="">
+                <h4>
+                    Характеристики объекта
+                </h4>
+                <p class="textbold">
+                    Паспортные данные объекта
+                </p>
+                    <p><strong>Тип объект:</strong> АЗС-28</p>
+                    <p><strong>Хранит:</strong> Бензин,газ</p>
+                    <p><strong>Расположениие:</strong> Минская область, г. Слуцк</>
+                    <p><strong>Дата открытия:</strong> 20.07.2010</p>
+            </div>
+            <hr>
+            <div>
+                <h4>Точки для рассчёта</h4>
+                <p class="textbold">
+                    Таблица для точек
+                </p>
+                <p><strong>точка 1</strong> - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+                <p><strong>точка 2</strong> - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+                <p><strong>точка 3</strong> - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+                <p><strong>точка 4</strong> - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+                <p><strong>точка 5</strong> - координаты, высота, список почв, грунтов | Толщина слоёв почв, грунтов | Глубина грунтовых вод</p>
+            </div>
+            <hr>
+            <div class="">
+                <h4>Характеристики ННП</h4>
+                <p class="textbold">
+                    Бензин
+                </p>
+                <p><strong>Плотность при 20 °С:</strong>  0,7-0,75 г/см3</p>
+                <p><strong>Вязкость кинематическая при 20 (50)°С:</strong>  0,43-0,82 мм2/с </p>
+                <p><strong>Растворимость:</strong> 9,0-505 мг/дм3 </p>
+            </div>
+            <hr>
+            <div>
+                <h4>Климатические условия: </h4>
+                <p><strong>Средняя температура:</strong> 2°С</p>
+                <p><strong>Почва промерзла при температуре:</strong> 5°С</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="output col-md-12" >
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">Результаты прогнозирования</h3>
+        </div>
+        <div class="panel-body">
+        <div>   
+                <h6 style="float:right">20.09.2016 10:00</h6>
+                <h4>Характеристики пятна загрязнения:</h4>
+                <p><strong>Север:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                <p><strong>ЮГ:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                <p><strong>Запад:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                <p><strong>Восток:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                <p>
+                    <strong>Площадь пятна загрязнения:</strong> 105 га
+                </p>
+                <p><strong>Радиус пятна загрязнения с грунтовыми водами:</strong> 200 м </p>
+        </div>
+        <div>
+
+
+            <h4>Характеристика происшествия: </h4>
+
+
+            @*<article>
+                    <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+                </article>
+
+                <article>
+                    <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+                </article>*@
+
+
+            <p><strong> Загрязнение достигло грунтовых вод.</strong></p>
+            <p> Дата достижения грунтовых вод: 25.09.2016</p>
+            <p> Концентрация: 100 мг/м3</p>
+
+
+        </div>
+        <div>
+            <h4>Природоохранные объекты</h4>
+            <p>
+                <strong>
+                Достигнуты по поверхности:
+                </strong>
+            </p>
+            <table class="table table-striped table-hover">
+               <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Координаты</th>
+                    <th>Дата достижения</th>
+                    <th>Концентрация</th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> 53° 53', 53° 53'</td>
+                            <td> 22.09.2016</td>
+                            <td> 1000 мг/дм3</td>
+                        </tr>
+                    }
+                <tbody>
+        </table>
+
+
+
+            <h4>
+                Достигнуты с грунтовыми водами:
+            </h4>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Наименование</th>
+                    <th>Координаты</th>
+                    <th>Дата достижения</th>
+                    <th>Концентрация</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                @foreach (var item in Model.TypeObj)
+                {
+                    <tr>
+                        <td> @Html.ValueFor(m => item)</td>
+                        <td> 53° 53', 53° 53'</td>
+                        <td> 29.09.2016</td>
+                        <td> 200 мг/дм3</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        </div>
+        <form action="RsvpForm" method="get">
+            <input type="submit" value="Сохранить отчёт" class="btn btn-success btn-lg">
+        </form>
+    </div>
+</div>
