@@ -6,30 +6,32 @@ using System.Threading.Tasks;
 using EGH01DB.Primitives;
 using System.Xml;
 using EGH01DB.Types;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace EGH01DB.Points
 {
     public class Point  // геологическая точка  
     {
         public Coordinates coordinates { get; private set; }   // координаты точки 
-        public GroundType groundtype   { get; private set; }   // грунт 
-        public float      waterdeep    { get; private set; }   // глубина грунтовых вод    (м)
-        public float      height      { get; private set; }    // высота над уровнем моря  (м) 
-        public Point() 
+        public GroundType groundtype { get; private set; }   // грунт 
+        public float waterdeep { get; private set; }   // глубина грунтовых вод    (м)
+        public float height { get; private set; }    // высота над уровнем моря  (м) 
+        public Point()
         {
             this.coordinates = new Coordinates();
             this.groundtype = null;
             this.waterdeep = 0;
             this.height = 0;
-          
+
         }
-        public Point(Point point) 
+        public Point(Point point)
         {
             this.coordinates = point.coordinates;
-            this.groundtype  = point.groundtype;
-            this.waterdeep   = point.waterdeep;
-            this.height      = point.height;
-        
+            this.groundtype = point.groundtype;
+            this.waterdeep = point.waterdeep;
+            this.height = point.height;
+
         }
         public Point(Coordinates coordinates, GroundType groundtype, float waterdeep, float height)
         {
@@ -40,7 +42,7 @@ namespace EGH01DB.Points
         }
         public Point(XmlNode node)
         {
-          
+
             XmlNode c = node.SelectSingleNode(".//Coordinates");
             if (c != null) this.coordinates = new Coordinates(c);
             else this.coordinates = null;
@@ -50,10 +52,9 @@ namespace EGH01DB.Points
             else this.groundtype = null;
 
             this.waterdeep = Helper.GetFloatAttribute(node, "waterdeep", 0.0f);
-            this.height =   Helper.GetFloatAttribute(node, "height", 0.0f); ;
-              
-        }
+            this.height = Helper.GetFloatAttribute(node, "height", 0.0f); ;
 
+        }
 
         public XmlNode toXmlNode(string comment = "")
         {
@@ -62,25 +63,18 @@ namespace EGH01DB.Points
             if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
             rc.SetAttribute("height", this.height.ToString());
             rc.SetAttribute("waterdeep", this.waterdeep.ToString());
-           
+
             rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
             rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
-                       
+
             return (XmlNode)rc;
         }
 
-
         
-        //public static bool Create() { return true; }
-        //public static bool Delete() { return true; }
-        //public static bool GetByCoordinates() {return true; }
+        
+        }
 
-    }
-    
-   
-    
-   
-    
+}
     //public class PointList : List<Point>   // список точек  с  с координатами и характеристика 
     //{
     //    public PointList() :base()
@@ -127,9 +121,3 @@ namespace EGH01DB.Points
        
 
     //}
-
-
-   
-   
-
-}

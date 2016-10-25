@@ -1,0 +1,7 @@
+<IncidentTypeList>
+  <IncidentType type_code="1" name="Нефтепровод" />
+  <IncidentType type_code="2" name="Резервуар наземный" />
+  <IncidentType type_code="3" name="Подземный резервуар дддд" />
+  <IncidentType type_code="4" name="Автотранспорт" />
+  <IncidentType type_code="5" name="Железнодорожный транспорт" />
+</IncidentTypeList>

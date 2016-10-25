@@ -1,0 +1,39 @@
+﻿@using EGH01.Core; 
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@model EGH01DB.RGEContext
+@{
+   
+    
+    ViewBag.Title = "IncidentType";
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu head =  new Menu( 
+                          new Menu.MenuItem("Создать",        "IncidentType.Create",  true),
+                          new Menu.MenuItem("Excel-формат",   "IncidentType.Excel",   true)
+                        );   
+               
+    List<IncidentType> list = new List<IncidentType>();
+    if (@Model != null) {Helper.GetListIncidentType(@Model, ref list); };                                  
+             
+}
+
+
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu {Controller = "EGHRGE", Action = "IncidentType", Menu = head})
+@Html.Partial("_IncidentTypeList", list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

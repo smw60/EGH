@@ -1,0 +1,34 @@
+﻿@using EGH01.Core; 
+@using EGH01.Models.EGH;
+@{
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu head = new Menu(
+                          new Menu.MenuItem("Создать",      "IncidentType.Create", false),
+                          new Menu.MenuItem("Excel-формат", "IncidentType.Excel", false)
+                        );
+   
+    Menu create = new Menu(
+                          new Menu.MenuItem("Создать",    "IncidentType.Create.Create", true),
+                          new Menu.MenuItem("Отказаться", "IncidentType.Create.Cancel", true)
+                        );
+    
+}
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHRGE", Action = "IncidentType", Menu = head})
+
+ @using(Html.BeginForm("IncidentTypeCreate", "EGHRGE"))
+ {
+
+  <div class="box">
+    <div class="boxdata">
+
+        <p >
+            <label class ="boxdata-label-30"> Наименование типа инцидента </label>
+            <input class="boxdata-input-50" type="text" name="Name" value=" " />
+        </p>
+
+    </div>
+
+    @Html.Partial("_TypeLineMenu", create)
+
+  </div>
+  }

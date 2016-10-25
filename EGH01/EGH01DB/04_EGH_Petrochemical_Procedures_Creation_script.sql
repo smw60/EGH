@@ -102,10 +102,10 @@ end;
 go
 
 -- Получение следующего значения типа нефтепродукта
-create procedure EGH.GetNextPetrochemicalTypeCode
+create procedure EGH.GetNextPetrochemicalTypeCode(@КодТипаНефтепродукта int output)
  as begin
 	declare @rc int = -1;
-	select	max(КодТипаНефтепродукта)+1 from dbo.ТипНефтепродукта;
+	set @КодТипаНефтепродукта = (select	max(КодТипаНефтепродукта)+1 from dbo.ТипНефтепродукта);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;

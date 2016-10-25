@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------------
 drop procedure EGH.CreateRiskObjectType;
 drop procedure EGH.DeleteRiskObjectType; 
-drop procedure EGH.GetRiskObjectTypeByID;
+drop procedure EGH.GetRiskObjectTypeByCode;
 drop procedure EGH.GetRiskObjectTypeList;
 drop procedure EGH.UpdateRiskObjectType;
 drop procedure EGH.GetNextRiskObjectTypeCode;
@@ -18,7 +18,7 @@ go;
 ------------------------------------
 
 -- Добавление типа техногенных объектов 
-create procedure EGH.CreateRiskoObjectType (@КодТипаТехногенногоОбъекта int,  @НаименованиеТипаТехногенногоОбъекта nvarchar(30))
+create procedure EGH.CreateRiskObjectType (@КодТипаТехногенногоОбъекта int,  @НаименованиеТипаТехногенногоОбъекта nvarchar(30))
 as begin 
 declare @rc int  = @КодТипаТехногенногоОбъекта;
 	begin try
@@ -44,7 +44,7 @@ as begin
 end; 
 go
 -- Получение типа техногенных объектов по ID 
-create  procedure EGH.GetRiskObjectTypeByID(@КодТипаТехногенногоОбъекта int, @НаименованиеТипаТехногенногоОбъекта nvarchar(30) output) 
+create  procedure EGH.GetRiskObjectTypeByCode(@КодТипаТехногенногоОбъекта int, @НаименованиеТипаТехногенногоОбъекта nvarchar(30) output) 
 as begin 
     declare @rc int = -1;
 	select  @НаименованиеТипаТехногенногоОбъекта = НаименованиеТипаТехногенногоОбъекта from dbo.ТипТехногенногоОбъекта where КодТипаТехногенногоОбъекта = @КодТипаТехногенногоОбъекта;  
@@ -71,10 +71,10 @@ as begin
 end;
 go
 -- Получение следующего ID типа техногенных объектов 
-create procedure EGH.GetNextRiskObjectTypeCode
+create procedure EGH.GetNextRiskObjectTypeCode(@КодТипаТехногенногоОбъекта int output)
  as begin
 	declare @rc int = -1;
-	select max(КодТипаТехногенногоОбъекта)+1 from [dbo].[ТипТехногенногоОбъекта];
+	set @КодТипаТехногенногоОбъекта = (select max(КодТипаТехногенногоОбъекта)+1 from [dbo].[ТипТехногенногоОбъекта]);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
