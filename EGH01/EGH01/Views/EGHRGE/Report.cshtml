@@ -7,11 +7,18 @@
 
 <h2>RGE-Отчет</h2>
 
-@ViewBag.msg
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>@ViewBag.msg</p>
+</div> 
 
-<p>
-        Придоохранные объекты  
-
+        <div class="panel panel-success" >
+            <div class="panel-heading">
+                <div class="panel-title">
+                    Придоохранные объекты  
+                </div>
+            </div>
+        <div class="panel-body">
         @foreach (var s in Model.lines)
         {
 
@@ -21,5 +28,5 @@
 
             @*@Html.ActionLink(, "Report")*@
         }
-
-</p>
+            </div>
+        </div>

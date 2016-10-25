@@ -10,7 +10,7 @@ namespace EGH01DB
 {
     class ECHDBException:Exception
     {
-        
+        public bool IsConnect { get { return con != null; } }
         SqlConnection con = DB.Connect();
 
     }

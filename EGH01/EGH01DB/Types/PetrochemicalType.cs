@@ -65,7 +65,7 @@ namespace EGH01DB.Types
             this.viscosity = 0.0f;
             this.solubility = 0.0f;
         }        
-        
+   
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out PetrochemicalType petrochemical_type)
         {
             bool rc = false;
@@ -75,6 +75,11 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаНефтепродукта", SqlDbType.Int);
+                    if (petrochemical_type.code_type <= 0)
+                    {
+                        int new_petrochemical_type_code = 0;
+                        if (GetNextCode(dbcontext, out new_petrochemical_type_code)) petrochemical_type.code_type = new_petrochemical_type_code;
+                    }
                     parm.Value = type_code;
                     cmd.Parameters.Add(parm);
                 }

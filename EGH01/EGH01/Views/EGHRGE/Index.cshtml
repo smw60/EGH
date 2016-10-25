@@ -1,8 +1,44 @@
-﻿
+﻿@model EGH01.Controllers.EGHRGEController.InputDate
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/EGHLayout.cshtml";
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 }
 
-<h2>Index</h2>
+<h3>Прогноз</h3>
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>@ViewBag.msg</p>
+</div> 
+<div class="proverka1" style="margin-bottom:25px">
+    @Html.ActionLink("Прогноз", "Report", new { @class = "btn-default" })
+    @Html.ActionLink("Опорные точки", "Report", new { @class = "btn btn-warning" })
+    @Html.ActionLink("Природоохранные объекты", "Report", new { @class = "btn btn-warning" })
+    @Html.ActionLink("Отчеты", "Report", new { @class = "btn btn-warning" })
+    <!--@Html.ActionLink("Справочники", "Report", new { @class = "btn btn-warning" })-->
+    
+    <style>
+        #spravochniki {
+            cursor: pointer;
+            text-transform:none;
+        }
+    </style>
+    <div>
+        <span id="spravochniki">Справочники</span>
+        <ul id="spravochniki_list" style="display:none">
+            <li>Пункт №1</li>
+            <li>Пункт №2</li>
+            <li>Пункт №3</li>
+            <li>Пункт №4</li>
+        </ul>
+        <script>
+            $(document).ready(function () {
+                $("#spravochniki_list").hide();
+                $("#spravochniki").click(function () {
+                    $("#spravochniki_list").slideToggle();//css({"display":"block"});
+                });
+            });
+        </script>
+
 

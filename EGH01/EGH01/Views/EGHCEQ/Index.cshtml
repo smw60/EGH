@@ -5,52 +5,46 @@
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 }
 
-<h2>EGHCEQ -  Соответствие качества сред</h2>
+<h2>Соответствие качества сред (EGHCEQ)</h2>
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <p>@ViewBag.msg</p>
+</div> 
+<div class="proverka1" style="margin-bottom:25px">
+    @Html.ActionLink("Отчет(EGHCEQ)", "Report")
+</div>
+<div class="panel panel-success">
 
-@ViewBag.msg
-
-<section>
-  <article>
-    @Html.ActionLink("EGHCEQ - Отчет", "Report")
-  </article>
-</section>
-
-
-<section style="border: double; padding: 10px">
-
-    
-        <h1>Выбор отчёта</h1>
-        @Html.DropDownList("RGEReport")
-
-
-            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo" >Посмотреть</button>
-
+    <div class="panel-heading">
+        <h3 class="panel-title">Выбор отчёта</h3>
+    </div>
+    <div class="panel-body">
+        @Html.DropDownList("RGEReport")<hr>
+        <button type="button" class="btn btn-default" data-toggle="collapse" data-target="#demo">Посмотреть</button>
+        <button type="button" class="btn btn-success">Рассчитать</button>
 
             <div id="demo" class="collapse">
                 <h5 style="float:right">20.09.2016 10:00</h5>
                 <br />
-                <h1>Результаты прогнозирования</h1>
-
+                <h3>Результаты прогнозирования</h3>
                 <article>
                     <fieldset>
-                        <legend>Характеристики пятна загрязнения:</legend>
-                        <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                        <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                        <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                        <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
-                        <h5>
-                            Площадь пятна загрязнения: 105 га
-                        </h5>
-                        <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+                        <h5><strong>Характеристики пятна загрязнения:</strong></h5>
+                        <p><strong>Север:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                        <p><strong>ЮГ:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                        <p><strong>Запад:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                        <p><strong>Восток:</strong>  Широта: 53° 53' Долгота: 53° 53' </p>
+                        <p>
+                            <strong>Площадь пятна загрязнения:</strong> 105 га
+                        </p>
+                        <p><strong>Радиус пятна загрязнения с грунтовыми водами:</strong> 200 м </p>
                     </fieldset>
-                    <h4></h4>
 
                 </article>
-                <article></article>
 
-                <fieldset>
+                <div>
 
-                    <legend>Характеристика происшествия: </legend>
+                    <h5><strong>Характеристика происшествия: </strong></h5>
 
 
                     @*<article>
@@ -63,193 +57,137 @@
                         </article>*@
 
 
-                    <h5> Загрязнение достигло грунтовых вод.</h5>
-                    <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+                    <p> Загрязнение достигло грунтовых вод.</p>
+                    <p><strong>Дата достижения грунтовых вод:</strong> 25.09.2016</p>
 
 
-                </fieldset>
-                <fieldset>
-                    <legend>Природоохранные объекты</legend>
-                    <h5>
-                        Достигнуты по поверхности:
-                    </h5>
-                    <table border="1">
+                </div>
+                <div>
+                    <h5><strong>Природоохранные объекты</strong></h5>
+                    <p>
+                        <strong>
+                            Достигнуты по поверхности:
+                        </strong>
+                    </p>
+                    <table class="table table-striped table-hover">
+                       <thead>
+                         <tr>
+                            <th>Наименование</th>
+                            <th>Координаты</th>
+                            <th>Дата достижения</th>
+                            <th>Концентрация</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+
+                        </tbody>
+                    </table>
+
+                    <p>
+                        <strong> 
+                            Достигнуты с грунтовыми водами:
+                        </strong>
+                    </p>
+                    <table class="table table-striped table-hover">
+                        <thead>
                         <tr>
                             <th>Наименование</th>
                             <th>Координаты</th>
                             <th>Дата достижения</th>
                             <th>Концентрация</th>
                         </tr>
+                        </thead>
 
-                        @foreach (var item in Model.TypeObj)
-                        {
-                            <tr>
-                                <td> @Html.ValueFor(m => item)</td>
-                                <td> 53° 53', 53° 53'</td>
-                                <td> 22.09.2016</td>
-                                <td> 1000 мг/дм3</td>
-                            </tr>
-                        }
 
                     </table>
 
-                    <h5>
-                        Достигнуты с грунтовыми водами:
-                    </h5>
-                    <table border="1">
-                        <tr>
-                            <th>Наименование</th>
-                            <th>Координаты</th>
-                            <th>Дата достижения</th>
-                            <th>Концентрация</th>
-                        </tr>
-
-                        @foreach (var item in Model.TypeObj)
-                        {
-                            <tr>
-                                <td> @Html.ValueFor(m => item)</td>
-                                <td> 53° 53', 53° 53'</td>
-                                <td> 22.09.2016</td>
-                                <td> 200 мг/дм3</td>
-                            </tr>
-                        }
-
-                    </table>
-
-                </fieldset>
+                </div>
             </div>
-        <button type="button" class="btn btn-info">Рассчитать</button>
 
-    
-</section>
+    </div>
+</div>
 
-<section style="border: double; padding: 10px">
-    <h1>Нормы ПДК</h1>
-    <fieldset>
-        <legend>Нормы по категориям земель</legend>
-        <table border="1">
-            <tr>
-                <th>Категории земель</th>
-                <th>ПДК (мг/кг)</th>
-            </tr>
-            <tr>
-                <td>сельскохозяйственного назначения</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>населенных пунктов, садоводческих товариществ, дачных кооперативов</td>
-                <td>100</td>
-            </tr>
-            <tr>
-                <td>промышленности, транспорта, связи, энергетики, обороны и иного назначения</td>
-                <td>500</td>
-            </tr>
-            <tr>
-                <td>природоохранного, оздоровительного, рекреационного, историко-культурного назначения</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>лесного фонда</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>водного фонда</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>запаса</td>
-                <td>50</td>
-            </tr>
-        </table>
-    </fieldset>
-    <fieldset>
-        <legend>Нормы грунтовых вод</legend>
-        <table border="1">
-            <tr>
-                <th width="70px">ПДК</th>
-                <td>0,3 мг/дм3</td>
-            </tr>
-        </table>
-    </fieldset>
-    
-    </section>
 
-    <section style="border: double; padding: 10px">
-        <h1>Сравнение с ПДК</h1>
-        <fieldset>
-            <legend>АЗС 28</legend>
-            <table border="1">
-                <tr>
-                    <th>Объект</th>
-                    <th>Категория земель</th>
-                    <th>Данные ПДК</th>
-                    <th>Концентрация</th>
-                    <th>Превышение</th>
-                </tr>
 
-                @foreach (var item in Model.ObjPoints)
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h4 class="panel-title">Сравнение с ПДК</h4>
+    </div>
+    <div class="panel-body">
+        <h4>АЗС 28</h4>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация нефтепродукта</th>
+                <th>Превышение</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.AccidentObj)
                 {
                     <tr>
                         <td> @Html.ValueFor(m => item)</td>
                         <td> земля</td>
+                        <td> 12000</td>
                         <td> 100</td>
-                        <td> 1000</td>
-                        <td> 10 </td>
+                        <td> 2 </td>
                     </tr>
                 }
-            </table>
-
-        </fieldset>
-
-
-        <fieldset>
-            <legend>Охранные объекты</legend>
-            <table border="1">
-                <tr>
-                    <th>Объект</th>
-                    <th>Категория земель</th>
-                    <th>Данные ПДК</th>
-                    <th>Концентрация</th>
-                    <th>Превышение</th>
-                </tr>
-
+            </tbody>
+</table>
+        <hr>
+        <h4>Охранные объекты</h4>
+        <table class="table table-striped table-hover">
+           <thead>
+             <tr>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация</th>
+                <th>Превышение</th>
+            </tr>
+            </thead>
+            <tbody>
                 @foreach (var item in Model.TypeObj)
                 {
                     <tr>
                         <td> @Html.ValueFor(m => item)</td>
                         <td> земля</td>
-                        <td> 50</td>
-                        <td> 200</td>
-                        <td> 4 </td>
+                        <td> 12000</td>
+                        <td> 100</td>
+                        <td> 2 </td>
                     </tr>
                 }
-            </table>
-        </fieldset>
-
-        <fieldset>
-            <legend>Грунтовые воды</legend>
-            <table border="1">
-                <tr>
-                    <th>Объект</th>
-                    <th>Категория земель</th>
-                    <th>Данные ПДК</th>
-                    <th>Концентрация</th>
-                    <th>Превышение</th>
-                </tr>
-
-
-                <tr>
-                    <td> Грунтовые воды</td>
-                    <td> - </td>
-                    <td> 0,3</td>
-                    <td> 300</td>
-                    <td> 1000 </td>
-                </tr>
-
-            </table>
-        </fieldset>
-    </section>
-
-
+            </tbody>
+        </table>
+        <hr>
+        <h4>Грунтовые воды</h4>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Объект</th>
+                <th>Категория земель</th>
+                <th>Данные ПДК</th>
+                <th>Концентрация</th>
+                <th>Превышение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td> Грунтовые воды</td>
+                <td> - </td>
+                <td> 12000</td>
+                <td> 100</td>
+                <td> 2 </td>
+            </tr>
+            </tbody>
+        </table>
+</div>
+</div>
 
 
+    

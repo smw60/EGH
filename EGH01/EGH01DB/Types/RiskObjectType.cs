@@ -46,6 +46,11 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаТехногенногоОбъекта", SqlDbType.Int);
+                    if (risk_object_type.type_code <=0)
+                    {
+                        int new_risk_object_type_code = 0;
+                        if (GetNextCode(dbcontext, out new_risk_object_type_code)) risk_object_type.type_code = new_risk_object_type_code;
+                    }
                     parm.Value = risk_object_type.type_code;
                     cmd.Parameters.Add(parm);
                 }

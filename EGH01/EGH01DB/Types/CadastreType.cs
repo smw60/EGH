@@ -42,6 +42,7 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = 0;
         }
+
         static public bool Create(EGH01DB.IDBContext dbcontext, CadastreType land_type)
         {
 
@@ -51,6 +52,11 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
+                    if (land_type.type_code <= 0)
+                    {
+                        int new_land_type_code = 0;
+                        if (GetNextCode(dbcontext, out new_land_type_code)) land_type.type_code = new_land_type_code;
+                    }
                     parm.Value = land_type.type_code;
                     cmd.Parameters.Add(parm);
                 }

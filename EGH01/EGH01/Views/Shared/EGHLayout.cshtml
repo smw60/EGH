@@ -5,279 +5,70 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>"Экспертная система [EGH] </title>
-    @*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>*@
-    @*@Styles.Render("~/Content/css")*@
-    <style>
-        body {
-            color: black;
-        }
-
-        *::after {
-            content: "";
-        }
-
-        label[aria-required]::after {
-            content: "*";
-            color: red;
-        }
-
-        .boxmenu {
-            box-sizing: border-box; /* границу включить в размер .box*/
-            background-color: darkgray;
-            overflow: hidden;
-            border: 2px solid darkgray;
-            width: 85%;
-            margin: 12px;
-            padding: 1px;
-            min-width: 800px;
-        }
-
-        .boxconnect, .boxcainfo {
-            box-sizing: border-box;
-            background-color: darkgray;
-            overflow: hidden;
-            border: 2px solid darkgray;
-            width: 85%;
-            margin: 12px;
-            padding: 1px;
-            min-width: 800px;
-        }
-
-        .boxconnect-boxitem, .boxcainfo-boxitem {
-            border: 2px solid white;
-            padding: 12px;
-        }
-
-            .boxconnect-boxitem label, .boxcainfo-boxitem label {
-                width: 10%;
-                margin: 10px;
-            }
-
-            .boxconnect-boxitem input {
-                width: 20%;
-                margin: 10px;
-            }
-
-            .boxconnect-boxitem button, .boxcainfo-boxitem button {
-                float: right;
-                background-color: inherit;
-                color: white;
-                font-weight: bold;
-                padding: 10px;
-                border: 2px solid white;
-                margin: 5px;
-            }
-
-        .box-fieldset {
-            display: block;
-            margin: 5px;
-        }
-
-        .boxcainfo-boxitem-fieldset {
-            display: block;
-            margin: 2px;
-        }
-
-        .boxcainfo-boxitem-buttonlist {
-            display: block;
-            float: right;
-            margin: 2px;
-        }
-
-        .boxmenu-buttonlist {
-            border: 2px solid white;
-            padding: 5px;
-        }
-
-        .box-close {
-            float: right;
-            /*border:1px solid white;*/
-            background-color: inherit;
-            padding: 0px 0px 0px 0px;
-            margin: 2px;
-            border: none;
-        }
-
-        .boxmenu button {
-            background-color: inherit;
-            color: white;
-            font-weight: bold;
-            margin: 5px;
-            padding: 10px;
-            border: 2px solid white;
-        }
-
-            .boxmenu button[disabled] {
-                background-color: inherit;
-                color: gray;
-                font-weight: bold;
-                margin: 5px;
-                padding: 10px;
-                border: 2px solid white;
-            }
-
-        .box {
-            box-sizing: border-box; /* границу включить в размер .box*/
-            overflow: hidden; /* все что вылезает за границу .box  - скрывать*/
-            border: 2px solid white;
-            width: 85%;
-            background-color: rgba(196, 183, 183, 0.75);
-            margin: 12px;
-            padding: 1px;
-            min-width: 800px;
-        }
-
-            .box .boxdata {
-                margin: 5px;
-                width: 100%;
-            }
-
-        /*.boxdata label {
-            width: 25%;
-            float: left;
-        }*/
-       
-        .boxdata-label-30 {
-            width: 30%;
-            float: left;
-        }
-        .boxdata-label-40 {
-            width: 40%;
-            float: left;
-        }
-
-
-        .box p {
-            margin: 1px;
-        }
-
-        .boxdata span {
-            width: 25%;
-            float: none;
-        }
-
-        .boxdata .leftboxdata {
-            width: 50%;
-            float: left;
-        }
-
-        .boxdata .rightboxdata {
-            width: 50%;
-            float: right;
-        }
-
-        .leftboxdata label {
-            width: 50%;
-            float: left;
-        }
-
-        .rightboxdata label {
-            width: initial;
-            float: left;
-            margin-right: 10%;
-        }
-
-        .boxdata-input-20 {
-            width: 20%;
-        }
-
-        .boxdata-input-30 {
-            width: 30%;
-        }
-
-        .boxdata-input-50 {
-            width: 50%;
-        }
-
-        .boxdata input[disabled] {
-            background-color: inherit; /*rgba(196, 183, 183, 0.75);*/
-            color: black;
-            border: none;
-        }
-
-        .boxcontrol {
-            margin: 1px;
-            background-color: darkgray;
-            padding: 2px;
-            text-align: right;
-            border: 1px solid white;
-            clear: both;
-        }
-
-            .boxcontrol input, button {
-                background-color: inherit;
-                color: white;
-                font-weight: bold;
-                border: 1px solid white;
-            }
-
-                .boxcontrol input[disabled], button[disabled] {
-                    background-color: inherit;
-                    color: gray;
-                    font-weight: bold;
-                    border: 1px solid white;
-                }
-
-        .boxmessage {
-            display: none;
-            margin: 1px;
-            background-color: darkgray;
-            padding: 2px;
-            border: 1px double white;
-            /*text-align:right;*/
-        }
-    </style>
-
-
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <link href="/content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="/content/site.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-    <h1> EGH - Экспертная система</h1>
-    <div style="border:solid"> 
-        <section>
-            <article>
-                @Html.ActionLink("EGHRGE - Реабилитация геологической среды", "Index", "EGHRGE")
-            </article>
-            <article>
-                @Html.ActionLink("EGHCEQ - Соответствие качества сред", "Index", "EGHCEQ")
-            </article>
-            <article>
-                @Html.ActionLink("EGHGEA - Оценка геологической среды", "Index", "EGHGEA")
-            </article>
-            <article>
-                @Html.ActionLink("EGHORT - Оптимальне технологии реабилитации", "Index", "EGHORT")
-            </article>
-        </section>
+    <div class="navbar navbar-default  navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-brand ">
+                <img src="/content/Layout_Mobile_Whiteframe.png" alt="EGH1">
+            </div>
+            <ul class="navbar-nav nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle btn btn-link"  data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>@Html.ActionLink("Прогноз", "Index", "EGHRGE")<!--EGHRGE - --></li>
+                        <li>@Html.ActionLink("Соответствие качества сред", "Index", "EGHCEQ")<!--EGHCEQ - --></li>
+                        <li>@Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHORT")<!--EGHORT - --></li>
+                        <li>@Html.ActionLink("Химический состав нефтей", "Index", "EGHCCO")<!--EGHCCO - --></li>
+                        <li>@Html.ActionLink("Условия техногенной нагрузки", "Index", "EGHCAI")<!--EGHCAI - --></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="osnova">
+        <div class=" container ">
+            @RenderBody()
+        </div>
+    </div>
+       <footer class="top-space">
+        <div class="footer1">
+            <div class="container">
+                <div class="row">
 
-        <section>
-           <article>
-                @Html.ActionLink("EGHCCO - Химический состав нефтей", "Index", "EGHCCO")
-           </article>
-           <article>
-                @Html.ActionLink("EGHCAI - Условия техногенной нагрузки", "Index", "EGHCAI")
-           </article> 
-        </section>
-        <section>
-            
-            @if (ViewBag.EGHLayout == "RGE")
-            {
-                 @Html.ActionLink("Прогноз",                 "Index", "EGHRGE")
-                 @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
-                 @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
-                 <article>
-                     @Html.ActionLink("Справочники", "Index", "EGHGRE")
-                     @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-                 </article> 
-                
-                
-            } 
+                    <div class="col-md-3">
+                        <h3 class="widget-title">Контакты:</h3>
+                        <div class="widget-body">
+                            <p>
+                                (8-017) 327 62 17<br>
+                                (8-017) 327 63 75<br>
+                                <a href="mailto:#">www.belstu.by</a><br>
+                                БГТУ
+                            </p>
+                        </div>
+                    </div>
 
+                    <div class="col-md-3">
+                        
+                    </div>
 
-        </section>
+                    <div class="col-md-6">
+                        <h3 class="widget-title">О проекте</h3>
+                        <div class="widget-body">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
+                        </div>
+                    </div>
 
-   </div>
-   @RenderBody()
-    @*@Scripts.Render("~/bundles/jquery")
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+    
+    </footer>	
+    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+    @RenderSection("scripts", required: false)
 </body>
 </html>
