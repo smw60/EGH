@@ -3,6 +3,7 @@
   <metadata>
     <id>Antlr</id>
     <version>3.4.1.9004</version>
+    <title>Antlr</title>
     <authors>Terence Parr</authors>
     <owners>Terence Parr</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

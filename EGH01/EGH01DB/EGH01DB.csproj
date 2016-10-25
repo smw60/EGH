@@ -40,8 +40,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blurs\GroundBlur.cs" />
+    <Compile Include="Blurs\WaterBlur.cs" />
     <Compile Include="DB.cs" />
     <Compile Include="ECHDBException.cs" />
+    <Compile Include="Blurs\GroundPollution.cs" />
+    <Compile Include="IDBContext.cs" />
+    <Compile Include="Points\AnchorPoint.cs" />
+    <Compile Include="Points\SpreadPoint.cs" />
+    <Compile Include="Primitives\Coordinates.cs" />
+    <Compile Include="Types\CadastreType.cs" />
+    <Compile Include="Types\EcoObjectType.cs" />
+    <Compile Include="Types\GroundType.cs" />
+    <Compile Include="Primitives\Helper.cs" />
+    <Compile Include="Points\Incident.cs" />
+    <Compile Include="Types\IncidentType.cs" />
+    <Compile Include="Types\PetrochemicalType.cs" />
+    <Compile Include="Points\Point.cs" />
+    <Compile Include="Objects\EcoObject.cs" />
+    <Compile Include="Objects\RiskObject.cs" />
+    <Compile Include="Primitives\SpreadingCoefficient.cs" />
+    <Compile Include="Blurs\WaterPollution .cs" />
+    <Compile Include="RGEContextModel.cs" />
+    <Compile Include="RGEContext_Exception.cs" />
     <Compile Include="RGEContext.cs" />
     <Compile Include="ORTContext.cs" />
     <Compile Include="GEAContext.cs" />
@@ -50,7 +71,9 @@
     <Compile Include="CAIContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RGEContextView.cs" />
+    <Compile Include="Types\RiskObjectType.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
