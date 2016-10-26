@@ -7,6 +7,8 @@ using System.Xml;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
 using EGH01DB.Points;
+using EGH01DB.Objects;
+using EGH01DB;
 
 
 namespace EGH01.Controllers
@@ -59,11 +61,24 @@ namespace EGH01.Controllers
             }
 
 
+
             return View();
         }
 
+        public ActionResult Risk_Obj()
+        {
+             RGEContext db = new RGEContext();
+            {
+                 List<RiskObject> list = new List<RiskObject>();
+                 if (Helper.GetListRiskObject(db, ref list))
+                 {
+                        int k = 1;
+                 };
+            }
 
 
+            return View();
+        }
 
 	}
 }
