@@ -65,18 +65,28 @@ namespace EGH01.Controllers
             return View();
         }
 
-        public ActionResult Risk_Obj()
+        public ActionResult Risk_Obj_list()
         {
              RGEContext db = new RGEContext();
             {
                  List<RiskObject> list = new List<RiskObject>();
                  if (Helper.GetListRiskObject(db, ref list))
                  {
-                        int k = 1;
+                       int k = 1;
                  };
             }
-
-
+            return View();
+        }
+        public ActionResult Risk_Obj()
+        {
+            RGEContext db = new RGEContext();
+            {
+                RiskObject rs = new RiskObject();
+                if (RiskObject.GetById(db, 79, ref rs))
+                {
+                    int k = 1;
+                };
+            }
             return View();
         }
 
