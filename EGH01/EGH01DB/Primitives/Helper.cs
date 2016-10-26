@@ -218,10 +218,29 @@ namespace EGH01DB.Primitives
                         double x = (double)reader["ШиротаГрад"];
                         double y = (double)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
-                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"], "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                        Point point = new Point(coordinates,ground_type, 0.0f, 0.0f);
-                        RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], "");
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], "", 0);
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
+                                                                    (string)ground_type_name,
+                                                                    (float)porosity,
+                                                                    (float)holdmigration,
+                                                                    (float)waterfilter,
+                                                                    (float)diffusion,
+                                                                    (float)distribution,
+                                                                    (float)sorption);
+                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
+                        double height = (double)reader["ВысотаУровнемМоря"];
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                        string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
+                        RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        int pdk = (int)reader["ПДК"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
                         RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);

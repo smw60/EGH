@@ -65,6 +65,8 @@ namespace EGH01.Controllers
             return View();
         }
 
+
+// проверка процедур Risk Object
         public ActionResult Risk_Obj_list()
         {
              RGEContext db = new RGEContext();
@@ -82,13 +84,111 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 RiskObject rs = new RiskObject();
-                if (RiskObject.GetById(db, 79, ref rs))
+                if (RiskObject.GetById(db, 78, ref rs))
                 {
                     int k = 1;
                 };
             }
             return View();
         }
+        public ActionResult Risk_Obj_DeleteById()
+        {
+            RGEContext db = new RGEContext();
+            {
+                RiskObject rs = new RiskObject();
+              //  if (RiskObject.DeleteById(db, 79)) --- удалена
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+       
+
+// проверка процедур Petrochemical Type
+        public ActionResult Petr_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                // PetrochemicalType pt = new PetrochemicalType();
+                // if (PetrochemicalType.GetByCode(db, 7, ref pt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Petr_GetNextCode() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                PetrochemicalType pt = new PetrochemicalType();
+                int k1 = 0;
+               // if (PetrochemicalType.GetNextCode(db, out k1))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Petr_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                PetrochemicalType pt = new PetrochemicalType();
+               // if (PetrochemicalType.DeleteByCode(db, 8))  // удален
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Petr_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                
+                int code_type = 8;
+                string name = "test";
+                float boilingtemp = 100.0f;
+                float density = 30.0f;
+                float viscosity = 50.0f;
+                float solubility = 3.0f;
+                // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
+                //if (PetrochemicalType.Create(db, pt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Petr_Update()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                int code_type = 8;
+                string name = "test1";
+                float boilingtemp = 110.0f;
+                float density = 35.0f;
+                float viscosity = 50.0f;
+                float solubility = 3.0f;
+                // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+                // if (PetrochemicalType.Update(db, pt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+
+
+
+// проверка процедур Ground Type
+// проверка процедур Cadastre Type
+// проверка процедур Risk Object Type
+// проверка процедур EcoObject Type
 
 	}
 }
