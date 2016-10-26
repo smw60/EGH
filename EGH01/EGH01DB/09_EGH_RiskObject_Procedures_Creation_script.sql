@@ -157,7 +157,7 @@ as begin
 end;
 go
 -- Получение следующего ID техногенного объекта
-create procedure EGH.GetNextRiskObjectId(@IdТехногенногоОбъекта int)
+create procedure EGH.GetNextRiskObjectId(@IdТехногенногоОбъекта int output)
  as begin
 	declare @rc int = -1;
 	set @IdТехногенногоОбъекта = (select max(IdТехногенногоОбъекта)+1 from dbo.ТехногенныйОбъект);

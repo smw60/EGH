@@ -160,6 +160,11 @@ namespace EGH01DB.Objects
 
         return rc;
     }
+    static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int id)
+    {
+        return Delete(dbcontext, new RiskObject(id));
+    }
+
     static public bool Update(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
     {
         bool rc = false;
@@ -250,6 +255,11 @@ namespace EGH01DB.Objects
             cmd.CommandType = CommandType.StoredProcedure;
             {
                 SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
+                parm.Value = id;
+                cmd.Parameters.Add(parm);
+            }
+            {
+                SqlParameter parm = new SqlParameter("@IdТипаТехногенногоОбъекта", SqlDbType.Int);
                 parm.Value = id;
                 cmd.Parameters.Add(parm);
             }
