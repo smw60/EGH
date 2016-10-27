@@ -31,7 +31,37 @@
         </div>
 
 </div>
-    <div class="osnova">
+    <div class="osnova">        
+        <!--Заголовок индивидуальный для страниц-->
+        <div class="container">
+    @if (ViewBag.EGHLayout == "RGE")
+{
+    <h2>EGHRGE - Прогноз</h2>
+}
+    else if (ViewBag.EGHLayout == "CEQ")
+    {
+    <h2>EGHCEQ - Соответствие качества сред</h2>
+    }
+    else if (ViewBag.EGHLayout == "ORT")
+    {
+    <h2>EGHORT - Оптимальные технологии реабилитации</h2>
+    }
+    else if (ViewBag.EGHLayout == "CCO")
+    {
+    <h2>EGHCCO - Химический состав нефтей</h2>
+    }
+    else if (ViewBag.EGHLayout == "CAI")
+    {
+    <h2>EGHCAI - Условия техногенной нагрузки</h2>
+    }
+    else if (ViewBag.EGHLayout == "GEA")
+    {
+    <h2>EGHGEA - Оценка геологической среды</h2>
+    }
+
+
+        </div>
+
         <!--Меню индивидуальное для страниц-->
         <div class=" container proverka1">
             @if (ViewBag.EGHLayout == "RGE")
@@ -61,7 +91,7 @@
             {
             }
             </div>
-            <div class=" container ">
+            <div class=" container mainbody">
                 @RenderBody()
             </div>
     </div>
