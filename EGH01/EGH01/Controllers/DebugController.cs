@@ -243,13 +243,41 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
+        public ActionResult Petr_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PetrochemicalType> list = new List<PetrochemicalType>();
+                //if (Helper.GetListPetrochemicalType(db, ref list))    
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
 
 
 
 // проверка процедур Ground Type
+        public ActionResult Ground_Type_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<GroundType> list = new List<GroundType>();
+               // if (Helper.GetListGroundType(db, ref list))    
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+
 // проверка процедур Cadastre Type
+
 // проверка процедур Risk Object Type
+
+
 // проверка процедур EcoObject Type
 
 	}

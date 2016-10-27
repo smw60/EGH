@@ -66,14 +66,15 @@ namespace EGH01DB.Primitives
                     list_type = new List<GroundType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new GroundType((int)reader["КодТипаГрунта"], 
-                            (string)reader["НаименованиеТипаГрунта"], 
-                            (float)reader["КоэфПористости"], 
-                            (float)reader["КоэфЗадержкиМиграции"], 
-                            (float)reader["КоэфФильтрацииВоды"], 
-                            (float)reader["КоэфДиффузии"],
-                            (float)reader["КоэфРаспределения"],
-                            (float)reader["КоэфСорбции"]));
+                        int code = (int)reader["КодТипаГрунта"];
+                        string name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        list_type.Add(new GroundType((int)code, (string)name, (float)porosity, (float)holdmigration, (float)waterfilter, (float)diffusion, (float)distribution, (float)sorption));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -156,12 +157,13 @@ namespace EGH01DB.Primitives
                     list_type = new List<PetrochemicalType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new PetrochemicalType((int)reader["КодТипа"],
-                                                            (string)reader["НаименованиеТипаНефтепродукта"], 
-                                                            (float)reader["ТемператураКипения"], 
-                                                            (float)reader["Плотность"], 
-                                                            (float)reader["КинематическаяВязкость"], 
-                                                            (float)reader["Растворимость"]));
+                        int code = (int)reader["КодТипаНефтепродукта"];
+                        string name = (string)reader["НаименованиеТипаНефтепродукта"];
+                        double boilingtemp = (double)reader["ТемператураКипения"];
+                        double density = (double)reader["Плотность"];
+                        double viscosity = (double)reader["КинематическаяВязкость"];
+                        double solubility = (double)reader["Растворимость"];
+                        list_type.Add(new PetrochemicalType((int)code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
