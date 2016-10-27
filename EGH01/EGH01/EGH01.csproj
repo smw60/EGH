@@ -175,6 +175,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\EGHCAI\RiskObject.cs" />
     <Compile Include="Models\EGHRGE\IncidentTypeView.cs" />
     <Compile Include="Models\EGH\TypeViewHeadMenu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -250,6 +251,11 @@
     <Content Include="Views\EGHRGE\IncidentTypeCreate.cshtml" />
     <Content Include="Views\EGHRGE\IncidentTypeDelete.cshtml" />
     <Content Include="Views\EGHRGE\IncidentTypeUpdate.cshtml" />
+    <Content Include="Views\EGHCAI\RiskObject.cshtml" />
+    <Content Include="Views\EGHCAI\RiskObjectCreate.cshtml" />
+    <Content Include="Views\EGHCAI\RiskObjectDelete.cshtml" />
+    <Content Include="Views\EGHCAI\RiskObjectUpdate.cshtml" />
+    <Content Include="Views\EGHCAI\_RiskObjectList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

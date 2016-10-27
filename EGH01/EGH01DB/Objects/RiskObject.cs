@@ -121,7 +121,6 @@ namespace EGH01DB.Objects
                 {
                     rc = false;
                 };
-
                 return rc;
             }
 
@@ -296,6 +295,7 @@ namespace EGH01DB.Objects
                 {
                     rc = false;
                 };
+                rc = true;
                 return rc;
             }
 
