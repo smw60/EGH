@@ -163,6 +163,7 @@
     <Compile Include="Controllers\DebugController.cs" />
     <Compile Include="Controllers\EGHCAIController.cs" />
     <Compile Include="Controllers\EGHCCOController.cs" />
+    <Compile Include="Controllers\EGHCCOController_PetrochemicalType.cs" />
     <Compile Include="Controllers\EGHCEQController.cs" />
     <Compile Include="Controllers\EGHController.cs" />
     <Compile Include="Controllers\EGHGEAController.cs" />
@@ -176,6 +177,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EGHCAI\RiskObject.cs" />
+    <Compile Include="Models\EGHCCO\PetrochemicalTypeView.cs" />
     <Compile Include="Models\EGHRGE\IncidentTypeView.cs" />
     <Compile Include="Models\EGH\TypeViewHeadMenu.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -256,6 +258,11 @@
     <Content Include="Views\EGHCAI\RiskObjectDelete.cshtml" />
     <Content Include="Views\EGHCAI\RiskObjectUpdate.cshtml" />
     <Content Include="Views\EGHCAI\_RiskObjectList.cshtml" />
+    <Content Include="Views\EGHCCO\_PetrochemicalTypeList.cshtml" />
+    <Content Include="Views\EGHCCO\PetrochemicalType.cshtml" />
+    <Content Include="Views\EGHCCO\PetrochemicalTypeCreate.cshtml" />
+    <Content Include="Views\EGHCCO\PetrochemicalTypeDelete.cshtml" />
+    <Content Include="Views\EGHCCO\PetrochemicalTypeUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

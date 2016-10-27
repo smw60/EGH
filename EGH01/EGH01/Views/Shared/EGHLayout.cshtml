@@ -266,10 +266,17 @@
                  <article>
                      @Html.ActionLink("Справочники", "Index", "EGHGRE")
                      @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-                 </article> 
-                
-                
-            } 
+                 </article>
+
+
+            }
+            @if (ViewBag.EGHLayout == "CCO")
+            {
+               @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
+            }
+
+
+            
 
 
         </section>

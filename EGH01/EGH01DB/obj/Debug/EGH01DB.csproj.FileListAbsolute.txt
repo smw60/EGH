@@ -8,3 +8,8 @@ D:\EGHH\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
 D:\EGHH\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
 D:\EGHH\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
 D:\EGHH\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
+E:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+E:\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+E:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
+E:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+E:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
