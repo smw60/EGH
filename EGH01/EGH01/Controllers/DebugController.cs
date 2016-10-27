@@ -65,7 +65,6 @@ namespace EGH01.Controllers
             return View();
         }
 
-
 // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {
@@ -166,8 +165,6 @@ namespace EGH01.Controllers
             return View();
         }
 
-       
-
 // проверка процедур Petrochemical Type
         public ActionResult Petr_GetByCode()// есть
         {
@@ -256,9 +253,90 @@ namespace EGH01.Controllers
             return View();
         }
 
-
-
 // проверка процедур Ground Type
+        public ActionResult Ground_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                int type_code = 2;
+                string name = "test";
+                float porosity = 0.1f;//  от нуля до единицы, не включая, в базе есть check!
+                float holdmigration = 0.2f;
+                float waterfilter = 23.0f;
+                float diffusion = 1.0f;
+                float distribution = 0.1f;
+                float sorption = 0.2f;
+                //GroundType gt = new GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption);
+                //if (GroundType.GetByCode(db, 1, out gt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Ground_GetNextCode() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //GroundType gt = new GroundType();
+                int k1 = 0;
+                //if (GroundType.GetNextCode(db, out k1))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+        //public ActionResult Ground_DeleteByCode()  // 
+        //{
+        //    RGEContext db = new RGEContext();
+        //    {
+        //        GroundType gt = new GroundType();
+        //        if (GroundType.DeleteByCode(db, 2))  // 
+        //        {
+        //            int k = 1;
+        //        };
+        //    }
+        //    return View();
+        //}
+        //public ActionResult Petr_Create()// есть
+        //{
+        //    RGEContext db = new RGEContext();
+        //    {
+
+        //        int code_type = 8;
+        //        string name = "test";
+        //        float boilingtemp = 100.0f;
+        //        float density = 30.0f;
+        //        float viscosity = 50.0f;
+        //        float solubility = 3.0f;
+        //        // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
+        //        //if (PetrochemicalType.Create(db, pt))
+        //        {
+        //            int k = 1;
+        //        };
+        //    }
+        //    return View();
+        //}
+        //public ActionResult Petr_Update()// есть
+        //{
+        //    RGEContext db = new RGEContext();
+        //    {
+        //        int code_type = 8;
+        //        string name = "test1";
+        //        float boilingtemp = 110.0f;
+        //        float density = 35.0f;
+        //        float viscosity = 50.0f;
+        //        float solubility = 3.0f;
+        //        // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+        //        // if (PetrochemicalType.Update(db, pt))
+        //        {
+        //            int k = 1;
+        //        };
+        //    }
+        //    return View();
+        //}
         public ActionResult Ground_Type_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -279,6 +357,9 @@ namespace EGH01.Controllers
 
 
 // проверка процедур EcoObject Type
+
+
+// проверка процедур Incident Type
 
 	}
 }
