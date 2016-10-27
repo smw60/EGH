@@ -9,6 +9,7 @@ using System.Xml.Linq;
 using EGH01DB;
 using EGH01DB.Primitives;
 using EGH01DB.Types;
+
 namespace EGH01.Controllers
 {
     public partial class EGHRGEController : Controller
@@ -76,10 +77,7 @@ namespace EGH01.Controllers
             {
                 db = new RGEContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
-            
-            
-            
-            
+
             }
             catch (RGEContext.Exception e)
             {

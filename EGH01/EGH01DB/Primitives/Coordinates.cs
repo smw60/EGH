@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 91c037880c2a7c7d0c4518173e334bb3677d4cb2
 
 namespace EGH01DB.Primitives
 {

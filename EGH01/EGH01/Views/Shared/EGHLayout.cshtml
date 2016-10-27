@@ -66,6 +66,28 @@
         <div class=" container proverka1">
             @if (ViewBag.EGHLayout == "RGE")
             {
+<<<<<<< HEAD
+                 @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
+                 @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
+                 @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
+                 <article>
+                     @Html.ActionLink("Справочники", "Index", "EGHGRE")
+                     @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
+                 </article>
+
+
+            }
+            @if (ViewBag.EGHLayout == "CCO")
+            {
+               @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
+            }
+
+
+            
+
+
+        </section>
+=======
                 @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
                 @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
                 @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
@@ -84,6 +106,7 @@
             }
             else if (ViewBag.EGHLayout == "ORT")
             {
+>>>>>>> 82bff264e642aec2686a760e78ab9a46b1564cb0
 
             }
             
