@@ -148,3 +148,4 @@ D:\EGH\EGH01\EGH01\bin\ru\Microsoft.Owin.Security.Twitter.resources.dll
 D:\EGH\EGH01\EGH01\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 D:\EGH\EGH01\EGH01\obj\Debug\EGH01.dll
 D:\EGH\EGH01\EGH01\obj\Debug\EGH01.pdb
+D:\EGH\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
