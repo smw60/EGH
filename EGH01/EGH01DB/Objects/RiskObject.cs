@@ -31,6 +31,7 @@ namespace EGH01DB.Objects
             this.name = string.Empty;
             this.address = string.Empty;
         }
+        
         public RiskObject(int id, Point point, RiskObjectType type, CadastreType cadastertype, string name, string address)
             : base(point)
         {
@@ -63,6 +64,26 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
+                    SqlParameter parm = new SqlParameter("@КодТипаТехногенногоОбъекта", SqlDbType.Int);
+                    parm.Value = risk_object.type.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
+                    parm.Value = risk_object.cadastretype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.VarChar);
+                    parm.Value = risk_object.name;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.VarChar);
+                    parm.Value = risk_object.address;
+                    cmd.Parameters.Add(parm);
+                }
+                {
                     SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
                     parm.Value = risk_object.coordinates.latitude;
                     cmd.Parameters.Add(parm);
@@ -79,7 +100,7 @@ namespace EGH01DB.Objects
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
-                    parm.Value = risk_object.coordinates.lngitude;
+                    parm.Value = risk_object.waterdeep;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -87,26 +108,7 @@ namespace EGH01DB.Objects
                     parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипаТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.type;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = risk_object.cadastretype;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.VarChar);
-                    parm.Value = risk_object.name;
-                    cmd.Parameters.Add(parm);
-                }
-                {
-                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.VarChar);
-                    parm.Value = risk_object.address;
-                    cmd.Parameters.Add(parm);
-                }
+                
                 {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
@@ -115,7 +117,7 @@ namespace EGH01DB.Objects
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = (int)cmd.Parameters["@exitrc"].Value == risk_object.id;
+                    rc = ((int)cmd.Parameters["@exitrc"].Value == risk_object.id);
                 }
                 catch (Exception e)
                 {
@@ -173,13 +175,13 @@ namespace EGH01DB.Objects
                 }
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.type;
+                    parm.Value = risk_object.type.type_code;
                     cmd.Parameters.Add(parm);
                 }
 
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = risk_object.groundtype;
+                    parm.Value = risk_object.groundtype.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -190,6 +192,31 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.VarChar);
                     parm.Value = risk_object.address;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ШиротаГрад", SqlDbType.Float);
+                    parm.Value = risk_object.coordinates.latitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДолготаГрад", SqlDbType.Float);
+                    parm.Value = risk_object.coordinates.lngitude;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ТипГрунта", SqlDbType.Int);
+                    parm.Value = risk_object.groundtype.type_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ГлубинаГрунтовыхВод", SqlDbType.Float);
+                    parm.Value = risk_object.waterdeep;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
+                    parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
                 {

@@ -36,6 +36,17 @@ namespace EGH01DB.Types
             this.distribution = 0.0f;
             this.sorption = 0.0f;        
         }
+        public GroundType(int type_code)
+        {
+            this.type_code = type_code;
+            this.name = "";
+            this.porosity = 0.0f;
+            this.holdmigration = 0.0f;
+            this.waterfilter = 0.0f;
+            this.diffusion = 0.0f;
+            this.distribution = 0.0f;
+            this.sorption = 0.0f;
+        }
         public GroundType(int type_code, string name, float porosity, float holdmigration, float waterfilter, float diffusion, float distribution, float sorption)
         {
             this.type_code = type_code;

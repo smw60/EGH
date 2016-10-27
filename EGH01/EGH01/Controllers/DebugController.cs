@@ -67,36 +67,69 @@ namespace EGH01.Controllers
 
 
 // проверка процедур Risk Object
-        public ActionResult Risk_Obj_list()
+        public ActionResult Risk_Obj_list() // есть
         {
              RGEContext db = new RGEContext();
             {
-                 List<RiskObject> list = new List<RiskObject>();
-                 if (Helper.GetListRiskObject(db, ref list))
+                //  List<RiskObject> list = new List<RiskObject>();
+                 // if (Helper.GetListRiskObject(db, ref list))
                  {
                        int k = 1;
                  };
             }
             return View();
         }
-        public ActionResult Risk_Obj()
+        public ActionResult Risk_Obj() // есть
         {
             RGEContext db = new RGEContext();
             {
-                RiskObject rs = new RiskObject();
-                if (RiskObject.GetById(db, 78, ref rs))
+                // RiskObject rs = new RiskObject();
+                // if (RiskObject.GetById(db, 78, ref rs))
                 {
                     int k = 1;
                 };
             }
             return View();
         }
-        public ActionResult Risk_Obj_DeleteById()
+        public ActionResult Risk_Obj_DeleteById() // есть
         {
             RGEContext db = new RGEContext();
             {
                 RiskObject rs = new RiskObject();
               //  if (RiskObject.DeleteById(db, 79)) --- удалена
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Risk_Obj_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 3;
+                //Point point = new Point (new Coordinates (53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                //RiskObjectType type = new RiskObjectType(1);
+                //CadastreType cad = new CadastreType(1);
+                //RiskObject rs = new RiskObject(id, point, type, cad, "ttt", "tttt");
+                //if (RiskObject.Create(db, rs))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Risk_Obj_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+               // int id = 3;
+               // Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
+               // RiskObjectType type = new RiskObjectType(1);
+               // CadastreType cad = new CadastreType(2);
+               // RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
+               //if (RiskObject.Update(db, rs))
                 {
                     int k = 1;
                 };
