@@ -66,37 +66,99 @@ namespace EGH01.Controllers
         }
 
 
-// проверка процедур Risk Object
-        public ActionResult Risk_Obj_list()
+// проверка процедур Risk Object, раскомментить нужные области
+        public ActionResult Risk_Obj_list() // есть
         {
              RGEContext db = new RGEContext();
             {
-                 List<RiskObject> list = new List<RiskObject>();
-                 if (Helper.GetListRiskObject(db, ref list))
+                //  List<RiskObject> list = new List<RiskObject>();
+                 // if (Helper.GetListRiskObject(db, ref list))
                  {
                        int k = 1;
                  };
             }
             return View();
         }
-        public ActionResult Risk_Obj()
+        public ActionResult Risk_Obj() // есть
         {
             RGEContext db = new RGEContext();
             {
-                RiskObject rs = new RiskObject();
-                if (RiskObject.GetById(db, 78, ref rs))
+                // RiskObject rs = new RiskObject();
+                // if (RiskObject.GetById(db, 78, ref rs))
                 {
                     int k = 1;
                 };
             }
             return View();
         }
-        public ActionResult Risk_Obj_DeleteById()
+        public ActionResult Risk_Obj_DeleteById() // есть
         {
             RGEContext db = new RGEContext();
             {
                 RiskObject rs = new RiskObject();
               //  if (RiskObject.DeleteById(db, 79)) --- удалена
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Risk_Obj_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int id = 3;
+                //Point point = new Point (new Coordinates (53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                //RiskObjectType type = new RiskObjectType(1);
+                //CadastreType cad = new CadastreType(1);
+                //RiskObject rs = new RiskObject(id, point, type, cad, "ttt", "tttt");
+                //if (RiskObject.Create(db, rs))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Risk_Obj_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+               // int id = 3;
+               // Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
+               // RiskObjectType type = new RiskObjectType(1);
+               // CadastreType cad = new CadastreType(2);
+               // RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
+               //if (RiskObject.Update(db, rs))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        //public ActionResult Risk_Obj_D() // есть
+        //{
+        //    RGEContext db = new RGEContext();
+        //    {
+        //        RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
+        //        Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+        //        float distance = 54.0f;
+        //        if (RiskObject.RiskObjectsList.CreateRiskObjectsList(db, point, distance, ref list))
+        //        {
+        //            int k = 1;
+        //        };
+        //    }
+        //    return View();
+        //}
+        public ActionResult Risk_Obj_D() // есть, перегрузка, с двумя аргументами, > distance1 и <  distance2
+        {
+            RGEContext db = new RGEContext();
+            {
+                RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
+                //Point point = new Point(new Coordinates(3.7f, 5.6f), new GroundType(1), 0.0f, 0.0f);
+                //float distance1 = 53.0f;
+                //float distance2 = 55.0f;
+                //if (RiskObject.RiskObjectsList.CreateRiskObjectsList(db, point, distance1, distance2, ref list))
                 {
                     int k = 1;
                 };
@@ -181,13 +243,41 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
+        public ActionResult Petr_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<PetrochemicalType> list = new List<PetrochemicalType>();
+                //if (Helper.GetListPetrochemicalType(db, ref list))    
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
 
 
 
 // проверка процедур Ground Type
+        public ActionResult Ground_Type_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<GroundType> list = new List<GroundType>();
+               // if (Helper.GetListGroundType(db, ref list))    
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+
 // проверка процедур Cadastre Type
+
 // проверка процедур Risk Object Type
+
+
 // проверка процедур EcoObject Type
 
 	}
