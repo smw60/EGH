@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Xml;
 using EGH01DB.Types;
+using EGH01DB.Objects;
+using EGH01DB.Points;
 
 namespace EGH01DB.Primitives
 {
@@ -189,6 +191,62 @@ namespace EGH01DB.Primitives
                                                          (string)reader["НаименованиеТипаТехногенногоОбъекта"]));
                     }
                     rc = list_type.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+            }
+        }
+
+        static public bool GetListRiskObject(EGH01DB.IDBContext dbcontext, ref List<RiskObject> risk_objects)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    risk_objects = new List<RiskObject>();
+                    while (reader.Read())
+                    {
+                        int id = (int)reader["IdТехногенногоОбъекта"];
+                        double x = (double)reader["ШиротаГрад"];
+                        double y = (double)reader["ДолготаГрад"];
+                        Coordinates coordinates = new Coordinates((float)x, (float)y);
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
+                                                                    (string)ground_type_name,
+                                                                    (float)porosity,
+                                                                    (float)holdmigration,
+                                                                    (float)waterfilter,
+                                                                    (float)diffusion,
+                                                                    (float)distribution,
+                                                                    (float)sorption);
+                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
+                        double height = (double)reader["ВысотаУровнемМоря"];
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                        string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
+                        RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        int pdk = (int)reader["ПДК"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+                        string name = (string)reader["НаименованиеТехногенногоОбъекта"];
+                        string address = (string)reader["АдресТехногенногоОбъекта"];
+                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        risk_objects.Add(risk_object);
+                    }
+                    rc = risk_objects.Count > 0;
                     reader.Close();
                 }
                 catch (Exception e)
