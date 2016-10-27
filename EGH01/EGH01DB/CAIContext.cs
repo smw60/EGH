@@ -7,10 +7,38 @@ using System.Data.SqlClient;
 using System.Configuration;
 namespace EGH01DB
 {
-    public class CAIContext 
+    public class CAIContext : IDBContext
     {
-        public bool IsConnect { get { return con != null; } }
-        SqlConnection con = DB.Connect();
-        
+
+
+        SqlConnection con = DB.Connect("EGHCAI");
+
+        public SqlConnection connection { get { return con; } }
+        public CAIContext()
+        {
+            //        if (con == null) throw new RGEContext.Exception(1);
+
+        }
+
+        //public Incident CreateIncident() 
+        //{
+        //    return new Incident();
+        //}     
+
+
+        public void Disconnect()
+        {
+            if (con != null) con.Close();
+            con = null;
+        }
+
+
+
+
     }
+
+
+
+
 }
+
