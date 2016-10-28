@@ -19,8 +19,15 @@
       <div class="box">
             <div class="boxdata">
 
-                <p><label class="boxdata-label-30">Код типа инцидента</label> @t.id.ToString() </p>
-                <p><label class="boxdata-label-30">Наименование типа инцидента  </label> @t.name </p>
+                <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString() </p>
+                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name </p>
+                <p>
+                <label class="boxdata-label-30"> Координаты объекта </label>
+                <br>
+                <p><label class="boxdata-label-30">Широта </label> @t.coordinates.latitude.ToString() </p>    
+                <p><label class="boxdata-label-30">Долгота</label> @t.coordinates.lngitude.ToString() </p>
+                <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
+             
                 <input type="hidden" value="@t.id.ToString()" name="id">
             
             </div>

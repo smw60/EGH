@@ -1,5 +1,9 @@
 ﻿@using EGH01.Core; 
 @using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Objects;
+@using EGH01DB.Types;
+@model EGH01DB.CAIContext
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
@@ -11,8 +15,18 @@
                           new Menu.MenuItem("Создать",    "RiskObject.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Create.Cancel", true)
                         );
+    List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
+    if (@Model != null) { Helper.GetListRiskObjectType(@Model, ref list_type); };
 
-}
+
+    List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
+    if (@Model != null){Helper.GetListCadastreType(@Model, ref list_cadastreType); };
+
+
+    List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
+    if (@Model != null) { Helper.GetListGroundType(@Model, ref list_groundType); };
+
+    }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head})
 
  @using(Html.BeginForm("RiskObjectCreate", "EGHCAI"))
@@ -25,7 +39,6 @@
             <label class ="boxdata-label-30"> Наименование типа объекта </label>
             <input class="boxdata-input-50" type="text" name="Name" value=" " />
         </p>
-
         <p>
             <label class="boxdata-label-30"> Адресс объекта </label>
             <input class="boxdata-input-50" type="text" name="Adress" value=" " />
@@ -38,9 +51,22 @@
             <label class="boxdata-label-30">Долгота</label>
             <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
         </p>
+        <p>
+             <label class="boxdata-label-30"> Адресс объекта </label>
+             <input class="boxdata-input-50" type="text" name="Adress" value=" " />
+        </p>
+      <select form="RiskObjectCreate" list="list_type">
+          <option name="listType" value=" "> </option>
+          </select>
+       
+        <p>
+        </p>
     </div>
 
     @Html.Partial("_TypeLineMenu", create)
+    @Html.Partial("_RiskObjectType", list_type)
+    @Html.Partial("_CadastreType", list_cadastreType)
+    @Html.Partial("_GroundType",list_groundType)
 
   </div>
   }

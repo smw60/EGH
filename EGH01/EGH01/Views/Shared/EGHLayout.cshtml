@@ -66,7 +66,6 @@
         <div class=" container proverka1">
             @if (ViewBag.EGHLayout == "RGE")
             {
-<<<<<<< HEAD
                  @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
                  @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
                  @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
@@ -82,12 +81,16 @@
                @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
             }
 
+            @if (ViewBag.EGHLayout == "CAI")
+            {
+                @Html.ActionLink("---CAI", "RiskObject", "EGHCAI")
 
+            }
             
 
 
         </section>
-=======
+
                 @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
                 @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
                 @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
@@ -103,16 +106,7 @@
                         <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
                     </ul>
                 </div>
-            }
-            else if (ViewBag.EGHLayout == "ORT")
-            {
->>>>>>> 82bff264e642aec2686a760e78ab9a46b1564cb0
-
-            }
             
-            else if (ViewBag.EGHLayout == "GEA")
-            {
-            }
             </div>
             <div class=" container mainbody">
                 @RenderBody()

@@ -15,13 +15,17 @@
                         );
 
     List<RiskObject> list = new List<RiskObject>();
-    if (@Model != null) {Helper.GetListRiskObject(@Model, ref list); };                                  
+    if (@Model != null) {Helper.GetListRiskObject(@Model, ref list); };
+
+    List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
+    if (@Model != null) { Helper.GetListRiskObjectType(@Model, ref list_type); };
 
 }
 
 
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu {Controller = "EGHCAI", Action = "RiskObject", Menu = head})
 @Html.Partial("_RiskObjectList", list)
+
 
 
 
