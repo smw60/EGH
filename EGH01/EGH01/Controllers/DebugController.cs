@@ -123,12 +123,12 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-               // int id = 3;
-               // Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
-               // RiskObjectType type = new RiskObjectType(1);
-               // CadastreType cad = new CadastreType(2);
-               // RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
-               //if (RiskObject.Update(db, rs))
+                //int id = 3;
+                //Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
+                //RiskObjectType type = new RiskObjectType(1);
+                //CadastreType cad = new CadastreType(2);
+                //RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
+                //if (RiskObject.Update(db, rs))
                 {
                     int k = 1;
                 };
