@@ -45,10 +45,9 @@ namespace EGH01.Controllers
             }
             finally
             {
-                if (db != null) db.Disconnect();
+                //if (db != null) db.Disconnect();
             }
-
-            return View();
+            return View("PetrochemicalType", db);
         }
 
 
