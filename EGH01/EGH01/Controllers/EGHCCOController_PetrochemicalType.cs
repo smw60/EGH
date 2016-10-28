@@ -27,6 +27,7 @@ namespace EGH01.Controllers
                 ViewBag.msg = "Соединение с базой данных установлено";
                 view = View("PetrochemicalType", db);
 
+
                 if (menuitem.Equals("PetrochemicalType.Create"))
                 {
 
@@ -86,13 +87,13 @@ namespace EGH01.Controllers
         [HttpPost]
         public ActionResult PetrochemicalTypeCreate(PetrochemicalTypeView itv)
         {
-            RGEContext db = null;
+            CCOContext db = null;
             ViewBag.EGHLayout = "CCO";
             ActionResult view = View("Index");
             string menuitem = this.HttpContext.Request.Params["menuitem"] ?? "Empty";
             try
             {
-                db = new RGEContext();
+                db = new CCOContext();
                 view = View("PetrochemicalType", db);
                 if (menuitem.Equals("PetrochemicalType.Create.Create"))
                 {
