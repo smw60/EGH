@@ -67,6 +67,20 @@ namespace EGH01.Controllers
                         }
                     }
                 }
+                else if (menuitem.Equals("RiskObject.Excel"))
+                {
+                    EGH01DB.Objects.RiskObject.RiskObjectList list = new EGH01DB.Objects.RiskObject.RiskObjectList();
+                    XmlNode node = list.toXmlNode();
+                    XmlDocument doc = new XmlDocument();
+                    XmlNode nnode = doc.ImportNode(node, true);
+                    doc.AppendChild(nnode);
+                    doc.Save(Server.MapPath("~/App_Data/RiskObject.xml"));
+                    view = View("Index");
+
+                    view = File(Server.MapPath("~/App_Data/RiskObject.xml"), "text/plain", "RiskObject.xml");
+
+
+                }
 
             }
             catch (RGEContext.Exception e)
@@ -174,13 +188,13 @@ namespace EGH01.Controllers
                 if (menuitem.Equals("RiskObject.Update.Update"))
                 {
                     int id = itv.type_code;
-                    Coordinates coordinates = new Coordinates(52.52f, 27.27f);
+                    Coordinates coordinates = new Coordinates(itv.latitude, itv.lngitude); ;
                     GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
                     Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
                     RiskObjectType risk_object_type = new RiskObjectType(1, "");
                     CadastreType cadastre_type = new CadastreType(1, "", 0);
                     string name = itv.name;
-                    string address = "АдресТехногенногоОбъекта";
+                    string address = itv.adress;
                     EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
 
 

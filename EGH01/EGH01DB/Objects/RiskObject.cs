@@ -8,6 +8,7 @@ using EGH01DB.Types;
 using EGH01DB.Primitives;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
 
 
 namespace EGH01DB.Objects
@@ -58,7 +59,37 @@ namespace EGH01DB.Objects
             this.name = string.Empty;
             this.address = string.Empty;
         }
+        public class RiskObjectList : List<RiskObject>
+        {
+           List<EGH01DB.Objects.RiskObject> list_rick = new List<EGH01DB.Objects.RiskObject>();
+            public RiskObjectList()
+            {
 
+            }
+            public RiskObjectList(List<RiskObject> list) : base(list)
+            {
+              
+            }
+            public RiskObjectList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListRiskObject(dbcontext))
+            {
+
+            }
+            public XmlNode toXmlNode(string comment = "")
+            {
+
+                XmlDocument doc = new XmlDocument();
+                XmlElement rc = doc.CreateElement("RiskObjectList");
+                if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+
+                this.ForEach(m => rc.AppendChild(doc.ImportNode(m.toXmlNode(), true)));
+
+             //   rc.AppendChild(doc.ImportNode(this.coordinates.toXmlNode(), true));
+                //rc.AppendChild(doc.ImportNode(this.groundtype.toXmlNode(), true));
+                return (XmlNode)rc;
+            }
+
+
+        }
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObject risk_object)
         {
             bool rc = false;
