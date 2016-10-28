@@ -179,7 +179,7 @@ namespace EGH01DB.Primitives
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EEGH.GetRiskObjectTypeList", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectTypeList", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 try

@@ -349,19 +349,31 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        //public ActionResult Risk_type() // есть
+        //{
+        //    RGEContext db = new RGEContext();
+        //    {
+        //        List<RiskObjectType> list = new List<RiskObjectType>();
+        //        if (Helper.GetListRiskObjectType(db, ref list))    
+        //        {
+        //            int k = 1;
+        //        };
+        //    }
+        //    return View();
+        //}
 
 
-// проверка процедур Cadastre Type
+        // проверка процедур Cadastre Type
 
-// проверка процедур Risk Object Type
-
-
-// проверка процедур EcoObject Type
+        // проверка процедур Risk Object Type
 
 
-// проверка процедур Incident Type
+        // проверка процедур EcoObject Type
 
-	}
+
+        // проверка процедур Incident Type
+
+    }
 }
 
 
