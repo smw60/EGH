@@ -22,11 +22,12 @@
                 <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString() </p>
                 <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name </p>
                 <p>
-                <label class="boxdata-label-30"> Координаты объекта </label>
-                <br>
-                <p><label class="boxdata-label-30">Широта </label> @t.coordinates.latitude.ToString() </p>    
-                <p><label class="boxdata-label-30">Долгота</label> @t.coordinates.lngitude.ToString() </p>
-                <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
+                <p><label class="boxdata-label-30">Имя кадастра </label> @t.cadastretype.name </p>
+                <p><label class="boxdata-label-30">ПДК</label> @t.cadastretype.pdk_coef.ToString() </p>
+                <p><label class="boxdata-label-30">Координаты. Широта:</label> @t.coordinates.latitude.ToString()</p>
+                <p><label class="boxdata-label-30">Координаты. Долгота:</label> @t.coordinates.lngitude.ToString()</p>
+                <p><label class="boxdata-label-30">Имя кадастра </label> @t.groundtype.diffusion.ToString()</p>
+                                <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
              
                 <input type="hidden" value="@t.id.ToString()" name="id">
             
