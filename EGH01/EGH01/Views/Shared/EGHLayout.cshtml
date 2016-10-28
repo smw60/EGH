@@ -35,9 +35,11 @@
         <!--Заголовок индивидуальный для страниц-->
         <div class="container">
     @if (ViewBag.EGHLayout == "RGE")
-{
+    {
     <h2>EGHRGE - Прогноз</h2>
-}
+        
+                
+    }
     else if (ViewBag.EGHLayout == "CEQ")
     {
     <h2>EGHCEQ - Соответствие качества сред</h2>
@@ -63,51 +65,7 @@
         </div>
 
         <!--Меню индивидуальное для страниц-->
-        <div class=" container proverka1">
-            @if (ViewBag.EGHLayout == "RGE")
-            {
-                 @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
-                 @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
-                 @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
-                 <article>
-                     @Html.ActionLink("Справочники", "Index", "EGHGRE")
-                     @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-                 </article>
-
-
-            }
-            @if (ViewBag.EGHLayout == "CCO")
-            {
-               @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
-            }
-
-            @if (ViewBag.EGHLayout == "CAI")
-            {
-                @Html.ActionLink("---CAI", "RiskObject", "EGHCAI")
-
-            }
-            
-
-
-        </section>
-
-                @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
-                @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
-                @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
-                @Html.ActionLink("Типы инцидентов", "Index", "EGHRGE")
-        
-
-                <div >
-                    <span id="spravochniki" onclick="$('#spravochniki_list').toggle();">Справочники</span>
-                    <ul id="spravochniki_list" style="display:none;">
-                        <li>@Html.ActionLink("---справочник 1", "IncidentType", "EGHRGE")</li>
-                        <li>@Html.ActionLink("---справочник 2", "IncidentType", "EGHRGE")</li>
-                        <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-                        <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-                    </ul>
-                </div>
-            
-            </div>
+       
             <div class=" container mainbody">
                 @RenderBody()
             </div>
@@ -155,4 +113,48 @@
            
 
 
-     
+     @*<div class=" container proverka1">
+    @if (ViewBag.EGHLayout == "RGE")
+    {
+         @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
+         @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
+         @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
+         <article>
+             @Html.ActionLink("Справочники", "Index", "EGHGRE")
+             @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
+         </article>
+
+
+    }
+    @if (ViewBag.EGHLayout == "CCO")
+    {
+       @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
+    }
+
+    @if (ViewBag.EGHLayout == "CAI")
+    {
+        @Html.ActionLink("---CAI", "RiskObject", "EGHCAI")
+
+    }
+
+
+
+
+
+        @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
+        @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
+        @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
+        @Html.ActionLink("Типы инцидентов", "Index", "EGHRGE")
+
+
+        <div >
+            <span id="spravochniki" onclick="$('#spravochniki_list').toggle();">Справочники</span>
+            <ul id="spravochniki_list" style="display:none;">
+                <li>@Html.ActionLink("---справочник 1", "IncidentType", "EGHRGE")</li>
+                <li>@Html.ActionLink("---справочник 2", "IncidentType", "EGHRGE")</li>
+                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
+                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
+            </ul>
+        </div>
+
+    </div>*@

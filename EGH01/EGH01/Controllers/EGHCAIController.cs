@@ -14,7 +14,7 @@ namespace EGH01.Controllers
     public partial class EGHCAIController : Controller
     {
        
-              public ActionResult Index()
+        public ActionResult Index()
         {
             ViewBag.EGHLayout = "CAI";
             CAIContext db = null;
@@ -33,11 +33,11 @@ namespace EGH01.Controllers
             }
             finally
             {
-                if (db != null) db.Disconnect();
+                //if (db != null) db.Disconnect();
             }
 
-            return View();
+            return View("RiskObject",db);
         }
-         }
+    }
 }
 
