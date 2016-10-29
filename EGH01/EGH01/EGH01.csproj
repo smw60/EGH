@@ -236,9 +236,9 @@
     <Content Include="Views\EGH\Index.cshtml" />
     <Content Include="Views\Shared\EGHLayout.cshtml" />
     <Content Include="Views\EGHRGE\Index_old.cshtml" />
-    <Content Include="Views\EGHORT\Index.cshtml" />
-    <Content Include="Views\EGHGEA\Index.cshtml" />
-    <Content Include="Views\EGHCEQ\Index.cshtml" />
+    <Content Include="Views\EGHORT\IndexDebug.cshtml" />
+    <Content Include="Views\EGHGEA\IndexDebug.cshtml" />
+    <Content Include="Views\EGHCEQ\IndexDebug..cshtml" />
     <Content Include="Views\EGHCCO\Index.cshtml" />
     <Content Include="Views\EGHRGE\Report.cshtml" />
     <Content Include="Views\EGHCEQ\Report.cshtml" />
@@ -267,6 +267,9 @@
     <Content Include="Views\EGHCAI\_GroundType.cshtml" />
     <Content Include="Views\EGHCAI\_RiskObjectList.cshtml" />
     <Content Include="Views\EGHCAI\_RiskObjectType.cshtml" />
+    <Content Include="Views\EGHCEQ\Index.cshtml" />
+    <Content Include="Views\EGHGEA\Index.cshtml" />
+    <Content Include="Views\EGHORT\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
