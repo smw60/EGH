@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------------
 drop procedure EGH.CreateGroundType;
 drop procedure EGH.DeleteGroundType;
-drop procedure EGH.GetGroundTypeByID;
+drop procedure EGH.GetGroundTypeByCode;
 drop procedure EGH.GetGroundTypeList;
 drop procedure EGH.UpdateGroundType;
 drop procedure EGH.GetNextGroundTypeCode;
@@ -69,24 +69,18 @@ as begin
 end;
 go
 
--- Получение типа грунта  по ID 
-create  procedure EGH.GetGroundTypeByID(@КодТипаГрунта int, 
-										@НаименованиеТипаГрунта nvarchar(30) output, 
-										@КоэфПористости float output,  
-										@КоэфЗадержкиМиграции float output,
-										@КоэфФильтрацииВоды float output,
-										@КоэфДиффузии float output,  
-										@КоэфРаспределения float output,
-										@КоэфСорбции float output) 
+-- Получение типа грунта  по коду 
+create  procedure EGH.GetGroundTypeByCode(@КодТипаГрунта int) 
 as begin 
     declare @rc int = -1;
-	select	@НаименованиеТипаГрунта = НаименованиеТипаГрунта,  
-			@КоэфПористости = КоэфПористости,
-			@КоэфЗадержкиМиграции = КоэфПористости,
-			@КоэфФильтрацииВоды = КоэфФильтрацииВоды,
-			@КоэфДиффузии = КоэфДиффузии,
-			@КоэфРаспределения = КоэфРаспределения,
-			@КоэфСорбции = КоэфСорбции
+	select	КодТипаГрунта,
+			НаименованиеТипаГрунта,  
+			КоэфПористости,
+			КоэфЗадержкиМиграции,
+			КоэфФильтрацииВоды,
+			КоэфДиффузии,
+			КоэфРаспределения,
+			КоэфСорбции
 	from dbo.ТипГрунта where КодТипаГрунта = @КодТипаГрунта;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
