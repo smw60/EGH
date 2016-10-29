@@ -11,7 +11,7 @@
 use egh;
 drop procedure EGH.CreatePetrochemicalType;
 drop procedure EGH.DeletePetrochemicalType;
-drop procedure EGH.GetPetrochemicalTypeByID;
+drop procedure EGH.GetPetrochemicalTypeByCode;
 drop procedure EGH.GetPetrochemicalTypeList;
 drop procedure EGH.UpdatePetrochemicalType;
 drop procedure EGH.GetNextPetrochemicalTypeCode;
@@ -65,25 +65,24 @@ end;
 go
 
 -- Получение типа нефтепродукта по ID
-create  procedure EGH.GetPetrochemicalTypeByID(
-						@КодТипаНефтепродукта int, 
-						@НаименованиеТипаНефтепродукта nvarchar(50) output,
-						@ТемператураКипения float output,
-						@Плотность float output,
-						@КинематическаяВязкость float output,
-						@Растворимость float output) 
+create  procedure EGH.GetPetrochemicalTypeByCode(@КодТипаНефтепродукта int) 
 as begin 
     declare @rc int = -1;
-	select  @НаименованиеТипаНефтепродукта = НаименованиеТипаНефтепродукта,
-			@ТемператураКипения = ТемператураКипения,
-			@Плотность = Плотность,
-			@КинематическаяВязкость = КинематическаяВязкость,
-			@Растворимость = Растворимость
+	select  НаименованиеТипаНефтепродукта,
+			ТемператураКипения,
+			Плотность,
+			КинематическаяВязкость,
+			Растворимость
 	from dbo.ТипНефтепродукта where КодТипаНефтепродукта = @КодТипаНефтепродукта;  
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
 go
+
+
+exec EGH.GetPetrochemicalTypeByCode @КодТипаНефтепродукта = 2;
+									
+
 
 -- Получение списка типов нефтепродукта
 create procedure EGH.GetPetrochemicalTypeList
@@ -111,7 +110,7 @@ create procedure EGH.GetNextPetrochemicalTypeCode(@КодТипаНефтепродукта int outp
 end;
 go
 ---- Обновление типа нефтепродукта
-create  procedure EGH.UpdatePetrochemicalTypeByID(
+create  procedure EGH.UpdatePetrochemicalType(
 						@КодТипаНефтепродукта int, 
 						@НаименованиеТипаНефтепродукта nvarchar(50) output,
 						@ТемператураКипения float output,
@@ -131,4 +130,5 @@ as begin
 	return @rc;    
 end;
 go
+
 

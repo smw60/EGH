@@ -21,8 +21,8 @@ namespace EGH01DB.Points
         {
             this.coordinates = new Coordinates();
             this.groundtype = null;
-            this.waterdeep = 0;
-            this.height = 0;
+            this.waterdeep = 0.0f;
+            this.height = 0.0f;
 
         }
         public Point(Point point)
@@ -39,6 +39,13 @@ namespace EGH01DB.Points
             this.groundtype = groundtype;
             this.waterdeep = waterdeep;
             this.height = height;
+        }
+        public Point(Coordinates coordinates)
+        {
+            this.coordinates = coordinates;
+            this.groundtype = null;
+            this.waterdeep = 0.0f;
+            this.height = 0.0f;
         }
         public Point(XmlNode node)
         {

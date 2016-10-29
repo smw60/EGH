@@ -11,7 +11,7 @@
 -----------------------------------------------------------------------------
 drop procedure EGH.CreateEcoObjectType;
 drop procedure EGH.DeleteEcoObjectType; 
-drop procedure EGH.GetEcoObjectTypeByID;
+drop procedure EGH.GetEcoObjectTypeByCode;
 drop procedure EGH.GetEcoObjectTypeList;
 drop procedure EGH.UpdateEcoObjectType;
 drop procedure EGH.GetNextEcoObjectTypeCode;
@@ -45,7 +45,7 @@ as begin
 end; 
 go
 -- ѕолучение типа природоохранных объектов по ID 
-create  procedure EGH.GetEcoObjectTypeByID(@ од“ипаѕриродоохранногоќбъекта int, @Ќаименование“ипаѕриродоохранногоќбъекта nvarchar(30) output) 
+create  procedure EGH.GetEcoObjectTypeByCode(@ од“ипаѕриродоохранногоќбъекта int, @Ќаименование“ипаѕриродоохранногоќбъекта nvarchar(30) output) 
 as begin 
     declare @rc int = -1;
 	select  @Ќаименование“ипаѕриродоохранногоќбъекта = Ќаименование“ипаѕриродоохранногоќбъекта from dbo.“ипѕриродоохранногоќбъекта where  од“ипаѕриродоохранногоќбъекта = @ од“ипаѕриродоохранногоќбъекта;  
