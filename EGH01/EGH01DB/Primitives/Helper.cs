@@ -51,8 +51,17 @@ namespace EGH01DB.Primitives
             }
             return rc;
         }
+        static public EGH01DB.Objects.RiskObject.RiskObjectList GetListRiskObject(EGH01DB.IDBContext dbcontext)
+        {
+            List<RiskObject> list = new List<RiskObject>();
+            EGH01DB.Objects.RiskObject.RiskObjectList rc = new EGH01DB.Objects.RiskObject.RiskObjectList(list);
+            if (Helper.GetListRiskObject(dbcontext, ref list))
+            {
+                rc = new EGH01DB.Objects.RiskObject.RiskObjectList(list);
+            }
+            return rc;
+        }
 
-        
         static public bool GetListGroundType(EGH01DB.IDBContext dbcontext, ref List<GroundType> list_type)
         { 
             bool rc = false;
@@ -66,14 +75,15 @@ namespace EGH01DB.Primitives
                     list_type = new List<GroundType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new GroundType((int)reader["КодТипаГрунта"], 
-                            (string)reader["НаименованиеТипаГрунта"], 
-                            (float)reader["КоэфПористости"], 
-                            (float)reader["КоэфЗадержкиМиграции"], 
-                            (float)reader["КоэфФильтрацииВоды"], 
-                            (float)reader["КоэфДиффузии"],
-                            (float)reader["КоэфРаспределения"],
-                            (float)reader["КоэфСорбции"]));
+                        int code = (int)reader["КодТипаГрунта"];
+                        string name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        list_type.Add(new GroundType((int)code, (string)name, (float)porosity, (float)holdmigration, (float)waterfilter, (float)diffusion, (float)distribution, (float)sorption));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -156,12 +166,13 @@ namespace EGH01DB.Primitives
                     list_type = new List<PetrochemicalType>();
                     while (reader.Read())
                     {
-                        list_type.Add(new PetrochemicalType((int)reader["КодТипа"],
-                                                            (string)reader["НаименованиеТипаНефтепродукта"], 
-                                                            (float)reader["ТемператураКипения"], 
-                                                            (float)reader["Плотность"], 
-                                                            (float)reader["КинематическаяВязкость"], 
-                                                            (float)reader["Растворимость"]));
+                        int code = (int)reader["КодТипаНефтепродукта"];
+                        string name = (string)reader["НаименованиеТипаНефтепродукта"];
+                        double boilingtemp = (double)reader["ТемператураКипения"];
+                        double density = (double)reader["Плотность"];
+                        double viscosity = (double)reader["КинематическаяВязкость"];
+                        double solubility = (double)reader["Растворимость"];
+                        list_type.Add(new PetrochemicalType((int)code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility));
                     }
                     rc = list_type.Count > 0;
                     reader.Close();
@@ -177,7 +188,7 @@ namespace EGH01DB.Primitives
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {
             bool rc = false;
-            using (SqlCommand cmd = new SqlCommand("EEGH.GetRiskObjectTypeList", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectTypeList", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
@@ -218,10 +229,29 @@ namespace EGH01DB.Primitives
                         double x = (double)reader["ШиротаГрад"];
                         double y = (double)reader["ДолготаГрад"];
                         Coordinates coordinates = new Coordinates((float)x, (float)y);
-                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"], "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                        Point point = new Point(coordinates,ground_type, 0.0f, 0.0f);
-                        RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], "");
-                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], "", 0);
+                        string ground_type_name = (string)reader["НаименованиеТипаГрунта"];
+                        double porosity = (double)reader["КоэфПористости"];
+                        double holdmigration = (double)reader["КоэфЗадержкиМиграции"];
+                        double waterfilter = (double)reader["КоэфФильтрацииВоды"];
+                        double diffusion = (double)reader["КоэфДиффузии"];
+                        double distribution = (double)reader["КоэфРаспределения"];
+                        double sorption = (double)reader["КоэфСорбции"];
+                        GroundType ground_type = new GroundType((int)reader["ТипГрунта"],
+                                                                    (string)ground_type_name,
+                                                                    (float)porosity,
+                                                                    (float)holdmigration,
+                                                                    (float)waterfilter,
+                                                                    (float)diffusion,
+                                                                    (float)distribution,
+                                                                    (float)sorption);
+                        double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
+                        double height = (double)reader["ВысотаУровнемМоря"];
+                        Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                        string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
+                        RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
+                        string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
+                        int pdk = (int)reader["ПДК"];
+                        CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
                         RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
