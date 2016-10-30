@@ -20,11 +20,13 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Прогноз", "Index", "EGHRGE")<!--EGHRGE - --></li>
-                        <li>@Html.ActionLink("Соответствие качества сред", "Index", "EGHCEQ")<!--EGHCEQ - --></li>
-                        <li>@Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHORT")<!--EGHORT - --></li>
-                        <li>@Html.ActionLink("Химический состав нефтей", "Index", "EGHCCO")<!--EGHCCO - --></li>
-                        <li>@Html.ActionLink("Условия техногенной нагрузки", "Index", "EGHCAI")<!--EGHCAI - --></li>
+                        <li>@Html.ActionLink("Прогноз",                                 "Index", "EGHRGE")  </li>
+                        <li>@Html.ActionLink("Оценка результатов прогнозирования",      "Index", "EGHCEQ")  </li>
+                        <li>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
+                        <li>@Html.ActionLink("Технологии реабилитации",                 "Index", "EGHORT")  </li>
+                        <li>@Html.ActionLink("Химический состав нефтей",                "Index", "EGHCCO")  </li>
+                        <li>@Html.ActionLink("Техногенные объекты",                     "Index", "EGHCAI")  </li>
+
                     </ul>
                 </li>
             </ul>
@@ -36,15 +38,41 @@
         <div class="container">
     @if (ViewBag.EGHLayout == "RGE")
     {
-    <h2>EGHRGE - Прогноз</h2>               
+        <h2>Прогноз</h2>
+        <span> @Html.ActionLink("Прогноз",                        "Index", "EGHRGE") </span>
+        <span> @Html.ActionLink("Опорные точки",                  "Index", "EGHRGE") </span>
+        <span> @Html.ActionLink("Природоохранные объекты",        "Index", "EGHRGE") </span>
+        <span> @Html.ActionLink("Отчеты",                         "Index", "EGHRGE") </span>
+        <span> @Html.ActionLink("Справочники",                    "Index", "EGHRGE") </span>
+        <span> @Html.ActionLink("Типы инцидентов",                "Index", "EGHRGE") </span>   
+        <span> @Html.ActionLink("Типы природоохранных объектов",  "Index", "EGHRGE") </span> 
+        <span> @Html.ActionLink("Типы грунтов",                   "Index", "EGHRGE") </span>  
+        <span> @Html.ActionLink("Категории земли",                "Index", "EGHRGE") </span>        
+        <span> @Html.ActionLink("Коэффициент растекания",         "Index", "EGHRGE") </span>     
+        
     }
     else if (ViewBag.EGHLayout == "CEQ")
     {
-    <h2>EGHCEQ - Соответствие качества сред</h2>
+        <h2>Оценка результатов прогнозирования</h2>
+        <span> @Html.ActionLink("Результаты прогнозирования", "Index", "EGHCEQ") </span>    
+        <span> @Html.ActionLink("Оценка прогноза",            "Index", "EGHCEQ") </span>     
+        <span> @Html.ActionLink("Отчеты",                     "Index", "EGHCEQ") </span>       
+    }
+    else if (ViewBag.EGHLayout == "GEA")
+    {
+        <h2>Классификация прогнозируемого состояния </h2>
+        <span> @Html.ActionLink("Оценка прогноза",                         "Index", "EGHGEA") </span>    
+        <span> @Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHGEA") </span>     
+        <span> @Html.ActionLink("Отчеты",                                  "Index", "EGHGEA") </span>         
     }
     else if (ViewBag.EGHLayout == "ORT")
     {
-    <h2>EGHORT - Оптимальные технологии реабилитации</h2>
+        <h2>Технологии реабилитации</h2>
+        <span> @Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHORT") </span>     
+        <span> @Html.ActionLink("Технологии реабилитации",                 "Index", "EGHORT") </span> 
+        <span> @Html.ActionLink("Отчеты",                                  "Index", "EGHORT") </span>     
+        
+        
     }
     else if (ViewBag.EGHLayout == "CCO")
     {
@@ -54,10 +82,7 @@
     {
     <h2>EGHCAI - Условия техногенной нагрузки</h2>
     }
-    else if (ViewBag.EGHLayout == "GEA")
-    {
-    <h2>EGHGEA - Оценка геологической среды</h2>
-    }
+    
 
 
         </div>
