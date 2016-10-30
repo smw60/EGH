@@ -70,8 +70,8 @@ namespace EGH01.Controllers
         {
              RGEContext db = new RGEContext();
             {
-                //  List<RiskObject> list = new List<RiskObject>();
-                 // if (Helper.GetListRiskObject(db, ref list))
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
                  {
                        int k = 1;
                  };
@@ -82,8 +82,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                // RiskObject rs = new RiskObject();
-                // if (RiskObject.GetById(db, 78, ref rs))
+                //RiskObject rs = new RiskObject();
+                //if (RiskObject.GetById(db, 78, ref rs))
                 {
                     int k = 1;
                 };
@@ -95,7 +95,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 RiskObject rs = new RiskObject();
-              //  if (RiskObject.DeleteById(db, 79)) --- удалена
+              //if (RiskObject.DeleteById(db, 78)) // удалена
                 {
                     int k = 1;
                 };
@@ -106,8 +106,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int id = 3;
-                //Point point = new Point (new Coordinates (53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                //int id = 78;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
                 //RiskObject rs = new RiskObject(id, point, type, cad, "ttt", "tttt");
@@ -123,7 +123,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int id = 3;
+                //int id = 6;
                 //Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(2);
@@ -135,25 +135,25 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        //public ActionResult Risk_Obj_D() // есть
-        //{
-        //    RGEContext db = new RGEContext();
-        //    {
-        //        RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
-        //        Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
-        //        float distance = 54.0f;
-        //        if (RiskObject.RiskObjectsList.CreateRiskObjectsList(db, point, distance, ref list))
-        //        {
-        //            int k = 1;
-        //        };
-        //    }
-        //    return View();
-        //}
-        public ActionResult Risk_Obj_D() // есть, перегрузка, с двумя аргументами, > distance1 и <  distance2
+        public ActionResult Risk_Obj_D() // есть
         {
             RGEContext db = new RGEContext();
             {
-                RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
+                //RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                //float distance = 54.0f;
+                //if (RiskObject.RiskObjectsList.CreateRiskObjectsList(db, point, distance, ref list))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Risk_Obj_D1() // есть, перегрузка, с двумя аргументами, > distance1 и <  distance2
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RiskObject.RiskObjectsList list = new RiskObject.RiskObjectsList();
                 //Point point = new Point(new Coordinates(3.7f, 5.6f), new GroundType(1), 0.0f, 0.0f);
                 //float distance1 = 53.0f;
                 //float distance2 = 55.0f;
@@ -170,8 +170,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                // PetrochemicalType pt = new PetrochemicalType();
-                // if (PetrochemicalType.GetByCode(db, 7, ref pt))
+               // PetrochemicalType pt = new PetrochemicalType();
+               // if (PetrochemicalType.GetByCode(db, 7, ref pt))
                 {
                     int k = 1;
                 };
@@ -183,7 +183,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 PetrochemicalType pt = new PetrochemicalType();
-                int k1 = 0;
+                //int k1 = 0;
                // if (PetrochemicalType.GetNextCode(db, out k1))
                 {
                     int k = 1;
@@ -195,8 +195,8 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                PetrochemicalType pt = new PetrochemicalType();
-               // if (PetrochemicalType.DeleteByCode(db, 8))  // удален
+                //PetrochemicalType pt = new PetrochemicalType();
+               //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
                 {
                     int k = 1;
                 };
@@ -208,13 +208,13 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 
-                int code_type = 8;
-                string name = "test";
-                float boilingtemp = 100.0f;
-                float density = 30.0f;
-                float viscosity = 50.0f;
-                float solubility = 3.0f;
-                // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
+                //int code_type = 8;
+                //string name = "test";
+                //float boilingtemp = 100.0f;
+                //float density = 30.0f;
+                //float viscosity = 50.0f;
+                //float solubility = 3.0f;
+                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
                 //if (PetrochemicalType.Create(db, pt))
                 {
                     int k = 1;
@@ -226,14 +226,14 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int code_type = 8;
-                string name = "test1";
-                float boilingtemp = 110.0f;
-                float density = 35.0f;
-                float viscosity = 50.0f;
-                float solubility = 3.0f;
-                // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
-                // if (PetrochemicalType.Update(db, pt))
+                //int code_type = 8;
+                //string name = "test1";
+                //float boilingtemp = 110.0f;
+                //float density = 35.0f;
+                //float viscosity = 50.0f;
+                //float solubility = 3.0f;
+                //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+                //if (PetrochemicalType.Update(db, pt))
                 {
                     int k = 1;
                 };
@@ -258,14 +258,14 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                int type_code = 2;
-                string name = "test";
-                float porosity = 0.1f;//  от нуля до единицы, не включая, в базе есть check!
-                float holdmigration = 0.2f;
-                float waterfilter = 23.0f;
-                float diffusion = 1.0f;
-                float distribution = 0.1f;
-                float sorption = 0.2f;
+                //int type_code = 2;
+                //string name = "test";
+                //float porosity = 0.1f;//  от нуля до единицы, не включая, в базе есть check!
+                //float holdmigration = 0.2f;
+                //float waterfilter = 23.0f;
+                //float diffusion = 1.0f;
+                //float distribution = 0.1f;
+                //float sorption = 0.2f;
                 //GroundType gt = new GroundType(type_code, name, porosity, holdmigration, waterfilter, diffusion, distribution, sorption);
                 //if (GroundType.GetByCode(db, 1, out gt))
                 {
@@ -279,7 +279,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //GroundType gt = new GroundType();
-                int k1 = 0;
+                //int k1 = 0;
                 //if (GroundType.GetNextCode(db, out k1))
                 {
                     int k = 1;
@@ -287,56 +287,73 @@ namespace EGH01.Controllers
             }
             return View();
         }
+        public ActionResult Ground_DeleteByCode()  // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //GroundType gt = new GroundType();
+                //if (GroundType.DeleteByCode(db, 2))  // 
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Ground_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
 
-        //public ActionResult Ground_DeleteByCode()  // 
-        //{
-        //    RGEContext db = new RGEContext();
-        //    {
-        //        GroundType gt = new GroundType();
-        //        if (GroundType.DeleteByCode(db, 2))  // 
-        //        {
-        //            int k = 1;
-        //        };
-        //    }
-        //    return View();
-        //}
-        //public ActionResult Petr_Create()// есть
-        //{
-        //    RGEContext db = new RGEContext();
-        //    {
-
-        //        int code_type = 8;
-        //        string name = "test";
-        //        float boilingtemp = 100.0f;
-        //        float density = 30.0f;
-        //        float viscosity = 50.0f;
-        //        float solubility = 3.0f;
-        //        // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
-        //        //if (PetrochemicalType.Create(db, pt))
-        //        {
-        //            int k = 1;
-        //        };
-        //    }
-        //    return View();
-        //}
-        //public ActionResult Petr_Update()// есть
-        //{
-        //    RGEContext db = new RGEContext();
-        //    {
-        //        int code_type = 8;
-        //        string name = "test1";
-        //        float boilingtemp = 110.0f;
-        //        float density = 35.0f;
-        //        float viscosity = 50.0f;
-        //        float solubility = 3.0f;
-        //        // PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
-        //        // if (PetrochemicalType.Update(db, pt))
-        //        {
-        //            int k = 1;
-        //        };
-        //    }
-        //    return View();
-        //}
+                //int type_code = 2;
+                //string name = "Глинистый";
+                //float porosity = 0.8f;
+                //float holdmigration = 30.0f;
+                //float waterfilter = 50.0f;
+                //float diffusion = 3.0f;
+                //float distribution = 3.0f;
+                //float sorption = 30.0f;
+                //GroundType gt = new GroundType((int)type_code,
+                //                                (string)name,
+                //                                (float)porosity,
+                //                                (float)holdmigration,
+                //                                (float)waterfilter,
+                //                                (float)diffusion,
+                //                                (float)distribution,
+                //                                (float)sorption);
+                //if (GroundType.Create(db, gt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Ground_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int type_code = 2;
+                //string name = "Глинистыйup";
+                //double porosity = 0.6f;
+                //double holdmigration = 30.0f;
+                //double waterfilter = 50.0f;
+                //double diffusion = 3.1f;
+                //double distribution = 3.0f;
+                //double sorption = 30.6f;
+                //GroundType gt = new GroundType((int)type_code,
+                //                                (string)name,
+                //                                (float)porosity,
+                //                                (float)holdmigration,
+                //                                (float)waterfilter,
+                //                                (float)diffusion,
+                //                                (float)distribution,
+                //                                (float)sorption);
+                //if (GroundType.Update(db, gt))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
         public ActionResult Ground_Type_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -349,79 +366,242 @@ namespace EGH01.Controllers
             }
             return View();
         }
-        //public ActionResult Risk_type() // есть
-        //{
-        //    RGEContext db = new RGEContext();
-        //    {
-        //        List<RiskObjectType> list = new List<RiskObjectType>();
-        //        if (Helper.GetListRiskObjectType(db, ref list))    
-        //        {
-        //            int k = 1;
-        //        };
-        //    }
-        //    return View();
-        //}
 
+// проверка процедур Cadastre Type        
+        public ActionResult Cadastre_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<CadastreType> list = new List<CadastreType>();
+                //if (Helper.GetListCadastreType(db, ref list))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Cadastre_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //CadastreType ct = new CadastreType(1);
+                //if (CadastreType.GetByCode(db, 1, out ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Cadastre_GetNextCode() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //CadastreType ct = new CadastreType();
+                //int k1 = 0;
+                //if (CadastreType.GetNextCode(db, out k1))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Cadastre_DeleteByCode()  // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //CadastreType ct = new CadastreType();
+                //if (CadastreType.DeleteByCode(db, 6))  // 
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Cadastre_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
 
-        // проверка процедур Cadastre Type
+                //int type_code = 8;
+                //string name = "Воздушных путей сообщения";
+                //int pdk = 30;
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk);
+                //if (CadastreType.Create(db, ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult Cadastre_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int type_code = 8;
+                //string name = "Железнодорожных путей сообщения";
+                //int pdk = 140;
+                //CadastreType ct = new CadastreType((int)type_code, (string)name, (int)pdk);
+                //if (CadastreType.Update(db, ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
 
-        // проверка процедур Risk Object Type
+// проверка процедур Risk Object Type
+        public ActionResult RiskObjectType_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<RiskObjectType> list = new List<RiskObjectType>();
+                //if (Helper.GetListRiskObjectType(db, ref list))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult RiskObjectType_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RiskObjectType ct = new RiskObjectType(1);
+                //if (RiskObjectType.GetByCode(db, 1, out ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult RiskObjectType_GetNextCode() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RiskObjectType ct = new RiskObjectType();
+                //int k1 = 0;
+                //if (RiskObjectType.GetNextCode(db, out k1))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult RiskObjectType_DeleteByCode()  // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //RiskObjectType ct = new RiskObjectType();
+                //if (RiskObjectType.DeleteByCode(db, 4))  // 
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult RiskObjectType_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
 
+                //int type_code = 1;
+                //string name = "Газопровод";
+                //RiskObjectType ct = new RiskObjectType((int)type_code, (string)name);
+                //if (RiskObjectType.Create(db, ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult RiskObjectType_Update() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //int type_code = 1;
+                //string name = "Газопровод";
+                //RiskObjectType ct = new RiskObjectType((int)type_code, (string)name);
+                //if (RiskObjectType.Update(db, ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
 
-        // проверка процедур EcoObject Type
+// проверка процедур EcoObject Type
 
+// проверка процедур Incident Type
+        public ActionResult IncidentType_list() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<IncidentType> list = new List<IncidentType>();
+                //if (Helper.GetListIncidentType(db, ref list))
+                {
+                    int k = 1;
+                }
+            }
+            return View();
+        }
+        public ActionResult IncidentType_GetByCode()// 
+        {
+            RGEContext db = new RGEContext();
+            {
 
-        // проверка процедур Incident Type
-
+                //    IncidentType t = new IncidentType();
+                //    if (IncidentType.GetByCode(db, 2,  out t))
+                //    {
+                //        int r = 1;
+                //    }
+            }
+            return View();
+        }
+        public ActionResult IncidentType_GetNextCode() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //    int k1;
+                //    if (IncidentType.GetNextCode(db, out k1))
+                //    {
+                //        int r = 1;
+                //    }
+            }
+            return View();
+        }
+        public ActionResult IncidentType_DeleteByCode()  // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //    if (IncidentType.Delete(db, 5))
+                //    {
+                //        int r = 1;
+                //    }
+            }
+            return View();
+        }
+        public ActionResult IncidentType_Create() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //IncidentType inc_type = new IncidentType(7, "Отладка");
+                //if (IncidentType.Create(db, inc_type))
+                //{
+                //    int k = 1;
+                //}
+            }
+            return View();
+        }
+        public ActionResult IncidentType_Update() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                //    if (IncidentType.Update(db, new IncidentType(7, "yyy")))
+                //    {
+                //        int r = 1;
+                //    }
+            }
+            return View();
+        }
     }
 }
-
-
-//Incident inc = new Incident(DateTime.Now, DateTime.Now, IncidentType.defaulttype);
-//if (Incident.Create(db, ref inc)) 
-//{
-//     bool b = Incident.Delete(db, inc.id);
-//};
-//Incident incident = new Incident(); 
-//if (Incident.GetByID (db, 50, ref incident))
-//{
-//    int k = 1;
-
-//};
-
-//    IncidentType inc_type = new IncidentType(7, "Отладка");
-//    if (IncidentType.Create(db, inc_type))
-//    {
-//        int k = 1;
-//    }
-//    List<IncidentType> list = new List<IncidentType>();
-
-//    if (Helper.GetListIncidentType(db, ref list))
-//    {
-//        int k = 1;
-//    }
-
-//    int k1;
-//    if (IncidentType.GetNextCode(db, out k1))
-//    {
-//        int r = 1;
-
-//    }
-//    if (IncidentType.Update(db, new IncidentType(7, "yyy")))
-//    {
-//        int r = 1;
-
-//    }
-//    if (IncidentType.Delete(db, new IncidentType(5)))
-//    {
-//        int r = 1;
-
-//    }
-//    IncidentType t = new IncidentType();
-//    if (IncidentType.GetByCode(db, 2,  out t))
-//    {
-//        int r = 1;
-
-//    }
-//    db.Disconnect();
-//}
