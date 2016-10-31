@@ -36,6 +36,11 @@ namespace EGH01DB.Types
             this.type_code = 0;
             this.name = name;
         }
+        public string ToLine()
+        {
+            return String.Format("{0} {1}", this.type_code, this.name);
+        }
+
 
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObjectType risk_object_type)
         {

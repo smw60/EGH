@@ -42,7 +42,10 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = 0;
         }
-
+        public string ToLine()
+        {
+            return String.Format("{0} {1}", this.type_code, this.name); 
+        }
         static public bool Create(EGH01DB.IDBContext dbcontext, CadastreType land_type)
         {
 

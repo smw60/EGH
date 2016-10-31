@@ -365,12 +365,12 @@ input[type="checkbox"].input-validation-error {
                 border: 1px solid white;
             }
 
-                .boxcontrol input[disabled], button[disabled] {
+          .boxcontrol input[disabled], button[disabled] {
                     background-color: inherit;
                     color: gray;
                     font-weight: bold;
                     border: 1px solid white;
-                }
+               }
 
         .boxmessage {
             display: none;
