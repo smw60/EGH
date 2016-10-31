@@ -150,3 +150,6 @@ E:\EGH\EGH01\EGH01\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 E:\EGH\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
 E:\EGH\EGH01\EGH01\obj\Debug\EGH01.dll
 E:\EGH\EGH01\EGH01\obj\Debug\EGH01.pdb
+D:\Новая папка\EGH\EGH01\EGH01\obj\Debug\EGH01.csprojResolveAssemblyReference.cache
+D:\Новая папка\EGH\EGH01\EGH01\obj\Debug\EGH01.dll
+D:\Новая папка\EGH\EGH01\EGH01\obj\Debug\EGH01.pdb

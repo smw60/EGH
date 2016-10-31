@@ -12,8 +12,19 @@ namespace EGH01.Models.EGHCAI
         public string   name { get; set;}        // Наименование объекта
         public string adress { get; set; }
         public string RiskObjectType { get; set; }
-        public float latitude { get; set; }
-        public float lngitude { get; set; }
+        public int latitude { get; set; }
+        public int lngitude { get; set; }
+        public int lat_m { get; set; }
+        public int lng_m { get; set; }
+        public int lat_s { get; set; }
+        public int lng_s { get; set; }
+        public int selectlist { get; set; }
+        public int  selectlist_groud { get; set; }
+        public DateTime foundationdate { get; set; }
+        public DateTime reconstractiondate { get; set; }
+        public string phone { get; set; }
+        public string fax { get; set; }
+
 
     }
 
