@@ -53,39 +53,73 @@
   
         <div class="boxdata">
             <p>
-                <label class="boxdata-label-30"> Наименование типа объекта </label>
+                <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Наименование типа объекта </label>
                 <input class="boxdata-input-50" type="text" name="Name" value=" " />
             </p>
-            <p>
-                <label class="boxdata-label-30"> Типа объекта </label>   @Html.DropDownList("selectlist")
+           <p>
+          <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
+          </p>
+          <p> 
+              <label class="boxdata-label-30"> наземные</label>
+              <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
+          <p>
+               <label class="boxdata-label-30"> подземные</label>
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
             </p>
             <p>
-                <label class="boxdata-label-30"> Координаты объекта </label>
+                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
+                <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">дата послежней реконструкции  </label>
+                <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Геологические данные</label>
+            </p>
             <br>
-            <label class="boxdata-label-30"> Широта: </label>
-            <br>
-            <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
-            <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
-            <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" />
+            <p>
+                <label class="boxdata-label-30">Грунт</label>   @Html.DropDownList("list_groundType")
+            </p>
 
+            <p>
+                <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                <input class="boxdata-input-50" type="text" name="waterdeep" value=" " />
+            </p>
+
+            <p>
+                <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+                <input class="boxdata-input-50" type="text" name="height" value=" " />
+            </p>
+             <p>
+                <label class="boxdata-label-30"> Географические координаты объекта: </label>
+            </p>
+            <p>
+            <label class="boxdata-label-30"> Широта: </label>
+                </p>
+            <br>
+            <p><input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" /></p>
+            <p><input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" /></p>
+            <p><input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" /></p>
+            <p>
                 <label class="boxdata-label-30">Долгота</label>
-    
-            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
-            <input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" />
-            <input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" />
-          
+            </p>
+            <p><input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
+            <p>
+                <label class="boxdata-label-30">КАРТА!</label>
+            </p>
+            <input type="button" value="Загрузить карту" style="margin:10px" />
             <p>
                 <label class="boxdata-label-30"> Адресс объекта </label>
                 <input class="boxdata-input-50" type="text" name="Adress" value=" " />
             </p>
-            <p>
-                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
-                <input class="boxdata-input-50" type="datetime" name="foundationdate" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">дата послежней реконструкции  </label>
-                <input class="boxdata-input-50" type="datetime" name="reconstractiondate" value=" " />
-            </p>
+            
             <p>
                 <label class="boxdata-label-30"> Телефон</label>
                 <input class="boxdata-input-50" type="text" name="phone" value=" " />
@@ -95,21 +129,20 @@
                 <input class="boxdata-input-50" type="text" name="fax" value=" " />
             </p>
             <p>
-                <label class="boxdata-label-30"> Грунт </label>   @Html.DropDownList("list_groundType")
+                <label class="boxdata-label-30">Очистные сооружения</label>
+            </p> 
+            <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
+            </p> 
+            <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
+            </p> 
+            <p>
+                <label class="boxdata-label-30">Область(Список)</label>
             </p>
             <p>
-                <label class="boxdata-label-30"> Объем резервуаров для хранения нефтепродутов (м3)</label>
-                <br>
-                <label class="boxdata-label-30"> наземные</label>
-                <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
-                <br>
-                <label class="boxdata-label-30"> подземные</label>
-                <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
-            </p>
-            <select form="RiskObjectCreate" list="list_type">
-                <option name="listType" value=" "> </option>
-            </select>
-
+                <label class="boxdata-label-30">Район(список)</label>        
+            </p>         
         </div>
         @Html.Partial("_TypeLineMenu", create)
 

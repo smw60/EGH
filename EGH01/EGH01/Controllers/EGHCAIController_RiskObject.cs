@@ -117,17 +117,17 @@ namespace EGH01.Controllers
                         String ownership = "f";
                         int numberofrefuel = 1;
                         int volume = 1;
-                        Boolean watertreatment = true;
+                        Boolean watertreatment = rs.watertreatment;
                         Boolean watertreatmentcollect = true;
                         Byte[] map = new byte[2];
                         int groundtank = rs.groundtank;
-                        int undergroundtank =rs.undergroundtank ;
+                        int undergroundtank =rs.undergroundtank;
                         Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, rs.lat_s, rs.lngitude, rs.lng_m, rs.lng_s);
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
                         if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
                         {
                             GroundType ground_type = new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
-                            Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
+                            Point point = new Point(coordinates, ground_type,rs.waterdeep, rs.height);
                             EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
                             {

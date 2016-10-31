@@ -25,7 +25,11 @@ namespace EGH01.Models.EGHCAI
         public string phone { get; set; }
         public string fax { get; set; }
         public int groundtank { get; set; }
-          public int undergroundtank { get; set; }
+       public int undergroundtank { get; set; }
+        public float waterdeep { get; set; }   // глубина грунтовых вод    (м)
+        public float height { get; set; }
+        public Boolean watertreatment { get; set; }
+        public Boolean watertreatmentcollect { get; set; }
 
 
     }
