@@ -120,8 +120,8 @@ namespace EGH01.Controllers
                         CadastreType cadastre_type = new CadastreType(1, "", 0);
                         string name = rs.name;
                         string address = rs.adress;
-                        EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-
+                        // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
 
                         if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                         {
@@ -195,8 +195,8 @@ namespace EGH01.Controllers
                     CadastreType cadastre_type = new CadastreType(1, "", 0);
                     string name = itv.name;
                     string address = itv.adress;
-                    EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-
+                    // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                    EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
 
 
                     if (EGH01DB.Objects.RiskObject.Update(db, risk_object))

@@ -110,7 +110,10 @@ namespace EGH01.Controllers
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
-                //RiskObject rs = new RiskObject(id, point, type, cad, "ttt", "tttt");
+                //DateTime date1 = DateTime.Now;
+                //DateTime date2 = DateTime.Now;
+                //byte[] map = new byte [0] ;
+                //RiskObject rs = new RiskObject(id, point, type, cad, "new", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 200,300);
                 //if (RiskObject.Create(db, rs))
                 {
                     int k = 1;
@@ -123,12 +126,15 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int id = 6;
-                //Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
+                //int id = 8;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
-                //CadastreType cad = new CadastreType(2);
-                //RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
-                //if (RiskObject.Update(db, rs))
+                //CadastreType cad = new CadastreType(1);
+                //DateTime date1 = DateTime.Now;
+                //DateTime date2 = DateTime.Now;
+                //byte[] map = new byte[0];
+                //RiskObject rs = new RiskObject(id, point, type, cad, "update", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
+                //if (RiskObject.Create(db, rs))
                 {
                     int k = 1;
                 };

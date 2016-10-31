@@ -254,7 +254,8 @@ namespace EGH01DB.Primitives
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        // RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        RiskObject risk_object = new RiskObject(id);
                         risk_objects.Add(risk_object);
                     }
                     rc = risk_objects.Count > 0;
