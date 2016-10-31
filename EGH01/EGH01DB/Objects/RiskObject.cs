@@ -18,9 +18,22 @@ namespace EGH01DB.Objects
         public int id { get; private set; }  // идентификатор 
         public RiskObjectType type { get; private set; }     // код типа 
         public CadastreType cadastretype { get; private set; }   // кадастровый тип земли
-        public string name { get; private set; }
-        public string address { get; private set; }  // весь адрес в одно поле?
-
+        public string name { get; private set; }  // наименование объекта
+        public int district { get; private set; }  //  район
+        public int region { get; private set; } //  область
+        public string address { get; private set; } // адрес объекта
+        public string ownership { get; private set; }  //  принадлежность организации
+        public string phone { get; private set; }  // изменить в следующей версии на набор данных!
+        public string fax { get; private set; }  //
+        public DateTime foundationdate { get; private set; }  // дата ввода в эксплуатацию
+        public DateTime reconstractiondate { get; private set; }  // дата последней реконструкции
+        public int numberofrefuel { get; private set; }  // количество заправок в сутки // !!!свои поля для каждого вида или всем одинаковые и прятать????
+        public int volume { get; private set; }  // объем хранения нефтепродуктов
+        public bool watertreatment { get; private set; }  // наличие очистных сооружений для дождевого стока
+        public bool watertreatmentcollect { get; private set; } // наличие резервуара для сбора пролива !!! надо бы еще его размер для контроля!!!!
+        public byte[] map { get; private set; } // сюда карту?
+        public int groundtank { get; private set; }  //  емкость наземного резервуара
+        public int undergroundtank { get; private set; } // емкость подземного резервуара
         // дополнительная инфомация из паспорта объекта 
 
         static public RiskObject defaulttype { get { return new RiskObject(0); } }  // выдавать при ошибке  
@@ -31,9 +44,42 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.address = string.Empty;
+            this.district = -1;
+            this.region = -1;
+            this.ownership = string.Empty;
+            this.phone = string.Empty;
+            this.fax = string.Empty;
+            this.foundationdate = DateTime.Now;
+            this.reconstractiondate = DateTime.Now;
+            this.numberofrefuel = -1;
+            this.volume = -1;
+            this.watertreatment = false;
+            this.watertreatmentcollect = false;
+            this.map = new byte[0];
+            this.groundtank = 0;
+            this.undergroundtank = 0;
         }
-        
-        public RiskObject(int id, Point point, RiskObjectType type, CadastreType cadastertype, string name, string address)
+
+        public RiskObject(int id, 
+                            Point point, 
+                            RiskObjectType type, 
+                            CadastreType cadastertype,
+                            string name, 
+                            int district, 
+                            int region, 
+                            string address, 
+                            string ownership, 
+                            string phone, 
+                            string fax,
+                            DateTime foundationdate, 
+                            DateTime reconstractiondate,
+                            int numberofrefuel, 
+                            int volume,
+                            bool watertreatment, 
+                            bool watertreatmentcollect,
+                            byte[] map,
+                            int groundtank,
+                            int undergroundtank)
             : base(point)
         {
             this.id = id;
@@ -41,6 +87,20 @@ namespace EGH01DB.Objects
             this.cadastretype = cadastertype;
             this.name = name;
             this.address = address;
+            this.district = district;
+            this.region = region;
+            this.ownership = ownership;
+            this.phone = phone;
+            this.fax = fax;
+            this.foundationdate = foundationdate;
+            this.reconstractiondate = reconstractiondate;
+            this.numberofrefuel = numberofrefuel;
+            this.volume = volume;
+            this.watertreatment = watertreatment;
+            this.watertreatmentcollect = watertreatmentcollect;
+            this.map = new byte[0];
+            this.groundtank = 0;
+            this.undergroundtank = 0;
         }
         public RiskObject(int id)
         {
@@ -49,6 +109,20 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.address = string.Empty;
+            this.district = -1;
+            this.region = -1;
+            this.ownership = string.Empty;
+            this.phone = string.Empty;
+            this.fax = string.Empty;
+            this.foundationdate = DateTime.Now;
+            this.reconstractiondate = DateTime.Now;
+            this.numberofrefuel = -1;
+            this.volume = -1;
+            this.watertreatment = false;
+            this.watertreatmentcollect = false;
+            this.map = new byte[0];
+            this.groundtank = 0;
+            this.undergroundtank = 0;
         }
         public RiskObject(int id, Point point)
             : base(point)
@@ -58,6 +132,20 @@ namespace EGH01DB.Objects
             this.cadastretype = null;
             this.name = string.Empty;
             this.address = string.Empty;
+            this.district = -1;
+            this.region = -1;
+            this.ownership = string.Empty;
+            this.phone = string.Empty;
+            this.fax = string.Empty;
+            this.foundationdate = DateTime.Now;
+            this.reconstractiondate = DateTime.Now;
+            this.numberofrefuel = -1;
+            this.volume = -1;
+            this.watertreatment = false;
+            this.watertreatmentcollect = false;
+            this.map = new byte[0];
+            this.groundtank = 0;
+            this.undergroundtank = 0;
         }
         public class RiskObjectList : List<RiskObject>
         {
@@ -114,13 +202,38 @@ namespace EGH01DB.Objects
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.NVarChar);
                     parm.Value = risk_object.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@РайонТехногенногоОбъекта", SqlDbType.Int);
+                    parm.Value = risk_object.district;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОбластьТехногенногоОбъекта", SqlDbType.Int);
+                    parm.Value = risk_object.region;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.NVarChar);
                     parm.Value = risk_object.address;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Принадлежность", SqlDbType.NVarChar);
+                    parm.Value = risk_object.ownership;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Телефон", SqlDbType.VarChar);
+                    parm.Value = risk_object.phone;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Факс", SqlDbType.VarChar);
+                    parm.Value = risk_object.fax;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -148,7 +261,51 @@ namespace EGH01DB.Objects
                     parm.Value = risk_object.height;
                     cmd.Parameters.Add(parm);
                 }
-                
+                {
+                    SqlParameter parm = new SqlParameter("@ДатаВводаЭкспл", SqlDbType.DateTime);
+                    parm.Value = risk_object.foundationdate;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДатаПоследнейРеконструкции", SqlDbType.DateTime);
+                    parm.Value = risk_object.reconstractiondate;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КолВоЗаправокСут", SqlDbType.Int);
+                    parm.Value = risk_object.numberofrefuel;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОбъемХранения", SqlDbType.Int);
+                    parm.Value = risk_object.volume;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОчистнДождСток", SqlDbType.Bit);
+                    parm.Value = risk_object.watertreatment;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОчистнСборПроливов", SqlDbType.Bit);
+                    parm.Value = risk_object.watertreatmentcollect;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Карта", SqlDbType.VarBinary);
+                    parm.Value = risk_object.map;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    parm.Value = risk_object.groundtank;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    parm.Value = risk_object.undergroundtank;
+                    cmd.Parameters.Add(parm);
+                }
                 {
                     SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
                     parm.Direction = ParameterDirection.ReturnValue;
@@ -218,20 +375,44 @@ namespace EGH01DB.Objects
                     parm.Value = risk_object.type.type_code;
                     cmd.Parameters.Add(parm);
                 }
-
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаНазначенияЗемель", SqlDbType.Int);
-                    parm.Value = risk_object.groundtype.type_code;
+                    parm.Value = risk_object.cadastretype.type_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НаименованиеТехногенногоОбъекта", SqlDbType.NVarChar);
                     parm.Value = risk_object.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@РайонТехногенногоОбъекта", SqlDbType.Int);
+                    parm.Value = risk_object.district;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОбластьТехногенногоОбъекта", SqlDbType.Int);
+                    parm.Value = risk_object.region;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@АдресТехногенногоОбъекта", SqlDbType.NVarChar);
                     parm.Value = risk_object.address;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Принадлежность", SqlDbType.NVarChar);
+                    parm.Value = risk_object.ownership;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Телефон", SqlDbType.VarChar);
+                    parm.Value = risk_object.phone;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Факс", SqlDbType.VarChar);
+                    parm.Value = risk_object.fax;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -257,6 +438,51 @@ namespace EGH01DB.Objects
                 {
                     SqlParameter parm = new SqlParameter("@ВысотаУровнемМоря", SqlDbType.Float);
                     parm.Value = risk_object.height;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДатаВводаЭкспл", SqlDbType.DateTime);
+                    parm.Value = risk_object.foundationdate;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ДатаПоследнейРеконструкции", SqlDbType.DateTime);
+                    parm.Value = risk_object.reconstractiondate;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@КолВоЗаправокСут", SqlDbType.Int);
+                    parm.Value = risk_object.numberofrefuel;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОбъемХранения", SqlDbType.Int);
+                    parm.Value = risk_object.volume;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОчистнДождСток", SqlDbType.Bit);
+                    parm.Value = risk_object.watertreatment;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ОчистнСборПроливов", SqlDbType.Bit);
+                    parm.Value = risk_object.watertreatmentcollect;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@Карта", SqlDbType.VarBinary);
+                    parm.Value = risk_object.map;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ЕмкостьНаземногоРезервуара", SqlDbType.Int);
+                    parm.Value = risk_object.groundtank;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@ЕмкостьПодземногоРезервуара", SqlDbType.Int);
+                    parm.Value = risk_object.undergroundtank;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -354,7 +580,8 @@ namespace EGH01DB.Objects
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        //risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        risk_object = new RiskObject(id);
                     }
                     reader.Close();
                 }

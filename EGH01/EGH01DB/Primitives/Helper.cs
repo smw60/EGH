@@ -9,6 +9,7 @@ using System.Xml;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
+using EGH01DB.Types;
 
 namespace EGH01DB.Primitives
 {
@@ -185,6 +186,20 @@ namespace EGH01DB.Primitives
             }
         }
 
+        //static public PetrochemicalTypeList GetListPetrochemicalType(EGH01DB.IDBContext dbcontext)
+        //{
+        //    List<PetrochemicalType> list = new List<PetrochemicalType>();
+        //    PetrochemicalTypeList pt = new PetrochemicalTypeList(list);
+        //    if (Helper.GetListPetrochemicalType(dbcontext, ref list))
+        //    {
+        //        pt = new PetrochemicalTypeList(list);
+        //    }
+        //    return pt;
+        //}
+
+
+
+
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {
             bool rc = false;
@@ -246,6 +261,26 @@ namespace EGH01DB.Primitives
                                                                     (float)sorption);
                         double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
                         double height = (double)reader["ВысотаУровнемМоря"];
+                        string district = (string)reader["Район"];
+                        string region = (string)reader["Область"];
+                        string ownership = (string)reader["Принадлежность"];
+                        string phone = (string)reader["Телефон"];
+                        string fax = (string)reader["Факс"];
+
+                        DateTime foundationdate = (DateTime)reader["ДатаВводаЭкспл"];
+                        DateTime reconstractiondate = (DateTime)reader["ДатаПоследнейРеконструкции"];
+                        
+                        int numberofrefuel = (int)reader["КолВоЗаправокСут"];
+                        int volume = (int)reader["ОбъемХранения"];
+
+                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
+                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+
+                        bool watertreatment = (bool)reader["ОчистнДождСток"];
+                        bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];
+
+                        byte[] map = new byte[0]; // карта!
+
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
                         string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
                         RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
@@ -254,7 +289,13 @@ namespace EGH01DB.Primitives
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, 
+                                                                name, 1, 1, address, ownership, phone, fax,
+                                                                foundationdate, reconstractiondate, 
+                                                                numberofrefuel, volume,
+                                                                watertreatment, watertreatmentcollect, map,
+                                                                groundtank, undergroundtank);
+                        
                         risk_objects.Add(risk_object);
                     }
                     rc = risk_objects.Count > 0;

@@ -1,0 +1,334 @@
+﻿@model EGH01.Controllers.EGHGEAController.GEOData
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+}
+
+<h2>EGHGEA - Оценка геологической среды</h2>
+
+@ViewBag.msg
+
+<section>
+    
+    <article>
+        @Html.ActionLink("EGHGEA - Отчет", "Report")
+    </article>
+</section>
+
+<section style="border: double; padding: 10px">
+
+    
+        <h1>Выбор отчёта</h1>
+        @Html.DropDownList("RGEReport")
+
+
+        <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Посмотреть</button>
+
+
+        <div id="demo" class="collapse">
+            <h5 style="float:right">20.09.2016 10:00</h5>
+            <br />
+            <h1>Результаты прогнозирования</h1>
+
+            <article>
+                <fieldset>
+                    <legend>Характеристики пятна загрязнения:</legend>
+                    <h5>Север:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>ЮГ:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>Запад:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>Восток:  Широта: 53° 53' Долгота: 53° 53' </h5>
+                    <h5>
+                        Площадь пятна загрязнения: 105 га
+                    </h5>
+                    <h5>Радиус пятна загрязнения с грунтовыми водами: 200 м </h5>
+                </fieldset>
+                <h4></h4>
+
+            </article>
+            <article></article>
+
+            <fieldset>
+
+                <legend>Характеристика происшествия: </legend>
+
+
+                @*<article>
+                        <h1>1. Загрязнения  поверхностного слоя почво-грунтов до 1м.</h1>
+                    </article>
+
+                    <article>
+                        <h1>2. Загрязнение зоны аэрации, не достигая грунтовых вод.</h1>
+
+                    </article>*@
+
+
+                <h5> Загрязнение достигло грунтовых вод.</h5>
+                <h5> Дата достижения грунтовых вод: 25.09.2016</h5>
+
+
+            </fieldset>
+            <fieldset>
+                <legend>Природоохранные объекты</legend>
+                <h5>
+                    Достигнуты по поверхности:
+                </h5>
+                <table border="1">
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Координаты</th>
+                        <th>Дата достижения</th>
+                        <th>Концентрация</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> 53° 53', 53° 53'</td>
+                            <td> 22.09.2016</td>
+                            <td> 1000 мг/дм3</td>
+                        </tr>
+                    }
+
+                </table>
+
+                <h5>
+                    Достигнуты с грунтовыми водами:
+                </h5>
+                <table border="1">
+                    <tr>
+                        <th>Наименование</th>
+                        <th>Координаты</th>
+                        <th>Дата достижения</th>
+                        <th>Концентрация</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> 53° 53', 53° 53'</td>
+                            <td> 22.09.2016</td>
+                            <td> 200 мг/дм3</td>
+                        </tr>
+                    }
+
+                </table>
+
+            </fieldset>
+            <h1>Сравнение с ПДК</h1>
+            <fieldset>
+                <legend>АЗС 28</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+                    @foreach (var item in Model.ObjPoints)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> земля</td>
+                            <td> 100</td>
+                            <td> 1000</td>
+                            <td> 10 </td>
+                        </tr>
+                    }
+                </table>
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Охранные объекты</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+                    @foreach (var item in Model.TypeObj)
+                    {
+                        <tr>
+                            <td> @Html.ValueFor(m => item)</td>
+                            <td> земля</td>
+                            <td> 50</td>
+                            <td> 200</td>
+                            <td> 4 </td>
+                        </tr>
+                    }
+                </table>
+            </fieldset>
+
+            <fieldset>
+                <legend>Грунтовые воды</legend>
+                <table border="1">
+                    <tr>
+                        <th>Объект</th>
+                        <th>Категория земель</th>
+                        <th>Данные ПДК</th>
+                        <th>Концентрация</th>
+                        <th>Превышение</th>
+                    </tr>
+
+
+                    <tr>
+                        <td> Грунтовые воды</td>
+                        <td> - </td>
+                        <td> 0,3</td>
+                        <td> 300</td>
+                        <td> 1000 </td>
+                    </tr>
+
+                </table>
+            </fieldset>
+        </div>
+        <button type="button" class="btn btn-info">Рассчитать</button>
+
+    
+</section>
+
+<section style="border: double; padding: 10px">
+    <h1>Информация из Базы Данных</h1>
+    <fieldset>
+        <legend>Оценка степени загрязнения почв</legend>
+
+        <table border="1">
+            <tr>
+                <th>Содержание в почве, мг/кг</th>
+                <td>от 1 до 2 ПДК</td>
+                <td>от 2 до 5 ПДК</td>
+                <td>&gt 5 ПДК</td>
+            </tr>
+            <tr>
+                <th>Категории загрязнения</th>
+                <td>допустимая</td>
+                <td>умеренно опасная</td>
+                <td>опасная</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Оценка степени загрязнения подземных вод</legend>
+
+        <table border="1">
+            <tr>
+                <th>Содержание в грунтовых водах , мг/кг</th>
+                <td>< 0,3 ПДК</td>
+                <td>от 0,3 до 0,9 ПДК</td>
+                <td>от 0,9 до 1,5 ПДК</td>
+                <td>от 1,5 до 3,0 ПДК</td>
+                <td>от 3,0 до 30,0 ПДК3</td>
+                <td>> 30,0 ПДК</td>
+            </tr>
+            <tr>
+                <th>Категории загрязнения</th>
+                <td>допустимая</td>
+                <td>очень слабая</td>
+                <td>слабая</td>
+                <td>средняя</td>
+                <td>сильная</td>
+                <td>очень сильная</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Показатель деградации земель</legend>
+
+        <table border="1">
+            <tr>
+                <th>Превышение норматива ПДК</th>
+                <td>от 1 до 5</td>
+                <td>от 5 до 20</td>
+                <td>от 20 до 50</td>
+                <td>> 50</td>
+
+            </tr>
+            <tr>
+                <th>Степень деградации земель</th>
+                <td>низкая</td>
+                <td>средняя</td>
+                <td>высокая</td>
+                <td>очень высокая</td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+</section>
+
+<section style="border: double; padding: 10px">
+    <h1>Классификация состояния среды</h1>
+    <fieldset>
+        <legend>Загрязнение АЗС 28</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Объём</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
+
+            @foreach (var item in Model.ObjPoints)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 20 м3</td>
+                    <td> 10</td>
+                    <td> высокое</td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Степень загрязнения охранных объектов</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Объём</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
+
+            @foreach (var item in Model.TypeObj)
+            {
+                <tr>
+                    <td> @Html.ValueFor(m => item)</td>
+                    <td> 50 м3</td>
+                    <td> 4</td>
+                    <td> умеренно опасная </td>
+                </tr>
+            }
+        </table>
+    </fieldset>
+    <br />
+    <fieldset>
+        <legend>Загрязнение грунтовых вод</legend>
+        <table border="1">
+            <tr>
+                <th>Объект</th>
+                <th>Превышение ПДК</th>
+                <th>Классификация</th>
+            </tr>
+
+
+            <tr>
+                <td> Грунтовые воды</td>
+                <td> 1000 </td>
+                <td> очень сильное</td>
+            </tr>
+
+        </table>
+    </fieldset>
+    <br />
+</section>

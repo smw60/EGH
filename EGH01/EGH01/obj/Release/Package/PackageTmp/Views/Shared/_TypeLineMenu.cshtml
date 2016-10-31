@@ -1,0 +1,13 @@
+﻿@model EGH01.Core.Menu
+
+<div class="boxcontrol">
+
+    @foreach (var m in Model)
+    {
+        <button type="submit" name="menuitem" value="@m.Value" @(m.Enabled ? "" : "disabled")> @m.Text </button>
+    }
+
+</div>
+
+
+

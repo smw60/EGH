@@ -1,4 +1,4 @@
-﻿@using EGH01.Core; 
+﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
 @using EGH01DB.Primitives;
 @using EGH01DB.Objects;
@@ -7,73 +7,149 @@
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
-                          new Menu.MenuItem("Создать",      "RiskObject.Create", false),
+                          new Menu.MenuItem("Создать", "RiskObject.Create", false),
                           new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
                         );
 
     Menu create = new Menu(
-                          new Menu.MenuItem("Создать",    "RiskObject.Create.Create", true),
+                          new Menu.MenuItem("Создать", "RiskObject.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Create.Cancel", true)
                         );
-    List<EGH01DB.Types.RiskObjectType> list_type    = new List<EGH01DB.Types.RiskObjectType>();
+    List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
     ViewBag.selectlist = new List<SelectListItem>();
-    if (@Model != null) 
-    { 
+    if (@Model != null)
+    {
         Helper.GetListRiskObjectType(@Model, ref list_type);
         list_type.ForEach(o => ViewBag.selectlist.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
-    
+
     }
 
-     
+    List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
+    ViewBag.list_groundType = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListGroundType(@Model, ref list_groundType);
+        list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    }
+
 
     //List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
-    //if (@Model != null){Helper.GetListCadastreType(@Model, ref list_cadastreType); };
+    //ViewBag.list_cadastreType = new List<SelectListItem>();
+    //if (@Model != null)
+    //{
+    //    Helper.GetListCadastreType(@Model, ref list_cadastreType);
+    //    list_cadastreType.ForEach(o => ViewBag.list_cadastreType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+    //}
 
 
-    //List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
-    //if (@Model != null) { Helper.GetListGroundType(@Model, ref list_groundType); };
 
-    }
-@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head})
+}
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head })
+@using (Html.BeginForm("RiskObjectCreate", "EGHCAI"))
+{
 
- @using(Html.BeginForm("RiskObjectCreate", "EGHCAI"))
- {
+  
+        <div class="boxdata">
+            <p>
+                <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Наименование типа объекта </label>
+                <input class="boxdata-input-50" type="text" name="Name" value=" " />
+            </p>
+           <p>
+          <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
+          </p>
+          <p> 
+              <label class="boxdata-label-30"> наземные</label>
+              <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
+          <p>
+               <label class="boxdata-label-30"> подземные</label>
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
+                <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">дата послежней реконструкции  </label>
+                <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Геологические данные</label>
+            </p>
+            <br>
+            <p>
+                <label class="boxdata-label-30">Грунт</label>   @Html.DropDownList("list_groundType")
+            </p>
 
-  <div class="box">
-    <div class="boxdata">
+            <p>
+                <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                <input class="boxdata-input-50" type="text" name="waterdeep" value=" " />
+            </p>
 
-        <p >
-            <label class ="boxdata-label-30"> Наименование типа объекта </label>
-            <input class="boxdata-input-50" type="text" name="Name" value=" " />
-        </p>
-        <p>
-           <label class ="boxdata-label-30"> Типа объекта </label>   @Html.DropDownList("selectlist")
-        </p>  
-        <p>
-            <label class="boxdata-label-30"> Координаты объекта </label>
-            <label class="boxdata-label-30"> Широта </label>
-            <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
-            <label class="boxdata-label-30">Долгота</label>
-            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
-        </p>
-        <p>
-             <label class="boxdata-label-30"> Адресс объекта </label>
-             <input class="boxdata-input-50" type="text" name="Adress" value=" " />
-        </p>
-      <select form="RiskObjectCreate" list="list_type">
-          <option name="listType" value=" "> </option>
-          </select>
-       
-        <p>
-        </p>
-    </div>
+            <p>
+                <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+                <input class="boxdata-input-50" type="text" name="height" value=" " />
+            </p>
+             <p>
+                <label class="boxdata-label-30"> Географические координаты объекта: </label>
+            </p>
+            <p>
+            <label class="boxdata-label-30"> Широта: </label>
+                </p>
+            <br>
+            <p><input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" /></p>
+            <p><input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" /></p>
+            <p><input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" /></p>
+            <p>
+                <label class="boxdata-label-30">Долгота</label>
+            </p>
+            <p><input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
+            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
+            <p>
+                <label class="boxdata-label-30">КАРТА!</label>
+            </p>
+            <input type="button" value="Загрузить карту" style="margin:10px" />
+            <p>
+                <label class="boxdata-label-30"> Адресс объекта </label>
+                <input class="boxdata-input-50" type="text" name="Adress" value=" " />
+            </p>
+            
+            <p>
+                <label class="boxdata-label-30"> Телефон</label>
+                <input class="boxdata-input-50" type="text" name="phone" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Факс</label>
+                <input class="boxdata-input-50" type="text" name="fax" value=" " />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Очистные сооружения</label>
+            </p> 
+            <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
+            </p> 
+            <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
+            </p> 
+            <p>
+                <label class="boxdata-label-30">Область(Список)</label>
+            </p>
+            <p>
+                <label class="boxdata-label-30">Район(список)</label>        
+            </p>         
+        </div>
+        @Html.Partial("_TypeLineMenu", create)
 
-    @Html.Partial("_TypeLineMenu", create)
-   
-      
-       @*@Html.Partial("_RiskObjectType", list_type)
-    @Html.Partial("_CadastreType", list_cadastreType)
-    @Html.Partial("_GroundType",list_groundType)*@
 
-  </div>
-  }
+        @*@Html.Partial("_RiskObjectType", list_type)*@
+        @*@Html.Partial("_CadastreType", list_cadastreType)*@
+        @*@Html.Partial("_GroundType",list_groundType)*@
+
+
+}
