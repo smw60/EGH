@@ -9,6 +9,7 @@ using System.Xml;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
+using static EGH01DB.Types.PetrochemicalType;
 
 namespace EGH01DB.Primitives
 {
@@ -184,6 +185,20 @@ namespace EGH01DB.Primitives
                 return rc;
             }
         }
+
+        static public PetrochemicalTypeList GetListPetrochemicalType(EGH01DB.IDBContext dbcontext)
+        {
+            List<PetrochemicalType> list = new List<PetrochemicalType>();
+            PetrochemicalTypeList pt = new PetrochemicalTypeList(list);
+            if (Helper.GetListPetrochemicalType(dbcontext, ref list))
+            {
+                pt = new PetrochemicalTypeList(list);
+            }
+            return pt;
+        }
+
+
+
 
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {

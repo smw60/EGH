@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Xml;
+using EGH01DB.Primitives;
 
 
 namespace EGH01DB.Types
@@ -291,6 +293,40 @@ namespace EGH01DB.Types
         static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
         {
             return Delete(dbcontext, new PetrochemicalType(code));
+        }
+
+
+
+        public XmlNode toXmlNode(string comment = "")
+        {
+            XmlDocument doc = new XmlDocument();
+            XmlElement rc = doc.CreateElement("PetrochemicalType");
+            if (!String.IsNullOrEmpty(comment)) rc.SetAttribute("comment", comment);
+            rc.SetAttribute("type_code", this.code_type.ToString());
+            rc.SetAttribute("name", this.name);
+            return (XmlNode)rc;
+        }
+
+
+        public class PetrochemicalTypeList : List<PetrochemicalType>
+        {
+            public PetrochemicalTypeList()
+            {
+
+            }
+            public PetrochemicalTypeList(List<PetrochemicalType> list) : base(list)
+            {
+
+            }
+            public PetrochemicalTypeList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalType(dbcontext))
+            {
+
+            }
+
+            public XmlNode toXmlNode()
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
