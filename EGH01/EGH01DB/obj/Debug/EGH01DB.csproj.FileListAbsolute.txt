@@ -9,3 +9,7 @@ E:\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
 D:\Новая папка\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.csprojResolveAssemblyReference.cache
 D:\Новая папка\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
 D:\Новая папка\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+D:\GIT\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+D:\GIT\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
+D:\GIT\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+D:\GIT\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb

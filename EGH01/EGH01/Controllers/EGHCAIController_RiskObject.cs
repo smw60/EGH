@@ -137,27 +137,27 @@ namespace EGH01.Controllers
                                 String phone = rs.phone;
                                 String fax = rs.fax;
                                 string address = rs.adress;
-                                EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
+                               // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
 
 
-                                if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
-                                {
-                                    view = View("RiskObject", db);
-                                }
+                                //if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
+                                //{
+                                //    view = View("RiskObject", db);
+                                //}
 
-<<<<<<< HEAD
-                        Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
-                        GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
-                        Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
-                        RiskObjectType risk_object_type = new RiskObjectType(1, "");
-                        CadastreType cadastre_type = new CadastreType(1, "", 0);
-                        string name = rs.name;
-                        string address = rs.adress;
-                        // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-                        EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
-=======
+
+                        //Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
+                        //GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+                        //Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
+                        //RiskObjectType risk_object_type = new RiskObjectType(1, "");
+                        //CadastreType cadastre_type = new CadastreType(1, "", 0);
+                        //string name = rs.name;
+                        //string address = rs.adress;
+                        //// EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
+                        //EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
+
                             }
->>>>>>> 975d446ad52a05e2b18c265a2a5c0703811fa340
+
 
                         }
                         else if (menuitem.Equals("RiskObject.Create.Cancel")) view = View("RiskObject", db);

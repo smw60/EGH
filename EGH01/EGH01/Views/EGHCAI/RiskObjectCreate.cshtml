@@ -15,7 +15,7 @@
                           new Menu.MenuItem("Создать",    "RiskObject.Create.Create", true),
                           new Menu.MenuItem("Отказаться", "RiskObject.Create.Cancel", true)
                         );
-    List<EGH01DB.Types.RiskObjectType> list_type    = new List<EGH01DB.Types.RiskObjectType>();
+    List<EGH01DB.Types.RiskObjectType> list_type   = new List<EGH01DB.Types.RiskObjectType>();
     ViewBag.selectlist = new List<SelectListItem>();
     if (@Model != null)
     {
@@ -25,27 +25,27 @@
     }
 
     List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
-    if (@Model != null) { Helper.GetListGroundType(@Model, ref list_groundType); };
-    if (@Model != null)
+    ViewBag.list_groundType = new List<SelectListItem>();
+    if (@Model != null) 
     {
         Helper.GetListGroundType(@Model, ref list_groundType);
-        list_groundType.ForEach(o => ViewBag.selectlist_groud.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+        list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
 
 
-    //List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
-    //if (@Model != null) { Helper.GetListCadastreType(@Model, ref list_cadastreType); };
-    ////if (@Model != null)
-    //{
-    //    Helper.GetListCadastreType(@Model, ref list_cadastreType);
-    //    list_cadastreType.ForEach(o => ViewBag.selectlist.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
-
-    //}
-
-
+    List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
+    ViewBag.list_cadastreType = new List<SelectListItem>();
+    if (@Model != null) 
+    {
+        Helper.GetListCadastreType(@Model, ref list_cadastreType);
+        list_cadastreType.ForEach(o => ViewBag.list_cadastreType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
+
+
+
+ }
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head})
 
  @using(Html.BeginForm("RiskObjectCreate", "EGHCAI"))
@@ -91,10 +91,10 @@
             <input class="boxdata-input-50" type="text" name="fax" value=" " />
         </p>
         <p>
-            <label class="boxdata-label-30"> Типа объекта </label>   @Html.DropDownList("selectlist_groud")
+            <label class="boxdata-label-30"> Типа объекта </label>   
         </p>  
         <p>
-            <label class="boxdata-label-30"> Грунт </label>   @Html.DropDownList("selectlist")
+            <label class="boxdata-label-30"> Грунт </label>   @Html.DropDownList("list_groundType")
         </p>  
       <select form="RiskObjectCreate" list="list_type">
           <option name="listType" value=" "> </option>
@@ -107,7 +107,7 @@
     @Html.Partial("_TypeLineMenu", create)
    
       
-       @*@Html.Partial("_RiskObjectType", list_type)*@
+    @*@Html.Partial("_RiskObjectType", list_type)*@
     @*@Html.Partial("_CadastreType", list_cadastreType)*@
     @*@Html.Partial("_GroundType",list_groundType)*@
 

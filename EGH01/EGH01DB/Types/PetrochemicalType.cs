@@ -308,25 +308,25 @@ namespace EGH01DB.Types
         }
 
 
-        public class PetrochemicalTypeList : List<PetrochemicalType>
-        {
-            public PetrochemicalTypeList()
-            {
+        //public class PetrochemicalTypeList : List<PetrochemicalType>
+        //{
+        //    public PetrochemicalTypeList()
+        //    {
 
-            }
-            public PetrochemicalTypeList(List<PetrochemicalType> list) : base(list)
-            {
+        //    }
+        //    public PetrochemicalTypeList(List<PetrochemicalType> list) : base(list)
+        //    {
 
-            }
-            public PetrochemicalTypeList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalType(dbcontext))
-            {
+        //    }
+        //    public PetrochemicalTypeList(EGH01DB.IDBContext dbcontext) : base(Helper.GetListPetrochemicalType(dbcontext))
+        //    {
 
-            }
+        //    }
 
-            public XmlNode toXmlNode()
-            {
-                throw new NotImplementedException();
-            }
-        }
+        //    public XmlNode toXmlNode()
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
     }
 }
