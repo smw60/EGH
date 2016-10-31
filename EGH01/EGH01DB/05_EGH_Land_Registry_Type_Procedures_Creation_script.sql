@@ -10,7 +10,7 @@
 -----------------------------------------------------------------------------
 drop procedure EGH.CreateLandRegistryType;
 drop procedure EGH.DeleteLandRegistryType;
-drop procedure EGH.GetLandRegistryTypeByID;
+drop procedure EGH.GetLandRegistryTypeByCode;
 drop procedure EGH.GetLandRegistryTypeList;
 drop procedure EGH.UpdateLandRegistryType;
 drop procedure EGH.GetNextLandRegistryTypeCode;
@@ -39,7 +39,7 @@ declare @rc int  = @КодНазначенияЗемель;
 	end catch 
   return @rc;  
 end;
-
+go
 -- Удаление типа кадастрового назначения земель
 create procedure EGH.DeleteLandRegistryType (@КодНазначенияЗемель int)
 as begin 
@@ -52,9 +52,9 @@ as begin
 	end catch   
 	return @rc;
 end; 
-
+go
 -- Получение типа кадастрового назначения земель по ID
-create  procedure EGH.GetLandRegistryTypeByID(
+create  procedure EGH.GetLandRegistryTypeByCode(
 						@КодНазначенияЗемель int,  
 						@НаименованиеНазначенияЗемель nvarchar(100) output,
 						@ПДК int output)
@@ -66,7 +66,7 @@ as begin
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go
 -- Получение списка типов кадастрового назначения земель
 create procedure EGH.GetLandRegistryTypeList
  as begin
@@ -78,7 +78,7 @@ create procedure EGH.GetLandRegistryTypeList
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go
 -- Обновление типа кадастрового назначения земель
 create  procedure UpdateLandRegistryType(@КодНазначенияЗемель int, @НовоеНаименование nvarchar(50), @НовоеЗначениеПДК int) 
 as begin 
@@ -87,13 +87,13 @@ as begin
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go
 -- Получение следующего ID типа кадастрового назначения земель
-create procedure EGH.GetNextLandRegistrytTypeCode(@КодНазначенияЗемель int output)
+create procedure EGH.GetNextLandRegistryTypeCode(@КодНазначенияЗемель int output)
  as begin
 	declare @rc int = -1;
 	set @КодНазначенияЗемель =(select (max(КодНазначенияЗемель)+1) from [dbo].НазначениеЗемель);
 	set @rc = @@ROWCOUNT;
 	return @rc;    
 end;
-
+go

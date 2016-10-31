@@ -27,9 +27,25 @@
                    <label class="boxdata-label-30">Наименование типа инцидента</label>
                    <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
                 </p>
-                <input type="hidden" value="@Model.id.ToString()" name="type_code">
 
-            </div>
+                <label class="boxdata-label-30"> Координаты объекта </label>
+                <br>
+
+                <p>
+                    <label class="boxdata-label-30">Широта </label>
+                    <input class="boxdata-input-50" type="text" name="Latitude" value="@Model.coordinates.latitude" />
+
+                <p>
+                    <label class="boxdata-label-30">Долгота</label>
+                    <input class="boxdata-input-50" type="text" name="lngitude" value="@Model.coordinates.lngitude" />
+
+                <p>
+                    <label class="boxdata-label-30">Адресс</label>
+                    <input class="boxdata-input-50" type="text" name="adress" value="@Model.address" />
+
+                    <input type="hidden" value="@Model.id.ToString()" name="type_code">
+
+</div>
             
             @Html.Partial("_TypeLineMenu",delete)
             

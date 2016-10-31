@@ -42,7 +42,10 @@ namespace EGH01DB.Types
             this.name = name;
             this.pdk_coef = 0;
         }
-
+        public string ToLine()
+        {
+            return String.Format("{0} {1}", this.type_code, this.name); 
+        }
         static public bool Create(EGH01DB.IDBContext dbcontext, CadastreType land_type)
         {
 
@@ -52,11 +55,8 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодНазначенияЗемель", SqlDbType.Int);
-                    if (land_type.type_code <= 0)
-                    {
-                        int new_land_type_code = 0;
-                        if (GetNextCode(dbcontext, out new_land_type_code)) land_type.type_code = new_land_type_code;
-                    }
+                    int new_land_type_code = 0;
+                    if (GetNextCode(dbcontext, out new_land_type_code)) land_type.type_code = new_land_type_code;
                     parm.Value = land_type.type_code;
                     cmd.Parameters.Add(parm);
                 }
@@ -119,9 +119,6 @@ namespace EGH01DB.Types
                 };
                 return rc;
             }
-
-
-
         }
 
         static public bool Update(EGH01DB.IDBContext dbcontext, CadastreType land_type)
@@ -137,12 +134,12 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеНазначенияЗемель", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@Наименование", SqlDbType.NVarChar);
                     parm.Value = land_type.name;
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ЗначениеПДК", SqlDbType.Int);
                     parm.Value = land_type.pdk_coef;
                     cmd.Parameters.Add(parm);
                 }
@@ -197,12 +194,16 @@ namespace EGH01DB.Types
 
             return rc;
         }
+        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
+        {
+            return Delete(dbcontext, new CadastreType(code));
+        }
 
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out CadastreType type)
         {
             bool rc = false;
             type = new CadastreType();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetLandRegistryTypeByID", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetLandRegistryTypeByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
@@ -217,7 +218,7 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Float);
+                    SqlParameter parm = new SqlParameter("@ПДК", SqlDbType.Int);
                     parm.Direction = ParameterDirection.Output;
                     cmd.Parameters.Add(parm);
                 }

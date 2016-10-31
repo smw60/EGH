@@ -36,6 +36,11 @@ namespace EGH01DB.Types
             this.type_code = 0;
             this.name = name;
         }
+        public string ToLine()
+        {
+            return String.Format("{0} {1}", this.type_code, this.name);
+        }
+
 
         static public bool Create(EGH01DB.IDBContext dbcontext, RiskObjectType risk_object_type)
         {
@@ -46,11 +51,8 @@ namespace EGH01DB.Types
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@КодТипаТехногенногоОбъекта", SqlDbType.Int);
-                    if (risk_object_type.type_code <=0)
-                    {
-                        int new_risk_object_type_code = 0;
-                        if (GetNextCode(dbcontext, out new_risk_object_type_code)) risk_object_type.type_code = new_risk_object_type_code;
-                    }
+                    int new_risk_object_type_code = 0;
+                    if (GetNextCode(dbcontext, out new_risk_object_type_code)) risk_object_type.type_code = new_risk_object_type_code;
                     parm.Value = risk_object_type.type_code;
                     cmd.Parameters.Add(parm);
                 }
@@ -109,9 +111,6 @@ namespace EGH01DB.Types
                 };
                 return rc;
             }
-
-
-
         }
 
         static public bool Update(EGH01DB.IDBContext dbcontext, RiskObjectType risk_object_type)
@@ -127,7 +126,7 @@ namespace EGH01DB.Types
                     cmd.Parameters.Add(parm);
                 }
                 {
-                    SqlParameter parm = new SqlParameter("@НаименованиеТипаТехногенногоОбъекта", SqlDbType.VarChar);
+                    SqlParameter parm = new SqlParameter("@НовоеНаименование", SqlDbType.NVarChar);
                     parm.Value = risk_object_type.name;
                     cmd.Parameters.Add(parm);
                 }
@@ -173,7 +172,7 @@ namespace EGH01DB.Types
                 try
                 {
                     cmd.ExecuteNonQuery();
-                    rc = (int)cmd.Parameters["@exitrc"].Value > 0;
+                    rc = ((int)cmd.Parameters["@exitrc"].Value > 0);
                 }
                 catch (Exception e)
                 {
@@ -185,11 +184,16 @@ namespace EGH01DB.Types
             return rc;
         }
 
+        static public bool DeleteByCode(EGH01DB.IDBContext dbcontext, int code)
+        {
+            return Delete(dbcontext, new RiskObjectType(code));
+        }
+
         static public bool GetByCode(EGH01DB.IDBContext dbcontext, int type_code, out RiskObjectType type)
         {
             bool rc = false;
             type = new RiskObjectType();
-            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectTypeByID", dbcontext.connection))
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectTypeByCode", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {

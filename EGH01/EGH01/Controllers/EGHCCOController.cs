@@ -16,16 +16,7 @@ namespace EGH01.Controllers
 {
     public partial class EGHCCOController : Controller
     {
-        //EGH01DB.CCOContext db = new   EGH01DB.CCOContext(); 
-        //public ActionResult Index()
-        //{
-        //    if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-        //    else ViewBag.msg = "соединение  c БД  не установлено";
-        //    return View();
-        //}
-
-
-
+        
         public ActionResult Index()
         {
             ViewBag.EGHLayout = "CCO";
@@ -34,38 +25,19 @@ namespace EGH01.Controllers
             {
                 db = new CCOContext();
                 ViewBag.msg = "Соединение с базой данных установлено";
-
-
-
-
-            }
+                            }
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;
             }
             finally
             {
-                if (db != null) db.Disconnect();
+                //if (db != null) db.Disconnect();
             }
-
-            return View();
+            return View("PetrochemicalType", db);
         }
 
-
-
-        public ActionResult Report()
-        {
-
-            //if (db.IsConnect) ViewBag.msg = "соединение  c БД установлено";
-            //else ViewBag.msg = "соединение  c БД  не установлено";
-
-
-            EGH01DB.RGEContext.Report report = new EGH01DB.RGEContext.Report();
-
-            return View(report);
-        }
-
-
+               
 
     }
 }

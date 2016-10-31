@@ -10,8 +10,8 @@
     Layout = "~/Views/Shared/EGHLayout.cshtml";
 
     Menu head = new Menu(
-                         new Menu.MenuItem("Создать", "IncidentType.Create", true),
-                         new Menu.MenuItem("Excel-формат", "IncidentType.Excel", true)
+                         new Menu.MenuItem("Создать", "PetrochemicalType.Create", true),
+                         new Menu.MenuItem("Excel-формат", "PetrochemicalType.Excel", true)
                        );
 
     List<PetrochemicalType> list = new List<PetrochemicalType>();
@@ -24,7 +24,7 @@
 
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
 @Html.Partial("_PetrochemicalTypeList", list)
-<h2>PetrochemicalType</h2>
+
 
 
 
