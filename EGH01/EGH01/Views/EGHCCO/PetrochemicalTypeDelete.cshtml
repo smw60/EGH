@@ -22,8 +22,10 @@
     <div class="box">
         <div class="boxdata">
 
-            <p><label class="boxdata-label-30">Код типа инцидента</label>@Model.code_type.ToString()</p>
-            <p><label class="boxdata-label-30">Наименование типа инцидента  </label>@Model.name</p>
+            <p><label class="boxdata-label-30">Код типа нефтепродукта</label>@Model.code_type.ToString()</p>
+
+            <p><label class="boxdata-label-30">Наименование нефтепродукта</label>@Model.name</p>
+
             <input type="hidden" value="@Model.code_type.ToString()" name="type_code">
         </div>
 

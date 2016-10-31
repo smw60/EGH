@@ -18,14 +18,9 @@
     if (@Model != null) { Helper.GetListPetrochemicalType(@Model, ref list); };
 
 
-
 }
 
 
 @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
 @Html.Partial("_PetrochemicalTypeList", list)
-
-
-
-
 

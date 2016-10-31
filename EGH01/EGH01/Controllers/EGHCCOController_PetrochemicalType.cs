@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using EGH01DB.Types;
-using System.Xml;
-using System.Xml.Linq;
 using EGH01.Models.EGHCCO;
 using EGH01DB;
-using EGH01DB.Primitives;
+using System.Xml;
+
 
 namespace EGH01.Controllers
 {
     public partial class EGHCCOController : Controller
     {
-        // GET: EGHCCOController_PetrochemicalType
         public ActionResult PetrochemicalType()
         {
             CCOContext db = null;
@@ -36,38 +31,51 @@ namespace EGH01.Controllers
                 }
                 else if (menuitem.Equals("PetrochemicalType.Delete"))
                 {
-                    string type_code_item = this.HttpContext.Request.Params["id"];
+                    string type_code_item = this.HttpContext.Request.Params["type_code"];
                     if (type_code_item != null)
                     {
                         int c = 0;
                         if (int.TryParse(type_code_item, out c))
                         {
-                            EGH01DB.Types.PetrochemicalType it = new EGH01DB.Types.PetrochemicalType();
-                            if (EGH01DB.Types.PetrochemicalType.GetByCode(db, c, ref it))
+                            PetrochemicalType pt = new PetrochemicalType();
+                            if (EGH01DB.Types.PetrochemicalType.GetByCode(db, c, ref pt))
                             {
-                                view = View("PetrochemicalTypeDelete", it);
+                                view = View("PetrochemicalTypeDelete", pt);
                             }
                         }
                     }
                 }
                 else if (menuitem.Equals("PetrochemicalType.Update"))
                 {
-                    string type_code_item = this.HttpContext.Request.Params["id"];
+                    string type_code_item = this.HttpContext.Request.Params["type_code"];
 
                     if (type_code_item != null)
                     {
                         int c = 0;
                         if (int.TryParse(type_code_item, out c))
                         {
-                            EGH01DB.Types.PetrochemicalType it = new EGH01DB.Types.PetrochemicalType();
-                            if (EGH01DB.Types.PetrochemicalType.GetByCode(db, c, ref it))
+                            EGH01DB.Types.PetrochemicalType pt = new EGH01DB.Types.PetrochemicalType();
+                            if (EGH01DB.Types.PetrochemicalType.GetByCode(db, c, ref pt))
                             {
-                                view = View("PetrochemicalType", it);
+                                view = View("PetrochemicalTypeUpdate", pt);
                             }
                         }
                     }
                 }
+                else if (menuitem.Equals("PetrochemicalType.Excel"))
+                {
+                    //EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList list = new EGH01DB.Types.PetrochemicalType.PetrochemicalTypeList();
+                    //XmlNode node = list.toXmlNode();
+                    //XmlDocument doc = new XmlDocument();
+                    //XmlNode nnode = doc.ImportNode(node, true);
+                    //doc.AppendChild(nnode);
+                    //doc.Save(Server.MapPath("~/App_Data/PetrochemicalType.xml"));
+                    //view = View("Index");
 
+                    //view = File(Server.MapPath("~/App_Data/PetrochemicalType.xml"), "text/plain", "PetrochemicalType.xml");
+
+
+                }
             }
             catch (RGEContext.Exception e)
             {
@@ -85,7 +93,7 @@ namespace EGH01.Controllers
 
 
         [HttpPost]
-        public ActionResult PetrochemicalTypeCreate(PetrochemicalTypeView itv)
+        public ActionResult PetrochemicalTypeCreate(PetrochemicalTypeView ptv)
         {
             CCOContext db = null;
             ViewBag.EGHLayout = "CCO";
@@ -97,12 +105,25 @@ namespace EGH01.Controllers
                 view = View("PetrochemicalType", db);
                 if (menuitem.Equals("PetrochemicalType.Create.Create"))
                 {
-                    if (EGH01DB.Types.PetrochemicalType.Create(db, new EGH01DB.Types.PetrochemicalType(0, itv.name)))
+                    int id = -1;
+                    if (EGH01DB.Types.PetrochemicalType.GetNextCode(db, out id))
                     {
-                        view = View("PetrochemicalType", db);
+                        int type_code = ptv.code_type;
+                        string name = ptv.name;
+                        float boilingtemp = ptv.boilingtemp;
+                        float density = ptv.density;
+                        float viscosity = ptv.viscosity;
+                        float solubility =ptv.solubility;
+                        PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility) ;
+
+                        if (EGH01DB.Types.PetrochemicalType.Create(db, pt))
+                        {
+                            view = View("PetrochemicalType", db);
+                        }
+                        else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
                     }
-                    else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
                 }
+                else if (menuitem.Equals("PetrochemicalType.Create.Cancel")) view = View("PetrochemicalType", db);
             }
             catch (RGEContext.Exception e)
             {
@@ -146,7 +167,7 @@ namespace EGH01.Controllers
             return view;
         }
         [HttpPost]
-        public ActionResult PetrochemicalTypeUpdate(PetrochemicalTypeView itv)
+        public ActionResult PetrochemicalTypeUpdate(PetrochemicalTypeView ptv)
         {
             CCOContext db = null;
             ViewBag.EGHLayout = "CCO";
@@ -157,10 +178,21 @@ namespace EGH01.Controllers
                 db = new CCOContext();
                 if (menuitem.Equals("PetrochemicalType.Update.Update"))
                 {
-                    if (EGH01DB.Types.PetrochemicalType.Update(db, new EGH01DB.Types.PetrochemicalType(itv.code_type, itv.name))) view = View("PetrochemicalType", db);
+
+
+                    int type_code = ptv.code_type;
+                    string name = ptv.name;
+                    float boilingtemp = ptv.boilingtemp;
+                    float density = ptv.density;
+                    float viscosity = ptv.viscosity;
+                    float solubility = ptv.solubility;
+                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+
+
+                    if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
+                        view = View("PetrochemicalType", db);
                 }
                 else if (menuitem.Equals("PetrochemicalType.Update.Cancel")) view = View("PetrochemicalType", db);
-
             }
             catch (RGEContext.Exception e)
             {
