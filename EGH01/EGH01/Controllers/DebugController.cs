@@ -64,6 +64,48 @@ namespace EGH01.Controllers
 
             return View();
         }
+// проверка процедур District
+        public ActionResult District_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int region_code = 5;
+                //string name = "Test111";
+
+                //District t = new District((int)region_code, (string)name);
+                //if (District.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult District_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //District ct = new District(1);
+                //if (District.GetByCode(db, 1, out ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult District_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //District ct = new District();
+                //if (District.DeleteByCode(db, 127))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
 
 // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
