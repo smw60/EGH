@@ -34,14 +34,14 @@
     }
 
 
-    List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
-    ViewBag.list_cadastreType = new List<SelectListItem>();
-    if (@Model != null)
-    {
-        Helper.GetListCadastreType(@Model, ref list_cadastreType);
-        list_cadastreType.ForEach(o => ViewBag.list_cadastreType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+    //List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
+    //ViewBag.list_cadastreType = new List<SelectListItem>();
+    //if (@Model != null)
+    //{
+    //    Helper.GetListCadastreType(@Model, ref list_cadastreType);
+    //    list_cadastreType.ForEach(o => ViewBag.list_cadastreType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
-    }
+    //}
 
 
 
@@ -50,7 +50,7 @@
 @using (Html.BeginForm("RiskObjectCreate", "EGHCAI"))
 {
 
-    <div class="box">
+  
         <div class="boxdata">
             <p>
                 <label class="boxdata-label-30"> Наименование типа объекта </label>
@@ -61,13 +61,19 @@
             </p>
             <p>
                 <label class="boxdata-label-30"> Координаты объекта </label>
-                <label class="boxdata-label-30"> Широта: </label>
-                <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
-                <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
-                <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" />
+            <br>
+            <label class="boxdata-label-30"> Широта: </label>
+            <br>
+            <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" />
+
                 <label class="boxdata-label-30">Долгота</label>
-                <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
-            </p>
+    
+            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
+            <input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" />
+          
             <p>
                 <label class="boxdata-label-30"> Адресс объекта </label>
                 <input class="boxdata-input-50" type="text" name="Adress" value=" " />
@@ -89,17 +95,21 @@
                 <input class="boxdata-input-50" type="text" name="fax" value=" " />
             </p>
             <p>
-                <label class="boxdata-label-30"> Типа объекта </label>
+                <label class="boxdata-label-30"> Грунт </label>   @Html.DropDownList("list_groundType")
             </p>
             <p>
-                <label class="boxdata-label-30"> Грунт </label>   @Html.DropDownList("list_groundType")
+                <label class="boxdata-label-30"> Объем резервуаров для хранения нефтепродутов (м3)</label>
+                <br>
+                <label class="boxdata-label-30"> наземные</label>
+                <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
+                <br>
+                <label class="boxdata-label-30"> подземные</label>
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
             </p>
             <select form="RiskObjectCreate" list="list_type">
                 <option name="listType" value=" "> </option>
             </select>
 
-            <p>
-            </p>
         </div>
         @Html.Partial("_TypeLineMenu", create)
 
@@ -107,5 +117,6 @@
         @*@Html.Partial("_RiskObjectType", list_type)*@
         @*@Html.Partial("_CadastreType", list_cadastreType)*@
         @*@Html.Partial("_GroundType",list_groundType)*@
-    </div>
+
+
 }
