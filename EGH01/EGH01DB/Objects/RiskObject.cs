@@ -99,8 +99,8 @@ namespace EGH01DB.Objects
             this.watertreatment = watertreatment;
             this.watertreatmentcollect = watertreatmentcollect;
             this.map = new byte[0];
-            this.groundtank = 0;
-            this.undergroundtank = 0;
+            this.groundtank = groundtank;
+            this.undergroundtank = undergroundtank;
         }
         public RiskObject(int id)
         {

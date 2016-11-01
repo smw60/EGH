@@ -1,0 +1,4 @@
+C:\Users\Asus\Desktop\01\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.dll
+C:\Users\Asus\Desktop\01\EGH\EGH01\EGH01DB\bin\Debug\EGH01DB.pdb
+C:\Users\Asus\Desktop\01\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.dll
+C:\Users\Asus\Desktop\01\EGH\EGH01\EGH01DB\obj\Debug\EGH01DB.pdb
