@@ -33,6 +33,23 @@
 
     }
 
+    List<EGH01DB.Types.Region> list_region= new List<EGH01DB.Types.Region>();
+    ViewBag.list_region = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListRegion(@Model, ref list_region);
+        list_region.ForEach(o => ViewBag.list_region.Add(new SelectListItem { Text = o.name, Value = o.region_code.ToString() }));
+
+    }
+
+    //List<EGH01DB.Types.District> list_district = new List<EGH01DB.Types.District>();
+    //ViewBag.list_district = new List<SelectListItem>();
+    //if (@Model != null)
+    //{
+    //    Helper.GetListDistrict(@Model,list_region., ref list_district);
+    //    list_district.ForEach(o => ViewBag.list_region.Add(new SelectListItem { Text = o.district, Value = o.code.ToString() }));
+
+    //}
 
     //List<EGH01DB.Types.CadastreType> list_cadastreType = new List<EGH01DB.Types.CadastreType>();
     //ViewBag.list_cadastreType = new List<SelectListItem>();
@@ -61,10 +78,10 @@
             </p>
            <p>
           <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
-          </p>
+         
           <p> 
               <label class="boxdata-label-30"> наземные</label>
-              <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
+              <input class="boxdata-input-50" type="number" name="groundtank" value=" " /></p>
           <p>
                <label class="boxdata-label-30"> подземные</label>
                 <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
@@ -79,42 +96,40 @@
             </p>
             <p>
                 <label class="boxdata-label-30">Геологические данные</label>
-            </p>
-            <br>
+            
             <p>
-                <label class="boxdata-label-30">Грунт</label>   @Html.DropDownList("list_groundType")
+                <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
             </p>
 
             <p>
                 <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                <input class="boxdata-input-50" type="text" name="waterdeep" value=" " />
+                <input class="boxdata-input-50" type="number" name="waterdeep" value=" " />
             </p>
 
             <p>
                 <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                <input class="boxdata-input-50" type="text" name="height" value=" " />
-            </p>
-             <p>
-                <label class="boxdata-label-30"> Географические координаты объекта: </label>
+                <input class="boxdata-input-50" type="number" name="height" value=" " />
             </p>
             <p>
             <label class="boxdata-label-30"> Широта: </label>
-                </p>
-            <br>
-            <p><input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" /></p>
-            <p><input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" /></p>
-            <p><input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" /></p>
+              
+           <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
+           <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
+           <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" /></p>
             <p>
                 <label class="boxdata-label-30">Долгота</label>
-            </p>
-            <p><input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" /> </p>
-            <p><input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" /> </p>
-            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
-            <p><input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
-            <p>
+         
+            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" /> 
+           <input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" /> 
+            <input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
+
+                <p>
                 <label class="boxdata-label-30">КАРТА!</label>
             </p>
             <input type="button" value="Загрузить карту" style="margin:10px" />
+            <p>
+                <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
+            </p>
             <p>
                 <label class="boxdata-label-30"> Адресс объекта </label>
                 <input class="boxdata-input-50" type="text" name="Adress" value=" " />
@@ -130,19 +145,14 @@
             </p>
             <p>
                 <label class="boxdata-label-30">Очистные сооружения</label>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока</p>
+         <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов</p>
             </p> 
-            <p>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
-            </p> 
-            <p>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
-            </p> 
-            <p>
-                <label class="boxdata-label-30">Область(Список)</label>
-            </p>
-            <p>
-                <label class="boxdata-label-30">Район(список)</label>        
-            </p>         
+            @*<p>
+                <label class="boxdata-label-30">Область(Список)</label>@Html.DropDownList("list_district")
+            </p>*@
+
         </div>
         @Html.Partial("_TypeLineMenu", create)
 

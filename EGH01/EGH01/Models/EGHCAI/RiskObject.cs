@@ -16,20 +16,21 @@ namespace EGH01.Models.EGHCAI
         public int lngitude { get; set; }
         public int lat_m { get; set; }
         public int lng_m { get; set; }
-        public int lat_s { get; set; }
-        public int lng_s { get; set; }
+        public float lat_s { get; set; }
+        public float lng_s { get; set; }
         public int selectlist { get; set; }
         public int list_groundType { get; set; }
+        public int list_region{ get; set; }
         public DateTime foundationdate { get; set; }
         public DateTime reconstractiondate { get; set; }
         public string phone { get; set; }
         public string fax { get; set; }
         public int groundtank { get; set; }
-       public int undergroundtank { get; set; }
+        public int undergroundtank { get; set; }
         public float waterdeep { get; set; }   // глубина грунтовых вод    (м)
         public float height { get; set; }
-        public Boolean watertreatment { get; set; }
-        public Boolean watertreatmentcollect { get; set; }
+        public bool watertreatment { get; set; }
+        public bool watertreatmentcollect { get; set; }
 
 
     }
