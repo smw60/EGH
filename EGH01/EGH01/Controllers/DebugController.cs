@@ -15,11 +15,11 @@ namespace EGH01.Controllers
 {
     public class DebugController : Controller
     {
-        
+
         public ActionResult Index()
         {
-        
-            
+
+
             return View();
         }
         public ActionResult XML()
@@ -32,7 +32,7 @@ namespace EGH01.Controllers
             {
                 CoordinatesList clist = new CoordinatesList()
                 {
-                    new Coordinates(53.891779f, 27.557892f),    
+                    new Coordinates(53.891779f, 27.557892f),
                     new Coordinates(53.881780f, 27.537890f),
                     new Coordinates(53.871781f, 27.547893f),
                 };
@@ -51,13 +51,13 @@ namespace EGH01.Controllers
                 Point p1 = new Point(xml);
             }
 
-            { 
-              EGH01DB.RGEContext db = new EGH01DB.RGEContext();
-              IncidentTypeList list = new IncidentTypeList(db);
-              XmlNode n = list.toXmlNode();
-              int k = 1;
-            
-            
+            {
+                EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+                IncidentTypeList list = new IncidentTypeList(db);
+                XmlNode n = list.toXmlNode();
+                int k = 1;
+
+
             }
 
 
@@ -65,13 +65,13 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Region
+        // проверка процедур Region
         public ActionResult Region_Create()// есть
         {
             RGEContext db = new RGEContext();
             {
 
-                
+
                 //string name = "Test111";
 
                 //Region t = new Region(name);
@@ -137,7 +137,7 @@ namespace EGH01.Controllers
 
 
 
-// проверка процедур District
+        // проверка процедур District
         public ActionResult District_Create()// есть
         {
             RGEContext db = new RGEContext();
@@ -208,17 +208,17 @@ namespace EGH01.Controllers
             return View();
         }
 
-        
-// проверка процедур Risk Object, раскомментить нужные области
+
+        // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {
-             RGEContext db = new RGEContext();
-             {
-                 //List<RiskObject> list = new List<RiskObject>();
-                 //if (Helper.GetListRiskObject(db, ref list))
-                 //{
-                 //    int k = 1;
-                 //};
+            RGEContext db = new RGEContext();
+            {
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -238,11 +238,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-              //  RiskObject rs = new RiskObject();
-              //if (RiskObject.DeleteById(db, 13)) // удалена
-              //  {
-              //      int k = 1;
-              //  };
+                //  RiskObject rs = new RiskObject();
+                //if (RiskObject.DeleteById(db, 13)) // удалена
+                //  {
+                //      int k = 1;
+                //  };
             }
             return View();
         }
@@ -319,13 +319,13 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Petrochemical Type
+        // проверка процедур Petrochemical Type
         public ActionResult Petr_GetByCode()// есть
         {
             RGEContext db = new RGEContext();
             {
-               // PetrochemicalType pt = new PetrochemicalType();
-               // if (PetrochemicalType.GetByCode(db, 7, ref pt))
+                // PetrochemicalType pt = new PetrochemicalType();
+                // if (PetrochemicalType.GetByCode(db, 7, ref pt))
                 {
                     int k = 1;
                 };
@@ -338,7 +338,7 @@ namespace EGH01.Controllers
             {
                 PetrochemicalType pt = new PetrochemicalType();
                 //int k1 = 0;
-               // if (PetrochemicalType.GetNextCode(db, out k1))
+                // if (PetrochemicalType.GetNextCode(db, out k1))
                 {
                     int k = 1;
                 };
@@ -350,7 +350,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //PetrochemicalType pt = new PetrochemicalType();
-               //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
+                //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
                 {
                     int k = 1;
                 };
@@ -361,7 +361,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                
+
                 //int code_type = 8;
                 //string name = "test";
                 //float boilingtemp = 100.0f;
@@ -407,7 +407,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Ground Type
+        // проверка процедур Ground Type
         public ActionResult Ground_GetByCode()// есть
         {
             RGEContext db = new RGEContext();
@@ -513,7 +513,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //List<GroundType> list = new List<GroundType>();
-               // if (Helper.GetListGroundType(db, ref list))    
+                // if (Helper.GetListGroundType(db, ref list))    
                 {
                     int k = 1;
                 };
@@ -521,7 +521,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Cadastre Type        
+        // проверка процедур Cadastre Type        
         public ActionResult Cadastre_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -603,7 +603,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Risk Object Type
+        // проверка процедур Risk Object Type
         public ActionResult RiskObjectType_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -683,9 +683,9 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур EcoObject Type
+        // проверка процедур EcoObject Type
 
-// проверка процедур Incident Type
+        // проверка процедур Incident Type
         public ActionResult IncidentType_list() // 
         {
             RGEContext db = new RGEContext();

@@ -5,6 +5,7 @@
 @using EGH01DB.Types;
 @model EGH01DB.CAIContext
 @{
+    EGH01DB.CAIContext db = new EGH01DB.CAIContext();
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
                           new Menu.MenuItem("Создать", "RiskObject.Create", false),
@@ -17,27 +18,27 @@
                         );
     List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
     ViewBag.selectlist = new List<SelectListItem>();
-    if (@Model != null)
+    if (db != null)
     {
-        Helper.GetListRiskObjectType(@Model, ref list_type);
+        Helper.GetListRiskObjectType(db, ref list_type);
         list_type.ForEach(o => ViewBag.selectlist.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
 
     List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
     ViewBag.list_groundType = new List<SelectListItem>();
-    if (@Model != null)
+    if (db != null)
     {
-        Helper.GetListGroundType(@Model, ref list_groundType);
+        Helper.GetListGroundType(db, ref list_groundType);
         list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
 
     }
 
-    List<EGH01DB.Types.Region> list_region= new List<EGH01DB.Types.Region>();
+    List<EGH01DB.Types.Region> list_region = new List<EGH01DB.Types.Region>();
     ViewBag.list_region = new List<SelectListItem>();
-    if (@Model != null)
+    if (db != null)
     {
-        Helper.GetListRegion(@Model, ref list_region);
+        Helper.GetListRegion(db, ref list_region);
         list_region.ForEach(o => ViewBag.list_region.Add(new SelectListItem { Text = o.name, Value = o.region_code.ToString() }));
 
     }
@@ -67,93 +68,98 @@
 @using (Html.BeginForm("RiskObjectCreate", "EGHCAI"))
 {
 
-  
-        <div class="boxdata">
-            <p>
-                <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist")
-            </p>
-            <p>
-                <label class="boxdata-label-30">Наименование типа объекта </label>
-                <input class="boxdata-input-50" type="text" name="Name" value=" " />
-            </p>
-           <p>
-          <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
-         
-          <p> 
-              <label class="boxdata-label-30"> наземные</label>
-              <input class="boxdata-input-50" type="number" name="groundtank" value=" " /></p>
-          <p>
-               <label class="boxdata-label-30"> подземные</label>
-                <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
-                <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">дата послежней реконструкции  </label>
-                <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Геологические данные</label>
-            
-            <p>
-                <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
-            </p>
 
-            <p>
-                <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
-                <input class="boxdata-input-50" type="number" name="waterdeep" value=" " />
-            </p>
+    <div class="boxdata">
+        <p>
+            <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist")
+        </p>
+        <p>
+            <label class="boxdata-label-30">Наименование типа объекта </label>
+            <input class="boxdata-input-50" type="text" name="Name" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
 
-            <p>
-                <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
-                <input class="boxdata-input-50" type="number" name="height" value=" " />
-            </p>
-            <p>
+        <p>
+            <label class="boxdata-label-30"> наземные</label>
+            <input class="boxdata-input-50" type="number" name="groundtank" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30"> подземные</label>
+            <input class="boxdata-input-50" type="number" name="undergroundtank" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
+            <input class="boxdata-input-50" type="date" name="foundationdate" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">дата послежней реконструкции  </label>
+            <input class="boxdata-input-50" type="date" name="reconstractiondate" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">Геологические данные</label>
+
+        <p>
+            <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
+        </p>
+
+        <p>
+            <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+            <input class="boxdata-input-50" type="number" name="waterdeep" value=" " />
+        </p>
+
+        <p>
+            <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+            <input class="boxdata-input-50" type="number" name="height" value=" " />
+        </p>
+        <p>
             <label class="boxdata-label-30"> Широта: </label>
-              
-           <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
-           <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
-           <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" /></p>
-            <p>
-                <label class="boxdata-label-30">Долгота</label>
-         
-            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" /> 
-           <input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" /> 
-            <input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" /> </p>
 
-                <p>
-                <label class="boxdata-label-30">КАРТА!</label>
-            </p>
-            <input type="button" value="Загрузить карту" style="margin:10px" />
-            <p>
-                <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
-            </p>
-            <p>
-                <label class="boxdata-label-30"> Адресс объекта </label>
-                <input class="boxdata-input-50" type="text" name="Adress" value=" " />
-            </p>
-            
-            <p>
-                <label class="boxdata-label-30"> Телефон</label>
-                <input class="boxdata-input-50" type="text" name="phone" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Факс</label>
-                <input class="boxdata-input-50" type="text" name="fax" value=" " />
-            </p>
-            <p>
-                <label class="boxdata-label-30">Очистные сооружения</label>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока</p>
-         <p>
-                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов</p>
-            </p> 
-            @*<p>
+            <input class="boxdata-input-50" type="number" name="Latitude" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lat_m" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lat_s" value=" " min="-90" max="90" />
+        </p>
+        <p>
+            <label class="boxdata-label-30">Долгота</label>
+
+            <input class="boxdata-input-50" type="number" name="Lngitude" value=" " max="180" min="0" />
+            <input class="boxdata-input-50" type="number" name="Lng_m" value=" " min="-90" max="90" />
+            <input class="boxdata-input-50" type="number" name="Lng_s" value=" " min="-90" max="90" />
+        </p>
+
+        <p>
+            <label class="boxdata-label-30">КАРТА!</label>
+        </p>
+        <input type="button" value="Загрузить карту" style="margin:10px" />
+        <p>
+            <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
+        </p>
+        <p>
+            <label class="boxdata-label-30"> Адресс объекта </label>
+            <input class="boxdata-input-50" type="text" name="Adress" value=" " />
+        </p>
+
+        <p>
+            <label class="boxdata-label-30"> Телефон</label>
+            <input class="boxdata-input-50" type="text" name="phone" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">Факс</label>
+            <input class="boxdata-input-50" type="text" name="fax" value=" " />
+        </p>
+        <p>
+            <label class="boxdata-label-30">Очистные сооружения</label>
+            <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
+        </p>
+        <p>
+            <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
+        </p>
+        </p>
+        @*<p>
                 <label class="boxdata-label-30">Область(Список)</label>@Html.DropDownList("list_district")
             </p>*@
 
-        </div>
+    </div>
         @Html.Partial("_TypeLineMenu", create)
 
 
