@@ -38,7 +38,7 @@ input[type="checkbox"].input-validation-error {
 
 }
 .osnova {
-    padding-top:50px;
+    padding-top:10px;
     background:#f3f3f3;
 }
 .navbar-brand {
@@ -70,15 +70,40 @@ input[type="checkbox"].input-validation-error {
     height:500px;
 }
 .footer1{
-	background:#85DB18;
-	padding-top:40px;
-	padding-bottom:20px;
+    /*min-height*/
+	background:#ffc65e;
+	/*padding-top:40px;*/
+	/*padding-bottom:20px;*/
     color:#493F0B;
 }
+/*.FF
+{
+    font-style: italic;
+    font-size: 10px;
+}*/
 .footer2{
 	background:#CDE855;
 	color:#493F0B;
-	padding-top:15px;
+	padding-top:10px;
+}
+html,
+body {
+height: 100%;
+/* The html and body elements cannot have any padding or margin. */
+}
+/* Wrapper for page content to push down footer */
+#wrap {
+min-height: 100%;
+height: auto !important;
+height: 100%;
+/* Negative indent footer by it's height */
+margin: 0 auto 50px;
+}
+
+/* Set the fixed height of the footer here */
+#push,
+#footer {
+height: -50px;
 }
 
 .proverka1 > a,.proverka1 > div{
@@ -114,7 +139,7 @@ input[type="checkbox"].input-validation-error {
 }
 
 .navbar{
-	background:#ff6a00;
+	background:#fc7a1e;
 }
 body {
     padding-top: 50px;
@@ -131,12 +156,12 @@ body {
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 200px;
 }
 
 /* styles for validation helpers */
 .field-validation-error {
-    color: #b94a48;
+    color: #f2cb9b;
 }
 
 .field-validation-valid {
@@ -144,7 +169,7 @@ textarea {
 }
 
 input.input-validation-error {
-    border: 1px solid #b94a48;
+    border: 1px solid #f98d09;
 }
 
 input[type="checkbox"].input-validation-error {
@@ -152,14 +177,35 @@ input[type="checkbox"].input-validation-error {
 }
 
 .validation-summary-errors {
-    color: #b94a48;
+    color: #f2cb9b;
 }
 
 .validation-summary-valid {
     display: none;
 }
 
-
+/*заголовок */
+.title h2 {
+    color: white;
+    font-size: 30px;
+	vertical-align:middle;
+    font-weight:bold;
+    margin:10px;
+}
+/*меню*/
+a.dropdown-toggle.btn.btn-link {
+    color: white;
+    font-size: 20px;
+}
+/*второе меню*/
+.proverka1.navbar-default .navbar-nav > li > a, .proverka1 a.dropdown-toggle.btn.btn-link{
+    color: #02470f;
+    font-size: 16px;
+}
+.proverka1.navbar-default{
+    background:#f9df86;
+    position:relative;
+   }
 
 /*    не трогать   смелов       */
         body {
@@ -380,5 +426,6 @@ input[type="checkbox"].input-validation-error {
             border: 1px double white;
             /*text-align:right;*/
         }
+
 
 /*    не трогать          */
