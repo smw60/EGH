@@ -19,8 +19,8 @@ namespace EGH01DB.Objects
         public RiskObjectType type { get; private set; }     // код типа 
         public CadastreType cadastretype { get; private set; }   // кадастровый тип земли
         public string name { get; private set; }  // наименование объекта
-        public int district { get; private set; }  //  район
-        public int region { get; private set; } //  область
+        public District district { get; private set; }  //  район
+        public Region region { get; private set; } //  область
         public string address { get; private set; } // адрес объекта
         public string ownership { get; private set; }  //  принадлежность организации
         public string phone { get; private set; }  // изменить в следующей версии на набор данных!
@@ -44,8 +44,8 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.address = string.Empty;
-            this.district = -1;
-            this.region = -1;
+            this.district = new District();
+            this.region = new Region();
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;
@@ -65,8 +65,8 @@ namespace EGH01DB.Objects
                             RiskObjectType type, 
                             CadastreType cadastertype,
                             string name, 
-                            int district, 
-                            int region, 
+                            District district, 
+                            Region region, 
                             string address, 
                             string ownership, 
                             string phone, 
@@ -109,8 +109,8 @@ namespace EGH01DB.Objects
             this.cadastretype = new CadastreType();
             this.name = string.Empty;
             this.address = string.Empty;
-            this.district = -1;
-            this.region = -1;
+            this.district = new District();
+            this.region = new Region();
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;
@@ -132,8 +132,8 @@ namespace EGH01DB.Objects
             this.cadastretype = null;
             this.name = string.Empty;
             this.address = string.Empty;
-            this.district = -1;
-            this.region = -1;
+            this.district = new District();
+            this.region = new Region();
             this.ownership = string.Empty;
             this.phone = string.Empty;
             this.fax = string.Empty;

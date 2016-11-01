@@ -159,10 +159,10 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //District ct = new District(1);
-                //if (District.GetByCode(db, 1, out ct))
-                {
-                    int k = 1;
-                };
+                //if (District.GetByCode(db, 5, out ct))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -171,24 +171,54 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //District ct = new District();
-                //if (District.DeleteByCode(db, 127))  // 
+                //if (District.DeleteByCode(db, 128))  // 
                 //{
                 //    int k = 1;
                 //};
             }
             return View();
         }
+        public ActionResult District_Update()// 
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 104;
+                //Region region = new Region(6);
+                //string name = "Могилев";
+
+                //District t = new District((int)code, region, (string)name);
+                //if (District.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult District_list() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                List<District> list = new List<District>();
+                if (Helper.GetListDistrict(db, 2, ref list))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
         
 // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {
              RGEContext db = new RGEContext();
             {
-                List<RiskObject> list = new List<RiskObject>();
-                if (Helper.GetListRiskObject(db, ref list))
-                 {
-                       int k = 1;
-                 };
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
+                // {
+                //       int k = 1;
+                // };
             }
             return View();
         }
@@ -346,7 +376,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code_type = 8;
+                //int code_type =13;
                 //string name = "test1";
                 //float boilingtemp = 110.0f;
                 //float density = 35.0f;
@@ -354,9 +384,9 @@ namespace EGH01.Controllers
                 //float solubility = 3.0f;
                 //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
                 //if (PetrochemicalType.Update(db, pt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }

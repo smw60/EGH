@@ -112,8 +112,6 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Objects.RiskObject.GetNextId(db, out id))
                     {
-                        int district = 1;
-                        int region = 1;
                         String ownership = "f";
                         int numberofrefuel = 1;
                         int volume = 1;
@@ -133,6 +131,8 @@ namespace EGH01.Controllers
                             {
                                 RiskObjectType risk_object_type = new RiskObjectType(rs.selectlist, type.name);
                                 CadastreType cadastre_type = new CadastreType(1, "", 0);
+                                District district = new District(1); // blinova
+                                Region region = new Region(1); // blinova
                                 DateTime foundationdate = rs.foundationdate;
                                 DateTime reconstractiondate = rs.reconstractiondate;
                                 string name = rs.name;
