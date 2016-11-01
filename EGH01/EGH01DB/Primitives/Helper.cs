@@ -9,7 +9,7 @@ using System.Xml;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
-using static EGH01DB.Types.PetrochemicalType;
+using EGH01DB.Types.PetrochemicalType;
 
 namespace EGH01DB.Primitives
 {
