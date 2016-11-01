@@ -64,6 +64,79 @@ namespace EGH01.Controllers
 
             return View();
         }
+
+// проверка процедур Region
+        public ActionResult Region_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                
+                //string name = "Test111";
+
+                //Region t = new Region(name);
+                //if (Region.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //Region r = new Region();
+                //if (Region.DeleteByCode(db, 8))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //Region r = new Region(1);
+                //if (Region.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_Update()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int region_code = 5;
+                //string name = "Test111";
+
+                //Region t = new Region((int)region_code, (string)name);
+                //if (Region.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<Region> list = new List<Region>();
+                //if (Helper.GetListRegion(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
+
 // проверка процедур District
         public ActionResult District_Create()// есть
         {
@@ -105,8 +178,7 @@ namespace EGH01.Controllers
             }
             return View();
         }
-
-
+        
 // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {

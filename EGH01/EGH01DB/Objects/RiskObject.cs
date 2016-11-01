@@ -537,13 +537,18 @@ namespace EGH01DB.Objects
         static public bool GetById(EGH01DB.IDBContext dbcontext, int id, ref RiskObject risk_object)
         {
             bool rc = false;
-            risk_object = new RiskObject();
+            //risk_object = new RiskObject();
             using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectById", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 {
                     SqlParameter parm = new SqlParameter("@IdТехногенногоОбъекта", SqlDbType.Int);
                     parm.Value = id;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
                     cmd.Parameters.Add(parm);
                 }
                 try
@@ -573,23 +578,50 @@ namespace EGH01DB.Objects
                         double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
                         double height = (double)reader["ВысотаУровнемМоря"];
                         Point point = new Point(coordinates, ground_type, (float)waterdeep, (float)height);
+                       
+                        DateTime foundationdate = (DateTime)reader["ДатаВводаЭкспл"];
+                        DateTime reconstractiondate = (DateTime)reader["ДатаПоследнейРеконструкции"];
+
+                        int numberofrefuel = (int)reader["КолВоЗаправокСут"];
+                        int volume = (int)reader["ОбъемХранения"];
+
+                        int groundtank = (int)reader["ЕмкостьНаземногоРезервуара"];
+                        int undergroundtank = (int)reader["ЕмкостьПодземногоРезервуара"];
+
+                        bool watertreatment = (bool)reader["ОчистнДождСток"];
+                        bool watertreatmentcollect = (bool)reader["ОчистнСборПроливов"];
+
                         string risk_object_type_name = (string)reader["НаименованиеТипаТехногенногоОбъекта"];
                         RiskObjectType risk_object_type = new RiskObjectType((int)reader["КодТипаТехногенногоОбъекта"], (string)risk_object_type_name);
+
                         string cadastre_type_name = (string)reader["НаименованиеНазначенияЗемель"];
                         int pdk = (int)reader["ПДК"];
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
+
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        //risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, name, address);
-                        risk_object = new RiskObject(id);
+                        string district = (string)reader["Район"];
+                        string region = (string)reader["Область"];
+                        string ownership = (string)reader["Принадлежность"];
+                        string phone = (string)reader["Телефон"];
+                        string fax = (string)reader["Факс"];
+                        byte[] map = new byte[0];
+
+                        //RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
+                        //                                       name, 1, 1, address, ownership, phone, fax,
+                        //                                       foundationdate, reconstractiondate,
+                        //                                       numberofrefuel, volume,
+                        //                                       watertreatment, watertreatmentcollect, map,
+                        //                                       groundtank, undergroundtank);
                     }
                     reader.Close();
+                    rc = (int)cmd.Parameters["@exitrc"].Value > 0; 
                 }
                 catch (Exception e)
                 {
                     rc = false;
                 };
-                rc = true;
+                
                 return rc;
             }
 

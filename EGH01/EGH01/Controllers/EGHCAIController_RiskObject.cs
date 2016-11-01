@@ -139,20 +139,18 @@ namespace EGH01.Controllers
                                 String phone = rs.phone;
                                 String fax = rs.fax;
                                 string address = rs.adress;
-<<<<<<< HEAD
+
                                 // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
-=======
+
                                 EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
                                     district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
                                     watertreatmentcollect, map, groundtank, undergroundtank);
->>>>>>> 92dfd12aaa181639b1e057cb037ccdc36fe93622
-
 
                                 // if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                                 {
                                     view = View("RiskObject", db);
                                 }
-<<<<<<< HEAD
+
 
                         //Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
                         //GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -164,8 +162,6 @@ namespace EGH01.Controllers
                         // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
                         //EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
 
-=======
->>>>>>> 92dfd12aaa181639b1e057cb037ccdc36fe93622
                             }
 
                         }

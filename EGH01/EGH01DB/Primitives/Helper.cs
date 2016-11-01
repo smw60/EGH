@@ -9,11 +9,8 @@ using System.Xml;
 using EGH01DB.Types;
 using EGH01DB.Objects;
 using EGH01DB.Points;
-<<<<<<< HEAD
-using EGH01DB.Types.PetrochemicalType;
-=======
-using EGH01DB.Types;
->>>>>>> 92dfd12aaa181639b1e057cb037ccdc36fe93622
+//using EGH01DB.Types.PetrochemicalType;
+
 
 namespace EGH01DB.Primitives
 {
@@ -201,7 +198,32 @@ namespace EGH01DB.Primitives
         //    return pt;
         //}
 
+        static public bool GetListRegion(EGH01DB.IDBContext dbcontext, ref List<Region> list_region)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetRegionList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    list_region = new List<Region>();
+                    while (reader.Read())
+                    {
+                        list_region.Add(new Region((int)reader["КодОбласти"], (string)reader["Область"]));
+                    }
+                    rc = list_region.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
 
 
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
