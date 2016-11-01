@@ -48,7 +48,7 @@
                 <p><label class="boxdata-label-30">Подземный </label> @t.undergroundtank</p>
                 <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToString()</p>
                 <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToString()</p>
-                <p><label class="boxdata-label-30">Грунт: </label> @t.groundtype.name.ToString()</p>
+                @*<p><label class="boxdata-label-30">Грунт: </label> @t.groundtype.name</p>*@
                 <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString()</p>
                 <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
                 <input type="hidden" value="@t.id.ToString()" name="id">
