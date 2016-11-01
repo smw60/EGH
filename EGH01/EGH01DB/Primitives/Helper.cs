@@ -225,7 +225,44 @@ namespace EGH01DB.Primitives
             }
         }
 
+        static public bool GetListDistrict(EGH01DB.IDBContext dbcontext, int region_code, ref List<District> list_district)
+        {
+            bool rc = false;
+            using (SqlCommand cmd = new SqlCommand("EGH.GetDistrictList", dbcontext.connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                {
+                    SqlParameter parm = new SqlParameter("@Область", SqlDbType.Int);
+                    parm.Value = region_code;
+                    cmd.Parameters.Add(parm);
+                }
+                {
+                    SqlParameter parm = new SqlParameter("@exitrc", SqlDbType.Int);
+                    parm.Direction = ParameterDirection.ReturnValue;
+                    cmd.Parameters.Add(parm);
+                }
+                try
+                {
+                    SqlDataReader reader = cmd.ExecuteReader();
 
+                    list_district = new List<District>();
+                    while (reader.Read())
+                    {
+                        Region region = new Region((int)reader["КодОбласти"], (string)reader["Область"]);
+                        District district = new District((int)reader["КодРайона"], region, (string)reader["Район"]);
+                        list_district.Add(district);
+                    }
+                    rc = list_district.Count > 0;
+                    reader.Close();
+                }
+                catch (Exception e)
+                {
+                    rc = false;
+                };
+                return rc;
+
+            }
+        }
         static public bool GetListRiskObjectType(EGH01DB.IDBContext dbcontext, ref List<RiskObjectType> list_type)
         {
             bool rc = false;
@@ -315,12 +352,13 @@ namespace EGH01DB.Primitives
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, 
-                                                                name, 1, 1, address, ownership, phone, fax,
-                                                                foundationdate, reconstractiondate, 
-                                                                numberofrefuel, volume,
-                                                                watertreatment, watertreatmentcollect, map,
-                                                                groundtank, undergroundtank);
+                        RiskObject risk_object = new RiskObject();
+                        //RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, 
+                        //                                        name, 1, 1, address, ownership, phone, fax,
+                        //                                        foundationdate, reconstractiondate, 
+                        //                                        numberofrefuel, volume,
+                        //                                        watertreatment, watertreatmentcollect, map,
+                        //                                        groundtank, undergroundtank);
                         
                         risk_objects.Add(risk_object);
                     }
