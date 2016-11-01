@@ -1,0 +1,26 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@model EGH01DB.CCOContext
+
+
+@{
+    ViewBag.Title = "PetrochemicalType";
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+
+    Menu head = new Menu(
+                         new Menu.MenuItem("Создать", "PetrochemicalType.Create", true),
+                         new Menu.MenuItem("Excel-формат", "PetrochemicalType.Excel", true)
+                       );
+
+    List<PetrochemicalType> list = new List<PetrochemicalType>();
+    if (@Model != null) { Helper.GetListPetrochemicalType(@Model, ref list); };
+
+
+}
+
+
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCCO", Action = "PetrochemicalType", Menu = head })
+@Html.Partial("_PetrochemicalTypeList", list)
+

@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width" />
     <title>"Экспертная система [EGH] </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
-    <link href="~/content/site.css" type="text/css" rel="stylesheet" />
+    @*<link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-default  navbar-fixed-top">
         <div class="container">
             <div class="navbar-brand ">
-                <a href="/"><img src="/content/Layout_Mobile_Whiteframe1.png" alt="EGH"/></a>
+                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
+                
             </div>            
             <!--Главное меню-->
             <ul class="navbar-nav nav navbar-right">
@@ -139,48 +142,4 @@
            
 
 
-     @*<div class=" container proverka1">
-    @if (ViewBag.EGHLayout == "RGE")
-    {
-         @Html.ActionLink("Прогноз -- ",             "Index", "EGHRGE")
-         @Html.ActionLink("Опорные точки",           "Index", "EGHRGE")
-         @Html.ActionLink("Природоохранные объекты", "Index", "EGHGRE")
-         <article>
-             @Html.ActionLink("Справочники", "Index", "EGHGRE")
-             @Html.ActionLink("---Типы инцидентов", "IncidentType", "EGHRGE")
-         </article>
-
-
-    }
-    @if (ViewBag.EGHLayout == "CCO")
-    {
-       @Html.ActionLink("-Типы нефтепродуктов-", "PetrochemicalType", "EGHCCO")
-    }
-
-    @if (ViewBag.EGHLayout == "CAI")
-    {
-        @Html.ActionLink("---CAI", "RiskObject", "EGHCAI")
-
-    }
-
-
-
-
-
-        @Html.ActionLink("Прогноз -- ", "Index", "EGHRGE")
-        @Html.ActionLink("Опорные точки", "Index", "EGHGRE")
-        @Html.ActionLink("Оптимальные технологии реабилитации", "Index", "EGHGRE")
-        @Html.ActionLink("Типы инцидентов", "Index", "EGHRGE")
-
-
-        <div >
-            <span id="spravochniki" onclick="$('#spravochniki_list').toggle();">Справочники</span>
-            <ul id="spravochniki_list" style="display:none;">
-                <li>@Html.ActionLink("---справочник 1", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 2", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-                <li>@Html.ActionLink("---справочник 3", "IncidentType", "EGHRGE")</li>
-            </ul>
-        </div>
-
-    </div>*@
+   

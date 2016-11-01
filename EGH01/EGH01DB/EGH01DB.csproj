@@ -50,6 +50,7 @@
     <Compile Include="Points\SpreadPoint.cs" />
     <Compile Include="Primitives\Coordinates.cs" />
     <Compile Include="Types\CadastreType.cs" />
+    <Compile Include="Types\District.cs" />
     <Compile Include="Types\EcoObjectType.cs" />
     <Compile Include="Types\GroundType.cs" />
     <Compile Include="Primitives\Helper.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="CAIContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RGEContextView.cs" />
+    <Compile Include="Types\Region.cs" />
     <Compile Include="Types\RiskObjectType.cs" />
   </ItemGroup>
   <ItemGroup />

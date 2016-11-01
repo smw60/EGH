@@ -1,0 +1,42 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@using EGH01.Core;
+@using EGH01DB.Types;
+
+
+@model List<PetrochemicalType>
+@{
+    Menu menu = new Menu(
+                            new Menu.MenuItem("Удалить", "PetrochemicalType.Delete", true),
+                            new Menu.MenuItem("Изменить", "PetrochemicalType.Update", true)
+                           );
+
+}
+@foreach (PetrochemicalType t in @Model)
+{
+
+    using (Html.BeginForm("PetrochemicalType", "EGHCCO"))
+    {
+
+        <div class="box">
+            <div class="boxdata">
+
+                <p><label class="boxdata-label-30">Код типа нефтепродукта</label> @t.code_type.ToString() </p>
+                <p><label class="boxdata-label-30">Наименование нефтепродукта</label> @t.name </p>
+                <p><label class="boxdata-label-30">Температура кипения, С</label> @t.boilingtemp</p>
+                <p><label class="boxdata-label-30">Плотность, г/см3</label> @t.density</p>
+                <p><label class="boxdata-label-30">Кинематическая вязкость, мм2/см</label> @t.viscosity</p>
+                <p><label class="boxdata-label-30">Растворимость, млг/дм2</label> @t.solubility</p>
+                <input type="hidden" value="@t.code_type.ToString()" name="type_code">
+
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}
+
+
+

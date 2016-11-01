@@ -1,0 +1,63 @@
+﻿@using EGH01.Core;
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@using EGH01DB.Objects;
+@model List<RiskObject>
+@{
+    Menu menu = new Menu(
+                            new Menu.MenuItem("Удалить", "RiskObject.Delete", true),
+                            new Menu.MenuItem("Изменить", "RiskObject.Update", true)
+                           );
+
+}
+@foreach (RiskObject t in @Model)
+{
+
+    using (Html.BeginForm("RiskObject", "EGHCAI"))
+    {
+      <div class="box">
+            <div class="boxdata">
+                @*public RiskObjectType type { get; private set; }     // код типа
+                public CadastreType cadastretype { get; private set; }   // кадастровый тип земли
+                public string name { get; private set; }  // наименование объекта
+                public int district { get; private set; }  //  район
+                public int region { get; private set; } //  область
+                public string address { get; private set; } // адрес объекта
+                public string ownership { get; private set; }  //  принадлежность организации
+                public string phone { get; private set; }  // изменить в следующей версии на набор данных!
+                public string fax { get; private set; }  //
+                public DateTime foundationdate { get; private set; }  // дата ввода в эксплуатацию
+                public DateTime reconstractiondate { get; private set; }  // дата последней реконструкции
+                public int numberofrefuel { get; private set; }  // количество заправок в сутки // !!!свои поля для каждого вида или всем одинаковые и прятать????
+                public int volume { get; private set; }  // объем хранения нефтепродуктов
+                public bool watertreatment { get; private set; }  // наличие очистных сооружений для дождевого стока
+                public bool watertreatmentcollect { get; private set; } // наличие резервуара для сбора пролива !!! надо бы еще его размер для контроля!!!!*@
+                <p><label class="boxdata-label-30">Код объекта</label> @t.id.ToString() </p>
+                <p><label class="boxdata-label-30">Наименование объекта  </label> @t.name </p>
+                <p><label class="boxdata-label-30"> Адресс объекта</label> @t.address </p>
+                <p><label class="boxdata-label-30">Область: </label> </p>
+                <p><label class="boxdata-label-30">Район: </label> </p>
+                <p><label class="boxdata-label-30">Координаты. Широта:</label> @t.coordinates.latitude.ToString()</p>
+                <p><label class="boxdata-label-30">Координаты. Долгота:</label> @t.coordinates.lngitude.ToString()</p>
+                <p><label class="boxdata-label-30">Тип объекта</label> @t.type.name.ToString() </p>
+                <p><label class="boxdata-label-30">Телефон </label> @t.phone.ToString()</p>
+                <p><label class="boxdata-label-30">Факс </label> @t.fax.ToString()</p>
+                <p><label class="boxdata-label-30">Резервуары: </label> </p>
+                <p><label class="boxdata-label-30">Наземный </label> @t.groundtank</p>
+                <p><label class="boxdata-label-30">Подземный </label> @t.undergroundtank</p>
+                <p><label class="boxdata-label-30">дата ввода в эксплуатацию </label>@t.foundationdate.ToString()</p>
+                <p><label class="boxdata-label-30">дата последней реконструкции  </label>@t.reconstractiondate.ToString()</p>
+                <p><label class="boxdata-label-30">Грунт: </label> @t.groundtype.name.ToString()</p>
+                <p><label class="boxdata-label-30">Высота над уровнем моря (м): </label> @t.height.ToString()</p>
+                <p><label class="boxdata-label-30">Глубина грунтовых вод (м): </label> @t.waterdeep.ToString()</p>
+                <input type="hidden" value="@t.id.ToString()" name="id">
+            
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}
+
+ 

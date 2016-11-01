@@ -112,20 +112,22 @@ namespace EGH01.Controllers
                     int id = -1;
                     if (EGH01DB.Objects.RiskObject.GetNextId(db, out id))
                     {
-                        int district = -1;
-                        int region = -1;
+                        int district = 1;
+                        int region = 1;
                         String ownership = "f";
-                        int numberofrefuel = -1;
-                        int volume = -1;
-                        Boolean watertreatment = false;
-                        Boolean watertreatmentcollect = false;
-                        String map = "new byte[0]";
+                        int numberofrefuel = 1;
+                        int volume = 1;
+                        Boolean watertreatment = rs.watertreatment;
+                        Boolean watertreatmentcollect = true;
+                        Byte[] map = new byte[2];
+                        int groundtank = rs.groundtank;
+                        int undergroundtank =rs.undergroundtank;
                         Coordinates coordinates = new Coordinates(rs.latitude, rs.lat_m, rs.lat_s, rs.lngitude, rs.lng_m, rs.lng_s);
                         EGH01DB.Types.GroundType type_groud = new EGH01DB.Types.GroundType();
-                        if (EGH01DB.Types.GroundType.GetByCode(db, rs.selectlist_groud, out type_groud))
+                        if (EGH01DB.Types.GroundType.GetByCode(db, rs.list_groundType, out type_groud))
                         {
-                            GroundType ground_type = new GroundType(rs.selectlist_groud, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
-                            Point point = new Point(coordinates, ground_type, 0.0f, 0.0f);
+                            GroundType ground_type = new GroundType(rs.list_groundType, type_groud.name, type_groud.porosity, type_groud.holdmigration, type_groud.waterfilter, type_groud.diffusion, type_groud.distribution, type_groud.diffusion);
+                            Point point = new Point(coordinates, ground_type,rs.waterdeep, rs.height);
                             EGH01DB.Types.RiskObjectType type = new EGH01DB.Types.RiskObjectType();
                             if (EGH01DB.Types.RiskObjectType.GetByCode(db, rs.selectlist, out type))
                             {
@@ -137,13 +139,20 @@ namespace EGH01.Controllers
                                 String phone = rs.phone;
                                 String fax = rs.fax;
                                 string address = rs.adress;
+<<<<<<< HEAD
                                 // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment, watertreatmentcollect, map);
+=======
+                                EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name,
+                                    district, region, address, ownership, phone, fax, foundationdate, reconstractiondate, numberofrefuel, volume, watertreatment,
+                                    watertreatmentcollect, map, groundtank, undergroundtank);
+>>>>>>> 92dfd12aaa181639b1e057cb037ccdc36fe93622
 
 
                                 // if (EGH01DB.Objects.RiskObject.Create(db, risk_object))
                                 {
                                     view = View("RiskObject", db);
                                 }
+<<<<<<< HEAD
 
                         //Coordinates coordinates = new Coordinates(rs.latitude, rs.lngitude);
                         //GroundType ground_type = new GroundType(1, "", 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -155,13 +164,16 @@ namespace EGH01.Controllers
                         // EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id, point, risk_object_type, cadastre_type, name, address);
                         //EGH01DB.Objects.RiskObject risk_object = new EGH01DB.Objects.RiskObject(id);
 
+=======
+>>>>>>> 92dfd12aaa181639b1e057cb037ccdc36fe93622
                             }
 
                         }
-                        else if (menuitem.Equals("RiskObject.Create.Cancel")) view = View("RiskObject", db);
                     }
+                    else if (menuitem.Equals("RiskObject.Create.Cancel")) view = View("RiskObject", db);
                 }
             }
+            //}
             catch (RGEContext.Exception e)
             {
                 ViewBag.msg = e.message;

@@ -1,0 +1,44 @@
+﻿@using EGH01.Core; 
+@using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Types;
+@using EGH01DB.Objects;
+@model EGH01DB.CAIContext
+@{
+
+
+    ViewBag.Title = "RiskObject";
+    Layout = "~/Views/Shared/EGHLayout.cshtml";
+    Menu head =  new Menu(
+                          new Menu.MenuItem("Создать",        "RiskObject.Create",  true),
+                          new Menu.MenuItem("Excel-формат", "RiskObject.Excel",   true)
+                        );
+
+    List<RiskObject> list = new List<RiskObject>();
+    if (@Model != null) {Helper.GetListRiskObject(@Model, ref list); };
+
+    List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
+    if (@Model != null) { Helper.GetListRiskObjectType(@Model, ref list_type); };
+
+}
+
+
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu {Controller = "EGHCAI", Action = "RiskObject", Menu = head})
+@Html.Partial("_RiskObjectList", list)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
