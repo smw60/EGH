@@ -208,12 +208,12 @@ namespace EGH01DB.Objects
                 }
                 {
                     SqlParameter parm = new SqlParameter("@РайонТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.district;
+                    parm.Value = risk_object.district.code;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ОбластьТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.region;
+                    parm.Value = risk_object.region.region_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -387,12 +387,12 @@ namespace EGH01DB.Objects
                 }
                 {
                     SqlParameter parm = new SqlParameter("@РайонТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.district;
+                    parm.Value = risk_object.district.code;
                     cmd.Parameters.Add(parm);
                 }
                 {
                     SqlParameter parm = new SqlParameter("@ОбластьТехногенногоОбъекта", SqlDbType.Int);
-                    parm.Value = risk_object.region;
+                    parm.Value = risk_object.region.region_code;
                     cmd.Parameters.Add(parm);
                 }
                 {
@@ -537,7 +537,6 @@ namespace EGH01DB.Objects
         static public bool GetById(EGH01DB.IDBContext dbcontext, int id, ref RiskObject risk_object)
         {
             bool rc = false;
-            //risk_object = new RiskObject();
             using (SqlCommand cmd = new SqlCommand("EGH.GetRiskObjectById", dbcontext.connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -600,19 +599,26 @@ namespace EGH01DB.Objects
 
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        string district = (string)reader["Район"];
-                        string region = (string)reader["Область"];
+
+                        int region_code = (int)reader["ОбластьТехногенногоОбъекта"];
+                        string region_name = (string)reader["Область"];
+                        Region region = new Region(region_code, region_name);
+
+                        int district_code = (int)reader["РайонТехногенногоОбъекта"];
+                        string district_name = (string)reader["Район"];
+                        District district = new District(district_code, region, district_name);
+
                         string ownership = (string)reader["Принадлежность"];
                         string phone = (string)reader["Телефон"];
                         string fax = (string)reader["Факс"];
                         byte[] map = new byte[0];
 
-                        //RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
-                        //                                       name, 1, 1, address, ownership, phone, fax,
-                        //                                       foundationdate, reconstractiondate,
-                        //                                       numberofrefuel, volume,
-                        //                                       watertreatment, watertreatmentcollect, map,
-                        //                                       groundtank, undergroundtank);
+                        risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
+                                                               name, district, region, address, ownership, phone, fax,
+                                                               foundationdate, reconstractiondate,
+                                                               numberofrefuel, volume,
+                                                               watertreatment, watertreatmentcollect, map,
+                                                               groundtank, undergroundtank);
                     }
                     reader.Close();
                     rc = (int)cmd.Parameters["@exitrc"].Value > 0; 
