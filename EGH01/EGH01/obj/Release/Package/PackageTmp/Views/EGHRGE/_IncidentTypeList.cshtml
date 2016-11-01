@@ -1,0 +1,31 @@
+﻿@using EGH01DB.Types;
+@using EGH01.Core; 
+@model List<IncidentType>
+@{
+   Menu menu =  new Menu( 
+                           new Menu.MenuItem("Удалить",  "IncidentType.Delete",  true),
+                           new Menu.MenuItem("Изменить", "IncidentType.Update",  true)
+                          );   
+    
+}
+@foreach(IncidentType t in @Model)
+{
+
+    using(Html.BeginForm("IncidentType", "EGHRGE"))
+    {
+
+        <div class="box">
+            <div class="boxdata">
+
+                <p><label class="boxdata-label-30">Код типа инцидента</label> @t.type_code.ToString() </p>
+                <p><label class="boxdata-label-30">Наименование типа инцидента  </label> @t.name </p>
+                <input type="hidden" value="@t.type_code.ToString()" name="type_code">
+            
+            </div>
+            @Html.Partial("_TypeLineMenu", menu)
+        </div>
+
+    }
+}
+
+ 

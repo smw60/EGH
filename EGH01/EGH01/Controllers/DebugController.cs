@@ -65,13 +65,127 @@ namespace EGH01.Controllers
             return View();
         }
 
+// проверка процедур Region
+        public ActionResult Region_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                
+                //string name = "Test111";
+
+                //Region t = new Region(name);
+                //if (Region.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //Region r = new Region();
+                //if (Region.DeleteByCode(db, 8))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //Region r = new Region(1);
+                //if (Region.GetByCode(db, 1, out r))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_Update()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int region_code = 5;
+                //string name = "Test111";
+
+                //Region t = new Region((int)region_code, (string)name);
+                //if (Region.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult Region_list() // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //List<Region> list = new List<Region>();
+                //if (Helper.GetListRegion(db, ref list))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+
+
+
+// проверка процедур District
+        public ActionResult District_Create()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int region_code = 5;
+                //string name = "Test111";
+
+                //District t = new District((int)region_code, (string)name);
+                //if (District.Create(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult District_GetByCode()// есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //District ct = new District(1);
+                //if (District.GetByCode(db, 1, out ct))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+        public ActionResult District_DeleteByCode()  // есть
+        {
+            RGEContext db = new RGEContext();
+            {
+                //District ct = new District();
+                //if (District.DeleteByCode(db, 127))  // 
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        
 // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {
              RGEContext db = new RGEContext();
             {
-                //List<RiskObject> list = new List<RiskObject>();
-                //if (Helper.GetListRiskObject(db, ref list))
+                List<RiskObject> list = new List<RiskObject>();
+                if (Helper.GetListRiskObject(db, ref list))
                  {
                        int k = 1;
                  };
@@ -110,7 +224,10 @@ namespace EGH01.Controllers
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
-                //RiskObject rs = new RiskObject(id, point, type, cad, "ttt", "tttt");
+                //DateTime date1 = DateTime.Now;
+                //DateTime date2 = DateTime.Now;
+                //byte[] map = new byte [0] ;
+                //RiskObject rs = new RiskObject(id, point, type, cad, "new", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 200,300);
                 //if (RiskObject.Create(db, rs))
                 {
                     int k = 1;
@@ -123,12 +240,15 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int id = 6;
-                //Point point = new Point(new Coordinates(57.53f, 27.27f), new GroundType(1), 6.0f, 0.0f);
+                //int id = 8;
+                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
-                //CadastreType cad = new CadastreType(2);
-                //RiskObject rs = new RiskObject(id, point, type, cad, "update", "uptt");
-                //if (RiskObject.Update(db, rs))
+                //CadastreType cad = new CadastreType(1);
+                //DateTime date1 = DateTime.Now;
+                //DateTime date2 = DateTime.Now;
+                //byte[] map = new byte[0];
+                //RiskObject rs = new RiskObject(id, point, type, cad, "update", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
+                //if (RiskObject.Create(db, rs))
                 {
                     int k = 1;
                 };

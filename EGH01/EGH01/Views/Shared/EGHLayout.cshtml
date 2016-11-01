@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width" />
     <title>"Экспертная система [EGH] </title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
-    <link href="~/content/site.css" type="text/css" rel="stylesheet" />
+    @*<link href="~/content/bootstrap.css" type="text/css" rel="stylesheet" />
+    <link href="~/content/site.css" type="text/css" rel="stylesheet" />*@
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-default  navbar-fixed-top">
         <div class="container">
             <div class="navbar-brand col-xs-1">
-                <a href="/"><img src="/content/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
+                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
             </div>
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
-                @if (ViewBag.EGHLayout == "RGE")
+              @if (ViewBag.EGHLayout == "RGE")
                 {
                     <h2>Прогноз</h2>
 
@@ -60,9 +62,26 @@
                     </li>
                 </ul>
             </div>
+            @*<div class="navbar-brand ">
+                <a href="/"><img src="~/Resources/Layout_Mobile_Whiteframe1.png" alt="EGH" /></a>
+                              
+            </div>*@            
+            <!--Главное меню-->
+            <ul class="navbar-nav nav navbar-right">
+                <li class="dropdown">
+                    @*<a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>*@
+                    <ul class="dropdown-menu" role="menu">
+                        <li>@Html.ActionLink("Прогноз",                                 "Index", "EGHRGE")  </li>
+                        <li>@Html.ActionLink("Оценка огнозируемого состояния",          "Index", "EGHCEQ")  </li>
+                        <li>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
+                        <li>@Html.ActionLink("Выбор технологий реабилитации",           "Index", "EGHORT")  </li>
+                        <li>@Html.ActionLink("Химический состав нефтей",                "Index", "EGHCCO")  </li>
+                        <li>@Html.ActionLink("Техногенные объекты",                     "Index", "EGHCAI")  </li>
+
+                    </ul>
+                </li>
+            </ul>
         </div>
-
-
     </div>
     <div id="wrap" class="osnova">
         <!--Меню индивидуальное для страниц-->
@@ -173,6 +192,7 @@
 </html>
 
 
+<<<<<<< HEAD
 
 
 @*<div class=" container proverka1">
@@ -220,3 +240,6 @@
         </div>
 
     </div>*@
+=======
+   
+>>>>>>> 71cfe1271ac0615419383e8bdc0c00e80fdc7436

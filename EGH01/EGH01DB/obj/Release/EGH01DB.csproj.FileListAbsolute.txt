@@ -1,0 +1,4 @@
+C:\EGH\SMW60\egh\EGH01\EGH01DB\bin\Release\EGH01DB.dll
+C:\EGH\SMW60\egh\EGH01\EGH01DB\bin\Release\EGH01DB.pdb
+C:\EGH\SMW60\egh\EGH01\EGH01DB\obj\Release\EGH01DB.dll
+C:\EGH\SMW60\egh\EGH01\EGH01DB\obj\Release\EGH01DB.pdb
