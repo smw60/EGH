@@ -324,8 +324,15 @@ namespace EGH01DB.Primitives
                                                                     (float)sorption);
                         double waterdeep = (double)reader["ГлубинаГрунтовыхВод"];
                         double height = (double)reader["ВысотаУровнемМоря"];
-                        string district = (string)reader["Район"];
-                        string region = (string)reader["Область"];
+
+                        int district_code = (int)reader["РайонТехногенногоОбъекта"];
+                        string district_name = (string)reader["Район"];
+
+                        int region_code = (int)reader["ОбластьТехногенногоОбъекта"];
+                        string region_name = (string)reader["Область"];
+                        Region region = new Region(region_code, region_name);
+                        District district = new District(district_code, region, district_name);
+
                         string ownership = (string)reader["Принадлежность"];
                         string phone = (string)reader["Телефон"];
                         string fax = (string)reader["Факс"];
@@ -352,13 +359,13 @@ namespace EGH01DB.Primitives
                         CadastreType cadastre_type = new CadastreType((int)reader["КодТипаНазначенияЗемель"], (string)cadastre_type_name, (int)pdk);
                         string name = (string)reader["НаименованиеТехногенногоОбъекта"];
                         string address = (string)reader["АдресТехногенногоОбъекта"];
-                        RiskObject risk_object = new RiskObject();
-                        //RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type, 
-                        //                                        name, 1, 1, address, ownership, phone, fax,
-                        //                                        foundationdate, reconstractiondate, 
-                        //                                        numberofrefuel, volume,
-                        //                                        watertreatment, watertreatmentcollect, map,
-                        //                                        groundtank, undergroundtank);
+                        
+                        RiskObject risk_object = new RiskObject(id, point, risk_object_type, cadastre_type,
+                                                                name, district, region, address, ownership, phone, fax,
+                                                                foundationdate, reconstractiondate,
+                                                                numberofrefuel, volume,
+                                                                watertreatment, watertreatmentcollect, map,
+                                                                groundtank, undergroundtank);
                         
                         risk_objects.Add(risk_object);
                     }

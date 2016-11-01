@@ -213,12 +213,12 @@ namespace EGH01.Controllers
         public ActionResult Risk_Obj_list() // есть
         {
              RGEContext db = new RGEContext();
-            {
-                //List<RiskObject> list = new List<RiskObject>();
-                //if (Helper.GetListRiskObject(db, ref list))
-                // {
-                //       int k = 1;
-                // };
+             {
+                 //List<RiskObject> list = new List<RiskObject>();
+                 //if (Helper.GetListRiskObject(db, ref list))
+                 //{
+                 //    int k = 1;
+                 //};
             }
             return View();
         }
@@ -238,11 +238,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                RiskObject rs = new RiskObject();
-              //if (RiskObject.DeleteById(db, 78)) // удалена
-                {
-                    int k = 1;
-                };
+              //  RiskObject rs = new RiskObject();
+              //if (RiskObject.DeleteById(db, 13)) // удалена
+              //  {
+              //      int k = 1;
+              //  };
             }
             return View();
         }
@@ -270,15 +270,17 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
 
-                //int id = 8;
-                //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
-                //RiskObjectType type = new RiskObjectType(1);
-                //CadastreType cad = new CadastreType(1);
-                //DateTime date1 = DateTime.Now;
-                //DateTime date2 = DateTime.Now;
-                //byte[] map = new byte[0];
-                //RiskObject rs = new RiskObject(id, point, type, cad, "update", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
-                //if (RiskObject.Create(db, rs))
+                int id = 8;
+                Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                Region region = new Region(2);
+                District district = new District(2);
+                RiskObjectType type = new RiskObjectType(1);
+                CadastreType cad = new CadastreType(1);
+                DateTime date1 = DateTime.Now;
+                DateTime date2 = DateTime.Now;
+                byte[] map = new byte[0];
+                RiskObject rs = new RiskObject(id, point, type, cad, "update",district, region, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
+                if (RiskObject.Update(db, rs))
                 {
                     int k = 1;
                 };
