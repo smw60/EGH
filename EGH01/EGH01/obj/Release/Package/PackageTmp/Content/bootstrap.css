@@ -784,6 +784,7 @@ pre code {
 }
 
 .row {
+    min-height:100px;
   margin-right: -15px;
   margin-left: -15px;
 }
