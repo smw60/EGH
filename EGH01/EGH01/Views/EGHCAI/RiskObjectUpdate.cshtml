@@ -1,11 +1,15 @@
-﻿@using EGH01.Core; 
+﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
+@using EGH01DB.Primitives;
+@using EGH01DB.Objects;
+@using EGH01DB.Types;
 @model EGH01DB.Objects.RiskObject
 @{
+
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
                           new Menu.MenuItem("Создать", "RiskObject.Create", false),
-                          new Menu.MenuItem("Excel-формат", "RiskObject.Excel",  false)
+                          new Menu.MenuItem("Excel-формат", "RiskObject.Excel", false)
                         );
 
     Menu delete = new Menu(
@@ -13,41 +17,130 @@
                           new Menu.MenuItem("Отказаться", "RiskObject.Update.Cancel", true)
                         );
 
+    EGH01DB.CAIContext db = new EGH01DB.CAIContext();
+    List<EGH01DB.Types.RiskObjectType> list_type = new List<EGH01DB.Types.RiskObjectType>();
+    ViewBag.selectlist = new List<SelectListItem>();
+
+    Helper.GetListRiskObjectType(db, ref list_type);
+    list_type.ForEach(o => ViewBag.selectlist.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+
+
+    List<EGH01DB.Types.GroundType> list_groundType = new List<EGH01DB.Types.GroundType>();
+    ViewBag.list_groundType = new List<SelectListItem>();
+
+    Helper.GetListGroundType(db, ref list_groundType);
+    list_groundType.ForEach(o => ViewBag.list_groundType.Add(new SelectListItem { Text = o.name, Value = o.type_code.ToString() }));
+
+
+
+    List<EGH01DB.Types.Region> list_region = new List<EGH01DB.Types.Region>();
+    ViewBag.list_region = new List<SelectListItem>();
+    if (@Model != null)
+    {
+        Helper.GetListRegion(db, ref list_region);
+        list_region.ForEach(o => ViewBag.list_region.Add(new SelectListItem { Text = o.name, Value = o.region_code.ToString() }));
+
+    }
+
+
+
+
 }
- @Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head})
+@Html.Partial("_TypeHeadMenu", new TypeViewMenu { Controller = "EGHCAI", Action = "RiskObject", Menu = head })
 
- @using(Html.BeginForm("RiskObjectUpdate", "EGHCAI"))
- {
+@using (Html.BeginForm("RiskObjectUpdate", "EGHCAI"))
+{
 
-   <div class="box">
-            <div class="boxdata">
+    <div class="box">
+        <div class="boxdata">
 
-                <p><label class="boxdata-label-30">Код типа инцидента</label>@Model.id.ToString()</p>
-                <p>
-                   <label class="boxdata-label-30">Наименование типа инцидента</label>
-                   <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
-                </p>
+            <p><label class="boxdata-label-30" value="@Model.id.ToString()">Код типа </label></p>
+            <p>
 
-                <label class="boxdata-label-30"> Координаты объекта </label>
-                <br>
+                <label class="boxdata-label-30">Наименование объекта</label>
+                <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Типа объекта </label>   @Html.DropDownList("selectlist").
+            </p>
+            <p>
+                <label class="boxdata-label-30">Объем резервуаров для хранения нефтепродутов (м3)</label>
 
-                <p>
-                    <label class="boxdata-label-30">Широта </label>
-                    <input class="boxdata-input-50" type="text" name="Latitude" value="@Model.coordinates.latitude" />
+            <p>
+                <label class="boxdata-label-30"> наземные</label>
+                <input class="boxdata-input-50" type="number" name="groundtank" value="@Model.groundtank.ToString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30"> подземные</label>
+                <input class="boxdata-input-50" type="number" name="undergroundtank" value="@Model.undergroundtank.ToString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
+                <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.Date.ToShortDateString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">дата послежней реконструкции  </label>
+                <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Геологические данные</label>
 
-                <p>
-                    <label class="boxdata-label-30">Долгота</label>
-                    <input class="boxdata-input-50" type="text" name="lngitude" value="@Model.coordinates.lngitude" />
+            <p>
+                <label class="boxdata-label-30">Грунт</label> @Html.DropDownList("list_groundType")
+            </p>
+            <p>
+                <label class="boxdata-label-30">Глубина грунтовых вод (м)</label>
+                <input class="boxdata-input-50" type="number" name="waterdeep" value="@Model.waterdeep.ToString()" />
+            </p>
 
-                <p>
-                    <label class="boxdata-label-30">Адресс</label>
-                    <input class="boxdata-input-50" type="text" name="adress" value="@Model.address" />
+            <p>
+                <label class="boxdata-label-30">Высота над уровнем моря (м)</label>
+                <input class="boxdata-input-50" type="number" name="height" value="@Model.height.ToString()" />
+            </p>
+            <p>
+                <label class="boxdata-label-30"> Широта: </label>
 
-                    <input type="hidden" value="@Model.id.ToString()" name="type_code">
+                <input class="boxdata-input-50" type="number" name="Latitude" value="@Model.coordinates.lat.d.ToString()" min="-90" max="90" />
+                <input class="boxdata-input-50" type="number" name="Lat_m" value="@Model.coordinates.lat.m.ToString()" min="-90" max="90" />
+                <input class="boxdata-input-50" type="text"name="Lat_s" value="@Model.coordinates.lat.s.ToString()" min="-90" max="90" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Долгота</label>
 
-</div>
-            
-            @Html.Partial("_TypeLineMenu",delete)
-            
+                <input class="boxdata-input-50" type="number" name="Lngitude" value="@Model.coordinates.lng.d.ToString()" max="180" min="0" />
+                <input class="boxdata-input-50" type="number" name="Lng_m" value="@Model.coordinates.lng.m.ToString()" min="-90" max="90" />
+                <input class="boxdata-input-50" type="text" name="Lng_s" value="@Model.coordinates.lng.s.ToString()" min="-90" max="90" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Район(список)</label>  @Html.DropDownList("list_region")
+            </p>
+
+            <p>
+                <label class="boxdata-label-30"> Адресс объекта </label>
+                <input class="boxdata-input-50" type="text" name="Adress" value="@Model.address" />
+            </p>
+            <p>
+                <label class="boxdata-label-30"> Телефон</label>
+                <input class="boxdata-input-50" type="text" name="phone" value="@Model.phone" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Факс</label>
+                <input class="boxdata-input-50" type="text" name="fax" value="@Model.fax" />
+            </p>
+            <p>
+                <label class="boxdata-label-30">Очистные сооружения</label>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatment" value="true">Для дождевого стока
+            </p>
+            <p>
+                <input type="checkbox" class="boxdata-label-30" name="watertreatmentcollect" value="true">Резервуар для сбора проливов
+            </p>
+            </p>
+            <input type="hidden" value="@Model.id.ToString()" name="type_code">
+
         </div>
-  }
+
+        @Html.Partial("_TypeLineMenu", delete)
+
+    </div>
+}
