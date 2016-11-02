@@ -1,7 +1,6 @@
 ﻿@using EGH01.Core;
 @using EGH01.Models.EGH;
 @model EGH01DB.Types.PetrochemicalType
-<h2>PetrochemicalTypeUpdate</h2>
 @{
     Layout = "~/Views/Shared/EGHLayout.cshtml";
     Menu head = new Menu(
@@ -19,32 +18,37 @@
 
 @using (Html.BeginForm("PetrochemicalTypeUpdate", "EGHCCO"))
 {
-
+    
     <div class="box">
         <div class="boxdata">
+            <p>
+                <label class="boxdata-label-30" value="@Model.code_type">Код типа нефтепродукта</label>
+                <label class="boxdata-label-50">@Model.code_type</label>
+            </p>
+            <br />
 
-            <p><label class="boxdata-label-30">Код типа нефтепродукта</label>@Model.code_type.ToString()</p>
             <p>
                 <label class="boxdata-label-30">Наименование нефтепродукта</label>
                 <input class="boxdata-input-50" type="text" name="Name" value="@Model.name" />
             </p>
+            <br />
             <p>
-                <label class="boxdata-label-30">Температура кипения, С </label>
+                <label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С </label>
                 <input class="boxdata-input-50" type="number" name="Boilingtemp" value="@Model.boilingtemp" />
             </p>
             <p>
-                <label class="boxdata-label-30">Плотность, г/см3</label>
+                <label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label>
                 <input class="boxdata-input-50" type="number" name="Density" value="@Model.density" />
             </p>
             <p>
-                <label class="boxdata-label-30">Кинематическая вязкость, мм2/см</label>
+                <label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label>
                 <input class="boxdata-input-50" type="number" name="Viscosity" value="@Model.viscosity" />
             </p>
             <p>
-                <label class="boxdata-label-30">Растворимость, млг/дм2</label>
+                <label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label>
                 <input class="boxdata-input-50" type="number" name="Solubility" value="@Model.solubility" />
             </p>
-            <input type="hidden" value="@Model.code_type.ToString()" name="type_code">
+            <p><input type="hidden" value="@Model.code_type.ToString()" name="code_type"></p>
 
         </div>
 

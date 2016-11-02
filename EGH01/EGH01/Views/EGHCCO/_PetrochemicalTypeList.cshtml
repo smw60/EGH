@@ -23,12 +23,18 @@
         <div class="box">
             <div class="boxdata">
 
-                <p><label class="boxdata-label-30">Код типа нефтепродукта</label> @t.code_type.ToString() </p>
-                <p><label class="boxdata-label-30">Наименование нефтепродукта</label> @t.name </p>
-                <p><label class="boxdata-label-30">Температура кипения, С</label> @t.boilingtemp</p>
-                <p><label class="boxdata-label-30">Плотность, г/см3</label> @t.density</p>
-                <p><label class="boxdata-label-30">Кинематическая вязкость, мм2/см</label> @t.viscosity</p>
-                <p><label class="boxdata-label-30">Растворимость, млг/дм2</label> @t.solubility</p>
+                <p><label class="boxdata-label-30">Код типа нефтепродукта</label> @t.code_type.ToString() </p><br />
+                
+                <p><label class="boxdata-label-30">Наименование нефтепродукта</label> @t.name </p><br />
+                
+                <p><label class="boxdata-label-30">Температура кипения, <sup><small>о</small></sup>С</label> @t.boilingtemp.ToString()</p><br />
+                
+                <p><label class="boxdata-label-30">Плотность, г/см<sup><small>3</small></sup></label> @t.density.ToString()</p><br />
+                
+                <p><label class="boxdata-label-30">Кинематическая вязкость, мм<sup><small>2</small></sup>/см</label> @t.viscosity.ToString()</p><br />
+                
+                <p><label class="boxdata-label-30">Растворимость, млг/дм<sup><small>2</small></sup></label> @t.solubility.ToString()</p>
+      
                 <input type="hidden" value="@t.code_type.ToString()" name="type_code">
 
             </div>
