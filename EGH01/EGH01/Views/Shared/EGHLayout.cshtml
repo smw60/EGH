@@ -19,30 +19,35 @@
             </div>
             <!--Заголовок индивидуальный для страниц-->
             <div class="title col-xs-8">
+                <style>
+                    .title {
+                        text-align: center;
+                    }
+                </style>
               @if (ViewBag.EGHLayout == "RGE")
                 {
-                    <h2>Прогноз</h2>
+                    <h2>EGHRGE-Прогноз</h2>
 
                 }
                 else if (ViewBag.EGHLayout == "CEQ")
                 {
-                    <h2>Оценка прогнозируемого состояния</h2>
+                    <h2>EGHCEQ-Оценка прогнозируемого состояния</h2>
                 }
                 else if (ViewBag.EGHLayout == "GEA")
                 {
-                    <h2>Классификация прогнозируемого состояния </h2>
+                    <h2>EGHGEA-Классификация прогнозируемого состояния </h2>
                 }
                 else if (ViewBag.EGHLayout == "ORT")
                 {
-                    <h2>Выбор технологий реабилитации</h2>
+                    <h2>EGHORT-Выбор технологий реабилитации</h2>
                 }
                 else if (ViewBag.EGHLayout == "CCO")
                 {
-                    <h2>Химический состав нефтей</h2>
+                    <h2>EGHCCO-Химический состав нефтей</h2>
                 }
                 else if (ViewBag.EGHLayout == "CAI")
                 {
-                    <h2>Техногенные объекты</h2>
+                    <h2>EGHCAI-Техногенные объекты</h2>
                 }
             </div>
             <div class=" col-xs-3">
@@ -71,12 +76,12 @@
                 <li class="dropdown">
                     @*<a href="#" class="dropdown-toggle btn btn-link" data-toggle="dropdown" role="button" aria-expanded="false">Главное меню <span class="caret"></span></a>*@
                     <ul class="dropdown-menu" role="menu">
-                        <li>@Html.ActionLink("Прогноз",                                 "Index", "EGHRGE")  </li>
-                        <li>@Html.ActionLink("Оценка огнозируемого состояния",          "Index", "EGHCEQ")  </li>
-                        <li>@Html.ActionLink("Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
-                        <li>@Html.ActionLink("Выбор технологий реабилитации",           "Index", "EGHORT")  </li>
-                        <li>@Html.ActionLink("Химический состав нефтей",                "Index", "EGHCCO")  </li>
-                        <li>@Html.ActionLink("Техногенные объекты",                     "Index", "EGHCAI")  </li>
+                        <li>@Html.ActionLink("EGHRGE-Прогноз", "Index", "EGHRGE")  </li>
+                        <li>@Html.ActionLink("EGHGEA-Оценка огнозируемого состояния", "Index", "EGHCEQ")  </li>
+                        <li>@Html.ActionLink("EGHORT-Классификация прогнозируемого состояния", "Index", "EGHGEA")  </li>
+                        <li>@Html.ActionLink("EGHORT-Выбор технологий реабилитации", "Index", "EGHORT")  </li>
+                        <li>@Html.ActionLink("EGHCCO-Химический состав нефтей", "Index", "EGHCCO")  </li>
+                        <li>@Html.ActionLink("EGHCAI-Техногенные объекты", "Index", "EGHCAI")  </li>
 
                     </ul>
                 </li>
@@ -151,48 +156,24 @@
 
     <div id="push"></div>
     </div>
+    <div class="footer col-xs-8">
+        <style>
+            .footer {
+                text-align: right;
+            }
+        </style>
 
-    <div id="footer" class="footer1">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-3">
-                    <h3 class="widget-title">Сайт компании:</h3>
-                    <div class="widget-body">
-                        <p>
-                            <a href="mailto:#">www.http://geologiya.by/ <br>
-                            РУП “НПЦТ по геологии”</a>
-                            </p>
-                    </div>
-                </div>
-
-                <div class="col-md-3">
-
-                </div>
-
-                <div class="col-md-6">
-                    <h3 class="widget-title">Контакты:</h3>
-                    <div class="widget-body">
-                        <p>
-                            Факс: +375 17 265 71 15 E-mail: belgeologi@tut.by
-                           
-                        </p>
-                    </div>
-                </div>
-
-            </div> <!-- /row of widgets -->
+        <div id="footer">
+            &copy; Государственное предприятие "НПЦ по геологии"
         </div>
     </div>
 
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
 </body>
 </html>
 
-
-<<<<<<< HEAD
 
 
 @*<div class=" container proverka1">
@@ -240,6 +221,4 @@
         </div>
 
     </div>*@
-=======
-   
->>>>>>> 71cfe1271ac0615419383e8bdc0c00e80fdc7436
+

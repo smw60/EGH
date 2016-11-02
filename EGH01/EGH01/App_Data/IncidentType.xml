@@ -4,5 +4,6 @@
   <IncidentType type_code="3" name="Подземный резервуар" />
   <IncidentType type_code="4" name="Автотранспорт" />
   <IncidentType type_code="5" name="Железнодорожный транспорт" />
-  <IncidentType type_code="6" name=" " />
+  <IncidentType type_code="6" name="Нефтевоз" />
+  <IncidentType type_code="7" name=" " />
 </IncidentTypeList>
