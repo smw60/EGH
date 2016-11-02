@@ -77,11 +77,11 @@
             </p>
             <p>
                 <label class="boxdata-label-30">дата ввода в эксплуатацию  </label>
-                <input class="boxdata-input-50" type="date" name="foundationdate" value="@Model.foundationdate.Date.ToShortDateString()" />
+                <input class="boxdata-input-50" type="text" name="foundationdate" value="@Model.foundationdate.Date.ToShortDateString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">дата послежней реконструкции  </label>
-                <input class="boxdata-input-50" type="date" name="reconstractiondate" value="@Model.reconstractiondate.Date" />
+                <input class="boxdata-input-50" type="text" name="reconstractiondate" value="@Model.reconstractiondate.ToShortDateString()" />
             </p>
             <p>
                 <label class="boxdata-label-30">Геологические данные</label>
