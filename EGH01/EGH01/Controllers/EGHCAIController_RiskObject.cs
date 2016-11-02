@@ -136,7 +136,7 @@ namespace EGH01.Controllers
                                 if (EGH01DB.Types.Region.GetByCode(db, rs.list_region, out risk_region))
                                 {
                                     Region region = new Region(rs.list_region, risk_region.name); // blinova
-                                    DateTime foundationdate = rs.foundationdate;
+                                    DateTime foundationdate = rs.foundationdate.Date;
                                     DateTime reconstractiondate = rs.reconstractiondate;
                                     string name = rs.name;
                                     String phone = rs.phone;
