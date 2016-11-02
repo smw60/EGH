@@ -15,11 +15,11 @@ namespace EGH01.Controllers
 {
     public class DebugController : Controller
     {
-        
+
         public ActionResult Index()
         {
-        
-            
+
+
             return View();
         }
         public ActionResult XML()
@@ -32,7 +32,7 @@ namespace EGH01.Controllers
             {
                 CoordinatesList clist = new CoordinatesList()
                 {
-                    new Coordinates(53.891779f, 27.557892f),    
+                    new Coordinates(53.891779f, 27.557892f),
                     new Coordinates(53.881780f, 27.537890f),
                     new Coordinates(53.871781f, 27.547893f),
                 };
@@ -51,13 +51,13 @@ namespace EGH01.Controllers
                 Point p1 = new Point(xml);
             }
 
-            { 
-              EGH01DB.RGEContext db = new EGH01DB.RGEContext();
-              IncidentTypeList list = new IncidentTypeList(db);
-              XmlNode n = list.toXmlNode();
-              int k = 1;
-            
-            
+            {
+                EGH01DB.RGEContext db = new EGH01DB.RGEContext();
+                IncidentTypeList list = new IncidentTypeList(db);
+                XmlNode n = list.toXmlNode();
+                int k = 1;
+
+
             }
 
 
@@ -65,13 +65,13 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Region
+        // проверка процедур Region
         public ActionResult Region_Create()// есть
         {
             RGEContext db = new RGEContext();
             {
 
-                
+
                 //string name = "Test111";
 
                 //Region t = new Region(name);
@@ -137,7 +137,7 @@ namespace EGH01.Controllers
 
 
 
-// проверка процедур District
+        // проверка процедур District
         public ActionResult District_Create()// есть
         {
             RGEContext db = new RGEContext();
@@ -159,10 +159,10 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //District ct = new District(1);
-                //if (District.GetByCode(db, 1, out ct))
-                {
-                    int k = 1;
-                };
+                //if (District.GetByCode(db, 5, out ct))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -171,24 +171,54 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //District ct = new District();
-                //if (District.DeleteByCode(db, 127))  // 
+                //if (District.DeleteByCode(db, 128))  // 
                 //{
                 //    int k = 1;
                 //};
             }
             return View();
         }
-        
-// проверка процедур Risk Object, раскомментить нужные области
+        public ActionResult District_Update()// 
+        {
+            RGEContext db = new RGEContext();
+            {
+
+                //int code = 104;
+                //Region region = new Region(6);
+                //string name = "Могилев";
+
+                //District t = new District((int)code, region, (string)name);
+                //if (District.Update(db, t))
+                //{
+                //    int k = 1;
+                //};
+            }
+            return View();
+        }
+        public ActionResult District_list() // 
+        {
+            RGEContext db = new RGEContext();
+            {
+                List<District> list = new List<District>();
+                if (Helper.GetListDistrict(db, 2, ref list))
+                {
+                    int k = 1;
+                };
+            }
+            return View();
+        }
+
+
+        // проверка процедур Risk Object, раскомментить нужные области
         public ActionResult Risk_Obj_list() // есть
         {
-             RGEContext db = new RGEContext();
+            RGEContext db = new RGEContext();
             {
-                List<RiskObject> list = new List<RiskObject>();
-                if (Helper.GetListRiskObject(db, ref list))
-                 {
-                       int k = 1;
-                 };
+                //List<RiskObject> list = new List<RiskObject>();
+                //if (Helper.GetListRiskObject(db, ref list))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -197,10 +227,10 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //RiskObject rs = new RiskObject();
-                //if (RiskObject.GetById(db, 78, ref rs))
-                {
-                    int k = 1;
-                };
+                //if (RiskObject.GetById(db, 8, ref rs))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -208,11 +238,11 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                RiskObject rs = new RiskObject();
-              //if (RiskObject.DeleteById(db, 78)) // удалена
-                {
-                    int k = 1;
-                };
+                //  RiskObject rs = new RiskObject();
+                //if (RiskObject.DeleteById(db, 13)) // удалена
+                //  {
+                //      int k = 1;
+                //  };
             }
             return View();
         }
@@ -224,14 +254,16 @@ namespace EGH01.Controllers
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
+                //Region region = new Region(2);
+                //District district = new District(2);
                 //DateTime date1 = DateTime.Now;
                 //DateTime date2 = DateTime.Now;
-                //byte[] map = new byte [0] ;
-                //RiskObject rs = new RiskObject(id, point, type, cad, "new", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 200,300);
+                //byte[] map = new byte[0];
+                //RiskObject rs = new RiskObject(id, point, type, cad, "new", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 200, 300);
                 //if (RiskObject.Create(db, rs))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -242,16 +274,18 @@ namespace EGH01.Controllers
 
                 //int id = 8;
                 //Point point = new Point(new Coordinates(53.53f, 27.27f), new GroundType(1), 0.0f, 0.0f);
+                //Region region = new Region(2);
+                //District district = new District(2);
                 //RiskObjectType type = new RiskObjectType(1);
                 //CadastreType cad = new CadastreType(1);
                 //DateTime date1 = DateTime.Now;
                 //DateTime date2 = DateTime.Now;
                 //byte[] map = new byte[0];
-                //RiskObject rs = new RiskObject(id, point, type, cad, "update", 1, 1, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
-                //if (RiskObject.Create(db, rs))
-                {
-                    int k = 1;
-                };
+                //RiskObject rs = new RiskObject(id, point, type, cad, "update", district, region, "address1", "OOO nexttime", "375290000000", "375290000000", date1, date2, 100, 40000, false, false, map, 20, 30);
+                //if (RiskObject.Update(db, rs))
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -285,13 +319,13 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Petrochemical Type
+        // проверка процедур Petrochemical Type
         public ActionResult Petr_GetByCode()// есть
         {
             RGEContext db = new RGEContext();
             {
-               // PetrochemicalType pt = new PetrochemicalType();
-               // if (PetrochemicalType.GetByCode(db, 7, ref pt))
+                // PetrochemicalType pt = new PetrochemicalType();
+                // if (PetrochemicalType.GetByCode(db, 7, ref pt))
                 {
                     int k = 1;
                 };
@@ -304,7 +338,7 @@ namespace EGH01.Controllers
             {
                 PetrochemicalType pt = new PetrochemicalType();
                 //int k1 = 0;
-               // if (PetrochemicalType.GetNextCode(db, out k1))
+                // if (PetrochemicalType.GetNextCode(db, out k1))
                 {
                     int k = 1;
                 };
@@ -316,7 +350,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //PetrochemicalType pt = new PetrochemicalType();
-               //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
+                //if (PetrochemicalType.DeleteByCode(db, 14))  // удален
                 {
                     int k = 1;
                 };
@@ -327,7 +361,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                
+
                 //int code_type = 8;
                 //string name = "test";
                 //float boilingtemp = 100.0f;
@@ -346,7 +380,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //int code_type = 8;
+                //int code_type =13;
                 //string name = "test1";
                 //float boilingtemp = 110.0f;
                 //float density = 35.0f;
@@ -354,9 +388,9 @@ namespace EGH01.Controllers
                 //float solubility = 3.0f;
                 //PetrochemicalType pt = new PetrochemicalType((int)code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
                 //if (PetrochemicalType.Update(db, pt))
-                {
-                    int k = 1;
-                };
+                //{
+                //    int k = 1;
+                //};
             }
             return View();
         }
@@ -373,7 +407,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Ground Type
+        // проверка процедур Ground Type
         public ActionResult Ground_GetByCode()// есть
         {
             RGEContext db = new RGEContext();
@@ -479,7 +513,7 @@ namespace EGH01.Controllers
             RGEContext db = new RGEContext();
             {
                 //List<GroundType> list = new List<GroundType>();
-               // if (Helper.GetListGroundType(db, ref list))    
+                // if (Helper.GetListGroundType(db, ref list))    
                 {
                     int k = 1;
                 };
@@ -487,7 +521,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Cadastre Type        
+        // проверка процедур Cadastre Type        
         public ActionResult Cadastre_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -569,7 +603,7 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур Risk Object Type
+        // проверка процедур Risk Object Type
         public ActionResult RiskObjectType_list() // есть
         {
             RGEContext db = new RGEContext();
@@ -649,9 +683,9 @@ namespace EGH01.Controllers
             return View();
         }
 
-// проверка процедур EcoObject Type
+        // проверка процедур EcoObject Type
 
-// проверка процедур Incident Type
+        // проверка процедур Incident Type
         public ActionResult IncidentType_list() // 
         {
             RGEContext db = new RGEContext();
@@ -693,7 +727,7 @@ namespace EGH01.Controllers
         {
             RGEContext db = new RGEContext();
             {
-                //    if (IncidentType.Delete(db, 5))
+                //    if (IncidentType.DeleteByCode(db, 5))
                 //    {
                 //        int r = 1;
                 //    }

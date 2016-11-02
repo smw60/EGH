@@ -6,4 +6,8 @@
   <IncidentType type_code="5" name="Железнодорожный транспорт" />
   <IncidentType type_code="6" name="Нефтевоз" />
   <IncidentType type_code="7" name=" " />
+<<<<<<< HEAD
+=======
+  <IncidentType type_code="8" name=" Инцидент" />
+>>>>>>> e03cd81df564ad90a7c0343f0fe326d4f7a0b65d
 </IncidentTypeList>

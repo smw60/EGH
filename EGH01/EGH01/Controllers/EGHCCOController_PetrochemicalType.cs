@@ -180,13 +180,13 @@ namespace EGH01.Controllers
                 {
 
 
-                    int type_code = ptv.code_type;
+                 //   int type_code = ptv.code_type;
                     string name = ptv.name;
                     float boilingtemp = ptv.boilingtemp;
                     float density = ptv.density;
                     float viscosity = ptv.viscosity;
                     float solubility = ptv.solubility;
-                    PetrochemicalType pt = new PetrochemicalType((int)type_code, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
+                    PetrochemicalType pt = new PetrochemicalType((int)ptv.code_type, (string)name, (float)boilingtemp, (float)density, (float)viscosity, (float)solubility);
 
 
                     if (EGH01DB.Types.PetrochemicalType.Update(db, pt))
